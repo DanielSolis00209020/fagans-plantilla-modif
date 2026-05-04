@@ -46,6 +46,48 @@
 				],
 				"default": "gambarino"
 			},
+			{
+				"type": "header",
+				"content": "Base and heading fonts (Legacy)"
+			},
+			{
+				"type": "font_picker",
+				"id": "base_font",
+				"label": "Base font",
+				"default": "inter_n4"
+			},
+			{
+				"type": "font_picker",
+				"id": "heading_font",
+				"label": "Heading font",
+				"default": "gambarino_n4"
+			},
+			{
+				"type": "checkbox",
+				"id": "uppercase",
+				"label": "Uppercase",
+				"default": false
+			},
+			{
+				"type": "range",
+				"id": "base_font_size",
+				"min": 100,
+				"max": 130,
+				"step": 1,
+				"unit": "%",
+				"label": "Base font size",
+				"default": 115
+			},
+			{
+				"type": "range",
+				"id": "heading_font_size",
+				"min": 100,
+				"max": 130,
+				"step": 1,
+				"unit": "%",
+				"label": "Heading font size",
+				"default": 115
+			}
 		]
 	},
 	{
@@ -1323,49 +1365,4 @@
 				"step": 1,
 				"unit": "px",
 				"label": "Desktop offset top",
-				"default": 32
-			},
-			{
-				"type": "range",
-				"id": "breadcrumbs_offset_bottom_desktop",
-				"min": 0,
-				"max": 40,
-				"step": 1,
-				"unit": "px",
-				"label": "Desktop offset bottom",
-				"default": 0
-			},
-			{
-				"type": "range",
-				"id": "breadcrumbs_offset_top_mobile",
-				"min": 0,
-				"max": 40,
-				"step": 1,
-				"unit": "px",
-				"label": "Mobile offset top",
-				"default": 16
-			},
-			{
-				"type": "range",
-				"id": "breadcrumbs_offset_bottom_mobile",
-				"min": 0,
-				"max": 40,
-				"step": 1,
-				"unit": "px",
-				"label": "Mobile offset bottom",
-				"default": 0
-			}
-		]
-	},
-	{
-		"name": "SEO",
-		"settings": [
-			{
-				"type": "checkbox",
-				"id": "hide_search_engine",
-				"label": "Hide site from search engines",
-				"default": false
-			}
-		]
-	}
-]
+				"default": 3
