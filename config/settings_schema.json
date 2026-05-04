@@ -708,19 +708,19 @@
         "type": "color",
         "id": "color_label_primary",
         "label": "Label text color",
-        "default": "#FFFFFF"
+        "default": "#0E0F0F"
       },
       {
         "type": "color",
         "id": "color_label_primary_background",
         "label": "Label color background",
-        "default": "#E08F8F"
+        "default": "#F1F1F1"
       },
       {
         "type": "color",
         "id": "color_label_primary_border",
         "label": "Label border color",
-        "default": "#E08F8F"
+        "default": "#F1F1F1"
       },
       {
         "type": "range",
@@ -746,13 +746,13 @@
         "type": "color",
         "id": "color_label_secondary_background",
         "label": "Label color background",
-        "default": "#E0BB8F"
+        "default": "#0E0F0F"
       },
       {
         "type": "color",
         "id": "color_label_secondary_border",
         "label": "Label border color",
-        "default": "#E0BB8F"
+        "default": "#0E0F0F"
       },
       {
         "type": "range",
@@ -772,19 +772,19 @@
         "type": "color",
         "id": "color_label_base",
         "label": "Label text color",
-        "default": "#937A70"
+        "default": "#0E0F0F"
       },
       {
         "type": "color",
         "id": "color_label_base_background",
         "label": "Label color background",
-        "default": "#ffffff"
+        "default": "#F1F1F1"
       },
       {
         "type": "color",
         "id": "color_label_base_border",
         "label": "Label border color",
-        "default": "#EFEFEF"
+        "default": "#F1F1F1"
       },
       {
         "type": "range",
@@ -804,19 +804,19 @@
         "type": "color",
         "id": "color_label_sold_out",
         "label": "Label text color",
-        "default": "#000000"
+        "default": "#FFFFFF"
       },
       {
         "type": "color",
         "id": "color_label_sold_out_background",
         "label": "Label color background",
-        "default": "#F2F2F2"
+        "default": "#C79FB8"
       },
       {
         "type": "color",
         "id": "color_label_sold_out_border",
         "label": "Label border color",
-        "default": "#E9E9E9"
+        "default": "#C79FB8"
       },
       {
         "type": "range",
@@ -929,13 +929,13 @@
         "type": "color",
         "id": "product_card_button_text_color",
         "label": "Quick view button color",
-        "default": "#ffffff"
+        "default": "#0E0F0F"
       },
       {
         "type": "color",
         "id": "product_card_button_background_color",
         "label": "Quick view button background",
-        "default": "#000000"
+        "default": "#F1F1F1"
       },
       {
         "type": "range",
@@ -945,7 +945,7 @@
         "step": 1,
         "unit": "%",
         "label": "Quick view button background opacity",
-        "default": 8
+        "default": 100
       },
       {
         "id": "product_card_button_enable_blur",

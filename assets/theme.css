@@ -272,6 +272,22 @@ label {
 .p-lg { padding: var(--spacing-lg); }
 
 /* ============================================
+   PRODUCT CARD BUTTON OVERRIDES
+   ============================================ */
+
+.product-card .product-card__quick-view-text-button {
+  background-color: var(--color-primary-onix) !important;
+  color: var(--color-primary-white) !important;
+  border: 2px solid var(--color-primary-onix) !important;
+}
+
+.product-card .product-card__quick-view-text-button:hover {
+  background-color: var(--color-secondary-platino) !important;
+  color: var(--color-primary-onix) !important;
+  border: 2px solid var(--color-primary-onix) !important;
+}
+
+/* ============================================
    RESPONSIVE
    ============================================ */
 

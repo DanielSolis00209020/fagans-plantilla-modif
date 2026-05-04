@@ -36,10 +36,10 @@
 {%- assign blocks_sidebar_banner 		= section.blocks | where: 'type', 'sidebar-banner' -%}
 
 {%- assign enable_color_scheme_inheritance 	= section.settings.enable_color_scheme_inheritance -%}
-{%- assign color_scheme 				   	= section.settings.color_scheme -%}
+{%- assign color_scheme_id = section.settings.color_scheme.id -%}
 
 {%- if enable_color_scheme_inheritance -%}
-	{%- assign color_scheme = settings.main_color_scheme -%}
+	{%- assign color_scheme_id = settings.main_color_scheme -%}
 {%- endif -%}
 
 {%- if grid_banner != blank -%}
@@ -89,7 +89,7 @@
 	--inner-offset-bottom-mobile: {{ section.settings.inner_offset_bottom_mobile }}px; {{-  -}}
 {%- endcapture -%}
 
-<section class="collection {% if enable_sidebar %}collection--with-sidebar{% elsif enable_topbar %}collection--with-top-bar{% endif %} {% if filters_empty == true %}filters-hidden{% endif %} color-{{ color_scheme.id }} js-collection"
+<section class="collection {% if enable_sidebar %}collection--with-sidebar{% elsif enable_topbar %}collection--with-top-bar{% endif %} {% if filters_empty == true %}filters-hidden{% endif %} color-{{ color_scheme_id }} js-collection"
 		 id="{{- section.id -}}"
 		 style="{{ styles }}"
 >
@@ -401,7 +401,7 @@
 			"type": "color_scheme",
 			"id": "color_scheme",
 			"label": "Color scheme",
-			"default": "scheme-1"
+			"default": "fagans-blanco"
 		},
 		{
 			"type": "header",
