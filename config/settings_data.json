@@ -334,7 +334,8 @@
           "color_icon_out_of_stock": "#d23f31"
         }
       }
-    }
+    },
+    "main_color_scheme": "fagans-blanco"
   },
   "presets": {
     "Allure": {
