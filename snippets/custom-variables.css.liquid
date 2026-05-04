@@ -94,8 +94,8 @@
 	{% case settings.heading_font %}
 		{% when "gambarino" %}
 			{% assign heading_font_family = "'Gambarino Complete', 'Times New Roman', serif" %}
-		{% when "garamond_n4" %}
-			{% assign heading_font_family = "'Garamond', 'Times New Roman', serif" %}
+		{% when "system" %}
+			{% assign heading_font_family = "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" %}
 		{% else %}
 			{% assign heading_font_family = "'Times New Roman', serif" %}
 	{% endcase %}
@@ -232,4 +232,4 @@
 			--color-icon-out-of-stock: {{- scheme.settings.color_icon_out_of_stock -}};
 
 			{% comment %}Cart{% endcomment %}
-			--color-cart-notification-background: {{- sc
+			--color-cart-notification-ba

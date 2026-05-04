@@ -40,8 +40,8 @@
             "label": "Gambarino Complete"
           },
           {
-            "value": "garamond_n4",
-            "label": "Garamond"
+            "value": "system",
+            "label": "System Font"
           }
         ],
         "default": "gambarino"
@@ -1355,4 +1355,4 @@
       }
     ]
   }
-]
+]  
