@@ -67,22 +67,34 @@
 	}
 
 	{% comment %}Fonts{% endcomment %}
-	{% assign base_medium_font = settings.base_font | font_modify: 'weight', 'medium' %}
-	{% assign base_bold_font = settings.base_font | font_modify: 'weight', 'bold' %}
-	{% assign base_italic_font = settings.base_font | font_modify: 'style', 'italic' %}
-	{% assign base_bold_italic_font = settings.base_font
-		| font_modify: 'weight', 'bold'
-		| font_modify: 'style', 'italic'
-	%}
+	{% comment %}Fagans Custom Font Handling - base_font and heading_font are now strings (select), not font_picker objects{% endcomment %}
+	{% if settings.base_font == "inter_n4" %}
+		{% assign base_font_obj = "inter" | font_picker %}
+	{% elsif settings.base_font == "system" %}
+		{% assign base_font_obj = nil %}
+	{% else %}
+		{% assign base_font_obj = settings.base_font | font_picker %}
+	{% endif %}
 
-	{{- settings.base_font | font_face: font_display: 'swap' -}}
-	{{- settings.heading_font | font_face: font_display: 'swap' -}}
-	{{- settings.button_font_family | font_face: font_display: 'swap' -}}
+	{% if base_font_obj %}
+		{% assign base_medium_font = base_font_obj | font_modify: 'weight', 'medium' %}
+		{% assign base_bold_font = base_font_obj | font_modify: 'weight', 'bold' %}
+		{% assign base_italic_font = base_font_obj | font_modify: 'style', 'italic' %}
+		{% assign base_bold_italic_font = base_font_obj
+			| font_modify: 'weight', 'bold'
+			| font_modify: 'style', 'italic'
+		%}
 
-	{{ base_medium_font | font_face: font_display: 'swap' }}
-	{{ base_bold_font | font_face: font_display: 'swap' }}
-	{{ base_italic_font | font_face: font_display: 'swap' }}
-	{{ base_bold_italic_font| font_face: font_display: 'swap' }}
+		{{- base_font_obj | font_face: font_display: 'swap' -}}
+		{{ base_medium_font | font_face: font_display: 'swap' }}
+		{{ base_bold_font | font_face: font_display: 'swap' }}
+		{{ base_italic_font | font_face: font_display: 'swap' }}
+		{{ base_bold_italic_font| font_face: font_display: 'swap' }}
+	{% endif %}
+
+	{% if settings.button_font_family %}
+		{{- settings.button_font_family | font_face: font_display: 'swap' -}}
+	{% endif %}
 
 	{% if settings.uppercase %}
 		{% assign heading_text_transform = 'uppercase' %}
@@ -96,15 +108,48 @@
 		{% assign button_text_transform = 'none' %}
 	{% endif %}
 
+	{% comment %}Fagans: Map custom select values to Shopify font catalogs for variable definitions{% endcomment %}
+	{% case settings.base_font %}
+		{% when "inter_n4" %}
+			{% assign base_font_var = "inter" | font_picker %}
+		{% when "system" %}
+			{% assign base_font_var = nil %}
+		{% else %}
+			{% assign base_font_var = settings.base_font | font_picker %}
+	{% endcase %}
+
+	{% case settings.heading_font %}
+		{% when "gambarino" %}
+			{% assign heading_font_var = nil %}
+		{% when "garamond_n4" %}
+			{% assign heading_font_var = "garamond" | font_picker %}
+		{% else %}
+			{% assign heading_font_var = settings.heading_font | font_picker %}
+	{% endcase %}
+
 	:root {
 		--body-font-size: {{- settings.base_font_size | times: 0.1391 | round -}}px;
 		--body-font-size-without-unit: {{- settings.base_font_size | times: 0.1391 | round -}};
 		--heading-font-size: {{- settings.heading_font_size | times:  0.1913 | round -}}px;
-		--base-font-family: {{ settings.base_font.family }}, {{ settings.base_font.fallback_families }};
-		--heading-font-family: {{ settings.heading_font.family }}, {{ settings.heading_font.fallback_families }};
-		--heading-font-weight: {{- settings.heading_font.weight -}};
+		{% if base_font_var %}
+			--base-font-family: {{ base_font_var.family }}, {{ base_font_var.fallback_families }};
+		{% else %}
+			--base-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+		{% endif %}
+		{% if heading_font_var %}
+			--heading-font-family: {{ heading_font_var.family }}, {{ heading_font_var.fallback_families }};
+		{% elsif settings.heading_font == "gambarino" %}
+			--heading-font-family: 'Gambarino Complete', 'Times New Roman', serif;
+		{% else %}
+			--heading-font-family: 'Times New Roman', serif;
+		{% endif %}
+		--heading-font-weight: 400;
 		--heading-text-transform: {{- heading_text_transform -}};
-		--button-font-family: {{ settings.button_font_family.family }}, {{ settings.button_font_family.fallback_families }};
+		{% if settings.button_font_family %}
+			--button-font-family: {{ settings.button_font_family.family }}, {{ settings.button_font_family.fallback_families }};
+		{% else %}
+			--button-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+		{% endif %}
 		--button-font-size: {{- settings.button_font_size | times: 0.12 | round -}}px;
 		--button-text-transform: {{- button_text_transform -}};
 	}
@@ -202,30 +247,4 @@
 
 			{% comment %}Button media hover{% endcomment %}
 			--button-icon-color-social-hover: {{- scheme.settings.button_icon_color_social_hover -}};
-			--button-background-color-social-hover: {{- scheme.settings.button_background_color_social_hover -}};
-			--button-border-color-social-hover: {{- scheme.settings.button_border_color_social_hover -}};
-
-			{% comment %}Preloader colors{% endcomment %}
-			--color-preloader-primary: {{- scheme.settings.color_loader_circle | default: '#E6E6E6' -}};
-			--color-preloader-secondary: {{- scheme.settings.color_loader_item | default: '#000' -}};
-			--background-color-preloader: {{- scheme.settings.color_loader_overlay | color_modify: 'alpha', 0.35 -}};
-
-			{% comment %}Slider{% endcomment %}
-			--color-slider-arrow-background: {{- scheme.settings.color_slider_arrow_background -}};
-			--color-slider-arrow-icon: {{- scheme.settings.color_slider_arrow_icon -}};
-			--color-slider-arrow-border: {{- scheme.settings.color_slider_arrow_border -}};
-
-			--color-slider-arrow-background-hover: {{- scheme.settings.color_slider_arrow_background_hover -}};
-			--color-slider-arrow-icon-hover: {{- scheme.settings.color_slider_arrow_icon_hover -}};
-			--color-slider-arrow-border-hover: {{- scheme.settings.color_slider_arrow_border_hover -}};
-
-			{% comment %}Icons{% endcomment %}
-			--color-icon-available: {{- scheme.settings.color_icon_available -}};
-			--color-icon-out-of-stock: {{- scheme.settings.color_icon_out_of_stock -}};
-
-			{% comment %}Cart{% endcomment %}
-			--color-cart-notification-background: {{- scheme.settings.cart_notification_background_color -}};
-			--color-cart-notification-text: {{- scheme.settings.cart_notification_text_color -}};
-		}
-	{%- endfor -%}
-</style>
+			--button-background-co
