@@ -46,48 +46,6 @@
 				],
 				"default": "gambarino"
 			},
-			{
-				"type": "header",
-				"content": "Base and heading fonts (Legacy)"
-			},
-			{
-				"type": "font_picker",
-				"id": "base_font",
-				"label": "Base font",
-				"default": "inter_n4"
-			},
-			{
-				"type": "font_picker",
-				"id": "heading_font",
-				"label": "Heading font",
-				"default": "garamond_n4"
-			},
-			{
-				"type": "checkbox",
-				"id": "uppercase",
-				"label": "Uppercase",
-				"default": false
-			},
-			{
-				"type": "range",
-				"id": "base_font_size",
-				"min": 100,
-				"max": 130,
-				"step": 1,
-				"unit": "%",
-				"label": "Base font size",
-				"default": 115
-			},
-			{
-				"type": "range",
-				"id": "heading_font_size",
-				"min": 100,
-				"max": 130,
-				"step": 1,
-				"unit": "%",
-				"label": "Heading font size",
-				"default": 115
-			}
 		]
 	},
 	{
