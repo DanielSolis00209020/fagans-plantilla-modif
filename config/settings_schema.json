@@ -12,7 +12,43 @@
 		"settings": [
 			{
 				"type": "header",
-				"content": "Base and heading fonts"
+				"content": "Fagans Rebranding - Tipografías"
+			},
+			{
+				"type": "select",
+				"id": "fagans_base_font",
+				"label": "Base font",
+				"options": [
+					{
+						"value": "inter",
+						"label": "Inter"
+					},
+					{
+						"value": "system",
+						"label": "System Font"
+					}
+				],
+				"default": "inter"
+			},
+			{
+				"type": "select",
+				"id": "fagans_heading_font",
+				"label": "Heading font",
+				"options": [
+					{
+						"value": "gambarino",
+						"label": "Gambarino Complete"
+					},
+					{
+						"value": "inter",
+						"label": "Inter"
+					}
+				],
+				"default": "gambarino"
+			},
+			{
+				"type": "header",
+				"content": "Base and heading fonts (Legacy)"
 			},
 			{
 				"type": "font_picker",
@@ -51,6 +87,45 @@
 				"unit": "%",
 				"label": "Heading font size",
 				"default": 115
+			}
+		]
+	},
+	{
+		"name": "Fagans Colors",
+		"settings": [
+			{
+				"type": "header",
+				"content": "Paleta de Colores Fagans"
+			},
+			{
+				"type": "color",
+				"id": "fagans_color_onix",
+				"label": "Primary - Onix",
+				"default": "#0E0F0F"
+			},
+			{
+				"type": "color",
+				"id": "fagans_color_white",
+				"label": "Primary - Blanco",
+				"default": "#FFFFFF"
+			},
+			{
+				"type": "color",
+				"id": "fagans_color_platino",
+				"label": "Secondary - Platino",
+				"default": "#F1F1F1"
+			},
+			{
+				"type": "color",
+				"id": "fagans_color_sandalo",
+				"label": "Secondary - Sándalo Gris",
+				"default": "#C79FB8"
+			},
+			{
+				"type": "color",
+				"id": "fagans_color_nogal",
+				"label": "Accent - Nogal Braun",
+				"default": "#582D0C"
 			}
 		]
 	},
