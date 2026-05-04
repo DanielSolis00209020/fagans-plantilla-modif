@@ -1,0 +1,21 @@
+<style>
+  {%- if settings.fagans_base_font == "inter" -%}
+    body, p, span, a, li, button {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+  {%- elsif settings.fagans_base_font == "system" -%}
+    body, p, span, a, li, button {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+  {%- endif -%}
+  
+  {%- if settings.fagans_heading_font == "gambarino" -%}
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Gambarino Complete', 'Times New Roman', serif;
+    }
+  {%- elsif settings.fagans_heading_font == "inter" -%}
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+  {%- endif -%}
+</style>
