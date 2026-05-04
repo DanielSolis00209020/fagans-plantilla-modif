@@ -12,86 +12,6 @@
     "settings": [
       {
         "type": "header",
-        "content": "Fagans Rebranding - Tipograf\u00edas"
-      },
-      {
-        "type": "select",
-        "id": "fagans_base_font",
-        "label": "Base font",
-        "options": [
-          {
-            "value": "inter",
-            "label": "Inter"
-          },
-          {
-            "value": "system",
-            "label": "System Font"
-          }
-        ],
-        "default": "inter"
-      },
-      {
-        "type": "select",
-        "id": "fagans_heading_font",
-        "label": "Heading font",
-        "options": [
-          {
-            "value": "gambarino",
-            "label": "Gambarino Complete"
-          },
-          {
-            "value": "inter",
-            "label": "Inter"
-          }
-        ],
-        "default": "gambarino"
-      }
-    ]
-  },
-  {
-    "name": "Fagans Colors",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Paleta de Colores Fagans"
-      },
-      {
-        "type": "color",
-        "id": "fagans_color_onix",
-        "label": "Primary - Onix",
-        "default": "#0E0F0F"
-      },
-      {
-        "type": "color",
-        "id": "fagans_color_white",
-        "label": "Primary - Blanco",
-        "default": "#FFFFFF"
-      },
-      {
-        "type": "color",
-        "id": "fagans_color_platino",
-        "label": "Secondary - Platino",
-        "default": "#F1F1F1"
-      },
-      {
-        "type": "color",
-        "id": "fagans_color_sandalo",
-        "label": "Secondary - S\u00e1ndalo Gris",
-        "default": "#C79FB8"
-      },
-      {
-        "type": "color",
-        "id": "fagans_color_nogal",
-        "label": "Accent - Nogal Braun",
-        "default": "#582D0C"
-      }
-    ]
-  },
-  {
-    "name": "Typography",
-    "settings": [
-      {
-        "type": "header",
         "content": "Base and heading fonts"
       },
       {
@@ -104,7 +24,7 @@
         "type": "font_picker",
         "id": "heading_font",
         "label": "Heading font",
-        "default": "garamond_n4"
+        "default": "gambarino_n4"
       },
       {
         "type": "checkbox",
@@ -155,7 +75,7 @@
             "type": "color",
             "id": "color_text_primary",
             "label": "Primary",
-            "default": "#000000"
+            "default": "#0E0F0F"
           },
           {
             "type": "color",
@@ -179,7 +99,7 @@
             "type": "color",
             "id": "color_accent",
             "label": "Accent",
-            "default": "#FFD875"
+            "default": "#582D0C"
           },
           {
             "type": "color",
@@ -195,13 +115,13 @@
             "type": "color",
             "id": "color_background",
             "label": "Page",
-            "default": "#ffffff"
+            "default": "#FFFFFF"
           },
           {
             "type": "color",
             "id": "color_background_secondary",
             "label": "Secondary",
-            "default": "#F6F6F6"
+            "default": "#F1F1F1"
           },
           {
             "type": "color",
