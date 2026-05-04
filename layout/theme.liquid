@@ -55,6 +55,7 @@
 		{%- comment -%} Fagans Rebranding - Tipografías y Tema {%- endcomment -%}
 		{{ 'fonts.css' | asset_url | stylesheet_tag }}
 		{{ 'theme-variables.css.liquid' | asset_url | stylesheet_tag }}
+		{{ 'fagans-typography.css.liquid' | asset_url | stylesheet_tag }}
 		{{ 'theme.css' | asset_url | stylesheet_tag }}
 
 		{%- render 'adastra' with '/src/styles/main.scss', preload: true -%}
