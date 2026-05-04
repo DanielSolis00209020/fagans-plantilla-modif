@@ -15,16 +15,36 @@
         "content": "Base and heading fonts"
       },
       {
-        "type": "font_picker",
+        "type": "select",
         "id": "base_font",
         "label": "Base font",
+        "options": [
+          {
+            "value": "inter_n4",
+            "label": "Inter"
+          },
+          {
+            "value": "system",
+            "label": "System Font"
+          }
+        ],
         "default": "inter_n4"
       },
       {
-        "type": "font_picker",
+        "type": "select",
         "id": "heading_font",
         "label": "Heading font",
-        "default": "garamond_n4"
+        "options": [
+          {
+            "value": "gambarino",
+            "label": "Gambarino Complete"
+          },
+          {
+            "value": "garamond_n4",
+            "label": "Garamond"
+          }
+        ],
+        "default": "gambarino"
       },
       {
         "type": "checkbox",
