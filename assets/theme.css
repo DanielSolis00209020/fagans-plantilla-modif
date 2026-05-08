@@ -165,9 +165,7 @@ input[type="submit"] {
 button:hover,
 input[type="button"]:hover,
 input[type="submit"]:hover {
-  background-color: var(--color-accent-nogal-braun);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  background-color: var(--color-secondary-platino);
 }
 
 .button:active,
