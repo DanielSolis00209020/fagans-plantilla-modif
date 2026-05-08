@@ -21,54 +21,116 @@
 		"faq-simple": {
 			"type": "faq-simple",
 			"blocks": {
-				"category_1": {
+				"cat_pedidos": {
 					"type": "category",
 					"settings": {
-						"heading": "First category"
+						"heading": "Pedidos y encargos"
 					}
 				},
-				"faq_item_1": {
+				"faq_1": {
 					"type": "faq_item",
 					"settings": {
-						"heading": "Accordion heading",
-						"text": "<p>Accordion content</p>"
+						"heading": "¿Puedo solicitar un perfume que no está en el catálogo?",
+						"text": "<p>Sí. Puedes contactarnos por cualquiera de nuestros medios oficiales e indicarnos el perfume que buscas. Nos ayuda mucho que nos compartas el nombre, la marca, una imagen del producto y el tamaño o mililitros que te interesa, especialmente si existen varias versiones.</p><p>Luego realizamos la cotización y te confirmamos disponibilidad, precio estimado y tiempo de entrega. En horarios laborales, este proceso suele tomar solo unos minutos.</p>"
 					}
 				},
-				"faq_item_2": {
+				"faq_2": {
 					"type": "faq_item",
 					"settings": {
-						"heading": "Accordion heading",
-						"text": "<p>Accordion content</p>"
+						"heading": "¿Cuánto tarda un perfume por encargo?",
+						"text": "<p>Los pedidos por encargo suelen tardar entre <strong>1 y 2 semanas</strong> en promedio, ya que se trata de productos importados. El tiempo puede variar según disponibilidad, proveedor y proceso de importación.</p>"
 					}
 				},
-				"category_2": {
+				"faq_3": {
+					"type": "faq_item",
+					"settings": {
+						"heading": "¿Cómo funcionan los pedidos por encargo?",
+						"text": "<p>Si eres cliente nuevo, para gestionar un pedido especial se solicita un <strong>adelanto del 50%</strong> o el pago completo por adelantado, según prefieras. En casos de clientes ya registrados, podemos manejar condiciones más flexibles según el historial de compra y el tipo de producto solicitado.</p>"
+					}
+				},
+				"faq_4": {
+					"type": "faq_item",
+					"settings": {
+						"heading": "¿Cuándo se entrega una compra realizada directamente en la tienda?",
+						"text": "<p>Si el producto está disponible en catálogo y realizas la compra directamente en la tienda, la entrega normalmente se gestiona para el <strong>siguiente día hábil</strong> después de realizar la orden, exceptuando sábados, domingos o situaciones especiales de logística.</p>"
+					}
+				},
+				"cat_envios": {
 					"type": "category",
 					"settings": {
-						"heading": "Second category"
+						"heading": "Envíos y pagos"
 					}
 				},
-				"faq_item_3": {
+				"faq_5": {
 					"type": "faq_item",
 					"settings": {
-						"heading": "Accordion heading",
-						"text": "<p>Accordion content</p>"
+						"heading": "¿Hacen envíos a todo El Salvador?",
+						"text": "<p>Sí. Realizamos envíos a nivel nacional dentro de El Salvador. Trabajamos con repartidores de terceros de alta confiabilidad y cuidamos especialmente el empaque, ya que sabemos que los perfumes son productos delicados y frágiles.</p><p>El costo de envío mostrado en la página depende de la empresa de reparto utilizada.</p>"
 					}
 				},
-				"faq_item_4": {
+				"faq_6": {
 					"type": "faq_item",
 					"settings": {
-						"heading": "Accordion heading",
-						"text": "<p>Accordion content</p>"
+						"heading": "¿Qué métodos de pago aceptan?",
+						"text": "<p>Actualmente aceptamos pagos con <strong>tarjeta, PayPal y Wompi</strong>. También podemos manejar transferencias bancarias en casos específicos, pero estas deben coordinarse directamente por WhatsApp para validar la solicitud y confirmar el pago antes de procesar el envío.</p>"
+					}
+				},
+				"cat_productos": {
+					"type": "category",
+					"settings": {
+						"heading": "Productos y stock"
+					}
+				},
+				"faq_7": {
+					"type": "faq_item",
+					"settings": {
+						"heading": "¿Los perfumes son originales?",
+						"text": "<p>Sí. Todos nuestros perfumes son <strong>originales e importados</strong> de proveedores confiables. Incluso en solicitudes especiales, como perfumes nicho o fragancias más exclusivas, buscamos opciones oficiales, legales, fiables y seguras para conseguir el producto.</p>"
+					}
+				},
+				"faq_8": {
+					"type": "faq_item",
+					"settings": {
+						"heading": "¿Cada cuánto actualizan el stock?",
+						"text": "<p>Por lo general, agregamos perfumes nuevos <strong>cada mes</strong>. Sin embargo, los restocks y pedidos especiales pueden gestionarse en cualquier momento, dependiendo de disponibilidad y tiempos de importación.</p>"
+					}
+				},
+				"faq_9": {
+					"type": "faq_item",
+					"settings": {
+						"heading": "¿Tienen ventas por mayoreo?",
+						"text": "<p>Sí, podemos evaluar casos especiales por mayoreo de forma privada a través de nuestros medios oficiales. En estos casos se revisa qué productos aplican, tiempos de entrega, condiciones de compra y posibles cupones o beneficios específicos según la cotización.</p>"
+					}
+				},
+				"cat_devoluciones": {
+					"type": "category",
+					"settings": {
+						"heading": "Devoluciones"
+					}
+				},
+				"faq_10": {
+					"type": "faq_item",
+					"settings": {
+						"heading": "¿Aceptan devoluciones?",
+						"text": "<p>No manejamos reembolsos en efectivo. Únicamente se pueden evaluar cambios cuando el producto presenta un <strong>daño funcional comprobable</strong> de fábrica o de transporte, como atomizadores dañados, fugas, botellas rotas o problemas similares.</p><p>Para estos casos se requiere evidencia del producto, registro del caso y validación previa por parte de nuestro equipo.</p>"
 					}
 				}
 			},
 			"block_order": [
-				"category_1",
-				"faq_item_1",
-				"faq_item_2",
-				"category_2",
-				"faq_item_3",
-				"faq_item_4"
+				"cat_pedidos",
+				"faq_1",
+				"faq_2",
+				"faq_3",
+				"faq_4",
+				"cat_envios",
+				"faq_5",
+				"faq_6",
+				"cat_productos",
+				"faq_7",
+				"faq_8",
+				"faq_9",
+				"cat_devoluciones",
+				"faq_10"
 			],
 			"settings": {
 				"heading": "",
