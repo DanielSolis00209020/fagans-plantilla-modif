@@ -1,0 +1,70 @@
+/*
+ * ------------------------------------------------------------
+ * Template personalizado: Página Nosotros (Fagans)
+ * Usa la sección fagans-page-nosotros con contenido editorial completo.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "fagans-nosotros": {
+      "type": "fagans-page-nosotros",
+      "blocks": {
+        "feature_1": {
+          "type": "feature",
+          "settings": {
+            "heading": "Perfumes originales",
+            "text": "Todos nuestros productos son originales e importados a través de proveedores confiables. Cuidamos que cada fragancia ofrecida cumpla con criterios de autenticidad, procedencia y calidad."
+          }
+        },
+        "feature_2": {
+          "type": "feature",
+          "settings": {
+            "heading": "Catálogo y pedidos por encargo",
+            "text": "Además de los perfumes disponibles en nuestra tienda, podemos ayudarte a conseguir fragancias específicas bajo solicitud. Solo necesitas indicarnos el nombre, la marca o enviarnos una imagen del perfume que buscas."
+          }
+        },
+        "feature_3": {
+          "type": "feature",
+          "settings": {
+            "heading": "Decants y descubrimiento olfativo",
+            "text": "Ofrecemos decants para que puedas probar perfumes antes de comprar una botella completa. Esta opción es ideal para comparar fragancias, conocer nuevos estilos y tomar una decisión más segura."
+          }
+        },
+        "feature_4": {
+          "type": "feature",
+          "settings": {
+            "heading": "Variedad sin limitarte",
+            "text": "En FAGANS no nos enfocamos únicamente en una categoría. Trabajamos con perfumes de diseñador, árabes, nicho y otras propuestas originales que puedan aportar valor a nuestros clientes."
+          }
+        },
+        "feature_5": {
+          "type": "feature",
+          "settings": {
+            "heading": "Atención personalizada",
+            "text": "Cada solicitud se revisa de forma individual. Te ayudamos a cotizar, resolver dudas y encontrar la opción que mejor se adapte a lo que estás buscando."
+          }
+        }
+      },
+      "block_order": [
+        "feature_1",
+        "feature_2",
+        "feature_3",
+        "feature_4",
+        "feature_5"
+      ],
+      "settings": {
+        "enable_color_scheme_inheritance": true,
+        "subtitle": "Perfumería original. Asesoría real. Acceso confiable.",
+        "intro_text": "<p><strong>FAGANS</strong> nace para acercarte a la perfumería original de una forma más simple, confiable y personalizada.</p><p>Somos una tienda especializada en perfumes originales, enfocada en ayudarte a encontrar fragancias que realmente conecten con tu estilo, tu ocasión y tu presupuesto. En nuestro catálogo reunimos perfumes de distintas casas, estilos y categorías: desde fragancias de diseñador y árabes, hasta propuestas nicho y perfumes más exclusivos bajo solicitud.</p><p>Nuestra idea no es limitarte a un solo tipo de perfume. Si una fragancia es original, confiable y vale la pena conocerla, nos interesa poder ofrecértela o ayudarte a conseguirla. Por eso, además de los productos disponibles en catálogo, contamos con la opción de pedidos por encargo, ideal para quienes buscan una fragancia específica que aún no se encuentra disponible en nuestra tienda.</p><p>También creemos que elegir un perfume no siempre debería ser una compra a ciegas. Por eso ofrecemos decants: presentaciones más pequeñas que permiten probar, comparar y descubrir fragancias antes de invertir en una botella completa.</p><p>En FAGANS no fabricamos perfumes ni vendemos fórmulas propias. Trabajamos con perfumes originales, importados y obtenidos a través de proveedores confiables. Nuestro enfoque está en la autenticidad, la asesoría y el acceso a fragancias reales.</p><p>Cada pedido se gestiona con atención al detalle, desde la búsqueda del producto hasta su entrega. Por eso, nuestro compromiso es ofrecerte un proceso claro, seguro y acompañado.</p>",
+        "features_heading": "Lo que nos define",
+        "offset_top_desktop": 64,
+        "offset_bottom_desktop": 80,
+        "offset_top_mobile": 40,
+        "offset_bottom_mobile": 48
+      }
+    }
+  },
+  "order": [
+    "fagans-nosotros"
+  ]
+}
