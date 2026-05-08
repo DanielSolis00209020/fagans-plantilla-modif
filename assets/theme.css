@@ -291,14 +291,13 @@ label {
    ============================================ */
 
 .fagans-contact-info {
-  background-color: var(--color-secondary-platino);
+  background-color: var(--color-background); /* usa el fondo del color scheme activo */
   width: 100%;
 }
 
 .fagans-contact-info__wrapper {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0 var(--spacing-lg);
 }
 
 /* Header */
