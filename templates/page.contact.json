@@ -88,152 +88,74 @@
         "inner_offset_bottom_mobile": 30
       }
     },
-    "stores-locator": {
-      "type": "stores-locator",
+    "fagans-contact-info": {
+      "type": "fagans-contact-info",
       "blocks": {
-        "store_1": {
-          "type": "store",
+        "whatsapp": {
+          "type": "contact_method",
           "settings": {
-            "block_title": "Berlin Leather Studio (Germany)",
-            "block_text": "Friedrichstraße 123, 10117 Berlin, Germany",
-            "phone_text": "<a href=\"tel:+49 30 1234 5678\" title=\"tel:+49 30 1234 5678\">+49 30 1234 5678</a>",
-            "schedule_text": "Mon-Sat: 10:00 AM – 7:00 PM | Sun: Closed",
-            "google_map_api_key": "",
-            "map_query": "Eiffel+Tower,Paris+France",
-            "map_link": ""
+            "icon_type": "whatsapp",
+            "heading": "WhatsApp",
+            "value_text": "Escríbenos",
+            "link": "https://api.whatsapp.com/send/?phone=%2B50371963343&text=Hola%2C+quisiera+obtener+informaci%C3%B3n&type=phone_number&app_absent=0",
+            "open_new_tab": true,
+            "note": "Respuesta en ~1 hora"
           }
         },
-        "store_2": {
-          "type": "store",
+        "phone": {
+          "type": "contact_method",
           "settings": {
-            "block_title": "Paris Artisan Leather (France)",
-            "block_text": "25 Rue de Rivoli, 75001 Paris, France",
-            "phone_text": "<a href=\"tel:+33 1 56 78 90 12\" title=\"tel:+33 1 56 78 90 12\">+33 1 56 78 90 12</a>",
-            "schedule_text": "Mon-Sat: 11:00 AM – 8:00 PM | Sun: 12:00 PM – 6:00 PM",
-            "google_map_api_key": "",
-            "map_query": "Eiffel+Tower,Paris+France",
-            "map_link": ""
+            "icon_type": "phone",
+            "heading": "Teléfono",
+            "value_text": "+503 7196 3343",
+            "link": "tel:+50371963343",
+            "open_new_tab": false,
+            "note": ""
           }
         },
-        "store_3": {
-          "type": "store",
+        "email": {
+          "type": "contact_method",
           "settings": {
-            "block_title": "Heritage Leather NYC (USA)",
-            "block_text": "456 Madison Ave, New York, NY 10022, USA",
-            "phone_text": "<a href=\"tel:+1 212 555 7890\" title=\"tel:+1 212 555 7890\">+1 212 555 7890</a>",
-            "schedule_text": "Mon-Sun: 10:00 AM – 9:00 PM",
-            "google_map_api_key": "",
-            "map_query": "Eiffel+Tower,Paris+France",
-            "map_link": ""
+            "icon_type": "email",
+            "heading": "Email",
+            "value_text": "fagans.perfumes@gmail.com",
+            "link": "mailto:fagans.perfumes@gmail.com",
+            "open_new_tab": false,
+            "note": ""
           }
         },
-        "store_4": {
-          "type": "store",
+        "hours": {
+          "type": "contact_method",
           "settings": {
-            "block_title": "Brussels Leather Craft (Belgium)",
-            "block_text": "Avenue Louise 89, 1050 Brussels, Belgium",
-            "phone_text": "<a href=\"tel:+32 2 345 6789\" title=\"tel:+32 2 345 6789\">+32 2 345 6789</a>",
-            "schedule_text": "Mon-Sat: 10:00 AM – 6:30 PM | Sun: Closed",
-            "google_map_api_key": "",
-            "map_query": "Eiffel+Tower,Paris+France",
-            "map_link": ""
-          }
-        },
-        "store_5": {
-          "type": "store",
-          "settings": {
-            "block_title": "London Leather House (UK)",
-            "block_text": "78 Regent Street, London W1B 5RW, UK",
-            "phone_text": "<a href=\"tel:+44 20 7946 0123\" title=\"tel:+44 20 7946 0123\">+44 20 7946 0123</a>",
-            "schedule_text": "Mon-Sat: 10:00 AM – 8:00 PM | Sun: 11:00 AM – 5:00 PM",
-            "google_map_api_key": "",
-            "map_query": "Eiffel+Tower,Paris+France",
-            "map_link": ""
+            "icon_type": "hours",
+            "heading": "Atención al Cliente",
+            "value_text": "8:00 - 17:00",
+            "link": "",
+            "open_new_tab": false,
+            "note": "Lunes a sábado"
           }
         }
       },
       "block_order": [
-        "store_1",
-        "store_2",
-        "store_3",
-        "store_4",
-        "store_5"
-      ],
-      "disabled": true,
-      "settings": {
-        "enable_color_scheme_inheritance": true,
-        "color_scheme": "",
-        "title": "Our Stores",
-        "container_width": "inherit",
-        "offset_top_desktop": 25,
-        "offset_bottom_desktop": 55,
-        "offset_top_mobile": 25,
-        "offset_bottom_mobile": 25,
-        "inner_offset_top": 30,
-        "inner_offset_bottom": 30,
-        "inner_offset_top_mobile": 30,
-        "inner_offset_bottom_mobile": 30
-      }
-    },
-    "store-location": {
-      "type": "store-location",
-      "blocks": {
-        "location_1": {
-          "type": "contact_info",
-          "settings": {
-            "item_heading": "WhatsApp:",
-            "item_text": "<a href=\"https://api.whatsapp.com/send/?phone=%2B50371963343&text=Hola%2C+quisiera+obtener+informaci%C3%B3n&type=phone_number&app_absent=0\" target=\"_blank\" title=\"https://api.whatsapp.com/send/?phone=%2B50371963343&text=Hola%2C+quisiera+obtener+informaci%C3%B3n&type=phone_number&app_absent=0\">Escríbenos📲</a>"
-          }
-        },
-        "location_2": {
-          "type": "contact_info",
-          "settings": {
-            "item_heading": "Teléfono:",
-            "item_text": "<a href=\"tel:+503 7196 3343\" title=\"tel:+503 7196 3343\">+503 7196 3343</a>"
-          }
-        },
-        "location_3": {
-          "type": "contact_info",
-          "settings": {
-            "item_heading": "Email:",
-            "item_text": "<a href=\"mailto:fagans.perfumes@gmail.com\" title=\"mailto:fagans.perfumes@gmail.com\">fagans.perfumes@gmail.com</a>"
-          }
-        },
-        "location_4": {
-          "type": "contact_info",
-          "settings": {
-            "item_heading": "Atención al Cliente:",
-            "item_text": "08:00 - 17:00"
-          }
-        }
-      },
-      "block_order": [
-        "location_1",
-        "location_2",
-        "location_3",
-        "location_4"
+        "whatsapp",
+        "phone",
+        "email",
+        "hours"
       ],
       "settings": {
         "enable_color_scheme_inheritance": true,
-        "color_scheme": "",
         "heading": "¿Necesitas Ayuda?",
-        "description": "<p>El verdadero lujo no es solo un aroma, es la experiencia de encontrar una fragancia que hable por ti.</p>",
-        "container_width": "inherit",
-        "offset_top_desktop": 0,
-        "offset_bottom_desktop": 25,
-        "offset_top_mobile": 0,
-        "offset_bottom_mobile": 25,
-        "inner_offset_top": 25,
-        "inner_offset_bottom": 25,
-        "inner_offset_top_mobile": 25,
-        "inner_offset_bottom_mobile": 25
+        "subtitle": "Estamos disponibles para acompañarte en cada paso de tu compra.",
+        "offset_top_desktop": 64,
+        "offset_bottom_desktop": 64,
+        "offset_top_mobile": 40,
+        "offset_bottom_mobile": 48
       }
     }
   },
   "order": [
     "banner",
     "contact-form",
-    "stores-locator",
-    "store-location"
+    "fagans-contact-info"
   ]
 }
