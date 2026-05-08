@@ -389,7 +389,8 @@ label {
 .fagans-nosotros__feature-number {
   font-family: var(--font-family-display);
   font-size: var(--font-size-3xl);
-  color: var(--color-secondary-sandalo-gris);
+  color: var(--color-accent-nogal-braun);
+  opacity: 0.35;
   line-height: 1;
   margin-bottom: var(--spacing-xs);
 }
@@ -433,15 +434,34 @@ label {
 }
 
 @media (max-width: 600px) {
-  .fagans-nosotros__features-grid {
-    grid-template-columns: 1fr;
-  }
-
   .fagans-nosotros__title {
     font-size: var(--font-size-3xl);
   }
 
   .fagans-nosotros__features-title {
     font-size: var(--font-size-2xl);
+  }
+
+  /* Horizontal scroll carousel on mobile */
+  .fagans-nosotros__features-grid {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: var(--spacing-md);
+    padding-bottom: var(--spacing-md);
+    /* hide scrollbar visually but keep functionality */
+    scrollbar-width: none;
+  }
+
+  .fagans-nosotros__features-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .fagans-nosotros__feature-card {
+    flex: 0 0 78vw;
+    max-width: 300px;
+    scroll-snap-align: start;
   }
 }

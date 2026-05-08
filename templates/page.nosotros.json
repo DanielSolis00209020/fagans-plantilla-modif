@@ -43,6 +43,13 @@
             "heading": "Atención personalizada",
             "text": "Cada solicitud se revisa de forma individual. Te ayudamos a cotizar, resolver dudas y encontrar la opción que mejor se adapte a lo que estás buscando."
           }
+        },
+        "feature_6": {
+          "type": "feature",
+          "settings": {
+            "heading": "Compra segura y protegida",
+            "text": "Cada pedido se prepara con atención al detalle, cuidando el empaque, la protección del producto y el proceso de entrega. Sabemos que un perfume es delicado, por eso buscamos que llegue a tus manos en las mejores condiciones."
+          }
         }
       },
       "block_order": [
@@ -50,7 +57,8 @@
         "feature_2",
         "feature_3",
         "feature_4",
-        "feature_5"
+        "feature_5",
+        "feature_6"
       ],
       "settings": {
         "enable_color_scheme_inheritance": true,
