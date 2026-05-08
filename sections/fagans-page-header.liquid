@@ -1,0 +1,119 @@
+{%- comment -%}
+------------------------------------------------------------------------------
+  Section: Fagans Page Header
+  Encabezado editorial de página — reutilizable en FAQ, Contacto, etc.
+  Nuevo archivo Fagans — NO modificar secciones base de la plantilla comprada.
+------------------------------------------------------------------------------
+{%- endcomment -%}
+
+{%- assign color_scheme = section.settings.color_scheme -%}
+{%- if section.settings.enable_color_scheme_inheritance -%}
+  {%- assign color_scheme = settings.main_color_scheme -%}
+{%- endif -%}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.offset_top_mobile }}px;
+    padding-bottom: {{ section.settings.offset_bottom_mobile }}px;
+  }
+  @media screen and (min-width: 768px) {
+    #shopify-section-{{ section.id }} {
+      padding-top: {{ section.settings.offset_top_desktop }}px;
+      padding-bottom: {{ section.settings.offset_bottom_desktop }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="fagans-page-header color-{{ color_scheme }}">
+  <div class="fagans-page-header__wrapper">
+
+    <h1 class="fagans-page-header__title">
+      {%- if section.settings.custom_title != blank -%}
+        {{- section.settings.custom_title -}}
+      {%- else -%}
+        {{- page.title -}}
+      {%- endif -%}
+    </h1>
+
+    {%- if section.settings.subtitle != blank -%}
+      <p class="fagans-page-header__subtitle">{{ section.settings.subtitle }}</p>
+    {%- endif -%}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Header — Fagans",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Colores"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_color_scheme_inheritance",
+      "label": "Heredar esquema de color del tema",
+      "default": true
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de color",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Contenido"
+    },
+    {
+      "type": "text",
+      "id": "custom_title",
+      "label": "Título personalizado (opcional)",
+      "info": "Si se deja vacío, se usa el título de la página de Shopify."
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtítulo"
+    },
+    {
+      "type": "header",
+      "content": "Espaciado externo"
+    },
+    {
+      "type": "range",
+      "id": "offset_top_desktop",
+      "min": 0, "max": 120, "step": 8, "unit": "px",
+      "label": "Padding superior (desktop)",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "offset_bottom_desktop",
+      "min": 0, "max": 120, "step": 8, "unit": "px",
+      "label": "Padding inferior (desktop)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "offset_top_mobile",
+      "min": 0, "max": 120, "step": 8, "unit": "px",
+      "label": "Padding superior (mobile)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "offset_bottom_mobile",
+      "min": 0, "max": 120, "step": 8, "unit": "px",
+      "label": "Padding inferior (mobile)",
+      "default": 24
+    }
+  ],
+  "presets": [
+    {
+      "name": "Header — Fagans"
+    }
+  ]
+}
+{% endschema %}

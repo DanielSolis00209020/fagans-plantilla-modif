@@ -9,13 +9,15 @@
  */
 {
 	"sections": {
-		"page-template": {
-			"type": "page-template",
+		"fagans-faq-header": {
+			"type": "fagans-page-header",
 			"settings": {
-				"offset_top_desktop": 24,
+				"enable_color_scheme_inheritance": true,
+				"subtitle": "Resolvemos tus dudas sobre pedidos, envíos, productos y más.",
+				"offset_top_desktop": 64,
 				"offset_bottom_desktop": 40,
-				"offset_top_mobile": 24,
-				"offset_bottom_mobile": 8
+				"offset_top_mobile": 40,
+				"offset_bottom_mobile": 24
 			}
 		},
 		"faq-simple": {
@@ -146,7 +148,7 @@
 		}
 	},
 	"order": [
-		"page-template",
+		"fagans-faq-header",
 		"faq-simple"
 	]
 }
