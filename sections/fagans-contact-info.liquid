@@ -6,6 +6,8 @@
 ------------------------------------------------------------------------------
 {%- endcomment -%}
 
+{{ 'fagans-pages.css' | asset_url | stylesheet_tag }}
+
 {%- assign color_scheme = section.settings.color_scheme -%}
 {%- if section.settings.enable_color_scheme_inheritance -%}
   {%- assign color_scheme = settings.main_color_scheme -%}

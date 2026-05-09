@@ -1,0 +1,352 @@
+/* ============================================
+   FAGANS - CONTACT INFO
+   Cards de canales de contacto con icono SVG
+   ============================================ */
+
+.fagans-contact-info {
+  background-color: var(--color-background); /* usa el fondo del color scheme activo */
+  width: 100%;
+}
+
+.fagans-contact-info__wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Header */
+.fagans-contact-info__header {
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+}
+
+.fagans-contact-info__title {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-primary-onix);
+  margin: 0 0 var(--spacing-sm) 0;
+  line-height: 1.2;
+}
+
+.fagans-contact-info__subtitle {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-base);
+  color: #666;
+  font-style: italic;
+  margin: 0;
+}
+
+/* Grid de cards */
+.fagans-contact-info__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-md);
+}
+
+.fagans-contact-info__card {
+  background-color: var(--color-primary-white);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-xl) var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--spacing-sm);
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.fagans-contact-info__card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* Icono */
+.fagans-contact-info__icon {
+  width: 44px;
+  height: 44px;
+  color: var(--color-primary-onix);
+  margin-bottom: var(--spacing-xs);
+  flex-shrink: 0;
+}
+
+.fagans-contact-info__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Etiqueta superior */
+.fagans-contact-info__label {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #999;
+}
+
+/* Valor principal */
+.fagans-contact-info__value {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-lg);
+  color: var(--color-primary-onix);
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+.fagans-contact-info__value a {
+  color: var(--color-primary-onix);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.fagans-contact-info__value a:hover {
+  color: var(--color-accent-nogal-braun);
+}
+
+/* Nota opcional */
+.fagans-contact-info__note {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-xs);
+  color: #aaa;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .fagans-contact-info__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .fagans-contact-info__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-sm);
+  }
+
+  .fagans-contact-info__card {
+    padding: var(--spacing-lg) var(--spacing-sm);
+  }
+
+  .fagans-contact-info__icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .fagans-contact-info__value {
+    font-size: var(--font-size-base);
+  }
+}
+
+/* ============================================
+   FAGANS - PAGE HEADER (reutilizable)
+   Usado en FAQ, Contacto y otras páginas internas
+   ============================================ */
+
+.fagans-page-header {
+  width: 100%;
+}
+
+.fagans-page-header__wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg) var(--spacing-2xl);
+  text-align: center;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.fagans-page-header__title {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-primary-onix);
+  margin: 0 0 var(--spacing-md) 0;
+  line-height: 1.1;
+}
+
+.fagans-page-header__subtitle {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-lg);
+  color: #666;
+  font-style: italic;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 768px) {
+  .fagans-page-header__title {
+    font-size: var(--font-size-3xl);
+  }
+
+  .fagans-page-header__subtitle {
+    font-size: var(--font-size-base);
+  }
+}
+
+/* ============================================
+   FAGANS - PÁGINA NOSOTROS
+   ============================================ */
+
+.fagans-nosotros {
+  width: 100%;
+}
+
+.fagans-nosotros__wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+/* --- Header --- */
+.fagans-nosotros__header {
+  text-align: center;
+  padding-bottom: var(--spacing-2xl);
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: var(--spacing-2xl);
+}
+
+.fagans-nosotros__title {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-primary-onix);
+  margin: 0 0 var(--spacing-md) 0;
+  line-height: 1.1;
+}
+
+.fagans-nosotros__subtitle {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-lg);
+  color: #666;
+  font-style: italic;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+/* --- Intro text --- */
+.fagans-nosotros__intro {
+  max-width: 740px;
+  margin: 0 auto var(--spacing-3xl);
+}
+
+.fagans-nosotros__intro-content {
+  font-size: var(--font-size-base);
+  line-height: 1.85;
+  color: var(--color-primary-onix);
+}
+
+.fagans-nosotros__intro-content p {
+  margin-bottom: var(--spacing-lg);
+}
+
+.fagans-nosotros__intro-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Features section --- */
+.fagans-nosotros__features {
+  border-top: 1px solid var(--border-color);
+  padding-top: var(--spacing-3xl);
+}
+
+.fagans-nosotros__features-header {
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+}
+
+.fagans-nosotros__features-title {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-primary-onix);
+  margin: 0;
+}
+
+/* --- Feature cards grid --- */
+.fagans-nosotros__features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-lg);
+}
+
+.fagans-nosotros__feature-card {
+  padding: var(--spacing-xl) var(--spacing-lg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.fagans-nosotros__feature-card:hover {
+  border-color: var(--color-primary-onix);
+  box-shadow: var(--shadow-md);
+}
+
+.fagans-nosotros__feature-number {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-3xl);
+  color: var(--color-accent-nogal-braun);
+  opacity: 0.35;
+  line-height: 1;
+  margin-bottom: var(--spacing-xs);
+}
+
+.fagans-nosotros__feature-heading {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-primary-onix);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.fagans-nosotros__feature-text {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-sm);
+  line-height: 1.75;
+  color: #555;
+  margin: 0;
+  flex: 1;
+}
+
+/* Nosotros page — responsive grid */
+@media (max-width: 900px) {
+  .fagans-nosotros__features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .fagans-nosotros__title {
+    font-size: var(--font-size-3xl);
+  }
+
+  .fagans-nosotros__features-title {
+    font-size: var(--font-size-2xl);
+  }
+
+  /* Horizontal scroll carousel on mobile */
+  .fagans-nosotros__features-grid {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: var(--spacing-md);
+    padding-bottom: var(--spacing-md);
+    scrollbar-width: none;
+  }
+
+  .fagans-nosotros__features-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .fagans-nosotros__feature-card {
+    flex: 0 0 78vw;
+    max-width: 300px;
+    scroll-snap-align: start;
+  }
+}
