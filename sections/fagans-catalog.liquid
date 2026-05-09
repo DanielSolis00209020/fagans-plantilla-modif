@@ -1,0 +1,227 @@
+{%- comment -%}
+  Fagans Catalog Section — v2
+  Filtros por colección (URL), toggle 3/4 cols, sticky fix dinámico
+{%- endcomment -%}
+
+{%- assign aroma_ns  = section.settings.aroma_namespace | default: 'shopify' -%}
+{%- assign aroma_key = section.settings.aroma_metafield | default: 'fragrance' -%}
+
+{%- comment -%}Active pill based on current collection handle{%- endcomment -%}
+{%- assign active_handle = collection.handle -%}
+
+{{ 'fagans-catalog.css' | asset_url | stylesheet_tag }}
+
+{%- paginate collection.products by section.settings.products_per_page -%}
+
+<div class="fagans-catalog" id="fagans-catalog-{{ section.id }}">
+
+  {%- comment -%}══ HEADER ══{%- endcomment -%}
+  <div class="fagans-catalog__header">
+    <div class="fagans-catalog__header-left">
+      <p class="fagans-catalog__eyebrow">Fagans · Perfumería original</p>
+      <h1 class="fagans-catalog__title">{{ collection.title }}</h1>
+      <p class="fagans-catalog__desc">
+        {%- if collection.description != blank -%}
+          {{ collection.description | strip_html | truncatewords: 30 }}
+        {%- else -%}
+          Diseñador, nicho y árabe — curados para cada estilo y presupuesto.
+        {%- endif -%}
+      </p>
+    </div>
+    <div class="fagans-catalog__count">{{ collection.products_count }} productos</div>
+  </div>
+
+  {%- comment -%}══ FILTER BAR ══{%- endcomment -%}
+  <div class="fagans-catalog__filter-bar" id="fagans-filter-bar">
+    <div class="fagans-catalog__pills" role="navigation" aria-label="Filtrar por categoría">
+
+      <a class="fagans-pill{% if active_handle == 'all' %} active{% endif %}"
+         href="/collections/all">Todos</a>
+
+      <a class="fagans-pill{% if active_handle == 'nicho' %} active{% endif %}"
+         href="/collections/nicho">Nicho</a>
+
+      <a class="fagans-pill{% if active_handle == 'arabes' %} active{% endif %}"
+         href="/collections/arabes">Árabe</a>
+
+      <a class="fagans-pill{% if active_handle == 'disenador' %} active{% endif %}"
+         href="/collections/disenador">Diseñador</a>
+
+      <a class="fagans-pill{% if active_handle == 'perfumes-para-ella' %} active{% endif %}"
+         href="/collections/perfumes-para-ella">Para ella</a>
+
+      <a class="fagans-pill{% if active_handle == 'perfumes-para-ellos' %} active{% endif %}"
+         href="/collections/perfumes-para-ellos">Para él</a>
+
+      <a class="fagans-pill{% if active_handle == 'perfumes-para-el-calor' %} active{% endif %}"
+         href="/collections/perfumes-para-el-calor">Calor</a>
+
+      <a class="fagans-pill{% if active_handle == 'perfumes-para-el-frio' %} active{% endif %}"
+         href="/collections/perfumes-para-el-frio">Frío</a>
+
+    </div>
+
+    <div class="fagans-catalog__bar-right">
+      <select class="fagans-sort-select" id="fagans-sort" aria-label="Ordenar productos">
+        <option value="manual"             {% if collection.sort_by == 'manual'             %}selected{% endif %}>Destacados</option>
+        <option value="price-ascending"    {% if collection.sort_by == 'price-ascending'    %}selected{% endif %}>Precio: menor</option>
+        <option value="price-descending"   {% if collection.sort_by == 'price-descending'   %}selected{% endif %}>Precio: mayor</option>
+        <option value="title-ascending"    {% if collection.sort_by == 'title-ascending'    %}selected{% endif %}>Nombre A–Z</option>
+        <option value="created-descending" {% if collection.sort_by == 'created-descending' %}selected{% endif %}>Más nuevos</option>
+      </select>
+
+      <div class="fagans-grid-toggle" id="fagans-grid-toggle" aria-label="Cambiar columnas">
+        <button class="fagans-gtoggle active" data-cols="4" type="button" title="4 columnas">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+            <rect x="0" y="0" width="3" height="7"/><rect x="4.3" y="0" width="3" height="7"/>
+            <rect x="8.6" y="0" width="3" height="7"/><rect x="12.9" y="0" width="3" height="7"/>
+            <rect x="0" y="9" width="3" height="7"/><rect x="4.3" y="9" width="3" height="7"/>
+            <rect x="8.6" y="9" width="3" height="7"/><rect x="12.9" y="9" width="3" height="7"/>
+          </svg>
+        </button>
+        <button class="fagans-gtoggle" data-cols="3" type="button" title="3 columnas">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+            <rect x="0" y="0" width="4" height="7"/><rect x="6" y="0" width="4" height="7"/>
+            <rect x="12" y="0" width="4" height="7"/>
+            <rect x="0" y="9" width="4" height="7"/><rect x="6" y="9" width="4" height="7"/>
+            <rect x="12" y="9" width="4" height="7"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%}══ PRODUCT GRID ══{%- endcomment -%}
+  <div class="fagans-catalog__grid" id="fagans-product-grid">
+    {%- for product in collection.products -%}
+      {%- render 'fagans-product-card',
+          product:         product,
+          aroma_namespace: aroma_ns,
+          aroma_metafield: aroma_key,
+          card_index:      forloop.index0
+      -%}
+    {%- else -%}
+      <div style="grid-column:1/-1;padding:80px 48px;text-align:center;background:#fff;color:#888;">
+        <p style="font-size:15px;">No hay productos en esta colección.</p>
+      </div>
+    {%- endfor -%}
+  </div>
+
+  {%- comment -%}══ PAGINATION ══{%- endcomment -%}
+  {%- if paginate.pages > 1 -%}
+    <div class="fagans-catalog__pagination">
+      {{ paginate | default_pagination }}
+    </div>
+  {%- endif -%}
+
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── Sort ── */
+  var sortEl = document.getElementById('fagans-sort');
+  if (sortEl) {
+    sortEl.addEventListener('change', function () {
+      var url = new URL(window.location.href);
+      url.searchParams.set('sort_by', this.value);
+      window.location.href = url.toString();
+    });
+  }
+
+  /* ── Grid toggle ── */
+  var grid = document.getElementById('fagans-product-grid');
+  document.querySelectorAll('.fagans-gtoggle').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var cols = this.dataset.cols;
+      document.querySelectorAll('.fagans-gtoggle').forEach(function (b) { b.classList.remove('active'); });
+      this.classList.add('active');
+      if (grid) {
+        grid.classList.remove('cols-3', 'cols-4');
+        if (cols === '3') grid.classList.add('cols-3');
+      }
+    });
+  });
+
+  /* ── Add to cart ── */
+  document.querySelectorAll('.fagans-pcard__btn-add').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var variantId = parseInt(this.dataset.variantId, 10);
+      if (!variantId) return;
+      var self = this;
+      self.disabled = true;
+      self.textContent = '…';
+
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ id: variantId, quantity: 1 })
+      })
+        .then(function (r) { return r.json(); })
+        .then(function () {
+          self.textContent = '✓ Añadido';
+          document.dispatchEvent(new CustomEvent('cart:refresh'));
+          document.dispatchEvent(new CustomEvent('theme:cart:add'));
+          setTimeout(function () { self.textContent = 'Añadir al carrito'; self.disabled = false; }, 1800);
+        })
+        .catch(function () {
+          self.textContent = 'Reintentar';
+          self.disabled = false;
+        });
+    });
+  });
+
+})();
+</script>
+
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "Catálogo Fagans",
+  "tag": "section",
+  "class": "fagans-catalog-section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Productos por página",
+      "min": 12,
+      "max": 48,
+      "step": 4,
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Metafield de aromas (hover)"
+    },
+    {
+      "type": "text",
+      "id": "aroma_namespace",
+      "label": "Namespace",
+      "info": "'shopify' = metaobjetos  |  'custom' = texto libre",
+      "default": "shopify"
+    },
+    {
+      "type": "text",
+      "id": "aroma_metafield",
+      "label": "Key",
+      "info": "'fragrance' (metaobjetos)  |  'aroma' (texto)",
+      "default": "fragrance"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Catálogo Fagans",
+      "settings": {
+        "products_per_page": 24,
+        "aroma_namespace": "shopify",
+        "aroma_metafield": "fragrance"
+      }
+    }
+  ]
+}
+{% endschema %}

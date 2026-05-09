@@ -1,0 +1,178 @@
+{%- comment -%}
+  Fagans Product Card snippet
+  Params:
+    product         — (required) product object
+    aroma_namespace — metafield namespace for aromas (default: 'shopify')
+    aroma_metafield — metafield key for aromas       (default: 'fragrance')
+    card_index      — integer, used for placeholder gradient rotation
+{%- endcomment -%}
+
+{%- liquid
+  assign aroma_ns  = aroma_namespace | default: 'shopify'
+  assign aroma_key = aroma_metafield | default: 'fragrance'
+  assign aroma_mf  = product.metafields[aroma_ns][aroma_key]
+
+  comment
+    Determine badge type from tags
+  endcomment
+  assign badge_type = ''
+  if product.tags contains 'nicho'
+    assign badge_type = 'nicho'
+  elsif product.tags contains 'arabes' or product.tags contains 'arabe' or product.tags contains 'árabe'
+    assign badge_type = 'arabe'
+  elsif product.tags contains 'disenador' or product.tags contains 'diseñador' or product.tags contains 'designer'
+    assign badge_type = 'dis'
+  endif
+
+  comment
+    Mood class
+  endcomment
+  case badge_type
+    when 'nicho'
+      assign mood_class = 'fagans-mood--nicho'
+    when 'arabe'
+      assign mood_class = 'fagans-mood--arabe'
+    when 'dis'
+      assign mood_class = 'fagans-mood--dis'
+    else
+      assign mood_class = 'fagans-mood--default'
+  endcase
+
+  comment
+    Placeholder gradient (cycles 1–10)
+  endcomment
+  assign grad_num = card_index | default: 0 | modulo: 10 | plus: 1
+
+  comment
+    Tags string for client-side JS filtering
+  endcomment
+  assign tag_str = product.tags | join: ',' | downcase
+-%}
+
+{%- comment -%}── Build aroma display string (using append to avoid whitespace bugs) ──{%- endcomment -%}
+{%- assign aroma_display = '' -%}
+{%- if aroma_mf != blank -%}
+  {%- assign aroma_val = aroma_mf.value -%}
+  {%- for item in aroma_val limit: 5 -%}
+    {%- if item.label != blank -%}
+      {%- unless aroma_display == '' -%}{%- assign aroma_display = aroma_display | append: ' · ' -%}{%- endunless -%}
+      {%- assign aroma_display = aroma_display | append: item.label -%}
+    {%- elsif item != blank -%}
+      {%- comment -%}Plain text item, e.g. "Vanilla; Sweet; Aromatic"{%- endcomment -%}
+      {%- assign sub_parts = item | split: '; ' -%}
+      {%- for sub in sub_parts limit: 4 -%}
+        {%- unless aroma_display == '' -%}{%- assign aroma_display = aroma_display | append: ' · ' -%}{%- endunless -%}
+        {%- assign aroma_display = aroma_display | append: sub -%}
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+{%- if aroma_display == '' and product.metafields.custom.aroma != blank -%}
+  {%- assign custom_arr = product.metafields.custom.aroma.value -%}
+  {%- for item in custom_arr limit: 1 -%}
+    {%- assign sub_parts = item | split: '; ' -%}
+    {%- assign aroma_display = sub_parts | join: ' · ' -%}
+  {%- endfor -%}
+{%- endif -%}
+
+<article class="fagans-pcard" data-tags="{{ tag_str }}">
+
+  {%- comment -%}── Mood stripe ──{%- endcomment -%}
+  <div class="fagans-pcard__mood {{ mood_class }}"></div>
+
+  {%- comment -%}── Image + hover overlay ──{%- endcomment -%}
+  <div class="fagans-pcard__image-wrap">
+
+    {%- if product.featured_image -%}
+      <img
+        src="{{ product.featured_image | image_url: width: 480 }}"
+        alt="{{ product.featured_image.alt | default: product.title | escape }}"
+        width="480"
+        height="640"
+        loading="lazy"
+        class="fagans-pcard__img"
+      >
+    {%- else -%}
+      <div class="fagans-pcard__placeholder fagans-grad-{{ grad_num }}">
+        <span class="fagans-pcard__placeholder-letter">{{ product.vendor | slice: 0, 1 }}</span>
+        <span class="fagans-pcard__placeholder-vendor">{{ product.vendor }}</span>
+      </div>
+    {%- endif -%}
+
+    {%- comment -%}── Gradient vignette + actions overlay ──{%- endcomment -%}
+    <div class="fagans-pcard__overlay">
+      {%- if aroma_display != blank -%}
+        <p class="fagans-pcard__aromas">
+          <span class="fagans-pcard__aromas-label">Aromas</span> {{ aroma_display }}
+        </p>
+      {%- endif -%}
+
+      <button
+        class="fagans-pcard__btn-add"
+        data-variant-id="{{ product.first_available_variant.id }}"
+        data-product-title="{{ product.title | escape }}"
+        aria-label="Añadir {{ product.title | escape }} al carrito"
+      >
+        Añadir al carrito
+      </button>
+    </div>
+
+    {%- comment -%}── Wishlist button ──{%- endcomment -%}
+    <button class="fagans-pcard__wishlist" aria-label="Guardar en favoritos" type="button">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0E0F0F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+      </svg>
+    </button>
+
+    {%- comment -%}── Category badges ──{%- endcomment -%}
+    {%- if badge_type != blank -%}
+      <div class="fagans-pcard__badges">
+        <span class="fagans-badge fagans-badge--{{ badge_type }}">
+          {%- case badge_type -%}
+            {%- when 'nicho' -%}Nicho
+            {%- when 'arabe' -%}Árabe
+            {%- when 'dis'   -%}Diseñador
+          {%- endcase -%}
+        </span>
+        {%- if product.tags contains 'nuevo' or product.tags contains 'new' -%}
+          <span class="fagans-badge fagans-badge--new">Nuevo</span>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- comment -%}── Sale badge (separate from category) ──{%- endcomment -%}
+    {%- if product.compare_at_price > product.price -%}
+      <div class="fagans-pcard__badges" style="right:12px;left:auto;">
+        <span class="fagans-badge fagans-badge--sale">Oferta</span>
+      </div>
+    {%- endif -%}
+
+  </div>{%- comment -%}end image-wrap{%- endcomment -%}
+
+  {%- comment -%}── Card info (below image) ──{%- endcomment -%}
+  <a href="{{ product.url }}" class="fagans-pcard__info">
+    <p class="fagans-pcard__brand">{{ product.vendor }}</p>
+    <p class="fagans-pcard__name">{{ product.title }}</p>
+
+    {%- unless product.has_only_default_variant -%}
+      <div class="fagans-pcard__sizes">
+        {%- for variant in product.variants limit: 5 -%}
+          <span class="fagans-size-chip">{{ variant.title }}</span>
+        {%- endfor -%}
+        {%- if product.variants.size > 5 -%}
+          <span class="fagans-size-chip">+{{ product.variants.size | minus: 5 }}</span>
+        {%- endif -%}
+      </div>
+    {%- endunless -%}
+
+    <div class="fagans-pcard__price">
+      <span class="fagans-price-now">{{ product.price | money }}</span>
+      {%- if product.compare_at_price > product.price -%}
+        <span class="fagans-price-was">{{ product.compare_at_price | money }}</span>
+        {%- assign discount_pct = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price -%}
+        <span class="fagans-price-off">-{{ discount_pct }}%</span>
+      {%- endif -%}
+    </div>
+  </a>
+
+</article>

@@ -1,0 +1,504 @@
+/* ═══════════════════════════════════════════════
+   FAGANS CATALOG PAGE
+   Página de catálogo: header, filtros, grid
+═══════════════════════════════════════════════ */
+
+/* ── Catalog section wrapper ─────────────────── */
+.fagans-catalog {
+  background: #F1F1F1;
+}
+
+/* ── Header ─────────────────────────────────── */
+.fagans-catalog__header {
+  padding: 56px 48px 28px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  background: #fff;
+  border-bottom: 1px solid #E5E5E5;
+}
+.fagans-catalog__eyebrow {
+  font-size: 10px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 12px;
+}
+.fagans-catalog__title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 400;
+  line-height: 1.05;
+  margin-bottom: 8px;
+  color: #0E0F0F;
+}
+.fagans-catalog__desc {
+  font-size: 14px;
+  color: #888;
+  max-width: 400px;
+  line-height: 1.6;
+}
+.fagans-catalog__count {
+  font-size: 13px;
+  color: #888;
+  flex-shrink: 0;
+  align-self: flex-start;
+  padding-top: 8px;
+}
+
+/* ── Filter bar ──────────────────────────────── */
+.fagans-catalog__filter-bar {
+  padding: 12px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid #E5E5E5;
+  position: sticky;
+  top: var(--header-height, 118px); /* theme updates --header-height to 0 when header hides */
+  transition: top var(--timing-base, 0.4s) ease;
+  background: #fff;
+  z-index: 12; /* below header(14) and all overlays/drawers(15+) */
+}
+.fagans-catalog__pills {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  flex: 1;
+}
+.fagans-catalog__pills::-webkit-scrollbar { display: none; }
+
+/* Pills as links */
+.fagans-pill {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  background: none;
+  border: 1px solid #E5E5E5;
+  border-radius: 100px;
+  padding: 6px 15px;
+  font-size: 12px;
+  cursor: pointer;
+  color: #0E0F0F;
+  transition: all .2s;
+  white-space: nowrap;
+  font-family: inherit;
+  line-height: 1;
+}
+.fagans-pill:hover { border-color: #0E0F0F; }
+.fagans-pill.active,
+.fagans-pill[aria-current="true"] {
+  background: #0E0F0F;
+  border-color: #0E0F0F;
+  color: #fff;
+}
+
+/* ── Filter bar right side controls ─────────── */
+.fagans-catalog__bar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* Sort */
+.fagans-sort-select {
+  font-size: 12px;
+  border: 1px solid #E5E5E5;
+  border-radius: 7px;
+  padding: 7px 28px 7px 12px;
+  color: #0E0F0F;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23888'/%3E%3C/svg%3E") no-repeat right 10px center;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  font-family: inherit;
+  outline: none;
+}
+.fagans-sort-select:focus { border-color: #0E0F0F; }
+
+/* Grid toggle */
+.fagans-grid-toggle {
+  display: flex;
+  gap: 4px;
+}
+.fagans-gtoggle {
+  background: none;
+  border: 1px solid #E5E5E5;
+  border-radius: 5px;
+  padding: 6px 8px;
+  cursor: pointer;
+  color: #888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .2s;
+}
+.fagans-gtoggle:hover { border-color: #0E0F0F; color: #0E0F0F; }
+.fagans-gtoggle.active {
+  background: #0E0F0F;
+  border-color: #0E0F0F;
+  color: #fff;
+}
+
+/* ── Product grid ────────────────────────────── */
+.fagans-catalog__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: #D8D6D3;
+  margin: 16px 0 0;
+}
+.fagans-catalog__grid.cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* ── Pagination ──────────────────────────────── */
+.fagans-catalog__pagination {
+  padding: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  background: #F1F1F1;
+}
+.fagans-catalog__pagination .pagination {
+  display: flex;
+  gap: 6px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.fagans-catalog__pagination .pagination a,
+.fagans-catalog__pagination .pagination span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 10px;
+  border: 1px solid #E5E5E5;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #0E0F0F;
+  text-decoration: none;
+  background: #fff;
+  transition: all .2s;
+}
+.fagans-catalog__pagination .pagination a:hover { border-color: #0E0F0F; }
+.fagans-catalog__pagination .pagination .current span {
+  background: #0E0F0F;
+  color: #fff;
+  border-color: #0E0F0F;
+}
+
+/* ═══════════════════════════════════════════════
+   FAGANS PRODUCT CARD
+═══════════════════════════════════════════════ */
+.fagans-pcard {
+  background: #fff;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  transition: box-shadow .3s cubic-bezier(.4,0,.2,1);
+  display: flex;
+  flex-direction: column;
+}
+.fagans-pcard:hover {
+  box-shadow: 0 6px 24px rgba(0,0,0,.12);
+  z-index: 2;
+}
+
+/* Mood stripe */
+.fagans-pcard__mood {
+  height: 3px;
+  flex-shrink: 0;
+}
+.fagans-mood--nicho   { background: linear-gradient(90deg, #8E7BAD, #B8A4D4); }
+.fagans-mood--arabe   { background: linear-gradient(90deg, #582D0C, #8B6040); }
+.fagans-mood--dis     { background: linear-gradient(90deg, #555, #999); }
+.fagans-mood--default { background: linear-gradient(90deg, #C79FB8, #d4b8c8); }
+
+/* Image area — aspect ratio 4/5 (más cuadrado, 2 filas visibles) */
+.fagans-pcard__image-wrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  flex-shrink: 0;
+}
+.fagans-pcard__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform .6s cubic-bezier(.4,0,.2,1);
+  display: block;
+}
+.fagans-pcard:hover .fagans-pcard__img {
+  transform: scale(1.04);
+}
+
+/* Placeholder (sin imagen) */
+.fagans-pcard__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.fagans-pcard__placeholder-letter {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 64px;
+  color: rgba(255,255,255,.15);
+  line-height: 1;
+}
+.fagans-pcard__placeholder-vendor {
+  font-size: 9px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+  margin-top: 8px;
+}
+
+/* Placeholder gradients */
+.fagans-grad-1  { background: linear-gradient(145deg,#1a0a3d,#3d1a5e,#6b2d7a,#9d4e8c); }
+.fagans-grad-2  { background: linear-gradient(145deg,#0d3320,#1a5c38,#2d7a50,#4a9e6e); }
+.fagans-grad-3  { background: linear-gradient(145deg,#0a1a2e,#1a3a5c,#2d5c8a,#4a84b8); }
+.fagans-grad-4  { background: linear-gradient(145deg,#1a0015,#3d002e,#5c1a47,#8c3a6b); }
+.fagans-grad-5  { background: linear-gradient(145deg,#0a0a0a,#1a0d1a,#2d0d2d,#4a1a3a); }
+.fagans-grad-6  { background: linear-gradient(145deg,#2d1500,#5c2e00,#8a4a0a,#b87840); }
+.fagans-grad-7  { background: linear-gradient(145deg,#1a0a15,#3d1a30,#6b2d50,#c79fb8); }
+.fagans-grad-8  { background: linear-gradient(145deg,#1a150a,#3d300a,#6b551a,#c8a84a); }
+.fagans-grad-9  { background: linear-gradient(145deg,#0f1a2e,#1e3050,#2e4870,#4a6890); }
+.fagans-grad-10 { background: linear-gradient(145deg,#200a0a,#4a1010,#7a1a1a,#a83a3a); }
+
+/* Hover overlay: gradient vignette + aromas + CTA */
+.fagans-pcard__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(14,15,15,.92) 0%,
+    rgba(14,15,15,.4)  42%,
+    transparent        100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 16px;
+  opacity: 0;
+  transition: opacity .35s cubic-bezier(.4,0,.2,1);
+  z-index: 5;
+}
+.fagans-pcard:hover .fagans-pcard__overlay { opacity: 1; }
+
+/* Aromas */
+.fagans-pcard__aromas {
+  font-size: 10px;
+  letter-spacing: .06em;
+  color: rgba(255,255,255,.65);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+.fagans-pcard__aromas-label {
+  color: rgba(255,255,255,.35);
+  font-size: 8px;
+  letter-spacing: .1em;
+  margin-right: 4px;
+}
+
+/* Add to cart */
+.fagans-pcard__btn-add {
+  background: #fff;
+  color: #0E0F0F;
+  border: none;
+  border-radius: 6px;
+  padding: 9px 16px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  transform: translateY(8px);
+  opacity: 0;
+  transition: all .3s cubic-bezier(.4,0,.2,1) .05s;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  font-family: inherit;
+}
+.fagans-pcard:hover .fagans-pcard__btn-add {
+  transform: translateY(0);
+  opacity: 1;
+}
+.fagans-pcard__btn-add:hover { background: #0E0F0F; color: #fff; }
+.fagans-pcard__btn-add:disabled { opacity: .5; cursor: default; }
+
+/* Wishlist */
+.fagans-pcard__wishlist {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255,255,255,.92);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(.8);
+  transition: all .25s cubic-bezier(.4,0,.2,1);
+  z-index: 10;
+  cursor: pointer;
+}
+.fagans-pcard:hover .fagans-pcard__wishlist { opacity: 1; transform: scale(1); }
+.fagans-pcard__wishlist:hover { background: #fff; transform: scale(1.1) !important; }
+
+/* Badges */
+.fagans-pcard__badges {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 10;
+}
+.fagans-badge {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 4px;
+  line-height: 1;
+}
+.fagans-badge--nicho { background: rgba(142,123,173,.9); color: #fff; }
+.fagans-badge--arabe { background: rgba(88,45,12,.9);    color: #fff; }
+.fagans-badge--dis   { background: rgba(14,15,15,.8);    color: #fff; }
+.fagans-badge--new   { background: rgba(199,159,184,.9); color: #fff; }
+.fagans-badge--sale  { background: rgba(255,255,255,.92);color: #0E0F0F; }
+
+/* Card info */
+.fagans-pcard__info {
+  padding: 12px 16px 16px;
+  border-top: 1px solid #F0EEEB;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  flex: 1;
+  background: #fff;
+}
+.fagans-pcard__brand {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 3px;
+}
+.fagans-pcard__name {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 15px;
+  font-weight: 400;
+  margin-bottom: 8px;
+  color: #0E0F0F;
+  line-height: 1.25;
+}
+.fagans-pcard__sizes {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+/* Size chips — colored (Sándalo tint) */
+.fagans-size-chip {
+  font-size: 9px;
+  font-weight: 600;
+  border: 1px solid rgba(199,159,184,.4);
+  background: rgba(199,159,184,.1);
+  border-radius: 3px;
+  padding: 3px 7px;
+  color: #7a4060;
+  white-space: nowrap;
+  letter-spacing: .03em;
+}
+
+.fagans-pcard__price {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.fagans-price-now {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0E0F0F;
+}
+.fagans-price-was {
+  font-size: 11px;
+  color: #aaa;
+  text-decoration: line-through;
+}
+.fagans-price-off {
+  font-size: 9px;
+  font-weight: 700;
+  color: #c0392b;
+  background: #fde8e8;
+  border-radius: 3px;
+  padding: 2px 5px;
+}
+
+/* ── Compact header ──────────────────────────────
+   Reduce vertical padding so icons stand out more.
+   Mobile default (< 1200px): 14px → 8px each side.
+   Desktop (≥ 1200px): 18px → 12px each side.
+─────────────────────────────────────────────────── */
+.header .header__container {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+@media (min-width: 1200px) {
+  .header .header__container {
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .fagans-catalog__grid { grid-template-columns: repeat(3, 1fr); }
+  .fagans-catalog__grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 749px) {
+  .fagans-catalog__header {
+    padding: 36px 20px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .fagans-catalog__filter-bar { padding: 10px 16px; }
+  .fagans-catalog__grid {
+    grid-template-columns: repeat(2, 1fr);
+    margin: 8px 0 0;
+  }
+  .fagans-catalog__grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
+  .fagans-catalog__title { font-size: 32px; }
+  .fagans-grid-toggle { display: none; }
+  .fagans-sort-select { font-size: 11px; padding: 6px 24px 6px 10px; }
+}
+
+@media (max-width: 420px) {
+  .fagans-pcard__name { font-size: 13px; }
+  .fagans-pcard__info { padding: 10px 12px 12px; }
+}

@@ -1,1 +1,1191 @@
-{"sections":{"banner":{"type":"banner","disabled":true,"settings":{"desktop_image_height":"600px","mobile_image_height":"450px","media_type":"image","title":"","text":"","button_label_1":"VER OFERTAS","button_link_1":"shopify:\/\/collections\/fragancias-completas","button_aria_label_1":"","button_label_2":"","button_link_2":"","button_aria_label_2":"","image_desktop":"shopify:\/\/shop_images\/BlackNovember219.jpg","image_mobile":"shopify:\/\/shop_images\/BlackNovember.png","show_breadcrumbs":false,"enable_timer":true,"timer_year":2025,"timer_month":"11","timer_day":"1","timer_hour":"23","timer_timezone":"-6","timer_background":"rgba(0, 0, 0, 0.5)","timer_color":"#ffffff","external_video_url_desktop":"","external_video_url_mobile":"","content_alignment":"center","content_alignment_mobile":"center","block_alignment":"center","block_alignment_vertical":"flex-start","block_alignment_vertical_mob":"flex-end","section_background":"#e0bb8f","overlay":"","text_color":"#ffffff","button_background_1":"#ff7f00","button_color_1":"#ffffff","button_border_1":"#ff7f00","button_background_hover_1":"#ff9933","button_color_hover_1":"#ffffff","button_border_hover_1":"#533b33","button_background_2":"#ffffff","button_color_2":"#000000","button_border_2":"#ffffff","button_background_hover_2":"#000000","button_color_hover_2":"#ffffff","button_border_hover_2":"#ffffff","container_width":"100%","offset_top_desktop":8,"offset_bottom_desktop":8,"offset_top_mobile":10,"offset_bottom_mobile":10}},"slideshow":{"type":"slideshow","blocks":{"image-2":{"type":"image","settings":{"image_desktop":"shopify:\/\/shop_images\/IMG_0812_219.jpg","image_mobile":"shopify:\/\/shop_images\/IMG_0812_219.jpg","heading":"","description":"<h4>Colección<\/h4>","button_text":"Nicho","button_aria_label":"Nicho","button_link":"shopify:\/\/collections\/nicho","open_in_new_tab":false,"color_background":"#d8cfbc","color_overlay":"","color_heading":"#fffbf4","color_text":"#ffffff","button_text_color_primary":"#11120d","button_background_color_primary":"#d8cfbc","button_border_color_primary":"#d8cfbc","button_text_color_primary_hover":"#fffbf4","button_background_color_primary_hover":"#565449","button_border_color_primary_hover":"#565449"}},"image-1":{"type":"image","settings":{"image_desktop":"shopify:\/\/shop_images\/IMG_0811_219.jpg","image_mobile":"shopify:\/\/shop_images\/IMG_0811_219.jpg","heading":"","description":"<h4>Colección<\/h4>","button_text":"Diseñador","button_aria_label":"Diseñador","button_link":"shopify:\/\/collections\/disenador","open_in_new_tab":false,"color_background":"#d8cfbc","color_overlay":"linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2) 100%)","color_heading":"#fffbf4","color_text":"#ffffff","button_text_color_primary":"#11120d","button_background_color_primary":"#d8cfbc","button_border_color_primary":"#d8cfbc","button_text_color_primary_hover":"#fffbf4","button_background_color_primary_hover":"#565449","button_border_color_primary_hover":"#565449"}},"image_3BkKxQ":{"type":"image","settings":{"image_desktop":"shopify:\/\/shop_images\/IMG_0815_219.jpg","image_mobile":"shopify:\/\/shop_images\/IMG_0815_219.jpg","heading":"","description":"<h4>Colección<\/h4>","button_text":"Árabes","button_aria_label":"Árabes","button_link":"shopify:\/\/collections\/arabes","open_in_new_tab":false,"color_background":"#d8cfbc","color_overlay":"linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2) 100%)","color_heading":"#fffbf4","color_text":"#ffffff","button_text_color_primary":"#11120d","button_background_color_primary":"#d8cfbc","button_border_color_primary":"#d8cfbc","button_text_color_primary_hover":"#fffbf4","button_background_color_primary_hover":"#565449","button_border_color_primary_hover":"#565449"}},"image-3":{"type":"image","settings":{"image_desktop":"shopify:\/\/shop_images\/decants-calidad-219-espaciado.jpg","image_mobile":"shopify:\/\/shop_images\/decants-calidad-219-espaciado.jpg","heading":"","description":"<p>Colección<\/p>","button_text":"Decants","button_aria_label":"","button_link":"shopify:\/\/collections\/decants-muestras","open_in_new_tab":false,"color_background":"#ffffff","color_overlay":"","color_heading":"#ffffff","color_text":"#ffffff","button_text_color_primary":"#11120d","button_background_color_primary":"#ffffff","button_border_color_primary":"#e9e9e9","button_text_color_primary_hover":"#ffffff","button_background_color_primary_hover":"#565449","button_border_color_primary_hover":"#565449"}}},"block_order":["image-2","image-1","image_3BkKxQ","image-3"],"settings":{"enable_color_scheme_inheritance":true,"color_scheme":"","show_pagination":true,"show_slide_preview":false,"enable_loop":true,"enable_autoplay":true,"autoplay_speed":4,"animation_speed":1.4,"animation_type":"creative","progress_bar_color":"#ffffff","progress_bar_fill_color":"#11120d","pagination_color":"#ffffff","height_desktop":81,"height_mobile":45,"subtract_header_height":true,"container_width":"100%","offset_top_desktop_external":0,"offset_bottom_desktop_external":50,"offset_top_mobile_external":0,"offset_bottom_mobile_external":40,"offset_top_desktop_internal":0,"offset_bottom_desktop_internal":0,"offset_top_mobile_internal":0,"offset_bottom_mobile_internal":0}},"collection_list_JVBxT9":{"type":"collection-list","blocks":{"collection_yMWDeB":{"type":"collection","settings":{"collection":"arabes"}},"collection_yMyqVm":{"type":"collection","settings":{"collection":"disenador"}},"collection_8tMyNn":{"type":"collection","settings":{"collection":"nicho"}}},"block_order":["collection_yMWDeB","collection_yMyqVm","collection_8tMyNn"],"disabled":true,"name":"Collection list","settings":{"enable_color_scheme_inheritance":true,"color_scheme":"","heading":"Collection list","show_products_count":true,"container_width":"inherit","offset_top_desktop":24,"offset_bottom_desktop":16,"offset_top_mobile":25,"offset_bottom_mobile":25,"inner_offset_top_desktop":32,"inner_offset_bottom_desktop":32,"inner_offset_top_mobile":32,"inner_offset_bottom_mobile":32}},"product_tabs":{"type":"product-tabs","blocks":{"tab_Jtmpdr":{"type":"tab","settings":{"heading":"Diseñador","product_list":[],"collection":"","link_label":"See all products"}},"tab_KtyLKh":{"type":"tab","settings":{"heading":"Árabes","product_list":[],"collection":"","link_label":"See all products"}},"tab_LVdanF":{"type":"tab","settings":{"heading":"Nicho","product_list":[],"collection":"","link_label":"See all products"}}},"block_order":["tab_Jtmpdr","tab_KtyLKh","tab_LVdanF"],"disabled":true,"settings":{"enable_color_scheme_inheritance":false,"color_scheme":"scheme-1","heading":"Lo más popular","show_arrows":true,"container_width":"inherit","offset_top_desktop":0,"offset_bottom_desktop":0,"offset_top_mobile":0,"offset_bottom_mobile":21,"inner_offset_top":40,"inner_offset_bottom":40,"inner_offset_top_mobile":32,"inner_offset_bottom_mobile":32}},"benefits":{"type":"benefits","blocks":{"benefits_item-0":{"type":"benefits_item","settings":{"heading":"Premium Quality","text":"Made from full-grain leather for lasting durability"}},"benefits_item-1":{"type":"benefits_item","settings":{"heading":"Handcrafted Precision","text":"Each piece is skillfully made by artisans"}},"benefits_item-2":{"type":"benefits_item","settings":{"heading":"Timeless Style","text":"Designed to remain stylish through the years"}},"benefits_item-3":{"type":"benefits_item","settings":{"heading":"Sustainable Choice","text":"Eco-conscious materials with minimal waste design"}}},"block_order":["benefits_item-0","benefits_item-1","benefits_item-2","benefits_item-3"],"disabled":true,"settings":{"enable_color_scheme_inheritance":true,"benefits_color_scheme":"","benefits_heading":"","container_width":"inherit","offset_top_desktop":0,"offset_bottom_desktop":0,"offset_top_mobile":0,"offset_bottom_mobile":0,"inner_offset_top":25,"inner_offset_bottom":25,"inner_offset_top_mobile":25,"inner_offset_bottom_mobile":25}},"featured_products_1":{"type":"featured-products","settings":{"enable_color_scheme_inheritance":false,"color_scheme":"scheme-1","heading":"","link_label":"See all products","link_url":"","product_list":["9pm-rebel-boxed","bianco-latte-boxed","dylan-blue-boxed","khamrah-dukhan-boxed"],"layout":"4","show_arrows":true,"container_width":"1808px","offset_top_desktop":0,"offset_bottom_desktop":0,"offset_top_mobile":0,"offset_bottom_mobile":0,"inner_offset_top":30,"inner_offset_bottom":30,"inner_offset_top_mobile":0,"inner_offset_bottom_mobile":30}},"faq_simple":{"type":"faq-simple","blocks":{"category_VqJpTU":{"type":"category","settings":{"heading":"Product & Materials"}},"faq_item_47qN4i":{"type":"faq_item","settings":{"heading":"What type of leather do you use?","text":"<p>We use high-quality full-grain leather, known for its durability, natural texture, and ability to develop a rich patina over time.<\/p>"}},"faq_item_JYBpnw":{"type":"faq_item","settings":{"heading":"Are all products handmade?","text":"<p>Yes, each piece is meticulously handcrafted by skilled artisans, ensuring unique details and premium quality in every product.<\/p>"}},"category_EGAGw8":{"type":"category","settings":{"heading":"Orders & Shipping"}},"faq_item_67AACR":{"type":"faq_item","settings":{"heading":"How long does it take to process an order?","text":"<p>Orders are typically processed within 2-3 business days. Handmade items may require additional time for production.<\/p>"}},"faq_item_giJbNP":{"type":"faq_item","settings":{"heading":"Do you offer international shipping?","text":"<p>Yes, we ship worldwide. Shipping times and costs vary depending on your location and selected delivery method.<\/p>"}}},"block_order":["category_VqJpTU","faq_item_47qN4i","faq_item_JYBpnw","category_EGAGw8","faq_item_67AACR","faq_item_giJbNP"],"disabled":true,"settings":{"enable_color_scheme_inheritance":true,"color_scheme":"","heading":"FAQ","offset_top_desktop":0,"offset_bottom_desktop":0,"offset_top_mobile":0,"offset_bottom_mobile":0,"inner_offset_top":10,"inner_offset_bottom":70,"inner_offset_top_mobile":30,"inner_offset_bottom_mobile":0}},"featured_product":{"type":"featured-product","blocks":{"vendor":{"type":"vendor","settings":{"make_vendor_link":true,"offset_top_desktop":8,"offset_bottom_desktop":8,"offset_top_mobile":8,"offset_bottom_mobile":8}},"title":{"type":"title","settings":{"offset_top_desktop":8,"offset_bottom_desktop":8,"offset_top_mobile":8,"offset_bottom_mobile":8}},"sku":{"type":"sku","settings":{"sku_text":"SKU: {SKU}","offset_top_desktop":8,"offset_bottom_desktop":8,"offset_top_mobile":8,"offset_bottom_mobile":8}},"options":{"type":"options","settings":{"variant_picker":"radio","offset_top_desktop":8,"offset_bottom_desktop":8,"offset_top_mobile":8,"offset_bottom_mobile":8}},"price":{"type":"price","settings":{"offset_top_desktop":8,"offset_bottom_desktop":8,"offset_top_mobile":8,"offset_bottom_mobile":8}},"quantity":{"type":"quantity","settings":{"offset_top_desktop":8,"offset_bottom_desktop":0,"offset_top_mobile":8,"offset_bottom_mobile":8}},"inventory":{"type":"inventory_status","settings":{"offset_top_desktop":4,"offset_bottom_desktop":15,"offset_top_mobile":8,"offset_bottom_mobile":8}},"add_to_cart":{"type":"add_to_cart","settings":{"button_type":"secondary","button_buy_it_type":"primary","show_additional_buttons":true,"show_gift_card_recipient":true,"offset_top_desktop":8,"offset_bottom_desktop":8,"offset_top_mobile":8,"offset_bottom_mobile":8}},"pickup_availability":{"type":"pickup_availability","settings":{"offset_top_desktop":8,"offset_bottom_desktop":8,"offset_top_mobile":8,"offset_bottom_mobile":8}},"drawers":{"type":"drawers","settings":{"show_description":false,"description_toggle_text":"Description","description_drawer_title":"Description","drawer_page_1":"","drawer_toggle_text_1":"Drawer 1","drawer_title_1":"Drawer 1","drawer_page_2":"","drawer_toggle_text_2":"Drawer 2","drawer_title_2":"Drawer 2","drawer_page_3":"","drawer_toggle_text_3":"Drawer 3","drawer_title_3":"Drawer 3","offset_top_desktop":8,"offset_bottom_desktop":8,"offset_top_mobile":8,"offset_bottom_mobile":8}},"description":{"type":"description","settings":{"offset_top_desktop":8,"offset_bottom_desktop":8,"offset_top_mobile":8,"offset_bottom_mobile":8}},"complementary":{"type":"complementary","settings":{"heading":"You May Also Like","offset_top_desktop":8,"offset_bottom_desktop":8,"offset_top_mobile":8,"offset_bottom_mobile":8}}},"block_order":["vendor","title","sku","options","price","quantity","inventory","add_to_cart","pickup_availability","drawers","description","complementary"],"settings":{"enable_color_scheme_inheritance":true,"color_scheme":"scheme-2","product":"le-male-elixir-absolu-boxed","media_height":"square","image_object_fit":"contain","show_taxes_included":true,"show_pay_installments":true,"show_size_guide":true,"size_guide_button_placement":"drawer","size_guide_page":"","size_guide_button_text":"Size guide","size_guide_drawer_title":"Size guide","container_width":"inherit","offset_top_desktop":78,"offset_bottom_desktop":75,"offset_top_mobile":16,"offset_bottom_mobile":16,"inner_offset_top":32,"inner_offset_bottom":32,"inner_offset_top_mobile":16,"inner_offset_bottom_mobile":16}},"product_banner":{"type":"product-banner","blocks":{"product_KATxQ9":{"type":"product","settings":{"enable_color_scheme_inheritance":true,"color_scheme":"","label":"Destacado por Temporada","heading":"Fragancia del mes","text":"<p><br\/>Loewe Cobalt 7 es una fragancia fresca y sofisticada que combina la luminosidad de la mandarina y el limón con el carácter floral de la lavanda y el jazmín. Su fondo amaderado y almizclado aporta profundidad, creando una experiencia olfativa vibrante y refinada, ideal para el hombre elegante y moderno.<\/p>","button_label":"","button_link":"shopify:\/\/products\/7-cobalt-edp","button_style":"secondary","product":"7-cobalt-edp-boxed","image":"shopify:\/\/shop_images\/loewe_1eb16bd3-9609-424a-a70b-427663c3f362.webp"}},"product_rYTQpB":{"type":"product","settings":{"enable_color_scheme_inheritance":true,"color_scheme":"","label":"Destacado por Temporada","heading":"Nicho Recomendado","text":"<p>Una vainilla vibrante y chispeante, ideal para quienes buscan destacar y atraer todas las miradas<\/p>","button_label":"","button_link":"\/","button_style":"secondary","product":"althair-boxed","image":"shopify:\/\/shop_images\/althair-box.jpg"}},"product_hqhLKB":{"type":"product","settings":{"enable_color_scheme_inheritance":true,"color_scheme":"","label":"Destacado por Temporada","heading":"Árabe en Hype","text":"<p>Aprovecha el hype de Hawas. Hawas Elixir combina la intensidad de chocolate oscuro, vainilla y haba tonka con un toque de menta y bergamota. Su evolución poderosa y lujosa lo convierte en un perfume envolvente y cautivador, inspirado en Le Male Elixir.<br\/><\/p>","button_label":"","button_link":"\/","button_style":"secondary","product":"hawas-elixir-boxed","image":"shopify:\/\/shop_images\/hawas-elixir-box.webp"}}},"block_order":["product_KATxQ9","product_rYTQpB","product_hqhLKB"],"settings":{"container_width":"inherit","offset_top_desktop":0,"offset_bottom_desktop":25,"offset_top_mobile":0,"offset_bottom_mobile":25}},"specifications":{"type":"specifications","blocks":{"toggle_content_hJjqnH":{"type":"toggle_content","settings":{"heading":"Premium Materials","text":"<p>Crafted from high-quality full-grain leather, each piece offers durability, a refined texture, and a natural patina that enhances its character over time.<\/p>"}},"toggle_content_AdmNj6":{"type":"toggle_content","settings":{"heading":"Handmade Craftsmanship","text":"<p>Every product is meticulously handcrafted by skilled artisans, ensuring precision, attention to detail, and a unique touch in every stitch.<\/p>"}},"toggle_content_YjMHGi":{"type":"toggle_content","settings":{"heading":"Thoughtful Design","text":"<p>Designed for both aesthetics and functionality, our leather accessories provide a perfect fit, seamless usability, and an elegant finish for everyday use.<\/p>"}},"toggle_content_d8Maxa":{"type":"toggle_content","settings":{"heading":"Long-Lasting Durability","text":"<p>Reinforced stitching, premium hardware, and carefully selected leather ensure each product withstands daily wear while maintaining its timeless appeal.<\/p>"}}},"block_order":["toggle_content_hJjqnH","toggle_content_AdmNj6","toggle_content_YjMHGi","toggle_content_d8Maxa"],"disabled":true,"settings":{"heading":"Specifications","enable_color_scheme_inheritance":true,"color_scheme":"","container_width":"inherit","offset_top_desktop":40,"offset_bottom_desktop":40,"offset_top_mobile":0,"offset_bottom_mobile":0}},"trends_products":{"type":"trend-products","blocks":{"product_MCChEm":{"type":"product","settings":{"product":"","horizontal_position_desktop":46,"vertical_position_desktop":23,"horizontal_position_mobile":47,"vertical_position_mobile":27}},"product_m7yKjY":{"type":"product","settings":{"product":"","horizontal_position_desktop":20,"vertical_position_desktop":20,"horizontal_position_mobile":20,"vertical_position_mobile":20}},"product_J6tL7g":{"type":"product","settings":{"product":"","horizontal_position_desktop":60,"vertical_position_desktop":58,"horizontal_position_mobile":79,"vertical_position_mobile":51}},"product_rBqMwU":{"type":"product","settings":{"product":"","horizontal_position_desktop":47,"vertical_position_desktop":93,"horizontal_position_mobile":36,"vertical_position_mobile":77}}},"block_order":["product_MCChEm","product_m7yKjY","product_J6tL7g","product_rBqMwU"],"disabled":true,"settings":{"enable_color_scheme_inheritance":false,"color_scheme":"","title":"Trending Now","text":"Discover the most sought-after pieces of the season. Handpicked favorites that redefine style and set new trends.","button_label":"See all","button_aria-label":"","button_link":"\/","show_one_open":true,"enable_hotspot_animation":false,"text_color":"#ffffff","link_color":"#ffffff","spot_background":"#ffffff","spot_color":"#6d4c41","spot_border_color":"#ffffff","spot_background_active":"#6D4C41","spot_color_active":"#ffffff","spot_border_color_active":"#393939","container_width":"inherit","offset_top_desktop":40,"offset_bottom_desktop":40,"offset_top_mobile":25,"offset_bottom_mobile":25}},"stores_locator":{"type":"stores-locator","blocks":{"store_7MtCRX":{"type":"store","settings":{"block_title":"Berlin Leather Studio (Germany)","block_text":"Friedrichstraße 123, 10117 Berlin, Germany","phone_text":"<a href=\"tel:+49 30 1234 5678\" title=\"tel:+49 30 1234 5678\">+49 30 1234 5678<\/a>","schedule_text":"Mon-Sat: 10:00 AM – 7:00 PM | Sun: Closed","google_map_api_key":"","map_query":"Eiffel+Tower,Paris+France","map_link":""}},"store_Ea4QRC":{"type":"store","settings":{"block_title":"Paris Artisan Leather (France)","block_text":"25 Rue de Rivoli, 75001 Paris, France","phone_text":"<a href=\"tel:+33 1 56 78 90 12\" title=\"tel:+33 1 56 78 90 12\">+33 1 56 78 90 12<\/a>","schedule_text":"Mon-Sat: 11:00 AM – 8:00 PM | Sun: 12:00 PM – 6:00 PM","google_map_api_key":"","map_query":"Eiffel+Tower,Paris+France","map_link":""}},"store_6bDYyx":{"type":"store","settings":{"block_title":"Heritage Leather NYC (USA)","block_text":"456 Madison Ave, New York, NY 10022, USA","phone_text":"<a href=\"tel:+1 212 555 7890\" title=\"tel:+1 212 555 7890\">+1 212 555 7890<\/a>","schedule_text":"Mon-Sun: 10:00 AM – 9:00 PM","google_map_api_key":"","map_query":"Eiffel+Tower,Paris+France","map_link":""}},"store_mRTaGx":{"type":"store","settings":{"block_title":"Brussels Leather Craft (Belgium)","block_text":"Avenue Louise 89, 1050 Brussels, Belgium","phone_text":"<a href=\"tel:+32 2 345 6789\" title=\"tel:+32 2 345 6789\">+32 2 345 6789<\/a>","schedule_text":"Mon-Sat: 10:00 AM – 6:30 PM | Sun: Closed","google_map_api_key":"","map_query":"Eiffel+Tower,Paris+France","map_link":""}},"store_dUqW36":{"type":"store","settings":{"block_title":"London Leather House (UK)","block_text":"78 Regent Street, London W1B 5RW, UK","phone_text":"<a href=\"tel:+44 20 7946 0123\" title=\"tel:+44 20 7946 0123\">+44 20 7946 0123<\/a>","schedule_text":"Mon-Sat: 10:00 AM – 8:00 PM | Sun: 11:00 AM – 5:00 PM","google_map_api_key":"","map_query":"Eiffel+Tower,Paris+France","map_link":""}},"store_rJaCgD":{"type":"store","settings":{"block_title":"Stockholm Handmade Leather (Sweden)","block_text":"Drottninggatan 45, 111 51 Stockholm, Sweden","phone_text":"<a href=\"tel:+46 8 123 4567\" title=\"tel:+46 8 123 4567\">+46 8 123 4567<\/a>","schedule_text":"Mon-Fri: 10:00 AM – 7:00 PM | Sat: 11:00 AM – 6:00 PM | Sun: Closed","google_map_api_key":"","map_query":"Eiffel+Tower,Paris+France","map_link":""}}},"block_order":["store_7MtCRX","store_Ea4QRC","store_6bDYyx","store_mRTaGx","store_dUqW36","store_rJaCgD"],"disabled":true,"settings":{"enable_color_scheme_inheritance":true,"color_scheme":"","title":"Our Stores","container_width":"inherit","offset_top_desktop":0,"offset_bottom_desktop":40,"offset_top_mobile":3,"offset_bottom_mobile":25,"inner_offset_top":40,"inner_offset_bottom":60,"inner_offset_top_mobile":0,"inner_offset_bottom_mobile":30}},"store_location":{"type":"store-location","blocks":{"contact_info_K8EYbN":{"type":"contact_info","settings":{"item_heading":"Address:","item_text":"2205 Rosewood Lane"}},"contact_info_9pC3mp":{"type":"contact_info","settings":{"item_heading":"Phone:","item_text":"<a href=\"tel:213 443 6364\" title=\"tel:213 443 6364\">213 443 6364<\/a>"}},"contact_info_hcJqqH":{"type":"contact_info","settings":{"item_heading":"Write to us","item_text":"<a href=\"mailto:hello@revellabel.com\" title=\"mailto:hello@revellabel.com\">hello@revellabel.com<\/a>"}},"contact_info_jwz67c":{"type":"contact_info","settings":{"item_heading":"Work schedule","item_text":"Mn - Fr. 8:00-17:00"}}},"block_order":["contact_info_K8EYbN","contact_info_9pC3mp","contact_info_hcJqqH","contact_info_jwz67c"],"disabled":true,"settings":{"enable_color_scheme_inheritance":true,"color_scheme":"scheme-1","heading":"Contact Us","description":"<p>To live inspired, is to live a life true to your values, a life that’s meaningful, and a life of purpose. <\/p>","container_width":"inherit","offset_top_desktop":25,"offset_bottom_desktop":50,"offset_top_mobile":25,"offset_bottom_mobile":0,"inner_offset_top":0,"inner_offset_bottom":0,"inner_offset_top_mobile":0,"inner_offset_bottom_mobile":0}},"newsletter":{"type":"newsletter","blocks":{"image_column_1_daDKwM":{"type":"image_column_1","settings":{"image":"shopify:\/\/shop_images\/Irresistible-Givenchy-Givenchy.png"}},"image_column_1_YCKxL8":{"type":"image_column_1","settings":{"image":"shopify:\/\/shop_images\/Odyssey_Mandarine_Sky_EDP.png"}},"image_column_2_rbD7PU":{"type":"image_column_2","settings":{"image":"shopify:\/\/shop_images\/Odyssey_Mega_EDP.png"}},"image_column_2_7wiiiG":{"type":"image_column_2","settings":{"image":"shopify:\/\/shop_images\/rayhaan_elixir.png"}},"image_column_3_VHqTef":{"type":"image_column_3","settings":{"image":"shopify:\/\/shop_images\/Nautica-Voyage-Nautica.png"}},"image_column_3_ai76NN":{"type":"image_column_3","settings":{"image":"shopify:\/\/shop_images\/Prada-Paradoxe-Prada.png"}},"image_column_4_neHAjD":{"type":"image_column_4","settings":{"image":"shopify:\/\/shop_images\/Torino24-Xerjoff.png"}},"image_column_4_PhgqHe":{"type":"image_column_4","settings":{"image":"shopify:\/\/shop_images\/Tubbees-Gourmand-Sweet-Caramel.png"}}},"block_order":["image_column_1_daDKwM","image_column_1_YCKxL8","image_column_2_rbD7PU","image_column_2_7wiiiG","image_column_3_VHqTef","image_column_3_ai76NN","image_column_4_neHAjD","image_column_4_PhgqHe"],"settings":{"enable_color_scheme_inheritance":true,"color_scheme":"scheme-5","layout":"three_columns","revert_content":false,"label":"","heading":"Noticias","text":"<p>Sé el primero en enterarte de novedades de perfumes nuevos o en oferta de venta en El Salvador<\/p>","email_placeholder":"Email","button_label":"Suscribirse","button_style":"secondary","success_message":"Gracias por suscribirte","col_movement_speed":20,"container_width":"1808px","offset_top_desktop_external":0,"offset_bottom_desktop_external":0,"offset_top_mobile_external":0,"offset_bottom_mobile_external":0,"offset_top_desktop_internal":0,"offset_bottom_desktop_internal":0,"offset_top_mobile_internal":20,"offset_bottom_mobile_internal":20}}},"order":["banner","slideshow","collection_list_JVBxT9","product_tabs","benefits","featured_products_1","faq_simple","featured_product","product_banner","specifications","trends_products","stores_locator","store_location","newsletter"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "banner",
+      "disabled": true,
+      "settings": {
+        "desktop_image_height": "600px",
+        "mobile_image_height": "450px",
+        "media_type": "image",
+        "title": "",
+        "text": "",
+        "button_label_1": "VER OFERTAS",
+        "button_link_1": "shopify://collections/fragancias-completas",
+        "button_aria_label_1": "",
+        "button_label_2": "",
+        "button_link_2": "",
+        "button_aria_label_2": "",
+        "image_desktop": "shopify://shop_images/BlackNovember219.jpg",
+        "image_mobile": "shopify://shop_images/BlackNovember.png",
+        "show_breadcrumbs": false,
+        "enable_timer": true,
+        "timer_year": 2025,
+        "timer_month": "11",
+        "timer_day": "1",
+        "timer_hour": "23",
+        "timer_timezone": "-6",
+        "timer_background": "rgba(0, 0, 0, 0.5)",
+        "timer_color": "#ffffff",
+        "external_video_url_desktop": "",
+        "external_video_url_mobile": "",
+        "content_alignment": "center",
+        "content_alignment_mobile": "center",
+        "block_alignment": "center",
+        "block_alignment_vertical": "flex-start",
+        "block_alignment_vertical_mob": "flex-end",
+        "section_background": "#e0bb8f",
+        "overlay": "",
+        "text_color": "#ffffff",
+        "button_background_1": "#ff7f00",
+        "button_color_1": "#ffffff",
+        "button_border_1": "#ff7f00",
+        "button_background_hover_1": "#ff9933",
+        "button_color_hover_1": "#ffffff",
+        "button_border_hover_1": "#533b33",
+        "button_background_2": "#ffffff",
+        "button_color_2": "#000000",
+        "button_border_2": "#ffffff",
+        "button_background_hover_2": "#000000",
+        "button_color_hover_2": "#ffffff",
+        "button_border_hover_2": "#ffffff",
+        "container_width": "100%",
+        "offset_top_desktop": 8,
+        "offset_bottom_desktop": 8,
+        "offset_top_mobile": 10,
+        "offset_bottom_mobile": 10
+      }
+    },
+    "slideshow": {
+      "type": "slideshow",
+      "blocks": {
+        "image-2": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify://shop_images/IMG_0812_219.jpg",
+            "image_mobile": "shopify://shop_images/IMG_0812_219.jpg",
+            "heading": "",
+            "heading_size": 80,
+            "description": "<h4>Colección</h4>",
+            "button_text": "Nicho",
+            "button_aria_label": "Nicho",
+            "button_link": "shopify://collections/nicho",
+            "open_in_new_tab": false,
+            "make_link_full_slide": false,
+            "text_alignment_inside_block": "start",
+            "content_alignment": "slideshow__slide-content--left",
+            "vertical_content_alignment": "center",
+            "color_background": "#d8cfbc",
+            "color_overlay": "",
+            "color_heading": "#fffbf4",
+            "color_text": "#ffffff",
+            "button_text_color_primary": "#11120d",
+            "button_background_color_primary": "#d8cfbc",
+            "button_border_color_primary": "#d8cfbc",
+            "button_text_color_primary_hover": "#fffbf4",
+            "button_background_color_primary_hover": "#565449",
+            "button_border_color_primary_hover": "#565449"
+          }
+        },
+        "image-1": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify://shop_images/IMG_0811_219.jpg",
+            "image_mobile": "shopify://shop_images/IMG_0811_219.jpg",
+            "heading": "",
+            "heading_size": 80,
+            "description": "<h4>Colección</h4>",
+            "button_text": "Diseñador",
+            "button_aria_label": "Diseñador",
+            "button_link": "shopify://collections/disenador",
+            "open_in_new_tab": false,
+            "make_link_full_slide": false,
+            "text_alignment_inside_block": "start",
+            "content_alignment": "slideshow__slide-content--left",
+            "vertical_content_alignment": "center",
+            "color_background": "#d8cfbc",
+            "color_overlay": "linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2) 100%)",
+            "color_heading": "#fffbf4",
+            "color_text": "#ffffff",
+            "button_text_color_primary": "#11120d",
+            "button_background_color_primary": "#d8cfbc",
+            "button_border_color_primary": "#d8cfbc",
+            "button_text_color_primary_hover": "#fffbf4",
+            "button_background_color_primary_hover": "#565449",
+            "button_border_color_primary_hover": "#565449"
+          }
+        },
+        "image_3BkKxQ": {
+          "type": "image",
+          "settings": {
+            "image_desktop": "shopify://shop_images/IMG_0815_219.jpg",
+            "image_mobile": "shopify://shop_images/IMG_0815_219.jpg",
+            "heading": "",
+            "heading_size": 80,
+            "description": "<h4>Colección</h4>",
+            "button_text": "Árabes",
+            "button_aria_label": "Árabes",
+            "button_link": "shopify://collections/arabes",
+            "open_in_new_tab": false,
+            "make_link_full_slide": false,
+            "text_alignment_inside_block": "start",
+            "content_alignment": "slideshow__slide-content--left",
+            "vertical_content_alignment": "center",
+            "color_background": "#d8cfbc",
+            "color_overlay": "linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2) 100%)",
+            "color_heading": "#fffbf4",
+            "color_text": "#ffffff",
+            "button_text_color_primary": "#11120d",
+            "button_background_color_primary": "#d8cfbc",
+            "button_border_color_primary": "#d8cfbc",
+            "button_text_color_primary_hover": "#fffbf4",
+            "button_background_color_primary_hover": "#565449",
+            "button_border_color_primary_hover": "#565449"
+          }
+        },
+        "image-3": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image_desktop": "shopify://shop_images/decants-calidad-219-espaciado.jpg",
+            "image_mobile": "shopify://shop_images/decants-calidad-219-espaciado.jpg",
+            "heading": "",
+            "heading_size": 80,
+            "description": "<p>Colección</p>",
+            "button_text": "Decants",
+            "button_aria_label": "",
+            "button_link": "shopify://collections/decants-muestras",
+            "open_in_new_tab": false,
+            "make_link_full_slide": false,
+            "text_alignment_inside_block": "start",
+            "content_alignment": "slideshow__slide-content--left",
+            "vertical_content_alignment": "center",
+            "color_background": "#ffffff",
+            "color_overlay": "",
+            "color_heading": "#ffffff",
+            "color_text": "#ffffff",
+            "button_text_color_primary": "#11120d",
+            "button_background_color_primary": "#ffffff",
+            "button_border_color_primary": "#e9e9e9",
+            "button_text_color_primary_hover": "#ffffff",
+            "button_background_color_primary_hover": "#565449",
+            "button_border_color_primary_hover": "#565449"
+          }
+        }
+      },
+      "block_order": [
+        "image-2",
+        "image-1",
+        "image_3BkKxQ",
+        "image-3"
+      ],
+      "settings": {
+        "enable_color_scheme_inheritance": true,
+        "color_scheme": "",
+        "show_pagination": true,
+        "show_slide_preview": false,
+        "enable_loop": true,
+        "enable_autoplay": true,
+        "autoplay_speed": 4,
+        "animation_speed": 1.4,
+        "animation_type": "creative",
+        "progress_bar_color": "#ffffff",
+        "progress_bar_fill_color": "#11120d",
+        "pagination_color": "#ffffff",
+        "height_desktop": 81,
+        "height_mobile": 45,
+        "subtract_header_height": true,
+        "container_width": "100%",
+        "offset_top_desktop_external": 0,
+        "offset_bottom_desktop_external": 50,
+        "offset_top_mobile_external": 0,
+        "offset_bottom_mobile_external": 40,
+        "offset_top_desktop_internal": 0,
+        "offset_bottom_desktop_internal": 0,
+        "offset_top_mobile_internal": 0,
+        "offset_bottom_mobile_internal": 0
+      }
+    },
+    "collection_list_MKVPjK": {
+      "type": "collection-list",
+      "blocks": {
+        "collection_yAYTRw": {
+          "type": "collection",
+          "settings": {
+            "collection": "perfumes-para-ella"
+          }
+        },
+        "collection_qbmyYL": {
+          "type": "collection",
+          "settings": {
+            "collection": "perfumes-para-ellos"
+          }
+        },
+        "collection_AcQRRV": {
+          "type": "collection",
+          "settings": {
+            "collection": "perfumes-para-el-calor"
+          }
+        },
+        "collection_9FGQgw": {
+          "type": "collection",
+          "settings": {
+            "collection": "perfumes-para-el-frio"
+          }
+        }
+      },
+      "block_order": [
+        "collection_yAYTRw",
+        "collection_qbmyYL",
+        "collection_AcQRRV",
+        "collection_9FGQgw"
+      ],
+      "name": "Collection list",
+      "settings": {
+        "enable_color_scheme_inheritance": false,
+        "color_scheme": "fagans-blanco",
+        "heading": "",
+        "show_products_count": true,
+        "container_width": "inherit",
+        "offset_top_desktop": 0,
+        "offset_bottom_desktop": 0,
+        "offset_top_mobile": 0,
+        "offset_bottom_mobile": 20,
+        "inner_offset_top_desktop": 32,
+        "inner_offset_bottom_desktop": 32,
+        "inner_offset_top_mobile": 20,
+        "inner_offset_bottom_mobile": 20
+      }
+    },
+    "collection_list_JVBxT9": {
+      "type": "collection-list",
+      "blocks": {
+        "collection_yMWDeB": {
+          "type": "collection",
+          "settings": {
+            "collection": "arabes"
+          }
+        },
+        "collection_yMyqVm": {
+          "type": "collection",
+          "settings": {
+            "collection": "disenador"
+          }
+        },
+        "collection_8tMyNn": {
+          "type": "collection",
+          "settings": {
+            "collection": "nicho"
+          }
+        }
+      },
+      "block_order": [
+        "collection_yMWDeB",
+        "collection_yMyqVm",
+        "collection_8tMyNn"
+      ],
+      "disabled": true,
+      "name": "Collection list",
+      "settings": {
+        "enable_color_scheme_inheritance": true,
+        "color_scheme": "",
+        "heading": "Collection list",
+        "show_products_count": true,
+        "container_width": "inherit",
+        "offset_top_desktop": 24,
+        "offset_bottom_desktop": 16,
+        "offset_top_mobile": 25,
+        "offset_bottom_mobile": 25,
+        "inner_offset_top_desktop": 32,
+        "inner_offset_bottom_desktop": 32,
+        "inner_offset_top_mobile": 32,
+        "inner_offset_bottom_mobile": 32
+      }
+    },
+    "product_tabs": {
+      "type": "product-tabs",
+      "blocks": {
+        "tab_Jtmpdr": {
+          "type": "tab",
+          "settings": {
+            "heading": "Diseñador",
+            "product_list": [],
+            "collection": "",
+            "link_label": "See all products"
+          }
+        },
+        "tab_KtyLKh": {
+          "type": "tab",
+          "settings": {
+            "heading": "Árabes",
+            "product_list": [],
+            "collection": "",
+            "link_label": "See all products"
+          }
+        },
+        "tab_LVdanF": {
+          "type": "tab",
+          "settings": {
+            "heading": "Nicho",
+            "product_list": [],
+            "collection": "",
+            "link_label": "See all products"
+          }
+        }
+      },
+      "block_order": [
+        "tab_Jtmpdr",
+        "tab_KtyLKh",
+        "tab_LVdanF"
+      ],
+      "disabled": true,
+      "settings": {
+        "enable_color_scheme_inheritance": false,
+        "color_scheme": "scheme-1",
+        "heading": "Lo más popular",
+        "show_arrows": true,
+        "container_width": "inherit",
+        "offset_top_desktop": 0,
+        "offset_bottom_desktop": 0,
+        "offset_top_mobile": 0,
+        "offset_bottom_mobile": 21,
+        "inner_offset_top": 40,
+        "inner_offset_bottom": 40,
+        "inner_offset_top_mobile": 32,
+        "inner_offset_bottom_mobile": 32
+      }
+    },
+    "benefits": {
+      "type": "benefits",
+      "blocks": {
+        "benefits_item-0": {
+          "type": "benefits_item",
+          "settings": {
+            "heading": "Premium Quality",
+            "text": "Made from full-grain leather for lasting durability"
+          }
+        },
+        "benefits_item-1": {
+          "type": "benefits_item",
+          "settings": {
+            "heading": "Handcrafted Precision",
+            "text": "Each piece is skillfully made by artisans"
+          }
+        },
+        "benefits_item-2": {
+          "type": "benefits_item",
+          "settings": {
+            "heading": "Timeless Style",
+            "text": "Designed to remain stylish through the years"
+          }
+        },
+        "benefits_item-3": {
+          "type": "benefits_item",
+          "settings": {
+            "heading": "Sustainable Choice",
+            "text": "Eco-conscious materials with minimal waste design"
+          }
+        }
+      },
+      "block_order": [
+        "benefits_item-0",
+        "benefits_item-1",
+        "benefits_item-2",
+        "benefits_item-3"
+      ],
+      "disabled": true,
+      "settings": {
+        "enable_color_scheme_inheritance": true,
+        "benefits_color_scheme": "",
+        "benefits_heading": "",
+        "container_width": "inherit",
+        "offset_top_desktop": 0,
+        "offset_bottom_desktop": 0,
+        "offset_top_mobile": 0,
+        "offset_bottom_mobile": 0,
+        "inner_offset_top": 25,
+        "inner_offset_bottom": 25,
+        "inner_offset_top_mobile": 25,
+        "inner_offset_bottom_mobile": 25
+      }
+    },
+    "featured_products_1": {
+      "type": "featured-products",
+      "settings": {
+        "enable_color_scheme_inheritance": false,
+        "color_scheme": "scheme-1",
+        "heading": "Novedades",
+        "link_label": "See all products",
+        "link_url": "",
+        "product_list": [
+          "armaf-odyssey-mandarin-sky-elixir",
+          "french-avenue-liquid-brun-limited-edition",
+          "rasasi-hawas-verde",
+          "rasasi-hawas-pink"
+        ],
+        "layout": "4",
+        "show_arrows": true,
+        "container_width": "100%",
+        "offset_top_desktop": 0,
+        "offset_bottom_desktop": 0,
+        "offset_top_mobile": 0,
+        "offset_bottom_mobile": 0,
+        "inner_offset_top": 30,
+        "inner_offset_bottom": 30,
+        "inner_offset_top_mobile": 0,
+        "inner_offset_bottom_mobile": 30
+      }
+    },
+    "faq_simple": {
+      "type": "faq-simple",
+      "blocks": {
+        "category_VqJpTU": {
+          "type": "category",
+          "settings": {
+            "heading": "Product & Materials"
+          }
+        },
+        "faq_item_47qN4i": {
+          "type": "faq_item",
+          "settings": {
+            "heading": "What type of leather do you use?",
+            "text": "<p>We use high-quality full-grain leather, known for its durability, natural texture, and ability to develop a rich patina over time.</p>"
+          }
+        },
+        "faq_item_JYBpnw": {
+          "type": "faq_item",
+          "settings": {
+            "heading": "Are all products handmade?",
+            "text": "<p>Yes, each piece is meticulously handcrafted by skilled artisans, ensuring unique details and premium quality in every product.</p>"
+          }
+        },
+        "category_EGAGw8": {
+          "type": "category",
+          "settings": {
+            "heading": "Orders & Shipping"
+          }
+        },
+        "faq_item_67AACR": {
+          "type": "faq_item",
+          "settings": {
+            "heading": "How long does it take to process an order?",
+            "text": "<p>Orders are typically processed within 2-3 business days. Handmade items may require additional time for production.</p>"
+          }
+        },
+        "faq_item_giJbNP": {
+          "type": "faq_item",
+          "settings": {
+            "heading": "Do you offer international shipping?",
+            "text": "<p>Yes, we ship worldwide. Shipping times and costs vary depending on your location and selected delivery method.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "category_VqJpTU",
+        "faq_item_47qN4i",
+        "faq_item_JYBpnw",
+        "category_EGAGw8",
+        "faq_item_67AACR",
+        "faq_item_giJbNP"
+      ],
+      "disabled": true,
+      "settings": {
+        "enable_color_scheme_inheritance": true,
+        "color_scheme": "",
+        "heading": "FAQ",
+        "offset_top_desktop": 0,
+        "offset_bottom_desktop": 0,
+        "offset_top_mobile": 0,
+        "offset_bottom_mobile": 0,
+        "inner_offset_top": 10,
+        "inner_offset_bottom": 70,
+        "inner_offset_top_mobile": 30,
+        "inner_offset_bottom_mobile": 0
+      }
+    },
+    "featured_product": {
+      "type": "featured-product",
+      "blocks": {
+        "vendor": {
+          "type": "vendor",
+          "settings": {
+            "make_vendor_link": true,
+            "offset_top_desktop": 8,
+            "offset_bottom_desktop": 8,
+            "offset_top_mobile": 8,
+            "offset_bottom_mobile": 8
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "offset_top_desktop": 8,
+            "offset_bottom_desktop": 8,
+            "offset_top_mobile": 8,
+            "offset_bottom_mobile": 8
+          }
+        },
+        "sku": {
+          "type": "sku",
+          "settings": {
+            "sku_text": "SKU: {SKU}",
+            "offset_top_desktop": 8,
+            "offset_bottom_desktop": 8,
+            "offset_top_mobile": 8,
+            "offset_bottom_mobile": 8
+          }
+        },
+        "options": {
+          "type": "options",
+          "settings": {
+            "variant_picker": "radio",
+            "offset_top_desktop": 8,
+            "offset_bottom_desktop": 8,
+            "offset_top_mobile": 8,
+            "offset_bottom_mobile": 8
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "offset_top_desktop": 8,
+            "offset_bottom_desktop": 8,
+            "offset_top_mobile": 8,
+            "offset_bottom_mobile": 8
+          }
+        },
+        "quantity": {
+          "type": "quantity",
+          "settings": {
+            "offset_top_desktop": 8,
+            "offset_bottom_desktop": 0,
+            "offset_top_mobile": 8,
+            "offset_bottom_mobile": 8
+          }
+        },
+        "inventory": {
+          "type": "inventory_status",
+          "settings": {
+            "offset_top_desktop": 4,
+            "offset_bottom_desktop": 15,
+            "offset_top_mobile": 8,
+            "offset_bottom_mobile": 8
+          }
+        },
+        "add_to_cart": {
+          "type": "add_to_cart",
+          "settings": {
+            "button_type": "secondary",
+            "button_buy_it_type": "primary",
+            "show_additional_buttons": true,
+            "show_gift_card_recipient": true,
+            "offset_top_desktop": 8,
+            "offset_bottom_desktop": 8,
+            "offset_top_mobile": 8,
+            "offset_bottom_mobile": 8
+          }
+        },
+        "pickup_availability": {
+          "type": "pickup_availability",
+          "settings": {
+            "offset_top_desktop": 8,
+            "offset_bottom_desktop": 8,
+            "offset_top_mobile": 8,
+            "offset_bottom_mobile": 8
+          }
+        },
+        "drawers": {
+          "type": "drawers",
+          "settings": {
+            "show_description": false,
+            "description_toggle_text": "Description",
+            "description_drawer_title": "Description",
+            "drawer_page_1": "",
+            "drawer_toggle_text_1": "Drawer 1",
+            "drawer_title_1": "Drawer 1",
+            "drawer_page_2": "",
+            "drawer_toggle_text_2": "Drawer 2",
+            "drawer_title_2": "Drawer 2",
+            "drawer_page_3": "",
+            "drawer_toggle_text_3": "Drawer 3",
+            "drawer_title_3": "Drawer 3",
+            "offset_top_desktop": 8,
+            "offset_bottom_desktop": 8,
+            "offset_top_mobile": 8,
+            "offset_bottom_mobile": 8
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "offset_top_desktop": 8,
+            "offset_bottom_desktop": 8,
+            "offset_top_mobile": 8,
+            "offset_bottom_mobile": 8
+          }
+        },
+        "complementary": {
+          "type": "complementary",
+          "settings": {
+            "heading": "You May Also Like",
+            "offset_top_desktop": 8,
+            "offset_bottom_desktop": 8,
+            "offset_top_mobile": 8,
+            "offset_bottom_mobile": 8
+          }
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "sku",
+        "options",
+        "price",
+        "quantity",
+        "inventory",
+        "add_to_cart",
+        "pickup_availability",
+        "drawers",
+        "description",
+        "complementary"
+      ],
+      "settings": {
+        "enable_color_scheme_inheritance": true,
+        "color_scheme": "scheme-2",
+        "product": "dolce-and-gabanna-devotion-intense",
+        "media_layout": "stacked_2_col",
+        "thumbnails_position": "bottom",
+        "show_thumbnails_mobile": false,
+        "media_height": "square",
+        "image_object_fit": "contain",
+        "show_taxes_included": true,
+        "show_pay_installments": true,
+        "show_size_guide": true,
+        "size_guide_button_placement": "drawer",
+        "size_guide_page": "",
+        "size_guide_button_text": "Size guide",
+        "size_guide_drawer_title": "Size guide",
+        "container_width": "inherit",
+        "offset_top_desktop": 78,
+        "offset_bottom_desktop": 75,
+        "offset_top_mobile": 16,
+        "offset_bottom_mobile": 16,
+        "inner_offset_top": 32,
+        "inner_offset_bottom": 32,
+        "inner_offset_top_mobile": 16,
+        "inner_offset_bottom_mobile": 16
+      }
+    },
+    "product_banner": {
+      "type": "product-banner",
+      "blocks": {
+        "product_KATxQ9": {
+          "type": "product",
+          "settings": {
+            "enable_color_scheme_inheritance": true,
+            "color_scheme": "",
+            "label": "Destacado por Temporada",
+            "heading": "Fragancia del mes",
+            "text": "<p><br/><br/><strong>Valentino Born In Roma Intense</strong> tiene hype porque combina vainilla bourbon, lavanda y vetiver ahumado en un aroma dulce, limpio y seductor. Se siente moderno, elegante y llamativo, ideal para noche, citas o salidas donde quieres un perfume masculino con presencia, pero sin perder ese toque fresco y pulido.<br/><br/></p>",
+            "button_label": "",
+            "button_link": "shopify://products/7-cobalt-edp",
+            "button_style": "secondary",
+            "product": "valentino-uomo-born-in-roma-intense",
+            "image": "shopify://shop_images/bir.avif"
+          }
+        },
+        "product_rYTQpB": {
+          "type": "product",
+          "settings": {
+            "enable_color_scheme_inheritance": true,
+            "color_scheme": "",
+            "label": "Destacado por Temporada",
+            "heading": "Nicho Recomendado",
+            "text": "<p><strong>Parfums de Marly Althair</strong> tiene hype porque convierte la vainilla en algo más elegante y masculino: combina vainilla bourbon con flor de naranja, canela, cardamomo, praliné y maderas, dejando un aroma dulce, cálido y refinado. Se siente lujoso, adictivo y moderno, ideal para quienes buscan una vainilla de noche con presencia, pero sin caer en algo demasiado pesado.<br/><br/></p>",
+            "button_label": "",
+            "button_link": "/",
+            "button_style": "secondary",
+            "product": "parfums-de-marly-althair",
+            "image": "shopify://shop_images/pdm.webp"
+          }
+        },
+        "product_hqhLKB": {
+          "type": "product",
+          "settings": {
+            "enable_color_scheme_inheritance": true,
+            "color_scheme": "",
+            "label": "Destacado por Temporada",
+            "heading": "Árabe en Hype",
+            "text": "<p><strong>Hawas Verde</strong> tiene hype porque toma la línea Hawas y la lleva a un lado más fresco, verde y cítrico. Se siente limpio, moderno y energético, con lima, manzana verde, romero, patchouli y ámbar, ideal para quienes buscan un perfume fresco de diario pero con más personalidad que un acuático común.<br/></p>",
+            "button_label": "",
+            "button_link": "/",
+            "button_style": "secondary",
+            "product": "rasasi-hawas-verde",
+            "image": "shopify://shop_images/verde-caja_fae63208-3e12-4c23-a095-ec8f389c6da8.webp"
+          }
+        }
+      },
+      "block_order": [
+        "product_KATxQ9",
+        "product_rYTQpB",
+        "product_hqhLKB"
+      ],
+      "settings": {
+        "container_width": "inherit",
+        "offset_top_desktop": 0,
+        "offset_bottom_desktop": 25,
+        "offset_top_mobile": 0,
+        "offset_bottom_mobile": 25
+      }
+    },
+    "specifications": {
+      "type": "specifications",
+      "blocks": {
+        "toggle_content_hJjqnH": {
+          "type": "toggle_content",
+          "settings": {
+            "heading": "Premium Materials",
+            "text": "<p>Crafted from high-quality full-grain leather, each piece offers durability, a refined texture, and a natural patina that enhances its character over time.</p>"
+          }
+        },
+        "toggle_content_AdmNj6": {
+          "type": "toggle_content",
+          "settings": {
+            "heading": "Handmade Craftsmanship",
+            "text": "<p>Every product is meticulously handcrafted by skilled artisans, ensuring precision, attention to detail, and a unique touch in every stitch.</p>"
+          }
+        },
+        "toggle_content_YjMHGi": {
+          "type": "toggle_content",
+          "settings": {
+            "heading": "Thoughtful Design",
+            "text": "<p>Designed for both aesthetics and functionality, our leather accessories provide a perfect fit, seamless usability, and an elegant finish for everyday use.</p>"
+          }
+        },
+        "toggle_content_d8Maxa": {
+          "type": "toggle_content",
+          "settings": {
+            "heading": "Long-Lasting Durability",
+            "text": "<p>Reinforced stitching, premium hardware, and carefully selected leather ensure each product withstands daily wear while maintaining its timeless appeal.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "toggle_content_hJjqnH",
+        "toggle_content_AdmNj6",
+        "toggle_content_YjMHGi",
+        "toggle_content_d8Maxa"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Specifications",
+        "enable_color_scheme_inheritance": true,
+        "color_scheme": "",
+        "container_width": "inherit",
+        "offset_top_desktop": 40,
+        "offset_bottom_desktop": 40,
+        "offset_top_mobile": 0,
+        "offset_bottom_mobile": 0
+      }
+    },
+    "trends_products": {
+      "type": "trend-products",
+      "blocks": {
+        "product_MCChEm": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "horizontal_position_desktop": 46,
+            "vertical_position_desktop": 23,
+            "horizontal_position_mobile": 47,
+            "vertical_position_mobile": 27
+          }
+        },
+        "product_m7yKjY": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "horizontal_position_desktop": 20,
+            "vertical_position_desktop": 20,
+            "horizontal_position_mobile": 20,
+            "vertical_position_mobile": 20
+          }
+        },
+        "product_J6tL7g": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "horizontal_position_desktop": 60,
+            "vertical_position_desktop": 58,
+            "horizontal_position_mobile": 79,
+            "vertical_position_mobile": 51
+          }
+        },
+        "product_rBqMwU": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "horizontal_position_desktop": 47,
+            "vertical_position_desktop": 93,
+            "horizontal_position_mobile": 36,
+            "vertical_position_mobile": 77
+          }
+        }
+      },
+      "block_order": [
+        "product_MCChEm",
+        "product_m7yKjY",
+        "product_J6tL7g",
+        "product_rBqMwU"
+      ],
+      "disabled": true,
+      "settings": {
+        "enable_color_scheme_inheritance": false,
+        "color_scheme": "",
+        "title": "Trending Now",
+        "text": "Discover the most sought-after pieces of the season. Handpicked favorites that redefine style and set new trends.",
+        "button_label": "See all",
+        "button_aria-label": "",
+        "button_link": "/",
+        "show_one_open": true,
+        "enable_hotspot_animation": false,
+        "text_color": "#ffffff",
+        "link_color": "#ffffff",
+        "spot_background": "#ffffff",
+        "spot_color": "#6d4c41",
+        "spot_border_color": "#ffffff",
+        "spot_background_active": "#6D4C41",
+        "spot_color_active": "#ffffff",
+        "spot_border_color_active": "#393939",
+        "container_width": "inherit",
+        "offset_top_desktop": 40,
+        "offset_bottom_desktop": 40,
+        "offset_top_mobile": 25,
+        "offset_bottom_mobile": 25
+      }
+    },
+    "stores_locator": {
+      "type": "stores-locator",
+      "blocks": {
+        "store_7MtCRX": {
+          "type": "store",
+          "settings": {
+            "block_title": "Berlin Leather Studio (Germany)",
+            "block_text": "Friedrichstraße 123, 10117 Berlin, Germany",
+            "phone_text": "<a href=\"tel:+49 30 1234 5678\" title=\"tel:+49 30 1234 5678\">+49 30 1234 5678</a>",
+            "schedule_text": "Mon-Sat: 10:00 AM – 7:00 PM | Sun: Closed",
+            "google_map_api_key": "",
+            "map_query": "Eiffel+Tower,Paris+France",
+            "map_link": ""
+          }
+        },
+        "store_Ea4QRC": {
+          "type": "store",
+          "settings": {
+            "block_title": "Paris Artisan Leather (France)",
+            "block_text": "25 Rue de Rivoli, 75001 Paris, France",
+            "phone_text": "<a href=\"tel:+33 1 56 78 90 12\" title=\"tel:+33 1 56 78 90 12\">+33 1 56 78 90 12</a>",
+            "schedule_text": "Mon-Sat: 11:00 AM – 8:00 PM | Sun: 12:00 PM – 6:00 PM",
+            "google_map_api_key": "",
+            "map_query": "Eiffel+Tower,Paris+France",
+            "map_link": ""
+          }
+        },
+        "store_6bDYyx": {
+          "type": "store",
+          "settings": {
+            "block_title": "Heritage Leather NYC (USA)",
+            "block_text": "456 Madison Ave, New York, NY 10022, USA",
+            "phone_text": "<a href=\"tel:+1 212 555 7890\" title=\"tel:+1 212 555 7890\">+1 212 555 7890</a>",
+            "schedule_text": "Mon-Sun: 10:00 AM – 9:00 PM",
+            "google_map_api_key": "",
+            "map_query": "Eiffel+Tower,Paris+France",
+            "map_link": ""
+          }
+        },
+        "store_mRTaGx": {
+          "type": "store",
+          "settings": {
+            "block_title": "Brussels Leather Craft (Belgium)",
+            "block_text": "Avenue Louise 89, 1050 Brussels, Belgium",
+            "phone_text": "<a href=\"tel:+32 2 345 6789\" title=\"tel:+32 2 345 6789\">+32 2 345 6789</a>",
+            "schedule_text": "Mon-Sat: 10:00 AM – 6:30 PM | Sun: Closed",
+            "google_map_api_key": "",
+            "map_query": "Eiffel+Tower,Paris+France",
+            "map_link": ""
+          }
+        },
+        "store_dUqW36": {
+          "type": "store",
+          "settings": {
+            "block_title": "London Leather House (UK)",
+            "block_text": "78 Regent Street, London W1B 5RW, UK",
+            "phone_text": "<a href=\"tel:+44 20 7946 0123\" title=\"tel:+44 20 7946 0123\">+44 20 7946 0123</a>",
+            "schedule_text": "Mon-Sat: 10:00 AM – 8:00 PM | Sun: 11:00 AM – 5:00 PM",
+            "google_map_api_key": "",
+            "map_query": "Eiffel+Tower,Paris+France",
+            "map_link": ""
+          }
+        },
+        "store_rJaCgD": {
+          "type": "store",
+          "settings": {
+            "block_title": "Stockholm Handmade Leather (Sweden)",
+            "block_text": "Drottninggatan 45, 111 51 Stockholm, Sweden",
+            "phone_text": "<a href=\"tel:+46 8 123 4567\" title=\"tel:+46 8 123 4567\">+46 8 123 4567</a>",
+            "schedule_text": "Mon-Fri: 10:00 AM – 7:00 PM | Sat: 11:00 AM – 6:00 PM | Sun: Closed",
+            "google_map_api_key": "",
+            "map_query": "Eiffel+Tower,Paris+France",
+            "map_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "store_7MtCRX",
+        "store_Ea4QRC",
+        "store_6bDYyx",
+        "store_mRTaGx",
+        "store_dUqW36",
+        "store_rJaCgD"
+      ],
+      "disabled": true,
+      "settings": {
+        "enable_color_scheme_inheritance": true,
+        "color_scheme": "",
+        "title": "Our Stores",
+        "container_width": "inherit",
+        "offset_top_desktop": 0,
+        "offset_bottom_desktop": 40,
+        "offset_top_mobile": 3,
+        "offset_bottom_mobile": 25,
+        "inner_offset_top": 40,
+        "inner_offset_bottom": 60,
+        "inner_offset_top_mobile": 0,
+        "inner_offset_bottom_mobile": 30
+      }
+    },
+    "store_location": {
+      "type": "store-location",
+      "blocks": {
+        "contact_info_K8EYbN": {
+          "type": "contact_info",
+          "settings": {
+            "item_heading": "Address:",
+            "item_text": "2205 Rosewood Lane"
+          }
+        },
+        "contact_info_9pC3mp": {
+          "type": "contact_info",
+          "settings": {
+            "item_heading": "Phone:",
+            "item_text": "<a href=\"tel:213 443 6364\" title=\"tel:213 443 6364\">213 443 6364</a>"
+          }
+        },
+        "contact_info_hcJqqH": {
+          "type": "contact_info",
+          "settings": {
+            "item_heading": "Write to us",
+            "item_text": "<a href=\"mailto:hello@revellabel.com\" title=\"mailto:hello@revellabel.com\">hello@revellabel.com</a>"
+          }
+        },
+        "contact_info_jwz67c": {
+          "type": "contact_info",
+          "settings": {
+            "item_heading": "Work schedule",
+            "item_text": "Mn - Fr. 8:00-17:00"
+          }
+        }
+      },
+      "block_order": [
+        "contact_info_K8EYbN",
+        "contact_info_9pC3mp",
+        "contact_info_hcJqqH",
+        "contact_info_jwz67c"
+      ],
+      "disabled": true,
+      "settings": {
+        "enable_color_scheme_inheritance": true,
+        "color_scheme": "scheme-1",
+        "heading": "Contact Us",
+        "description": "<p>To live inspired, is to live a life true to your values, a life that’s meaningful, and a life of purpose. </p>",
+        "container_width": "inherit",
+        "offset_top_desktop": 25,
+        "offset_bottom_desktop": 50,
+        "offset_top_mobile": 25,
+        "offset_bottom_mobile": 0,
+        "inner_offset_top": 0,
+        "inner_offset_bottom": 0,
+        "inner_offset_top_mobile": 0,
+        "inner_offset_bottom_mobile": 0
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "blocks": {
+        "image_column_4_TeWQ4r": {
+          "type": "image_column_4",
+          "settings": {
+            "image": "shopify://shop_images/Fagans_-_Stamps_Lavado_Icono_Onix.svg"
+          }
+        },
+        "image_column_4_6UA4Ty": {
+          "type": "image_column_4",
+          "settings": {
+            "image": "shopify://shop_images/Fagans_-_Stamps_SelloContorno_Icono_Sandalo.svg"
+          }
+        },
+        "image_column_3_8gRfbz": {
+          "type": "image_column_3",
+          "settings": {
+            "image": "shopify://shop_images/Fagans_-_Stamps_Lavado_Icono_Sandalo.svg"
+          }
+        },
+        "image_column_3_LETtnz": {
+          "type": "image_column_3",
+          "settings": {
+            "image": "shopify://shop_images/Fagans_-_Stamps_Lavado_Icono_Abreviacion_NogalBraun.svg"
+          }
+        },
+        "image_column_2_wnkAzX": {
+          "type": "image_column_2",
+          "settings": {
+            "image": "shopify://shop_images/Fagans_-_Stamps_Lavado_Icono_Onix.svg"
+          }
+        },
+        "image_column_2_ifaMdg": {
+          "type": "image_column_2",
+          "settings": {
+            "image": "shopify://shop_images/Fagans_-_Stamps_SelloContorno_Icono_Onix.svg"
+          }
+        },
+        "image_column_1_qUbgK7": {
+          "type": "image_column_1",
+          "settings": {
+            "image": "shopify://shop_images/Fagans_-_Stamps_Lavado_Icono_NogalBraun.svg"
+          }
+        },
+        "image_column_1_Ljh9RC": {
+          "type": "image_column_1",
+          "settings": {
+            "image": "shopify://shop_images/Fagans_-_Stamps_SelloContorno_Icono_Sandalo.svg"
+          }
+        },
+        "image_column_1_daDKwM": {
+          "type": "image_column_1",
+          "settings": {
+            "image": "shopify://shop_images/Fagans_-_Stamps_PrimeraBoutique_Icono_Onix.svg"
+          }
+        },
+        "image_column_1_YCKxL8": {
+          "type": "image_column_1",
+          "settings": {
+            "image": "shopify://shop_images/Fagans_-_Stamps_Lavado_Icono_Abreviacion_NogalBraun.svg"
+          }
+        },
+        "image_column_2_rbD7PU": {
+          "type": "image_column_2",
+          "settings": {
+            "image": "shopify://shop_images/Fagans_-_Stamps_PrimeraBoutique_Icono_NogalBraun.svg"
+          }
+        },
+        "image_column_2_7wiiiG": {
+          "type": "image_column_2",
+          "settings": {
+            "image": "shopify://shop_images/Fagans_-_Stamps_Lavado_Icono_Abreviacion_Sandalo.svg"
+          }
+        },
+        "image_column_3_VHqTef": {
+          "type": "image_column_3",
+          "settings": {
+            "image": "shopify://shop_images/Fagans_-_Stamps_PrimeraBoutique_Icono_Sandalo.svg"
+          }
+        },
+        "image_column_3_ai76NN": {
+          "type": "image_column_3",
+          "settings": {
+            "image": "shopify://shop_images/Fagans_-_Stamps_SelloContorno_Icono_NogalBraun.svg"
+          }
+        },
+        "image_column_4_neHAjD": {
+          "type": "image_column_4",
+          "settings": {
+            "image": "shopify://shop_images/Fagans_-_Stamps_PrimeraBoutique_Icono_NogalBraun.png"
+          }
+        },
+        "image_column_4_PhgqHe": {
+          "type": "image_column_4",
+          "settings": {
+            "image": "shopify://shop_images/Fagans_-_Stamps_Lavado_Icono_Abreviacion_Onix.png"
+          }
+        }
+      },
+      "block_order": [
+        "image_column_4_TeWQ4r",
+        "image_column_4_6UA4Ty",
+        "image_column_3_8gRfbz",
+        "image_column_3_LETtnz",
+        "image_column_2_wnkAzX",
+        "image_column_2_ifaMdg",
+        "image_column_1_qUbgK7",
+        "image_column_1_Ljh9RC",
+        "image_column_1_daDKwM",
+        "image_column_1_YCKxL8",
+        "image_column_2_rbD7PU",
+        "image_column_2_7wiiiG",
+        "image_column_3_VHqTef",
+        "image_column_3_ai76NN",
+        "image_column_4_neHAjD",
+        "image_column_4_PhgqHe"
+      ],
+      "settings": {
+        "enable_color_scheme_inheritance": true,
+        "color_scheme": "scheme-5",
+        "layout": "three_columns",
+        "revert_content": false,
+        "scroll_images_direction": "bottom",
+        "label": "",
+        "heading": "Noticias",
+        "text": "<p>Sé el primero en enterarte de novedades de perfumes nuevos o en oferta de venta en El Salvador</p>",
+        "email_placeholder": "Email",
+        "button_label": "Suscribirse",
+        "button_style": "secondary",
+        "success_message": "Gracias por suscribirte",
+        "col_movement_speed": 10,
+        "container_width": "100%",
+        "offset_top_desktop_external": 0,
+        "offset_bottom_desktop_external": 0,
+        "offset_top_mobile_external": 0,
+        "offset_bottom_mobile_external": 0,
+        "offset_top_desktop_internal": 0,
+        "offset_bottom_desktop_internal": 0,
+        "offset_top_mobile_internal": 20,
+        "offset_bottom_mobile_internal": 20
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "slideshow",
+    "collection_list_MKVPjK",
+    "collection_list_JVBxT9",
+    "product_tabs",
+    "benefits",
+    "featured_products_1",
+    "faq_simple",
+    "featured_product",
+    "product_banner",
+    "specifications",
+    "trends_products",
+    "stores_locator",
+    "store_location",
+    "newsletter"
+  ]
+}
