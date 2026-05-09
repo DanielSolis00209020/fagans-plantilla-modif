@@ -1,0 +1,182 @@
+{%- comment -%}
+------------------------------------------------------------------------------
+  Section: Fagans - Nosotros
+  Pagina "Acerca de nosotros" con diseño de marca: intro editorial + grid de pilares
+  Nuevo archivo Fagans — NO modificar secciones base de la plantilla comprada.
+------------------------------------------------------------------------------
+{%- endcomment -%}
+
+{%- assign color_scheme = section.settings.color_scheme -%}
+{%- if section.settings.enable_color_scheme_inheritance -%}
+  {%- assign color_scheme = settings.main_color_scheme -%}
+{%- endif -%}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.offset_top_mobile }}px;
+    padding-bottom: {{ section.settings.offset_bottom_mobile }}px;
+  }
+  @media screen and (min-width: 768px) {
+    #shopify-section-{{ section.id }} {
+      padding-top: {{ section.settings.offset_top_desktop }}px;
+      padding-bottom: {{ section.settings.offset_bottom_desktop }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="fagans-nosotros color-{{ color_scheme }}">
+  <div class="fagans-nosotros__wrapper">
+
+    {%- comment -%} ── HEADER ── {%- endcomment -%}
+    <header class="fagans-nosotros__header">
+      <h1 class="fagans-nosotros__title">{{ page.title }}</h1>
+      {%- if section.settings.subtitle != blank -%}
+        <p class="fagans-nosotros__subtitle">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+    </header>
+
+    {%- comment -%} ── INTRO ── {%- endcomment -%}
+    {%- if section.settings.intro_text != blank -%}
+      <div class="fagans-nosotros__intro">
+        <div class="fagans-nosotros__intro-content rte">
+          {{ section.settings.intro_text }}
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} ── FEATURES: Lo que nos define ── {%- endcomment -%}
+    {%- if section.blocks.size > 0 -%}
+      <div class="fagans-nosotros__features">
+        {%- if section.settings.features_heading != blank -%}
+          <div class="fagans-nosotros__features-header">
+            <h2 class="fagans-nosotros__features-title">{{ section.settings.features_heading }}</h2>
+          </div>
+        {%- endif -%}
+        <div class="fagans-nosotros__features-grid">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'feature' -%}
+              <article class="fagans-nosotros__feature-card" {{ block.shopify_attributes }}>
+                <div class="fagans-nosotros__feature-number" aria-hidden="true">
+                  {{- forloop.index | prepend: '0' | slice: -2, 2 -}}
+                </div>
+                <h3 class="fagans-nosotros__feature-heading">{{ block.settings.heading }}</h3>
+                <p class="fagans-nosotros__feature-text">{{ block.settings.text }}</p>
+              </article>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Nosotros — Fagans",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Colores"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_color_scheme_inheritance",
+      "label": "Heredar esquema de color del tema",
+      "default": true
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de color",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Encabezado de la página"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtítulo",
+      "default": "Perfumería original. Asesoría real. Acceso confiable."
+    },
+    {
+      "type": "header",
+      "content": "Texto introductorio"
+    },
+    {
+      "type": "richtext",
+      "id": "intro_text",
+      "label": "Párrafos de introducción"
+    },
+    {
+      "type": "header",
+      "content": "Sección de valores"
+    },
+    {
+      "type": "text",
+      "id": "features_heading",
+      "label": "Título de la sección",
+      "default": "Lo que nos define"
+    },
+    {
+      "type": "header",
+      "content": "Espaciado externo"
+    },
+    {
+      "type": "range",
+      "id": "offset_top_desktop",
+      "min": 0, "max": 120, "step": 8, "unit": "px",
+      "label": "Padding superior (desktop)",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "offset_bottom_desktop",
+      "min": 0, "max": 120, "step": 8, "unit": "px",
+      "label": "Padding inferior (desktop)",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "offset_top_mobile",
+      "min": 0, "max": 120, "step": 8, "unit": "px",
+      "label": "Padding superior (mobile)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "offset_bottom_mobile",
+      "min": 0, "max": 120, "step": 8, "unit": "px",
+      "label": "Padding inferior (mobile)",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Pilar / Característica",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Título del pilar",
+          "default": "Nombre del pilar"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Descripción",
+          "default": "Descripción breve de esta característica o valor de la marca."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Nosotros — Fagans"
+    }
+  ]
+}
+{% endschema %}
