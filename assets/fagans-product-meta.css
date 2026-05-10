@@ -53,7 +53,7 @@
 /* ── Bloques internos ───────────────────────────────────────── */
 
 .fagans-pmeta__block {
-  padding: 28px 0;
+  padding: 28px 24px;
   border-bottom: 1px solid var(--f-onix-10, rgba(14,15,15,.10));
 }
 
@@ -65,66 +65,46 @@
   margin: 0 0 18px;
 }
 
-/* ── Acordes: barras ────────────────────────────────────────── */
+/* ── Acordes: pirámide invertida ────────────────────────────── */
 
-.fagans-pmeta__acordes {
+.fagans-piramide {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-}
-
-.fagans-acorde {
-  display: grid;
-  grid-template-columns: 130px 1fr auto;
   align-items: center;
-  gap: 12px;
+  gap: 3px;
+  width: 100%;
+  max-width: 480px;
 }
 
-.fagans-acorde__label {
-  font-family: var(--f-sans, system-ui, sans-serif);
-  font-size: 0.8125rem;
-  color: var(--f-onix, #0E0F0F);
-  text-align: right;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.fagans-acorde__bar-track {
-  height: 6px;
-  background: var(--f-platino, #F1F1F1);
-  border-radius: 0;
-  overflow: hidden;
-  position: relative;
-}
-
-.fagans-acorde__bar {
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: var(--acorde-pct, 60%);
+.fagans-piramide__capa {
+  width: calc(100% - var(--rango, 0) * 14%);
+  min-width: 24%;
+  padding: 9px 20px;
   background: var(--f-onix, #0E0F0F);
-  border-radius: 0;
-  transition: width 0.6s var(--f-ease-snap, cubic-bezier(0.22, 1, 0.36, 1));
-  transform-origin: left;
-}
-
-/* Animación de entrada — barra crece desde 0 */
-[data-f-reveal].is-visible .fagans-acorde__bar {
-  animation: f-bar-grow 0.7s var(--f-ease-snap) both;
-}
-@keyframes f-bar-grow {
-  from { width: 0; }
-  to   { width: var(--acorde-pct, 60%); }
-}
-
-.fagans-acorde__pct {
+  color: var(--f-blanco, #FFFFFF);
   font-family: var(--f-sans, system-ui, sans-serif);
   font-size: 0.6875rem;
-  color: var(--f-onix-40, #6E6F6F);
-  min-width: 30px;
-  text-align: right;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: calc(1 - var(--rango, 0) * 0.10);
+  transition:
+    width 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.5s ease;
+}
+
+/* Animación de entrada escalonada */
+[data-f-reveal].is-visible .fagans-piramide__capa {
+  animation: f-capa-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--rango, 0) * 80ms);
+}
+@keyframes f-capa-in {
+  from { opacity: 0; transform: scaleX(0.85); }
+  to   { opacity: calc(1 - var(--rango, 0) * 0.10); transform: scaleX(1); }
 }
 
 /* ── Ficha de perfil (tabla DL) ─────────────────────────────── */
@@ -192,9 +172,18 @@
 /* ── Responsive ─────────────────────────────────────────────── */
 
 @media (max-width: 767px) {
-  .fagans-acorde {
-    grid-template-columns: 100px 1fr 28px;
-    gap: 8px;
+  .fagans-piramide {
+    max-width: 100%;
+  }
+
+  .fagans-piramide__capa {
+    width: calc(100% - var(--rango, 0) * 10%);
+    min-width: 40%;
+    padding: 8px 14px;
+  }
+
+  .fagans-pmeta__block {
+    padding: 22px 16px;
   }
 
   .fagans-pmeta__soldout-content {
@@ -210,7 +199,7 @@
 /* ── prefers-reduced-motion ──────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
-  .fagans-acorde__bar {
+  .fagans-piramide__capa {
     animation: none !important;
     transition: none !important;
   }

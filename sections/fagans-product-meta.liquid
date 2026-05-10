@@ -62,15 +62,8 @@
         {%- capture acorde_label -%}{{ acorde.label }}{%- endcapture -%}
         {%- assign acorde_label = acorde_label | strip -%}
         {%- if acorde_label != blank -%}
-          {%- assign _step = forloop.index0 | times: 12 -%}
-          {%- assign acorde_pct = 100 | minus: _step -%}
-          {%- if acorde_pct < 25 %}{%- assign acorde_pct = 25 -%}{%- endif -%}
-          <div class="fagans-acorde">
-            <span class="fagans-acorde__label">{%- render 'fagans-translate-meta', value: acorde_label -%}</span>
-            <div class="fagans-acorde__bar-track">
-              <div class="fagans-acorde__bar" style="--acorde-pct: {{ acorde_pct }}%"></div>
-            </div>
-            <span class="fagans-acorde__pct">{{ acorde_pct }}%</span>
+          <div class="fagans-piramide__capa" style="--rango: {{ forloop.index0 }}">
+            {%- render 'fagans-translate-meta', value: acorde_label -%}
           </div>
         {%- endif -%}
       {%- endfor -%}
@@ -84,15 +77,8 @@
           {%- for _cp in _ca_parts limit: 8 -%}
             {%- assign _cp = _cp | strip -%}
             {%- if _cp != blank -%}
-              {%- assign _step = _ca_idx | times: 12 -%}
-              {%- assign _ca_pct = 100 | minus: _step -%}
-              {%- if _ca_pct < 25 %}{%- assign _ca_pct = 25 -%}{%- endif -%}
-              <div class="fagans-acorde">
-                <span class="fagans-acorde__label">{%- render 'fagans-translate-meta', value: _cp -%}</span>
-                <div class="fagans-acorde__bar-track">
-                  <div class="fagans-acorde__bar" style="--acorde-pct: {{ _ca_pct }}%"></div>
-                </div>
-                <span class="fagans-acorde__pct">{{ _ca_pct }}%</span>
+              <div class="fagans-piramide__capa" style="--rango: {{ _ca_idx }}">
+                {%- render 'fagans-translate-meta', value: _cp -%}
               </div>
               {%- assign _ca_idx = _ca_idx | plus: 1 -%}
             {%- endif -%}
@@ -105,7 +91,7 @@
         <h3 class="fagans-pmeta__block-title">
           <span class="f-eyebrow">Acordes principales</span>
         </h3>
-        <div class="fagans-pmeta__acordes">{{ acordes_html }}</div>
+        <div class="fagans-piramide">{{ acordes_html }}</div>
       </div>
     {%- endunless -%}
   {%- endif -%}
