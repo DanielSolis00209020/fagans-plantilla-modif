@@ -1,0 +1,278 @@
+/* ═══════════════════════════════════════════════════════════════
+   FAGANS PRODUCT CARD — v3 Premium
+   Hover completo: inversión total fondo+texto, imagen scale,
+   overlay de acordes, CTA deslizante.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Wrapper ────────────────────────────────────────────────── */
+
+.fagans-pcard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--f-platino);
+  transition:
+    background var(--f-dur-base) var(--f-ease-out-quart);
+  overflow: hidden;
+}
+
+.fagans-pcard:hover {
+  background: var(--f-onix);
+}
+
+/* Featured: ocupa 2 cols en el grid */
+.fagans-pcard--featured {
+  grid-column: span 2;
+}
+@media (max-width: 767px) {
+  .fagans-pcard--featured {
+    grid-column: span 1;
+  }
+}
+
+/* ── Media (imagen) ─────────────────────────────────────────── */
+
+.fagans-pcard__media {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.fagans-pcard__image-wrap {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.fagans-pcard__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform var(--f-dur-slow) var(--f-ease-in-out);
+  will-change: transform;
+}
+
+.fagans-pcard:hover .fagans-pcard__img {
+  transform: scale(1.05);
+}
+
+/* Placeholder cuando no hay imagen */
+.fagans-pcard__img-placeholder {
+  width: 100%;
+  height: 100%;
+  background: var(--f-platino);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fagans-pcard__img-placeholder span {
+  font-family: var(--f-serif);
+  font-size: clamp(3rem, 8vw, 6rem);
+  color: var(--f-onix-40);
+  font-weight: 400;
+  line-height: 1;
+}
+
+/* ── Aroma overlay ──────────────────────────────────────────── */
+
+.fagans-pcard__aroma-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(14,15,15,.80) 0%, rgba(14,15,15,.0) 55%);
+  display: flex;
+  align-items: flex-end;
+  padding: var(--f-space-4);
+  opacity: 0;
+  transition: opacity var(--f-dur-base) var(--f-ease-out-quart);
+  pointer-events: none;
+}
+
+.fagans-pcard:hover .fagans-pcard__aroma-overlay {
+  opacity: 1;
+}
+
+.fagans-pcard__aroma-hint {
+  font-family: var(--f-sans);
+  font-size: var(--f-text-xs);
+  letter-spacing: 0.06em;
+  color: var(--f-blanco-90);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.fagans-pcard__aroma-label {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--f-sandalo);
+  margin-bottom: 2px;
+}
+
+/* ── Badge tipo fragancia (posición absoluta arriba-izq) ──── */
+
+.fagans-pcard__badge-sup {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ── Info (bajo la imagen) ──────────────────────────────────── */
+
+.fagans-pcard__info {
+  padding: 14px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--f-space-2);
+  flex: 1;
+}
+
+/* Fila de badges de metadata */
+.fagans-pcard__meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  min-height: 22px;
+}
+
+/* Marca (vendor) */
+.fagans-pcard__vendor {
+  font-family: var(--f-sans);
+  font-size: var(--f-text-xs);
+  font-weight: 500;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--f-onix-40);
+  margin: 0;
+  transition: color var(--f-dur-fast) var(--f-ease-out-quart);
+}
+
+.fagans-pcard:hover .fagans-pcard__vendor {
+  color: var(--f-blanco-60);
+}
+
+/* Nombre */
+.fagans-pcard__name {
+  font-family: var(--f-serif);
+  font-size: var(--f-text-base);
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--f-onix);
+  text-decoration: none;
+  display: block;
+  margin: 0;
+  transition: color var(--f-dur-fast) var(--f-ease-out-quart);
+}
+
+.fagans-pcard:hover .fagans-pcard__name {
+  color: var(--f-blanco);
+}
+
+.fagans-pcard__name:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Precio */
+.fagans-pcard__price {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.fagans-pcard__price-now {
+  font-family: var(--f-sans);
+  font-size: var(--f-text-sm);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--f-onix);
+  transition: color var(--f-dur-fast) var(--f-ease-out-quart);
+}
+
+.fagans-pcard:hover .fagans-pcard__price-now {
+  color: var(--f-blanco);
+}
+
+.fagans-pcard__price-was {
+  font-family: var(--f-sans);
+  font-size: var(--f-text-xs);
+  color: var(--f-onix-40);
+  text-decoration: line-through;
+  transition: color var(--f-dur-fast) var(--f-ease-out-quart);
+}
+
+.fagans-pcard:hover .fagans-pcard__price-was {
+  color: var(--f-onix-40); /* queda gris incluso sobre onix */
+}
+
+/* ── CTA ────────────────────────────────────────────────────── */
+
+.fagans-pcard__cta {
+  margin-top: auto;
+  padding-top: var(--f-space-2);
+}
+
+/* Cuando el card está en hover, el botón primario cambia a ghost */
+.fagans-pcard:hover .fagans-pcard__cta:not(.fagans-pcard__cta--solicitar) {
+  background: transparent;
+  color: var(--f-blanco);
+  border-color: rgba(255,255,255,.4);
+}
+
+.fagans-pcard:hover .fagans-pcard__cta:not(.fagans-pcard__cta--solicitar):hover {
+  background: var(--f-blanco);
+  color: var(--f-onix);
+  border-color: var(--f-blanco);
+}
+
+/* Solicitar en hover del card */
+.fagans-pcard:hover .fagans-pcard__cta--solicitar {
+  color: var(--f-blanco);
+  border-color: rgba(255,255,255,.4);
+}
+
+.fagans-pcard:hover .fagans-pcard__cta--solicitar:hover {
+  background: var(--f-sandalo);
+  color: var(--f-onix);
+  border-color: var(--f-sandalo);
+}
+
+/* ── Card agotado ───────────────────────────────────────────── */
+
+.fagans-pcard--sold-out .fagans-pcard__img {
+  filter: saturate(0.3);
+}
+
+.fagans-pcard--sold-out:hover .fagans-pcard__img {
+  filter: saturate(0.5);
+  transform: scale(1.02); /* menos drama en agotados */
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .fagans-pcard__info {
+    padding: 12px 12px 14px;
+  }
+  .fagans-pcard__name {
+    font-size: var(--f-text-sm);
+  }
+}
+
+/* ── Focus / accesibilidad ───────────────────────────────────── */
+
+.fagans-pcard__media:focus-visible {
+  outline: 2px solid var(--f-sandalo);
+  outline-offset: 2px;
+}

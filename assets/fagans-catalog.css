@@ -1,0 +1,280 @@
+/* ═══════════════════════════════════════════════════════════════
+   FAGANS CATALOG PAGE — v3 Premium
+   Header, filtros sticky, grid denso, empty state, paginación
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Wrapper ────────────────────────────────────────────────── */
+
+.fagans-catalog {
+  background: var(--f-platino, #F1F1F1);
+  min-height: 60vh;
+}
+
+/* ── Header ─────────────────────────────────────────────────── */
+
+.fagans-catalog__header {
+  padding: 48px var(--f-gutter, 48px) 24px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  background: var(--f-blanco, #FFFFFF);
+  border-bottom: 1px solid var(--f-onix-10, rgba(14,15,15,.10));
+}
+
+.fagans-catalog__header-left {
+  flex: 1;
+  min-width: 0;
+}
+
+.fagans-catalog__title {
+  font-family: var(--f-serif, Georgia, serif);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--f-onix, #0E0F0F);
+  margin: 8px 0 6px;
+}
+
+.fagans-catalog__desc {
+  font-family: var(--f-sans, system-ui, sans-serif);
+  font-size: 0.875rem;
+  color: var(--f-onix-40, #6E6F6F);
+  max-width: 440px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.fagans-catalog__count {
+  font-family: var(--f-sans, system-ui, sans-serif);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--f-onix-40, #6E6F6F);
+  flex-shrink: 0;
+  align-self: flex-start;
+  padding-top: 6px;
+  white-space: nowrap;
+}
+
+/* ── Filter bar sticky ──────────────────────────────────────── */
+
+.fagans-catalog__filter-bar {
+  position: sticky;
+  top: var(--header-height, 64px);
+  z-index: 12;
+  background: var(--f-blanco, #FFFFFF);
+  border-bottom: 1px solid var(--f-onix-10, rgba(14,15,15,.10));
+  padding: 10px var(--f-gutter, 48px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  transition: top 0.4s ease;
+}
+
+.fagans-catalog__pills {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  flex: 1;
+  padding-bottom: 2px;
+}
+.fagans-catalog__pills::-webkit-scrollbar { display: none; }
+
+.fagans-pill {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  background: transparent;
+  border: 1px solid var(--f-onix-10, rgba(14,15,15,.10));
+  border-radius: 0;
+  padding: 6px 14px;
+  font-family: var(--f-sans, system-ui, sans-serif);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--f-onix-60, #464747);
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+  white-space: nowrap;
+}
+.fagans-pill:hover {
+  border-color: var(--f-onix, #0E0F0F);
+  color: var(--f-onix, #0E0F0F);
+}
+.fagans-pill.active {
+  background: var(--f-onix, #0E0F0F);
+  color: var(--f-blanco, #FFFFFF);
+  border-color: var(--f-onix, #0E0F0F);
+}
+
+/* Barra derecha */
+.fagans-catalog__bar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.fagans-sort-select {
+  font-family: var(--f-sans, system-ui, sans-serif);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--f-onix-60, #464747);
+  background: transparent;
+  border: 1px solid var(--f-onix-10, rgba(14,15,15,.10));
+  border-radius: 0;
+  padding: 6px 28px 6px 10px;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23464747' stroke-width='1.2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  cursor: pointer;
+}
+.fagans-sort-select:focus {
+  outline: 2px solid var(--f-sandalo, #C79FB8);
+  outline-offset: 2px;
+}
+
+.fagans-grid-toggle {
+  display: flex;
+  gap: 4px;
+}
+
+.fagans-gtoggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border: 1px solid var(--f-onix-10, rgba(14,15,15,.10));
+  border-radius: 0;
+  cursor: pointer;
+  color: var(--f-onix-40, #6E6F6F);
+  transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+  padding: 0;
+}
+.fagans-gtoggle:hover,
+.fagans-gtoggle.active,
+.fagans-gtoggle[aria-pressed="true"] {
+  background: var(--f-onix, #0E0F0F);
+  color: var(--f-blanco, #FFFFFF);
+  border-color: var(--f-onix, #0E0F0F);
+}
+
+/* ── Product grid ───────────────────────────────────────────── */
+
+.fagans-catalog__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--f-onix-10, rgba(14,15,15,.10));
+}
+
+.fagans-catalog__grid[data-cols="3"] {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 1199px) {
+  .fagans-catalog__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .fagans-catalog__grid,
+  .fagans-catalog__grid[data-cols="3"] {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ── Empty state ────────────────────────────────────────────── */
+
+.fagans-catalog__empty {
+  grid-column: 1 / -1;
+  padding: 80px var(--f-gutter, 48px);
+  text-align: center;
+  background: var(--f-blanco, #FFFFFF);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.fagans-catalog__empty p {
+  font-family: var(--f-sans, system-ui, sans-serif);
+  font-size: 0.875rem;
+  color: var(--f-onix-40, #6E6F6F);
+  margin: 0;
+}
+
+/* ── Paginación ─────────────────────────────────────────────── */
+
+.fagans-catalog__pagination {
+  padding: 48px var(--f-gutter, 48px);
+  display: flex;
+  justify-content: center;
+  background: var(--f-blanco, #FFFFFF);
+  border-top: 1px solid var(--f-onix-10, rgba(14,15,15,.10));
+}
+.fagans-catalog__pagination .pagination {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.fagans-catalog__pagination .pagination a,
+.fagans-catalog__pagination .pagination span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 8px;
+  font-family: var(--f-sans, system-ui, sans-serif);
+  font-size: 0.8125rem;
+  color: var(--f-onix-60, #464747);
+  text-decoration: none;
+  border: 1px solid var(--f-onix-10, rgba(14,15,15,.10));
+  transition: background 150ms ease, color 150ms ease;
+}
+.fagans-catalog__pagination .pagination a:hover {
+  background: var(--f-platino, #F1F1F1);
+  color: var(--f-onix, #0E0F0F);
+}
+.fagans-catalog__pagination .pagination .current span {
+  background: var(--f-onix, #0E0F0F);
+  color: var(--f-blanco, #FFFFFF);
+  border-color: var(--f-onix, #0E0F0F);
+}
+
+/* ── Responsive adjustments ─────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .fagans-catalog__header {
+    padding: 28px 20px 18px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .fagans-catalog__filter-bar {
+    padding: 8px 20px;
+    gap: 10px;
+  }
+  .fagans-grid-toggle { display: none; }
+  .fagans-catalog__pagination { padding: 32px 20px; }
+}
+
+/* ── Loading spinner (en botón add to cart) ──────────────────── */
+
+@keyframes f-spin {
+  to { transform: rotate(360deg); }
+}
+.f-spin { animation: f-spin 0.7s linear infinite; display: inline-block; }

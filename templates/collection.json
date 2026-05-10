@@ -9,67 +9,16 @@
  */
 {
   "sections": {
-    "plp-banner": {
-      "type": "collection-banner",
+    "fagans_catalog": {
+      "type": "fagans-catalog",
       "settings": {
-        "show_breadcrumbs": true,
-        "show_description": false,
-        "custom_image": "shopify://shop_images/IMG_0814_219.jpg",
-        "overlay_color": "rgba(0, 0, 0, 0.40)",
-        "text_color": "#ffffff",
-        "offset_top_desktop": 0,
-        "offset_bottom_desktop": 0,
-        "offset_top_mobile": 0,
-        "offset_bottom_mobile": 0,
-        "inner_offset_top": 60,
-        "inner_offset_bottom": 60,
-        "inner_offset_top_mobile": 64,
-        "inner_offset_bottom_mobile": 64
-      }
-    },
-    "plp-template": {
-      "type": "collection-template",
-      "blocks": {
-        "grid_banner_6ApiXY": {
-          "type": "grid-banner",
-          "disabled": true,
-          "settings": {
-            "heading": "Minimalist Leather Wallet",
-            "link_label": "Shop Now",
-            "link_url": "/",
-            "link_external": false,
-            "position": 2
-          }
-        }
-      },
-      "block_order": [
-        "grid_banner_6ApiXY"
-      ],
-      "custom_css": [],
-      "settings": {
-        "enable_color_scheme_inheritance": true,
-        "color_scheme": "scheme-1",
-        "filters_type": "top-bar",
-        "show_grid_selector": true,
-        "mobile_grid": "1",
-        "show_color_swatch_in_filters": true,
-        "paginate_by": 12,
-        "pagination_type": "infinite_scroll",
-        "load_more_style": "secondary",
-        "container_width": "100%",
-        "offset_top_desktop": 0,
-        "offset_bottom_desktop": 0,
-        "offset_top_mobile": 0,
-        "offset_bottom_mobile": 0,
-        "inner_offset_top_desktop": 64,
-        "inner_offset_bottom_desktop": 64,
-        "inner_offset_top_mobile": 32,
-        "inner_offset_bottom_mobile": 32
+        "products_per_page": 24,
+        "aroma_namespace": "shopify",
+        "aroma_metafield": "fragrance"
       }
     }
   },
   "order": [
-    "plp-banner",
-    "plp-template"
+    "fagans_catalog"
   ]
 }

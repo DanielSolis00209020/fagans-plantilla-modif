@@ -57,6 +57,7 @@
 		{{ 'theme-variables.css.liquid' | asset_url | stylesheet_tag }}
 		{{ 'theme.css' | asset_url | stylesheet_tag }}
 		{%- render 'fagans-fonts-style' -%}
+		{{ 'fagans-design-system.css' | asset_url | stylesheet_tag }}
 
 		{%- render 'adastra' with '/src/styles/main.scss', preload: true -%}
 
@@ -141,5 +142,6 @@
 		{%- endif -%}
 
 		{%- render 'adastra' with '/src/scripts/component-ar-model.js' -%}
+		<script src="{{ 'fagans-reveal.js' | asset_url }}" defer></script>
 	</body>
 </html>

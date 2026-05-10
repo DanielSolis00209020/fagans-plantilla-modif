@@ -1,21 +1,31 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
+    "main_color_scheme": "fagans-blanco",
     "favicon": "shopify://shop_images/WhatsApp_Image_2025-02-06_at_11.30.59_PM.png",
     "container_width": "1808px",
     "cart_type": "drawer",
-    "empty_cart_heading": "Carrito Vac\u00edo",
-    "empty_cart_text": "<p>Taxes incluidos - costo de env\u00edo disponible en 'check out'</p>",
+    "empty_cart_heading": "Carrito Vacío",
+    "empty_cart_text": "<p>Taxes incluidos - costo de envío disponible en 'check out'</p>",
     "product_default_image": "shopify://shop_images/default.png",
     "is_show_vendor": true,
     "is_currency_code_enabled": false,
     "product_card_img_aspect_ratio": "square",
     "image_object_fit": "contain",
-    "product_card_button_background_color": "#F1F1F1",
     "product_card_button_text_color": "#0E0F0F",
+    "product_card_button_background_color": "#F1F1F1",
     "product_card_button_background_opacity": 100,
     "quick_view_image_fit": "quick-view__image-wrapper--contain",
     "predictive_search_no_result": "No resultados encontrados",
-    "predictive_search_trending_terms": "Jean Paul Gaultier,Azzaro,Al Haramain,Sauvage,\u00e1rabes",
+    "predictive_search_trending_terms": "Jean Paul Gaultier,Azzaro,Al Haramain,Sauvage,árabes",
     "predictive_search_promo_products": [],
     "social_instagram_link": "@fagans_perfumes",
     "social_tiktok_link": "@fagans_perfumes",
@@ -32,8 +42,8 @@
           "ticker_hide_divider": false,
           "ticker_desktop_movement_speed": 40,
           "ticker_mobile_movement_speed": 40,
-          "popup_heading": "Ingresar utilizando contrase\u00f1a",
-          "popup_input_placeholder": "Introduce tu contrase\u00f1a",
+          "popup_heading": "Ingresar utilizando contraseña",
+          "popup_input_placeholder": "Introduce tu contraseña",
           "popup_button_text": "Enter",
           "section_background": "#ffffff",
           "section_text_color": "#11120d",
@@ -116,6 +126,10 @@
           "color_border_primary": "#C79FB8",
           "color_border_secondary": "#3a3a3a",
           "color_border_thirdly": "#4a4a4a",
+          "color_support_attention": "#e41616",
+          "color_support_success": "#36ba20",
+          "product_sale_price": "#d23f31",
+          "color_overlay": "rgba(0, 0, 0, 1.5)",
           "button_icon_color_social": "#FFFFFF",
           "button_background_color_social": "#582D0C",
           "button_border_color_social": "#582D0C",
@@ -131,10 +145,6 @@
           "color_slider_arrow_background_hover": "#582D0C",
           "color_slider_arrow_icon_hover": "#FFFFFF",
           "color_slider_arrow_border_hover": "#FFFFFF",
-          "color_support_attention": "#e41616",
-          "color_support_success": "#36ba20",
-          "product_sale_price": "#d23f31",
-          "color_overlay": "rgba(0, 0, 0, 1.5)",
           "color_icon_available": "#4caf50",
           "color_icon_out_of_stock": "#d23f31"
         }
@@ -165,6 +175,10 @@
           "color_border_primary": "#0E0F0F",
           "color_border_secondary": "#F1F1F1",
           "color_border_thirdly": "#e0e0e0",
+          "color_support_attention": "#e41616",
+          "color_support_success": "#36ba20",
+          "product_sale_price": "#d23f31",
+          "color_overlay": "rgba(0, 0, 0, 1.5)",
           "button_icon_color_social": "#FFFFFF",
           "button_background_color_social": "#0E0F0F",
           "button_border_color_social": "#0E0F0F",
@@ -180,14 +194,8 @@
           "color_slider_arrow_background_hover": "#0E0F0F",
           "color_slider_arrow_icon_hover": "#FFFFFF",
           "color_slider_arrow_border_hover": "#0E0F0F",
-          "color_support_attention": "#e41616",
-          "color_support_success": "#36ba20",
-          "product_sale_price": "#d23f31",
-          "color_overlay": "rgba(0, 0, 0, 1.5)",
           "color_icon_available": "#4caf50",
-          "color_icon_out_of_stock": "#d23f31",
-          "product_card_button_background_color": "#582D0C",
-          "product_card_button_text_color": "#FFFFFF"
+          "color_icon_out_of_stock": "#d23f31"
         }
       },
       "fagans-platino": {
@@ -216,6 +224,10 @@
           "color_border_primary": "#0E0F0F",
           "color_border_secondary": "#e0e0e0",
           "color_border_thirdly": "#e8e8e8",
+          "color_support_attention": "#e41616",
+          "color_support_success": "#36ba20",
+          "product_sale_price": "#d23f31",
+          "color_overlay": "rgba(0, 0, 0, 1.5)",
           "button_icon_color_social": "#FFFFFF",
           "button_background_color_social": "#0E0F0F",
           "button_border_color_social": "#0E0F0F",
@@ -231,10 +243,6 @@
           "color_slider_arrow_background_hover": "#0E0F0F",
           "color_slider_arrow_icon_hover": "#FFFFFF",
           "color_slider_arrow_border_hover": "#0E0F0F",
-          "color_support_attention": "#e41616",
-          "color_support_success": "#36ba20",
-          "product_sale_price": "#d23f31",
-          "color_overlay": "rgba(0, 0, 0, 1.5)",
           "color_icon_available": "#4caf50",
           "color_icon_out_of_stock": "#d23f31"
         }
@@ -265,6 +273,10 @@
           "color_border_primary": "#0E0F0F",
           "color_border_secondary": "#e8d5e0",
           "color_border_thirdly": "#f0e0e8",
+          "color_support_attention": "#e41616",
+          "color_support_success": "#36ba20",
+          "product_sale_price": "#d23f31",
+          "color_overlay": "rgba(0, 0, 0, 1.5)",
           "button_icon_color_social": "#FFFFFF",
           "button_background_color_social": "#0E0F0F",
           "button_border_color_social": "#0E0F0F",
@@ -280,10 +292,6 @@
           "color_slider_arrow_background_hover": "#0E0F0F",
           "color_slider_arrow_icon_hover": "#FFFFFF",
           "color_slider_arrow_border_hover": "#0E0F0F",
-          "color_support_attention": "#e41616",
-          "color_support_success": "#36ba20",
-          "product_sale_price": "#d23f31",
-          "color_overlay": "rgba(0, 0, 0, 1.5)",
           "color_icon_available": "#4caf50",
           "color_icon_out_of_stock": "#d23f31"
         }
@@ -314,6 +322,10 @@
           "color_border_primary": "#f4d03f",
           "color_border_secondary": "#8a5a35",
           "color_border_thirdly": "#9a6a45",
+          "color_support_attention": "#e41616",
+          "color_support_success": "#36ba20",
+          "product_sale_price": "#d23f31",
+          "color_overlay": "rgba(0, 0, 0, 1.5)",
           "button_icon_color_social": "#FFFFFF",
           "button_background_color_social": "#f4d03f",
           "button_border_color_social": "#f4d03f",
@@ -329,16 +341,11 @@
           "color_slider_arrow_background_hover": "#f4d03f",
           "color_slider_arrow_icon_hover": "#582D0C",
           "color_slider_arrow_border_hover": "#FFFFFF",
-          "color_support_attention": "#e41616",
-          "color_support_success": "#36ba20",
-          "product_sale_price": "#d23f31",
-          "color_overlay": "rgba(0, 0, 0, 1.5)",
           "color_icon_available": "#4caf50",
           "color_icon_out_of_stock": "#d23f31"
         }
       }
-    },
-    "main_color_scheme": "fagans-blanco"
+    }
   },
   "presets": {
     "Allure": {

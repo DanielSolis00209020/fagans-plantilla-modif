@@ -1,0 +1,276 @@
+{%- comment -%}
+  Fagans Product Meta — Metadata de fragancia estilo Fragrantica
+  ════════════════════════════════════════════════════════════════
+  Muestra acordes (Shopify.aroma), género (Shopify.gender),
+  ocasión (Shopify.occasion), temporada (Shopify.season).
+  Se añade como sección adicional en templates/product.json.
+
+  Para productos agotados: banner "Bajo pedido" + botón Solicitar.
+  ════════════════════════════════════════════════════════════════
+{%- endcomment -%}
+
+{{ 'fagans-product-meta.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign p = product
+
+  comment — Metafields de metaobjetos
+  endcomment
+  assign aroma_mf   = p.metafields.shopify.aroma
+  assign gender_mf  = p.metafields.shopify.gender
+  assign occasion_mf = p.metafields.shopify.occasion
+  assign season_mf  = p.metafields.shopify.season
+
+  comment — Fallback fragancia (misma data que aroma)
+  endcomment
+  if aroma_mf == blank
+    assign aroma_mf = p.metafields.shopify.fragancia
+  endif
+
+  assign is_available = p.available
+  assign target_variant = p.first_available_variant | default: p.variants.first
+-%}
+
+<div class="fagans-pmeta" id="fagans-pmeta-{{ section.id }}">
+
+  {%- comment -%}══ SOLD-OUT BANNER ══{%- endcomment -%}
+  {%- unless is_available -%}
+    <div class="fagans-pmeta__soldout-banner">
+      <div class="fagans-pmeta__soldout-content">
+        <div class="fagans-pmeta__soldout-text">
+          <strong>Producto agotado</strong>
+          <span>{{ section.settings.preorder_message | default: 'Disponible bajo pedido — tiempo estimado ~2 semanas.' }}</span>
+        </div>
+        <a href="{{ p.url }}#solicitar" class="f-btn f-btn--solicitar f-btn--sm">
+          Solicitar este producto
+        </a>
+      </div>
+    </div>
+  {%- endunless -%}
+
+  {%- comment -%}══ ACORDES PRINCIPALES ══{%- endcomment -%}
+  {%- if aroma_mf != blank -%}
+    {%- assign aroma_val = aroma_mf.value -%}
+    {%- assign has_acordes = false -%}
+    {%- if aroma_val.first or aroma_val != blank -%}
+      {%- assign has_acordes = true -%}
+    {%- endif -%}
+
+    {%- if has_acordes -%}
+      <div class="fagans-pmeta__block fagans-pmeta__block--acordes">
+        <h3 class="fagans-pmeta__block-title">
+          <span class="f-eyebrow">Acordes principales</span>
+        </h3>
+        <div class="fagans-pmeta__acordes">
+          {%- if aroma_val.first -%}
+            {%- for acorde in aroma_val limit: 8 -%}
+              {%- assign acorde_label = '' -%}
+              {%- assign acorde_pct   = 0 -%}
+
+              {%- if acorde.label != blank -%}
+                {%- assign acorde_label = acorde.label -%}
+                {%- if acorde.intensity != blank -%}
+                  {%- assign acorde_pct = acorde.intensity | times: 100 | round -%}
+                {%- elsif acorde.percentage != blank -%}
+                  {%- assign acorde_pct = acorde.percentage | round -%}
+                {%- else -%}
+                  {%- assign acorde_pct = 100 | minus: forloop.index0 | times: 12 -%}
+                  {%- if acorde_pct < 25 %}{%- assign acorde_pct = 25 -%}{%- endif -%}
+                {%- endif -%}
+              {%- elsif acorde != blank -%}
+                {%- assign parts = acorde | split: '; ' -%}
+                {%- assign acorde_label = parts[0] -%}
+                {%- assign acorde_pct = 100 | minus: forloop.index0 | times: 12 -%}
+                {%- if acorde_pct < 25 %}{%- assign acorde_pct = 25 -%}{%- endif -%}
+              {%- endif -%}
+
+              {%- if acorde_label != blank -%}
+                <div class="fagans-acorde">
+                  <span class="fagans-acorde__label">{{ acorde_label }}</span>
+                  <div class="fagans-acorde__bar-track">
+                    <div class="fagans-acorde__bar" style="--acorde-pct: {{ acorde_pct }}%"></div>
+                  </div>
+                  <span class="fagans-acorde__pct">{{ acorde_pct }}%</span>
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          {%- elsif aroma_val != blank -%}
+            {%- comment -%}Texto plano separado por ; o ,{%- endcomment -%}
+            {%- assign raw_parts = aroma_val | split: '; ' -%}
+            {%- if raw_parts.size == 1 -%}
+              {%- assign raw_parts = aroma_val | split: ', ' -%}
+            {%- endif -%}
+            {%- for acorde_str in raw_parts limit: 8 -%}
+              {%- assign fallback_pct = 100 | minus: forloop.index0 | times: 12 -%}
+              {%- if fallback_pct < 20 %}{%- assign fallback_pct = 20 -%}{%- endif -%}
+              <div class="fagans-acorde">
+                <span class="fagans-acorde__label">{{ acorde_str | strip }}</span>
+                <div class="fagans-acorde__bar-track">
+                  <div class="fagans-acorde__bar" style="--acorde-pct: {{ fallback_pct }}%"></div>
+                </div>
+              </div>
+            {%- endfor -%}
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+
+  {%- comment -%}══ FICHA DE METADATA ══{%- endcomment -%}
+  {%- assign has_any_meta = false -%}
+  {%- if gender_mf != blank or occasion_mf != blank or season_mf != blank -%}
+    {%- assign has_any_meta = true -%}
+  {%- endif -%}
+  {%- comment -%}Fallback desde tags{%- endcomment -%}
+  {%- if p.tags contains 'masculino' or p.tags contains 'femenino' or p.tags contains 'unisex' -%}
+    {%- assign has_any_meta = true -%}
+  {%- endif -%}
+
+  {%- if has_any_meta -%}
+    <div class="fagans-pmeta__block fagans-pmeta__block--ficha">
+      <h3 class="fagans-pmeta__block-title">
+        <span class="f-eyebrow">Perfil de la fragancia</span>
+      </h3>
+      <dl class="fagans-pmeta__ficha">
+
+        {%- comment -%}── Género ─────────────────────────────────────────{%- endcomment -%}
+        {%- assign gender_display = '' -%}
+        {%- if gender_mf != blank -%}
+          {%- assign gender_display = gender_mf.value -%}
+        {%- elsif p.tags contains 'masculino' -%}
+          {%- assign gender_display = 'Masculino' -%}
+        {%- elsif p.tags contains 'femenino' -%}
+          {%- assign gender_display = 'Femenino' -%}
+        {%- elsif p.tags contains 'unisex' -%}
+          {%- assign gender_display = 'Unisex' -%}
+        {%- endif -%}
+        {%- if gender_display != blank -%}
+          <div class="fagans-pmeta__row">
+            <dt>Género</dt>
+            <dd>
+              {%- assign gender_lower = gender_display | downcase -%}
+              {%- if gender_lower contains 'masc' or gender_lower contains 'hombre' -%}
+                <span class="f-badge f-badge--masc">{{ gender_display }}</span>
+              {%- else -%}
+                <span class="f-badge f-badge--fem">{{ gender_display }}</span>
+              {%- endif -%}
+            </dd>
+          </div>
+        {%- endif -%}
+
+        {%- comment -%}── Temporada ──────────────────────────────────────{%- endcomment -%}
+        {%- if season_mf != blank -%}
+          <div class="fagans-pmeta__row">
+            <dt>Temporada</dt>
+            <dd>
+              {%- assign season_val = season_mf.value -%}
+              {%- if season_val.first -%}
+                {%- for s in season_val -%}
+                  <span class="f-badge f-badge--season">{{ s }}</span>
+                {%- endfor -%}
+              {%- else -%}
+                <span class="f-badge f-badge--season">{{ season_val }}</span>
+              {%- endif -%}
+            </dd>
+          </div>
+        {%- elsif p.tags contains 'primavera' or p.tags contains 'verano' or p.tags contains 'otoño' or p.tags contains 'invierno' -%}
+          <div class="fagans-pmeta__row">
+            <dt>Temporada</dt>
+            <dd>
+              {%- if p.tags contains 'primavera' %}<span class="f-badge f-badge--season">Primavera</span>{%- endif -%}
+              {%- if p.tags contains 'verano'    %}<span class="f-badge f-badge--season">Verano</span>{%- endif -%}
+              {%- if p.tags contains 'otoño'     %}<span class="f-badge f-badge--season">Otoño</span>{%- endif -%}
+              {%- if p.tags contains 'invierno'  %}<span class="f-badge f-badge--season">Invierno</span>{%- endif -%}
+            </dd>
+          </div>
+        {%- endif -%}
+
+        {%- comment -%}── Ocasión ────────────────────────────────────────{%- endcomment -%}
+        {%- if occasion_mf != blank -%}
+          <div class="fagans-pmeta__row">
+            <dt>Ocasión</dt>
+            <dd>
+              {%- assign occ_val = occasion_mf.value -%}
+              {%- if occ_val.first -%}
+                {%- for o in occ_val -%}
+                  <span class="f-badge f-badge--occasion">{{ o }}</span>
+                {%- endfor -%}
+              {%- else -%}
+                <span class="f-badge f-badge--occasion">{{ occ_val }}</span>
+              {%- endif -%}
+            </dd>
+          </div>
+        {%- endif -%}
+
+        {%- comment -%}── Tipo de fragancia desde tags ──────────────────{%- endcomment -%}
+        {%- if p.tags contains 'nicho' or p.tags contains 'arabes' or p.tags contains 'arabe' or p.tags contains 'disenador' -%}
+          <div class="fagans-pmeta__row">
+            <dt>Tipo</dt>
+            <dd>
+              {%- if p.tags contains 'nicho'      %}<span class="f-badge f-badge--nicho">Nicho</span>{%- endif -%}
+              {%- if p.tags contains 'arabes' or p.tags contains 'arabe' %}<span class="f-badge f-badge--arabe">Árabe</span>{%- endif -%}
+              {%- if p.tags contains 'disenador'  %}<span class="f-badge f-badge--dis">Diseñador</span>{%- endif -%}
+            </dd>
+          </div>
+        {%- endif -%}
+
+      </dl>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%}══ NOTA DE AUTENTICIDAD ══{%- endcomment -%}
+  {%- if section.settings.show_authenticity_note -%}
+    <div class="fagans-pmeta__authenticity">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+      <span>{{ section.settings.authenticity_text | default: '100% original. Cada producto viene con garantía de autenticidad.' }}</span>
+    </div>
+  {%- endif -%}
+
+</div>
+
+{% schema %}
+{
+  "name": "Metadata de fragancia",
+  "tag": "div",
+  "class": "fagans-pmeta-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Producto agotado"
+    },
+    {
+      "type": "text",
+      "id": "preorder_message",
+      "label": "Mensaje de bajo pedido",
+      "default": "Disponible bajo pedido — tiempo estimado ~2 semanas."
+    },
+    {
+      "type": "header",
+      "content": "Nota de autenticidad"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_authenticity_note",
+      "label": "Mostrar nota de autenticidad",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "authenticity_text",
+      "label": "Texto de autenticidad",
+      "default": "100% original. Cada producto viene con garantía de autenticidad."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Metadata de fragancia",
+      "settings": {
+        "preorder_message": "Disponible bajo pedido — tiempo estimado ~2 semanas.",
+        "show_authenticity_note": true
+      }
+    }
+  ]
+}
+{% endschema %}

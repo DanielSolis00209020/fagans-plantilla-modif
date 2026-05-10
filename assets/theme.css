@@ -651,3 +651,218 @@ label {
     scroll-snap-align: start;
   }
 }
+
+/* ============================================
+   FAGANS HERO SECTION
+   Sección hero oscura estilo prototipo
+   ============================================ */
+
+.fagans-hero {
+  position: relative;
+  min-height: 92vh;
+  min-height: 92svh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: linear-gradient(140deg, #0a0512, #150d20, #1e1028, #0E0F0F);
+}
+
+.fagans-hero__bg-accent {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 70% 40%, rgba(199,159,184,.13), transparent 60%),
+    radial-gradient(ellipse at 20% 80%, rgba(88,45,12,.10), transparent 50%);
+  pointer-events: none;
+}
+
+.fagans-hero__content {
+  position: relative;
+  z-index: 2;
+  padding: 0 48px 80px;
+  max-width: 680px;
+}
+
+.fagans-hero__eyebrow {
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.45);
+  margin-bottom: var(--spacing-lg);
+  font-family: var(--font-body-family);
+}
+
+.fagans-hero__title {
+  font-family: var(--font-heading-family);
+  font-size: clamp(44px, 7vw, 80px);
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 1.04;
+  margin-bottom: var(--spacing-md);
+  letter-spacing: -.01em;
+}
+
+.fagans-hero__title em {
+  color: #C79FB8;
+  font-style: normal;
+}
+
+.fagans-hero__desc {
+  font-size: 15px;
+  color: rgba(255,255,255,.55);
+  line-height: 1.7;
+  margin-bottom: var(--spacing-2xl);
+  max-width: 440px;
+}
+
+.fagans-hero__ctas {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.fagans-hero__btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 13px 28px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all .25s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.fagans-hero__btn--primary {
+  background: #ffffff;
+  color: var(--color-primary-onix);
+  border: 1px solid transparent;
+}
+
+.fagans-hero__btn--primary:hover {
+  background: var(--color-secondary-platino);
+}
+
+.fagans-hero__btn--outline {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255,255,255,.3);
+}
+
+.fagans-hero__btn--outline:hover {
+  background: rgba(255,255,255,.08);
+  border-color: rgba(255,255,255,.6);
+}
+
+/* Badge — "152 Fragancias" */
+.fagans-hero__badge {
+  position: absolute;
+  top: 48px;
+  right: 48px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255,255,255,.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 12px;
+  padding: 20px 24px;
+  gap: 4px;
+}
+
+.fagans-hero__badge-num {
+  font-family: var(--font-heading-family);
+  font-size: 32px;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.fagans-hero__badge-lbl {
+  font-size: 9px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.45);
+}
+
+/* Scroll indicator */
+.fagans-hero__scroll {
+  position: absolute;
+  bottom: 32px;
+  right: 48px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,.35);
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.fagans-hero__scroll-line {
+  width: 48px;
+  height: 1px;
+  background: rgba(255,255,255,.2);
+}
+
+/* Responsive */
+@media screen and (max-width: 749px) {
+  .fagans-hero {
+    min-height: 100svh;
+    align-items: flex-end;
+  }
+
+  .fagans-hero__content {
+    padding: 0 var(--spacing-lg) 80px;
+  }
+
+  .fagans-hero__badge {
+    top: 24px;
+    right: 20px;
+    padding: 14px 18px;
+  }
+
+  .fagans-hero__badge-num {
+    font-size: 24px;
+  }
+
+  .fagans-hero__scroll {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .fagans-hero__badge {
+    display: none;
+  }
+
+  .fagans-hero__ctas {
+    flex-direction: column;
+  }
+
+  .fagans-hero__btn {
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+/* ── Compact header (Fagans) ─────────────────────
+   Reduce vertical padding so icons stand out more.
+   The theme's default is 14px top/bottom on mobile
+   and 18px on desktop; we trim both slightly.
+────────────────────────────────────────────────── */
+.header .header__container {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+@media (min-width: 1200px) {
+  .header .header__container {
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+  }
+}

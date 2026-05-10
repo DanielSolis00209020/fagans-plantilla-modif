@@ -1,0 +1,218 @@
+{%- comment -%}
+  Fagans Product Card — v3 Premium
+  ════════════════════════════════════════════════════════════
+  Params:
+    product         — (required) product object
+    aroma_namespace — metafield namespace (default: 'shopify')
+    aroma_metafield — metafield key for aromas (default: 'aroma')
+    card_index      — integer, for staggered reveal delay
+    featured        — boolean, renders card más ancha (2 cols)
+  ════════════════════════════════════════════════════════════
+{%- endcomment -%}
+
+{%- liquid
+  assign aroma_ns  = aroma_namespace | default: 'shopify'
+  assign aroma_key = aroma_metafield | default: 'aroma'
+  assign aroma_mf  = product.metafields[aroma_ns][aroma_key]
+
+  assign gender_mf  = product.metafields.shopify.gender
+  assign season_mf  = product.metafields.shopify.season
+
+  assign is_available = product.available
+
+  comment — Tipo de fragancia badge desde tags
+  endcomment
+  assign badge_type = ''
+  if product.tags contains 'nicho'
+    assign badge_type = 'nicho'
+  elsif product.tags contains 'arabes' or product.tags contains 'arabe' or product.tags contains 'árabe'
+    assign badge_type = 'arabe'
+  elsif product.tags contains 'disenador' or product.tags contains 'diseñador' or product.tags contains 'designer'
+    assign badge_type = 'dis'
+  endif
+
+  comment — Género badge
+  endcomment
+  assign gender_val = ''
+  assign gender_class = ''
+  if gender_mf != blank
+    assign gender_raw = gender_mf.value
+    assign gender_raw_str = gender_raw | downcase
+    if gender_raw_str contains 'masc' or gender_raw_str contains 'hombre' or gender_raw_str contains 'him' or gender_raw_str contains 'man'
+      assign gender_val = gender_raw
+      assign gender_class = 'f-badge--masc'
+    else
+      assign gender_val = gender_raw
+      assign gender_class = 'f-badge--fem'
+    endif
+  elsif product.tags contains 'masculino'
+    assign gender_val = 'Para él'
+    assign gender_class = 'f-badge--masc'
+  elsif product.tags contains 'femenino'
+    assign gender_val = 'Para ella'
+    assign gender_class = 'f-badge--fem'
+  elsif product.tags contains 'unisex'
+    assign gender_val = 'Unisex'
+    assign gender_class = 'f-badge--fem'
+  endif
+
+  comment — Reveal delay staggered (1-4)
+  endcomment
+  assign reveal_delay = card_index | default: 0 | modulo: 4 | plus: 1
+
+  comment — Tags para filtrado
+  endcomment
+  assign tag_str = product.tags | join: ',' | downcase
+-%}
+
+{%- comment -%}── Aromas display string ──────────────────────────────────────{%- endcomment -%}
+{%- assign aroma_display = '' -%}
+{%- if aroma_mf != blank -%}
+  {%- assign aroma_val = aroma_mf.value -%}
+  {%- if aroma_val.first -%}
+    {%- for item in aroma_val limit: 4 -%}
+      {%- assign item_str = '' -%}
+      {%- if item.label != blank -%}
+        {%- assign item_str = item.label -%}
+      {%- elsif item != blank -%}
+        {%- assign parts = item | split: '; ' -%}
+        {%- assign item_str = parts[0] -%}
+      {%- endif -%}
+      {%- if item_str != blank -%}
+        {%- unless aroma_display == '' -%}{%- assign aroma_display = aroma_display | append: ' · ' -%}{%- endunless -%}
+        {%- assign aroma_display = aroma_display | append: item_str -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- elsif aroma_val != blank -%}
+    {%- assign aroma_display = aroma_val | truncatewords: 6, '' -%}
+  {%- endif -%}
+{%- endif -%}
+{%- if aroma_display == blank and product.metafields.custom.aroma != blank -%}
+  {%- assign fallback_val = product.metafields.custom.aroma.value -%}
+  {%- if fallback_val.first -%}
+    {%- for item in fallback_val limit: 4 -%}
+      {%- assign parts = item | split: '; ' -%}
+      {%- unless aroma_display == '' -%}{%- assign aroma_display = aroma_display | append: ' · ' -%}{%- endunless -%}
+      {%- assign aroma_display = aroma_display | append: parts[0] -%}
+    {%- endfor -%}
+  {%- else -%}
+    {%- assign aroma_display = fallback_val | truncatewords: 5, '' -%}
+  {%- endif -%}
+{%- endif -%}
+
+{%- assign target_variant = product.first_available_variant | default: product.variants.first -%}
+
+<article
+  class="fagans-pcard{% if featured %} fagans-pcard--featured{% endif %}{% unless is_available %} fagans-pcard--sold-out{% endunless %}"
+  data-tags="{{ tag_str }}"
+  data-f-reveal
+  data-f-delay="{{ reveal_delay }}"
+>
+
+  {%- comment -%}── Imagen ─────────────────────────────────────────────────{%- endcomment -%}
+  <a href="{{ product.url }}" class="fagans-pcard__media" aria-label="{{ product.title | escape }}" tabindex="-1">
+    <div class="fagans-pcard__image-wrap">
+      {%- if product.featured_image -%}
+        <img
+          src="{{ product.featured_image | image_url: width: 600 }}"
+          srcset="
+            {{ product.featured_image | image_url: width: 400 }} 400w,
+            {{ product.featured_image | image_url: width: 600 }} 600w,
+            {{ product.featured_image | image_url: width: 800 }} 800w
+          "
+          sizes="(max-width: 767px) 50vw, 25vw"
+          alt="{{ product.featured_image.alt | default: product.title | escape }}"
+          width="600"
+          height="600"
+          loading="lazy"
+          class="fagans-pcard__img"
+        >
+      {%- else -%}
+        <div class="fagans-pcard__img-placeholder">
+          <span>{{ product.vendor | slice: 0, 1 | upcase }}</span>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%}── Overlay aromas (visible en hover) ─────────────────────{%- endcomment -%}
+    {%- if aroma_display != blank -%}
+      <div class="fagans-pcard__aroma-overlay" aria-hidden="true">
+        <p class="fagans-pcard__aroma-hint">
+          <span class="fagans-pcard__aroma-label">Acordes</span>
+          {{ aroma_display }}
+        </p>
+      </div>
+    {%- endif -%}
+  </a>
+
+  {%- comment -%}── Badge tipo fragancia (arriba-izq) ───────────────────────{%- endcomment -%}
+  {%- if badge_type != blank -%}
+    <div class="fagans-pcard__badge-sup">
+      <span class="f-badge f-badge--{{ badge_type }}">
+        {%- case badge_type -%}
+          {%- when 'nicho' -%}Nicho
+          {%- when 'arabe' -%}Árabe
+          {%- when 'dis'   -%}Diseñador
+        {%- endcase -%}
+      </span>
+      {%- if product.tags contains 'nuevo' or product.tags contains 'new' -%}
+        <span class="f-badge f-badge--new">Nuevo</span>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  {%- comment -%}── Info bajo imagen ────────────────────────────────────────{%- endcomment -%}
+  <div class="fagans-pcard__info">
+
+    {%- comment -%}Fila de badges: género / agotado / descuento{%- endcomment -%}
+    <div class="fagans-pcard__meta-row">
+      {%- if gender_val != blank -%}
+        <span class="f-badge {{ gender_class }}">{{ gender_val }}</span>
+      {%- endif -%}
+      {%- unless is_available -%}
+        <span class="f-badge f-badge--agotado">Agotado</span>
+      {%- endunless -%}
+      {%- if product.compare_at_price > product.price -%}
+        {%- assign discount_pct = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price -%}
+        <span class="f-badge f-badge--sale">-{{ discount_pct }}%</span>
+      {%- endif -%}
+    </div>
+
+    <p class="fagans-pcard__vendor">{{ product.vendor }}</p>
+    <a href="{{ product.url }}" class="fagans-pcard__name">{{ product.title }}</a>
+
+    <div class="fagans-pcard__price">
+      <span class="fagans-pcard__price-now">{{ product.price | money }}</span>
+      {%- if product.compare_at_price > product.price -%}
+        <s class="fagans-pcard__price-was">{{ product.compare_at_price | money }}</s>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%}── CTA ────────────────────────────────────────────────────{%- endcomment -%}
+    {%- if is_available -%}
+      <button
+        type="button"
+        class="fagans-pcard__cta f-btn f-btn--sm f-btn--full"
+        data-add-to-cart
+        data-variant-id="{{ target_variant.id }}"
+        data-product-title="{{ product.title | escape }}"
+        aria-label="Agregar {{ product.title | escape }} al carrito"
+      >
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+        Agregar
+      </button>
+    {%- else -%}
+      <a
+        href="{{ product.url }}"
+        class="fagans-pcard__cta fagans-pcard__cta--solicitar f-btn f-btn--sm f-btn--full"
+      >
+        Solicitar
+      </a>
+    {%- endif -%}
+
+  </div>
+
+</article>

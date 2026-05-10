@@ -1,0 +1,237 @@
+{%- comment -%}
+  Fagans Hero — v3 Premium
+  Hero de viewport completo, fondo onix + imagen editable desde admin.
+  Dos layouts: centered (texto centrado) / split (imagen derecha, texto izquierda).
+{%- endcomment -%}
+
+{%- assign layout      = section.settings.layout -%}
+{%- assign eyebrow     = section.settings.eyebrow -%}
+{%- assign heading     = section.settings.heading -%}
+{%- assign subheading  = section.settings.subheading -%}
+{%- assign cta_1_label = section.settings.cta_1_label -%}
+{%- assign cta_1_url   = section.settings.cta_1_url | default: '/collections/all' -%}
+{%- assign cta_2_label = section.settings.cta_2_label -%}
+{%- assign cta_2_url   = section.settings.cta_2_url -%}
+{%- assign bg_image    = section.settings.background_image -%}
+{%- assign product_img = section.settings.product_image -%}
+{%- assign min_height  = section.settings.min_height | default: 90 -%}
+
+{{ 'fagans-hero.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    padding: 0;
+    margin: 0;
+  }
+  #fagans-hero-{{ section.id }} {
+    --hero-min-height: {{ min_height }}vh;
+    {%- if bg_image != blank -%}
+    --hero-bg-image: url('{{ bg_image | image_url: width: 1600 }}');
+    {%- endif -%}
+  }
+{%- endstyle -%}
+
+<section
+  class="fagans-hero fagans-hero--{{ layout }}"
+  id="fagans-hero-{{ section.id }}"
+  aria-label="{{ heading | escape }}"
+>
+
+  {%- comment -%}── Fondo: color onix + imagen si existe ────────────────────{%- endcomment -%}
+  <div class="fagans-hero__backdrop" aria-hidden="true">
+    {%- if bg_image != blank -%}
+      <img
+        src="{{ bg_image | image_url: width: 1600 }}"
+        srcset="
+          {{ bg_image | image_url: width: 800  }} 800w,
+          {{ bg_image | image_url: width: 1200 }} 1200w,
+          {{ bg_image | image_url: width: 1600 }} 1600w
+        "
+        sizes="100vw"
+        alt=""
+        width="1600"
+        height="900"
+        loading="eager"
+        fetchpriority="high"
+        class="fagans-hero__bg-img"
+      >
+    {%- endif -%}
+    <div class="fagans-hero__overlay"></div>
+  </div>
+
+  {%- comment -%}── Contenido ──────────────────────────────────────────────{%- endcomment -%}
+  <div class="fagans-hero__inner f-container">
+
+    {%- comment -%}── Columna de texto ──────────────────────────────────────{%- endcomment -%}
+    <div class="fagans-hero__text">
+      {%- if eyebrow != blank -%}
+        <p class="fagans-hero__eyebrow f-eyebrow f-eyebrow--light" data-f-reveal>
+          {{ eyebrow }}
+        </p>
+      {%- endif -%}
+
+      {%- if heading != blank -%}
+        <h1 class="fagans-hero__heading" data-f-reveal data-f-delay="1">
+          {{ heading }}
+        </h1>
+      {%- endif -%}
+
+      {%- if subheading != blank -%}
+        <p class="fagans-hero__subheading" data-f-reveal data-f-delay="2">
+          {{ subheading }}
+        </p>
+      {%- endif -%}
+
+      <div class="fagans-hero__ctas" data-f-reveal data-f-delay="3">
+        {%- if cta_1_label != blank -%}
+          <a href="{{ cta_1_url }}" class="f-btn f-btn--ghost">{{ cta_1_label }}</a>
+        {%- endif -%}
+        {%- if cta_2_label != blank -%}
+          <a href="{{ cta_2_url }}" class="f-btn f-btn--ghost fagans-hero__cta--outline">{{ cta_2_label }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- comment -%}── Imagen de producto (solo en layout split) ─────────────{%- endcomment -%}
+    {%- if layout == 'split' and product_img != blank -%}
+      <div class="fagans-hero__product-img-wrap" data-f-reveal data-f-delay="2">
+        <img
+          src="{{ product_img | image_url: width: 600 }}"
+          srcset="
+            {{ product_img | image_url: width: 400 }} 400w,
+            {{ product_img | image_url: width: 600 }} 600w,
+            {{ product_img | image_url: width: 900 }} 900w
+          "
+          sizes="(max-width: 767px) 70vw, 40vw"
+          alt="{{ product_img.alt | default: heading | escape }}"
+          width="600"
+          height="750"
+          loading="eager"
+          class="fagans-hero__product-img"
+        >
+      </div>
+    {%- endif -%}
+
+  </div>
+
+  {%- comment -%}── Scroll indicator ────────────────────────────────────────{%- endcomment -%}
+  {%- if section.settings.show_scroll_hint -%}
+    <div class="fagans-hero__scroll-hint" aria-hidden="true">
+      <span class="fagans-hero__scroll-label">Explorar</span>
+      <div class="fagans-hero__scroll-line"></div>
+    </div>
+  {%- endif -%}
+
+</section>
+
+{% schema %}
+{
+  "name": "Hero — Fagans",
+  "tag": "section",
+  "class": "fagans-hero-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        { "value": "centered", "label": "Centrado" },
+        { "value": "split",    "label": "Dividido (texto izq + imagen der)" }
+      ],
+      "default": "split"
+    },
+    {
+      "type": "range",
+      "id": "min_height",
+      "label": "Altura mínima (vh)",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "default": 90,
+      "unit": "vh"
+    },
+    {
+      "type": "header",
+      "content": "Contenido"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow (línea pequeña)",
+      "default": "Fagans Perfumería · Colección 2025"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Titular principal",
+      "default": "La fragancia perfecta empieza con una decisión"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subtítulo",
+      "default": "Originales e importados. Diseñador, nicho y árabe."
+    },
+    {
+      "type": "text",
+      "id": "cta_1_label",
+      "label": "Botón 1 — texto",
+      "default": "Ver catálogo"
+    },
+    {
+      "type": "url",
+      "id": "cta_1_url",
+      "label": "Botón 1 — enlace"
+    },
+    {
+      "type": "text",
+      "id": "cta_2_label",
+      "label": "Botón 2 — texto (opcional)"
+    },
+    {
+      "type": "url",
+      "id": "cta_2_url",
+      "label": "Botón 2 — enlace"
+    },
+    {
+      "type": "header",
+      "content": "Imágenes"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Imagen de fondo (opcional)",
+      "info": "Si no se elige imagen, el fondo es onix sólido"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Imagen de producto (solo en layout Dividido)"
+    },
+    {
+      "type": "header",
+      "content": "Extras"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_scroll_hint",
+      "label": "Mostrar indicador de scroll",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero — Fagans",
+      "settings": {
+        "layout": "split",
+        "min_height": 90,
+        "eyebrow": "Fagans Perfumería · Originales",
+        "heading": "La fragancia perfecta empieza con una decisión",
+        "subheading": "Originales e importados. Diseñador, nicho y árabe.",
+        "cta_1_label": "Ver catálogo",
+        "show_scroll_hint": true
+      }
+    }
+  ]
+}
+{% endschema %}

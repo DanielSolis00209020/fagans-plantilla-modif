@@ -1,0 +1,217 @@
+/* ═══════════════════════════════════════════════════════════════
+   FAGANS PRODUCT META — Metadata de fragancia (estilo Fragrantica)
+   Acordes con barras proporcionales, ficha de perfil, banner sold-out
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Wrapper ────────────────────────────────────────────────── */
+
+.fagans-pmeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--f-onix-10, rgba(14,15,15,.10));
+  margin-top: var(--f-space-6, 32px);
+}
+
+/* ── Sold-out banner ────────────────────────────────────────── */
+
+.fagans-pmeta__soldout-banner {
+  background: var(--f-sandalo-20, #F0E8ED);
+  border-left: 3px solid var(--f-sandalo, #C79FB8);
+  padding: 18px 24px;
+  margin-bottom: 0;
+}
+
+.fagans-pmeta__soldout-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.fagans-pmeta__soldout-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.fagans-pmeta__soldout-text strong {
+  font-family: var(--f-sans, system-ui, sans-serif);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--f-nogal, #582D0C);
+}
+
+.fagans-pmeta__soldout-text span {
+  font-family: var(--f-sans, system-ui, sans-serif);
+  font-size: 0.8125rem;
+  color: var(--f-onix-60, #464747);
+  line-height: 1.5;
+}
+
+/* ── Bloques internos ───────────────────────────────────────── */
+
+.fagans-pmeta__block {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--f-onix-10, rgba(14,15,15,.10));
+}
+
+.fagans-pmeta__block:last-child {
+  border-bottom: none;
+}
+
+.fagans-pmeta__block-title {
+  margin: 0 0 18px;
+}
+
+/* ── Acordes: barras ────────────────────────────────────────── */
+
+.fagans-pmeta__acordes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.fagans-acorde {
+  display: grid;
+  grid-template-columns: 130px 1fr auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.fagans-acorde__label {
+  font-family: var(--f-sans, system-ui, sans-serif);
+  font-size: 0.8125rem;
+  color: var(--f-onix, #0E0F0F);
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fagans-acorde__bar-track {
+  height: 6px;
+  background: var(--f-platino, #F1F1F1);
+  border-radius: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.fagans-acorde__bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: var(--acorde-pct, 60%);
+  background: var(--f-onix, #0E0F0F);
+  border-radius: 0;
+  transition: width 0.6s var(--f-ease-snap, cubic-bezier(0.22, 1, 0.36, 1));
+  transform-origin: left;
+}
+
+/* Animación de entrada — barra crece desde 0 */
+[data-f-reveal].is-visible .fagans-acorde__bar {
+  animation: f-bar-grow 0.7s var(--f-ease-snap) both;
+}
+@keyframes f-bar-grow {
+  from { width: 0; }
+  to   { width: var(--acorde-pct, 60%); }
+}
+
+.fagans-acorde__pct {
+  font-family: var(--f-sans, system-ui, sans-serif);
+  font-size: 0.6875rem;
+  color: var(--f-onix-40, #6E6F6F);
+  min-width: 30px;
+  text-align: right;
+}
+
+/* ── Ficha de perfil (tabla DL) ─────────────────────────────── */
+
+.fagans-pmeta__ficha {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.fagans-pmeta__row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  align-items: start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--f-onix-06, rgba(14,15,15,.06));
+}
+
+.fagans-pmeta__row:last-child {
+  border-bottom: none;
+}
+
+.fagans-pmeta__row dt {
+  font-family: var(--f-sans, system-ui, sans-serif);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--f-onix-40, #6E6F6F);
+  padding-top: 3px;
+}
+
+.fagans-pmeta__row dd {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 0;
+}
+
+/* ── Nota de autenticidad ───────────────────────────────────── */
+
+.fagans-pmeta__authenticity {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 14px 0;
+  color: var(--f-onix-60, #464747);
+}
+
+.fagans-pmeta__authenticity svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--f-sandalo, #C79FB8);
+}
+
+.fagans-pmeta__authenticity span {
+  font-family: var(--f-sans, system-ui, sans-serif);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .fagans-acorde {
+    grid-template-columns: 100px 1fr 28px;
+    gap: 8px;
+  }
+
+  .fagans-pmeta__soldout-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .fagans-pmeta__row {
+    grid-template-columns: 90px 1fr;
+  }
+}
+
+/* ── prefers-reduced-motion ──────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .fagans-acorde__bar {
+    animation: none !important;
+    transition: none !important;
+  }
+}

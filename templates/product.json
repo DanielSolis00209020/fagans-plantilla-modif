@@ -324,6 +324,14 @@
         "offset_bottom_mobile": 25
       }
     },
+    "fagans-product-meta": {
+      "type": "fagans-product-meta",
+      "settings": {
+        "preorder_message": "Disponible bajo pedido — tiempo estimado aproximado: 2 semanas.",
+        "show_authenticity_note": true,
+        "authenticity_text": "100% original e importado. Cada producto viene con garantía de autenticidad."
+      }
+    },
     "product-recommendations": {
       "type": "product-recommendations",
       "settings": {
@@ -367,6 +375,7 @@
   },
   "order": [
     "product-template",
+    "fagans-product-meta",
     "specifications",
     "our_story",
     "175531540922c1264b",
