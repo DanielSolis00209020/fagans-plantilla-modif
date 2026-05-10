@@ -16,8 +16,8 @@
 
   comment — Metafields de metaobjetos
   endcomment
-  assign aroma_mf   = p.metafields.shopify.aroma
-  assign gender_mf  = p.metafields.shopify.gender
+  assign aroma_mf   = p.metafields.shopify.fragrance
+  assign gender_mf  = p.metafields['shopify']['target-gender']
   assign occasion_mf = p.metafields.shopify.occasion
   assign season_mf  = p.metafields.shopify.season
 
@@ -50,9 +50,8 @@
 
   {%- comment -%}══ ACORDES PRINCIPALES ══{%- endcomment -%}
   {%- if aroma_mf != blank -%}
-    {%- assign aroma_val = aroma_mf.value -%}
     {%- assign has_acordes = false -%}
-    {%- if aroma_val.first or aroma_val != blank -%}
+    {%- if aroma_mf.references.first -%}
       {%- assign has_acordes = true -%}
     {%- endif -%}
 
@@ -62,55 +61,20 @@
           <span class="f-eyebrow">Acordes principales</span>
         </h3>
         <div class="fagans-pmeta__acordes">
-          {%- if aroma_val.first -%}
-            {%- for acorde in aroma_val limit: 8 -%}
-              {%- assign acorde_label = '' -%}
-              {%- assign acorde_pct   = 0 -%}
-
-              {%- if acorde.label != blank -%}
-                {%- assign acorde_label = acorde.label -%}
-                {%- if acorde.intensity != blank -%}
-                  {%- assign acorde_pct = acorde.intensity | times: 100 | round -%}
-                {%- elsif acorde.percentage != blank -%}
-                  {%- assign acorde_pct = acorde.percentage | round -%}
-                {%- else -%}
-                  {%- assign acorde_pct = 100 | minus: forloop.index0 | times: 12 -%}
-                  {%- if acorde_pct < 25 %}{%- assign acorde_pct = 25 -%}{%- endif -%}
-                {%- endif -%}
-              {%- elsif acorde != blank -%}
-                {%- assign parts = acorde | split: '; ' -%}
-                {%- assign acorde_label = parts[0] -%}
-                {%- assign acorde_pct = 100 | minus: forloop.index0 | times: 12 -%}
-                {%- if acorde_pct < 25 %}{%- assign acorde_pct = 25 -%}{%- endif -%}
-              {%- endif -%}
-
-              {%- if acorde_label != blank -%}
-                <div class="fagans-acorde">
-                  <span class="fagans-acorde__label">{{ acorde_label }}</span>
-                  <div class="fagans-acorde__bar-track">
-                    <div class="fagans-acorde__bar" style="--acorde-pct: {{ acorde_pct }}%"></div>
-                  </div>
-                  <span class="fagans-acorde__pct">{{ acorde_pct }}%</span>
-                </div>
-              {%- endif -%}
-            {%- endfor -%}
-          {%- elsif aroma_val != blank -%}
-            {%- comment -%}Texto plano separado por ; o ,{%- endcomment -%}
-            {%- assign raw_parts = aroma_val | split: '; ' -%}
-            {%- if raw_parts.size == 1 -%}
-              {%- assign raw_parts = aroma_val | split: ', ' -%}
-            {%- endif -%}
-            {%- for acorde_str in raw_parts limit: 8 -%}
-              {%- assign fallback_pct = 100 | minus: forloop.index0 | times: 12 -%}
-              {%- if fallback_pct < 20 %}{%- assign fallback_pct = 20 -%}{%- endif -%}
+          {%- for acorde in aroma_mf.references limit: 8 -%}
+            {%- assign acorde_label = acorde.label | default: '' -%}
+            {%- if acorde_label != blank -%}
+              {%- assign acorde_pct = 100 | minus: forloop.index0 | times: 12 -%}
+              {%- if acorde_pct < 25 %}{%- assign acorde_pct = 25 -%}{%- endif -%}
               <div class="fagans-acorde">
-                <span class="fagans-acorde__label">{{ acorde_str | strip }}</span>
+                <span class="fagans-acorde__label">{{ acorde_label }}</span>
                 <div class="fagans-acorde__bar-track">
-                  <div class="fagans-acorde__bar" style="--acorde-pct: {{ fallback_pct }}%"></div>
+                  <div class="fagans-acorde__bar" style="--acorde-pct: {{ acorde_pct }}%"></div>
                 </div>
+                <span class="fagans-acorde__pct">{{ acorde_pct }}%</span>
               </div>
-            {%- endfor -%}
-          {%- endif -%}
+            {%- endif -%}
+          {%- endfor -%}
         </div>
       </div>
     {%- endif -%}
@@ -136,13 +100,18 @@
         {%- comment -%}── Género ─────────────────────────────────────────{%- endcomment -%}
         {%- assign gender_display = '' -%}
         {%- if gender_mf != blank -%}
-          {%- assign gender_display = gender_mf.value -%}
-        {%- elsif p.tags contains 'masculino' -%}
-          {%- assign gender_display = 'Masculino' -%}
-        {%- elsif p.tags contains 'femenino' -%}
-          {%- assign gender_display = 'Femenino' -%}
-        {%- elsif p.tags contains 'unisex' -%}
-          {%- assign gender_display = 'Unisex' -%}
+          {%- for g in gender_mf.references limit: 1 -%}
+            {%- assign gender_display = g.label | default: '' -%}
+          {%- endfor -%}
+        {%- endif -%}
+        {%- if gender_display == blank -%}
+          {%- if p.tags contains 'masculino' -%}
+            {%- assign gender_display = 'Masculino' -%}
+          {%- elsif p.tags contains 'femenino' -%}
+            {%- assign gender_display = 'Femenino' -%}
+          {%- elsif p.tags contains 'unisex' -%}
+            {%- assign gender_display = 'Unisex' -%}
+          {%- endif -%}
         {%- endif -%}
         {%- if gender_display != blank -%}
           <div class="fagans-pmeta__row">
