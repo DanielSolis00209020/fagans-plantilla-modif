@@ -30,6 +30,23 @@ Solo después de estos 3 pasos, empezar a trabajar.
 
 ---
 
+## VERIFICACIÓN ANTES DE PUBLICAR (obligatorio)
+
+Antes de hacer push al live, siempre verificar visualmente:
+
+```bash
+# TÚ corres esto en una terminal aparte:
+shopify theme dev --theme 187908981099 --store bhrcza-ne.myshopify.com
+```
+
+- Abre http://127.0.0.1:9292 en el navegador
+- Claude puede navegar a esa URL para verificar que los cambios se ven bien
+- Sin `--theme 187908981099` apunta al tema de desarrollo por defecto — tema equivocado
+
+Solo después de confirmar visualmente, hacer el push al live.
+
+---
+
 ## CIERRE DE SESIÓN — después de terminar cambios
 
 ```bash
@@ -38,7 +55,7 @@ git add .
 git commit -m "feat: descripción del cambio"
 git push origin main
 
-# 2. Subir a Shopify
+# 2. Subir a Shopify (solo después de verificar con theme dev)
 shopify theme push --theme 187908981099 --store bhrcza-ne.myshopify.com --allow-live
 ```
 
