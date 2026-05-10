@@ -14,12 +14,19 @@
 {%- liquid
   assign p = product
 
-  comment — Metafields de metaobjetos
+  comment — Metafields de metaobjetos (shopify taxonomy)
   endcomment
-  assign aroma_mf   = p.metafields.shopify.fragrance
-  assign gender_mf  = p.metafields['shopify']['target-gender']
+  assign aroma_mf    = p.metafields.shopify.fragrance
+  assign gender_mf   = p.metafields['shopify']['target-gender']
   assign occasion_mf = p.metafields.shopify.occasion
-  assign season_mf  = p.metafields.shopify.season
+  assign season_mf   = p.metafields.shopify.season
+
+  comment — Metafields custom (texto plano, misma data, fallback confiable)
+  endcomment
+  assign custom_aroma    = p.metafields.custom.aroma
+  assign custom_gender   = p.metafields.custom.gender
+  assign custom_occasion = p.metafields.custom.occasion
+  assign custom_season   = p.metafields.custom.season
 
   comment — Fallback fragancia (misma data que aroma)
   endcomment
@@ -67,6 +74,30 @@
         {%- endif -%}
       {%- endfor -%}
     {%- endcapture -%}
+    {%- comment -%}Fallback: custom.aroma si shopify.fragrance no cargó{%- endcomment -%}
+    {%- if acordes_html == blank and custom_aroma != blank -%}
+      {%- capture acordes_html -%}
+        {%- assign _ca_idx = 0 -%}
+        {%- for raw in custom_aroma.value limit: 1 -%}
+          {%- assign _ca_parts = raw | split: '; ' -%}
+          {%- for _cp in _ca_parts limit: 8 -%}
+            {%- assign _cp = _cp | strip -%}
+            {%- if _cp != blank -%}
+              {%- assign _ca_pct = 100 | minus: _ca_idx | times: 12 -%}
+              {%- if _ca_pct < 25 %}{%- assign _ca_pct = 25 -%}{%- endif -%}
+              <div class="fagans-acorde">
+                <span class="fagans-acorde__label">{{ _cp }}</span>
+                <div class="fagans-acorde__bar-track">
+                  <div class="fagans-acorde__bar" style="--acorde-pct: {{ _ca_pct }}%"></div>
+                </div>
+                <span class="fagans-acorde__pct">{{ _ca_pct }}%</span>
+              </div>
+              {%- assign _ca_idx = _ca_idx | plus: 1 -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endfor -%}
+      {%- endcapture -%}
+    {%- endif -%}
     {%- unless acordes_html == blank -%}
       <div class="fagans-pmeta__block fagans-pmeta__block--acordes">
         <h3 class="fagans-pmeta__block-title">
@@ -102,6 +133,9 @@
             {%- assign gender_display = gender_display | strip -%}
           {%- endfor -%}
         {%- endif -%}
+        {%- if gender_display == blank and custom_gender != blank -%}
+          {%- assign gender_display = custom_gender.value | strip -%}
+        {%- endif -%}
         {%- if gender_display == blank -%}
           {%- if p.tags contains 'masculino' -%}
             {%- assign gender_display = 'Masculino' -%}
@@ -135,7 +169,18 @@
             {%- endif -%}
           {%- endfor -%}
         {%- endcapture -%}
-        {%- if season_mf != blank and season_badges != blank -%}
+        {%- if season_badges == blank and custom_season != blank -%}
+          {%- capture season_badges -%}
+            {%- for raw in custom_season.value limit: 1 -%}
+              {%- assign _s_parts = raw | split: '; ' -%}
+              {%- for _sp in _s_parts -%}
+                {%- assign _sp = _sp | strip -%}
+                {%- if _sp != blank -%}<span class="f-badge f-badge--season">{{ _sp }}</span>{%- endif -%}
+              {%- endfor -%}
+            {%- endfor -%}
+          {%- endcapture -%}
+        {%- endif -%}
+        {%- if season_badges != blank -%}
           <div class="fagans-pmeta__row">
             <dt>Temporada</dt>
             <dd>{{ season_badges }}</dd>
@@ -162,7 +207,18 @@
             {%- endif -%}
           {%- endfor -%}
         {%- endcapture -%}
-        {%- if occasion_mf != blank and occasion_badges != blank -%}
+        {%- if occasion_badges == blank and custom_occasion != blank -%}
+          {%- capture occasion_badges -%}
+            {%- for raw in custom_occasion.value limit: 1 -%}
+              {%- assign _o_parts = raw | split: '; ' -%}
+              {%- for _op in _o_parts -%}
+                {%- assign _op = _op | strip -%}
+                {%- if _op != blank -%}<span class="f-badge f-badge--occasion">{{ _op }}</span>{%- endif -%}
+              {%- endfor -%}
+            {%- endfor -%}
+          {%- endcapture -%}
+        {%- endif -%}
+        {%- if occasion_mf != blank and occasion_badges != blank or custom_occasion != blank and occasion_badges != blank -%}
           <div class="fagans-pmeta__row">
             <dt>Ocasión</dt>
             <dd>{{ occasion_badges }}</dd>

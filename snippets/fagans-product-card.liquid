@@ -73,29 +73,30 @@
   assign tag_str = product.tags | join: ',' | downcase
 -%}
 
-{%- comment -%}── Aromas display string ──────────────────────────────────────{%- endcomment -%}
+{%- comment -%}── Aromas: custom.aroma (texto plano, completo) → fallback shopify.fragrance ──{%- endcomment -%}
 {%- assign aroma_display = '' -%}
-{%- if aroma_mf != blank -%}
-  {%- for item in aroma_mf.references limit: 5 -%}
-    {%- capture label_str -%}{{ item.label }}{%- endcapture -%}
-    {%- assign label_str = label_str | strip -%}
-    {%- if label_str != blank -%}
-      {%- unless aroma_display == '' -%}{%- assign aroma_display = aroma_display | append: ' · ' -%}{%- endunless -%}
-      {%- assign aroma_display = aroma_display | append: label_str -%}
-    {%- endif -%}
+{%- assign _custom_aroma = product.metafields.custom.aroma -%}
+{%- if _custom_aroma != blank -%}
+  {%- for raw in _custom_aroma.value limit: 1 -%}
+    {%- assign _parts = raw | split: '; ' -%}
+    {%- for p in _parts limit: 8 -%}
+      {%- assign _p = p | strip -%}
+      {%- if _p != blank -%}
+        {%- unless aroma_display == '' -%}{%- assign aroma_display = aroma_display | append: ' · ' -%}{%- endunless -%}
+        {%- assign aroma_display = aroma_display | append: _p -%}
+      {%- endif -%}
+    {%- endfor -%}
   {%- endfor -%}
 {%- endif -%}
-{%- if aroma_display == blank and product.metafields.custom.aroma != blank -%}
-  {%- assign fallback_val = product.metafields.custom.aroma.value -%}
-  {%- if fallback_val.first -%}
-    {%- for item in fallback_val limit: 4 -%}
-      {%- assign parts = item | split: '; ' -%}
+{%- if aroma_display == blank and aroma_mf != blank -%}
+  {%- for item in aroma_mf.references limit: 5 -%}
+    {%- capture _lbl -%}{{ item.label }}{%- endcapture -%}
+    {%- assign _lbl = _lbl | strip -%}
+    {%- if _lbl != blank -%}
       {%- unless aroma_display == '' -%}{%- assign aroma_display = aroma_display | append: ' · ' -%}{%- endunless -%}
-      {%- assign aroma_display = aroma_display | append: parts[0] -%}
-    {%- endfor -%}
-  {%- else -%}
-    {%- assign aroma_display = fallback_val | truncatewords: 5, '' -%}
-  {%- endif -%}
+      {%- assign aroma_display = aroma_display | append: _lbl -%}
+    {%- endif -%}
+  {%- endfor -%}
 {%- endif -%}
 
 {%- assign target_variant = product.first_available_variant | default: product.variants.first -%}
