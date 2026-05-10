@@ -216,6 +216,48 @@
   color: var(--f-onix-40); /* queda gris incluso sobre onix */
 }
 
+/* ── Tallas / ml ────────────────────────────────────────────── */
+
+.fagans-pcard__sizes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.fagans-size-chip {
+  font-family: var(--f-sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--f-onix-60, rgba(14,15,15,.6));
+  background: transparent;
+  border: 1px solid var(--f-onix-20, rgba(14,15,15,.2));
+  padding: 2px 6px;
+  white-space: nowrap;
+  transition:
+    color var(--f-dur-fast) var(--f-ease-out-quart),
+    border-color var(--f-dur-fast) var(--f-ease-out-quart);
+}
+
+.fagans-size-chip--active {
+  color: var(--f-onix);
+  border-color: var(--f-onix-60, rgba(14,15,15,.6));
+}
+
+.fagans-pcard:hover .fagans-size-chip {
+  color: var(--f-blanco-60, rgba(255,255,255,.6));
+  border-color: rgba(255,255,255,.2);
+}
+
+.fagans-pcard:hover .fagans-size-chip--active {
+  color: var(--f-blanco);
+  border-color: rgba(255,255,255,.5);
+}
+
+.fagans-size-chip--more {
+  border-style: dashed;
+}
+
 /* ── CTA ────────────────────────────────────────────────────── */
 
 .fagans-pcard__cta {

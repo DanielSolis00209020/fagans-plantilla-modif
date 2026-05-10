@@ -5,7 +5,7 @@
 {%- endcomment -%}
 
 {%- assign aroma_ns  = section.settings.aroma_namespace | default: 'shopify' -%}
-{%- assign aroma_key = section.settings.aroma_metafield | default: 'aroma' -%}
+{%- assign aroma_key = section.settings.aroma_metafield | default: 'fragrance' -%}
 {%- assign active_handle = collection.handle -%}
 
 {{ 'fagans-catalog.css' | asset_url | stylesheet_tag }}
@@ -69,7 +69,17 @@
       </select>
 
       <div class="fagans-grid-toggle" aria-label="Cambiar columnas">
-        <button class="fagans-gtoggle" data-cols="4" data-target="fagans-product-grid-{{ section.id }}" type="button" title="4 columnas" aria-pressed="true">
+        <button class="fagans-gtoggle fagans-gtoggle--active" data-cols="5" data-target="fagans-product-grid-{{ section.id }}" type="button" title="5 columnas" aria-pressed="true">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <rect x="0"   y="0" width="2.2" height="7"/><rect x="3.4" y="0" width="2.2" height="7"/>
+            <rect x="6.9" y="0" width="2.2" height="7"/><rect x="10.4" y="0" width="2.2" height="7"/>
+            <rect x="13.8" y="0" width="2.2" height="7"/>
+            <rect x="0"   y="9" width="2.2" height="7"/><rect x="3.4" y="9" width="2.2" height="7"/>
+            <rect x="6.9" y="9" width="2.2" height="7"/><rect x="10.4" y="9" width="2.2" height="7"/>
+            <rect x="13.8" y="9" width="2.2" height="7"/>
+          </svg>
+        </button>
+        <button class="fagans-gtoggle" data-cols="4" data-target="fagans-product-grid-{{ section.id }}" type="button" title="4 columnas" aria-pressed="false">
           <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
             <rect x="0"    y="0" width="3" height="7"/><rect x="4.3"  y="0" width="3" height="7"/>
             <rect x="8.6"  y="0" width="3" height="7"/><rect x="12.9" y="0" width="3" height="7"/>

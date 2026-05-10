@@ -172,9 +172,13 @@
 
 .fagans-catalog__grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 1px;
   background: var(--f-onix-10, rgba(14,15,15,.10));
+}
+
+.fagans-catalog__grid[data-cols="4"] {
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .fagans-catalog__grid[data-cols="3"] {
@@ -183,12 +187,20 @@
 
 @media (max-width: 1199px) {
   .fagans-catalog__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .fagans-catalog__grid,
+  .fagans-catalog__grid[data-cols="4"] {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 767px) {
   .fagans-catalog__grid,
+  .fagans-catalog__grid[data-cols="4"],
   .fagans-catalog__grid[data-cols="3"] {
     grid-template-columns: repeat(2, 1fr);
   }
