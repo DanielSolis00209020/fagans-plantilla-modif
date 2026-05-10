@@ -128,18 +128,18 @@
         {%- endif -%}
 
         {%- comment -%}── Temporada ──────────────────────────────────────{%- endcomment -%}
-        {%- if season_mf != blank -%}
+        {%- assign season_has_ref = false -%}
+        {%- for s in season_mf.references limit: 6 -%}{%- assign season_has_ref = true -%}{%- break -%}{%- endfor -%}
+        {%- if season_mf != blank and season_has_ref -%}
           <div class="fagans-pmeta__row">
             <dt>Temporada</dt>
             <dd>
-              {%- assign season_val = season_mf.value -%}
-              {%- if season_val.first -%}
-                {%- for s in season_val -%}
-                  <span class="f-badge f-badge--season">{{ s }}</span>
-                {%- endfor -%}
-              {%- else -%}
-                <span class="f-badge f-badge--season">{{ season_val }}</span>
-              {%- endif -%}
+              {%- for s in season_mf.references limit: 6 -%}
+                {%- assign s_label = s.label | default: '' -%}
+                {%- if s_label != blank -%}
+                  <span class="f-badge f-badge--season">{{ s_label }}</span>
+                {%- endif -%}
+              {%- endfor -%}
             </dd>
           </div>
         {%- elsif p.tags contains 'primavera' or p.tags contains 'verano' or p.tags contains 'otoño' or p.tags contains 'invierno' -%}
@@ -159,14 +159,12 @@
           <div class="fagans-pmeta__row">
             <dt>Ocasión</dt>
             <dd>
-              {%- assign occ_val = occasion_mf.value -%}
-              {%- if occ_val.first -%}
-                {%- for o in occ_val -%}
-                  <span class="f-badge f-badge--occasion">{{ o }}</span>
-                {%- endfor -%}
-              {%- else -%}
-                <span class="f-badge f-badge--occasion">{{ occ_val }}</span>
-              {%- endif -%}
+              {%- for o in occasion_mf.references limit: 6 -%}
+                {%- assign o_label = o.label | default: '' -%}
+                {%- if o_label != blank -%}
+                  <span class="f-badge f-badge--occasion">{{ o_label }}</span>
+                {%- endif -%}
+              {%- endfor -%}
             </dd>
           </div>
         {%- endif -%}

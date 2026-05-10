@@ -263,6 +263,19 @@
 .fagans-pcard__cta {
   margin-top: auto;
   padding-top: var(--f-space-2);
+  opacity: 0;
+  transform: translateY(5px);
+  transition:
+    opacity var(--f-dur-base) var(--f-ease-out-quart),
+    transform var(--f-dur-base) var(--f-ease-out-quart),
+    background var(--f-dur-fast) var(--f-ease-out-quart),
+    color var(--f-dur-fast) var(--f-ease-out-quart),
+    border-color var(--f-dur-fast) var(--f-ease-out-quart);
+}
+
+.fagans-pcard:hover .fagans-pcard__cta {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Cuando el card está en hover, el botón primario cambia a ghost */
