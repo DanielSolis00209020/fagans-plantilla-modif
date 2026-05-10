@@ -50,34 +50,31 @@
 
   {%- comment -%}══ ACORDES PRINCIPALES ══{%- endcomment -%}
   {%- if aroma_mf != blank -%}
-    {%- assign has_acordes = false -%}
-    {%- if aroma_mf.references.first -%}
-      {%- assign has_acordes = true -%}
-    {%- endif -%}
-
-    {%- if has_acordes -%}
+    {%- capture acordes_html -%}
+      {%- for acorde in aroma_mf.references limit: 8 -%}
+        {%- capture acorde_label -%}{{ acorde.label }}{%- endcapture -%}
+        {%- assign acorde_label = acorde_label | strip -%}
+        {%- if acorde_label != blank -%}
+          {%- assign acorde_pct = 100 | minus: forloop.index0 | times: 12 -%}
+          {%- if acorde_pct < 25 %}{%- assign acorde_pct = 25 -%}{%- endif -%}
+          <div class="fagans-acorde">
+            <span class="fagans-acorde__label">{{ acorde_label }}</span>
+            <div class="fagans-acorde__bar-track">
+              <div class="fagans-acorde__bar" style="--acorde-pct: {{ acorde_pct }}%"></div>
+            </div>
+            <span class="fagans-acorde__pct">{{ acorde_pct }}%</span>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endcapture -%}
+    {%- unless acordes_html == blank -%}
       <div class="fagans-pmeta__block fagans-pmeta__block--acordes">
         <h3 class="fagans-pmeta__block-title">
           <span class="f-eyebrow">Acordes principales</span>
         </h3>
-        <div class="fagans-pmeta__acordes">
-          {%- for acorde in aroma_mf.references limit: 8 -%}
-            {%- assign acorde_label = acorde.label | default: '' -%}
-            {%- if acorde_label != blank -%}
-              {%- assign acorde_pct = 100 | minus: forloop.index0 | times: 12 -%}
-              {%- if acorde_pct < 25 %}{%- assign acorde_pct = 25 -%}{%- endif -%}
-              <div class="fagans-acorde">
-                <span class="fagans-acorde__label">{{ acorde_label }}</span>
-                <div class="fagans-acorde__bar-track">
-                  <div class="fagans-acorde__bar" style="--acorde-pct: {{ acorde_pct }}%"></div>
-                </div>
-                <span class="fagans-acorde__pct">{{ acorde_pct }}%</span>
-              </div>
-            {%- endif -%}
-          {%- endfor -%}
-        </div>
+        <div class="fagans-pmeta__acordes">{{ acordes_html }}</div>
       </div>
-    {%- endif -%}
+    {%- endunless -%}
   {%- endif -%}
 
   {%- comment -%}══ FICHA DE METADATA ══{%- endcomment -%}
@@ -101,7 +98,8 @@
         {%- assign gender_display = '' -%}
         {%- if gender_mf != blank -%}
           {%- for g in gender_mf.references limit: 1 -%}
-            {%- assign gender_display = g.label | default: '' -%}
+            {%- capture gender_display -%}{{ g.label }}{%- endcapture -%}
+            {%- assign gender_display = gender_display | strip -%}
           {%- endfor -%}
         {%- endif -%}
         {%- if gender_display == blank -%}
@@ -128,19 +126,19 @@
         {%- endif -%}
 
         {%- comment -%}── Temporada ──────────────────────────────────────{%- endcomment -%}
-        {%- assign season_has_ref = false -%}
-        {%- for s in season_mf.references limit: 6 -%}{%- assign season_has_ref = true -%}{%- break -%}{%- endfor -%}
-        {%- if season_mf != blank and season_has_ref -%}
+        {%- capture season_badges -%}
+          {%- for s in season_mf.references limit: 6 -%}
+            {%- capture s_label -%}{{ s.label }}{%- endcapture -%}
+            {%- assign s_label = s_label | strip -%}
+            {%- if s_label != blank -%}
+              <span class="f-badge f-badge--season">{{ s_label }}</span>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endcapture -%}
+        {%- if season_mf != blank and season_badges != blank -%}
           <div class="fagans-pmeta__row">
             <dt>Temporada</dt>
-            <dd>
-              {%- for s in season_mf.references limit: 6 -%}
-                {%- assign s_label = s.label | default: '' -%}
-                {%- if s_label != blank -%}
-                  <span class="f-badge f-badge--season">{{ s_label }}</span>
-                {%- endif -%}
-              {%- endfor -%}
-            </dd>
+            <dd>{{ season_badges }}</dd>
           </div>
         {%- elsif p.tags contains 'primavera' or p.tags contains 'verano' or p.tags contains 'otoño' or p.tags contains 'invierno' -%}
           <div class="fagans-pmeta__row">
@@ -155,17 +153,19 @@
         {%- endif -%}
 
         {%- comment -%}── Ocasión ────────────────────────────────────────{%- endcomment -%}
-        {%- if occasion_mf != blank -%}
+        {%- capture occasion_badges -%}
+          {%- for o in occasion_mf.references limit: 6 -%}
+            {%- capture o_label -%}{{ o.label }}{%- endcapture -%}
+            {%- assign o_label = o_label | strip -%}
+            {%- if o_label != blank -%}
+              <span class="f-badge f-badge--occasion">{{ o_label }}</span>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endcapture -%}
+        {%- if occasion_mf != blank and occasion_badges != blank -%}
           <div class="fagans-pmeta__row">
             <dt>Ocasión</dt>
-            <dd>
-              {%- for o in occasion_mf.references limit: 6 -%}
-                {%- assign o_label = o.label | default: '' -%}
-                {%- if o_label != blank -%}
-                  <span class="f-badge f-badge--occasion">{{ o_label }}</span>
-                {%- endif -%}
-              {%- endfor -%}
-            </dd>
+            <dd>{{ occasion_badges }}</dd>
           </div>
         {%- endif -%}
 

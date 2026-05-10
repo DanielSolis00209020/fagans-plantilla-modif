@@ -37,7 +37,10 @@
   assign gender_class = ''
   if gender_mf != blank
     for g in gender_mf.references limit: 1
-      assign gender_raw = g.label | default: ''
+      capture gender_raw
+        echo g.label
+      endcapture
+      assign gender_raw = gender_raw | strip
       assign gender_raw_str = gender_raw | downcase
       if gender_raw_str contains 'masc' or gender_raw_str contains 'hombre' or gender_raw_str contains 'him' or gender_raw_str contains 'man'
         assign gender_val = gender_raw
@@ -74,7 +77,8 @@
 {%- assign aroma_display = '' -%}
 {%- if aroma_mf != blank -%}
   {%- for item in aroma_mf.references limit: 5 -%}
-    {%- assign label_str = item.label | default: '' -%}
+    {%- capture label_str -%}{{ item.label }}{%- endcapture -%}
+    {%- assign label_str = label_str | strip -%}
     {%- if label_str != blank -%}
       {%- unless aroma_display == '' -%}{%- assign aroma_display = aroma_display | append: ' · ' -%}{%- endunless -%}
       {%- assign aroma_display = aroma_display | append: label_str -%}
