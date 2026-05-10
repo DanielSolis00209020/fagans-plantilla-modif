@@ -68,24 +68,13 @@
 {%- comment -%}── Aromas display string ──────────────────────────────────────{%- endcomment -%}
 {%- assign aroma_display = '' -%}
 {%- if aroma_mf != blank -%}
-  {%- assign aroma_val = aroma_mf.value -%}
-  {%- if aroma_val.first -%}
-    {%- for item in aroma_val limit: 4 -%}
-      {%- assign item_str = '' -%}
-      {%- if item.label != blank -%}
-        {%- assign item_str = item.label -%}
-      {%- elsif item != blank -%}
-        {%- assign parts = item | split: '; ' -%}
-        {%- assign item_str = parts[0] -%}
-      {%- endif -%}
-      {%- if item_str != blank -%}
-        {%- unless aroma_display == '' -%}{%- assign aroma_display = aroma_display | append: ' · ' -%}{%- endunless -%}
-        {%- assign aroma_display = aroma_display | append: item_str -%}
-      {%- endif -%}
-    {%- endfor -%}
-  {%- elsif aroma_val != blank -%}
-    {%- assign aroma_display = aroma_val | truncatewords: 6, '' -%}
-  {%- endif -%}
+  {%- for item in aroma_mf.references limit: 5 -%}
+    {%- assign label_str = item.label | default: '' -%}
+    {%- if label_str != blank -%}
+      {%- unless aroma_display == '' -%}{%- assign aroma_display = aroma_display | append: ' · ' -%}{%- endunless -%}
+      {%- assign aroma_display = aroma_display | append: label_str -%}
+    {%- endif -%}
+  {%- endfor -%}
 {%- endif -%}
 {%- if aroma_display == blank and product.metafields.custom.aroma != blank -%}
   {%- assign fallback_val = product.metafields.custom.aroma.value -%}
