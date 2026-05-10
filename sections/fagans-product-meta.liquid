@@ -62,10 +62,11 @@
         {%- capture acorde_label -%}{{ acorde.label }}{%- endcapture -%}
         {%- assign acorde_label = acorde_label | strip -%}
         {%- if acorde_label != blank -%}
-          {%- assign acorde_pct = 100 | minus: forloop.index0 | times: 12 -%}
+          {%- assign _step = forloop.index0 | times: 12 -%}
+          {%- assign acorde_pct = 100 | minus: _step -%}
           {%- if acorde_pct < 25 %}{%- assign acorde_pct = 25 -%}{%- endif -%}
           <div class="fagans-acorde">
-            <span class="fagans-acorde__label">{{ acorde_label }}</span>
+            <span class="fagans-acorde__label">{%- render 'fagans-translate-meta', value: acorde_label -%}</span>
             <div class="fagans-acorde__bar-track">
               <div class="fagans-acorde__bar" style="--acorde-pct: {{ acorde_pct }}%"></div>
             </div>
@@ -83,10 +84,11 @@
           {%- for _cp in _ca_parts limit: 8 -%}
             {%- assign _cp = _cp | strip -%}
             {%- if _cp != blank -%}
-              {%- assign _ca_pct = 100 | minus: _ca_idx | times: 12 -%}
+              {%- assign _step = _ca_idx | times: 12 -%}
+              {%- assign _ca_pct = 100 | minus: _step -%}
               {%- if _ca_pct < 25 %}{%- assign _ca_pct = 25 -%}{%- endif -%}
               <div class="fagans-acorde">
-                <span class="fagans-acorde__label">{{ _cp }}</span>
+                <span class="fagans-acorde__label">{%- render 'fagans-translate-meta', value: _cp -%}</span>
                 <div class="fagans-acorde__bar-track">
                   <div class="fagans-acorde__bar" style="--acorde-pct: {{ _ca_pct }}%"></div>
                 </div>
@@ -150,10 +152,10 @@
             <dt>Género</dt>
             <dd>
               {%- assign gender_lower = gender_display | downcase -%}
-              {%- if gender_lower contains 'masc' or gender_lower contains 'hombre' -%}
-                <span class="f-badge f-badge--masc">{{ gender_display }}</span>
+              {%- if gender_lower contains 'masc' or gender_lower contains 'hombre' or gender_lower contains 'male' or gender_lower contains 'man' -%}
+                <span class="f-badge f-badge--masc">{%- render 'fagans-translate-meta', value: gender_display -%}</span>
               {%- else -%}
-                <span class="f-badge f-badge--fem">{{ gender_display }}</span>
+                <span class="f-badge f-badge--fem">{%- render 'fagans-translate-meta', value: gender_display -%}</span>
               {%- endif -%}
             </dd>
           </div>
@@ -165,7 +167,7 @@
             {%- capture s_label -%}{{ s.label }}{%- endcapture -%}
             {%- assign s_label = s_label | strip -%}
             {%- if s_label != blank -%}
-              <span class="f-badge f-badge--season">{{ s_label }}</span>
+              <span class="f-badge f-badge--season">{%- render 'fagans-translate-meta', value: s_label -%}</span>
             {%- endif -%}
           {%- endfor -%}
         {%- endcapture -%}
@@ -175,7 +177,7 @@
               {%- assign _s_parts = raw | split: '; ' -%}
               {%- for _sp in _s_parts -%}
                 {%- assign _sp = _sp | strip -%}
-                {%- if _sp != blank -%}<span class="f-badge f-badge--season">{{ _sp }}</span>{%- endif -%}
+                {%- if _sp != blank -%}<span class="f-badge f-badge--season">{%- render 'fagans-translate-meta', value: _sp -%}</span>{%- endif -%}
               {%- endfor -%}
             {%- endfor -%}
           {%- endcapture -%}
@@ -203,7 +205,7 @@
             {%- capture o_label -%}{{ o.label }}{%- endcapture -%}
             {%- assign o_label = o_label | strip -%}
             {%- if o_label != blank -%}
-              <span class="f-badge f-badge--occasion">{{ o_label }}</span>
+              <span class="f-badge f-badge--occasion">{%- render 'fagans-translate-meta', value: o_label -%}</span>
             {%- endif -%}
           {%- endfor -%}
         {%- endcapture -%}
@@ -213,7 +215,7 @@
               {%- assign _o_parts = raw | split: '; ' -%}
               {%- for _op in _o_parts -%}
                 {%- assign _op = _op | strip -%}
-                {%- if _op != blank -%}<span class="f-badge f-badge--occasion">{{ _op }}</span>{%- endif -%}
+                {%- if _op != blank -%}<span class="f-badge f-badge--occasion">{%- render 'fagans-translate-meta', value: _op -%}</span>{%- endif -%}
               {%- endfor -%}
             {%- endfor -%}
           {%- endcapture -%}
