@@ -73,31 +73,34 @@
   assign tag_str = product.tags | join: ',' | downcase
 -%}
 
-{%- comment -%}── Aromas: custom.aroma (texto plano, completo) → fallback shopify.fragrance ──{%- endcomment -%}
-{%- assign aroma_display = '' -%}
-{%- assign _custom_aroma = product.metafields.custom.aroma -%}
-{%- if _custom_aroma != blank -%}
-  {%- for raw in _custom_aroma.value limit: 1 -%}
-    {%- assign _parts = raw | split: '; ' -%}
-    {%- for p in _parts limit: 8 -%}
-      {%- assign _p = p | strip -%}
-      {%- if _p != blank -%}
-        {%- unless aroma_display == '' -%}{%- assign aroma_display = aroma_display | append: ' · ' -%}{%- endunless -%}
-        {%- assign aroma_display = aroma_display | append: _p -%}
+{%- comment -%}── Aromas con traducción: custom.aroma → fallback shopify.fragrance ──{%- endcomment -%}
+{%- capture aroma_html -%}
+  {%- assign _custom_aroma = product.metafields.custom.aroma -%}
+  {%- assign _aroma_count = 0 -%}
+  {%- if _custom_aroma != blank -%}
+    {%- for raw in _custom_aroma.value limit: 1 -%}
+      {%- assign _parts = raw | split: '; ' -%}
+      {%- for _p_raw in _parts limit: 8 -%}
+        {%- assign _p = _p_raw | strip -%}
+        {%- if _p != blank -%}
+          {%- if _aroma_count > 0 %} · {%- endif -%}
+          {%- render 'fagans-translate-meta', value: _p -%}
+          {%- assign _aroma_count = _aroma_count | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endfor -%}
+  {%- endif -%}
+  {%- if _aroma_count == 0 and aroma_mf != blank -%}
+    {%- for item in aroma_mf.references limit: 5 -%}
+      {%- capture _lbl -%}{{ item.label }}{%- endcapture -%}
+      {%- assign _lbl = _lbl | strip -%}
+      {%- if _lbl != blank -%}
+        {%- if forloop.index0 > 0 %} · {%- endif -%}
+        {%- render 'fagans-translate-meta', value: _lbl -%}
       {%- endif -%}
     {%- endfor -%}
-  {%- endfor -%}
-{%- endif -%}
-{%- if aroma_display == blank and aroma_mf != blank -%}
-  {%- for item in aroma_mf.references limit: 5 -%}
-    {%- capture _lbl -%}{{ item.label }}{%- endcapture -%}
-    {%- assign _lbl = _lbl | strip -%}
-    {%- if _lbl != blank -%}
-      {%- unless aroma_display == '' -%}{%- assign aroma_display = aroma_display | append: ' · ' -%}{%- endunless -%}
-      {%- assign aroma_display = aroma_display | append: _lbl -%}
-    {%- endif -%}
-  {%- endfor -%}
-{%- endif -%}
+  {%- endif -%}
+{%- endcapture -%}
 
 {%- assign target_variant = product.first_available_variant | default: product.variants.first -%}
 
@@ -134,11 +137,11 @@
     </div>
 
     {%- comment -%}── Overlay aromas (visible en hover) ─────────────────────{%- endcomment -%}
-    {%- if aroma_display != blank -%}
+    {%- if aroma_html != blank -%}
       <div class="fagans-pcard__aroma-overlay" aria-hidden="true">
         <p class="fagans-pcard__aroma-hint">
           <span class="fagans-pcard__aroma-label">Acordes</span>
-          {{ aroma_display }}
+          {{ aroma_html }}
         </p>
       </div>
     {%- endif -%}
