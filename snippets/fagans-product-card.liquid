@@ -231,7 +231,8 @@
     {%- if is_available -%}
       <button
         type="button"
-        class="fagans-pcard__cta f-btn f-btn--sm f-btn--full js-add-to-cart"
+        class="fagans-pcard__cta f-btn f-btn--sm f-btn--full"
+        data-add-to-cart
         data-variant-id="{{ target_variant.id }}"
         data-product-title="{{ product.title | escape }}"
         aria-label="Agregar {{ product.title | escape }} al carrito"
