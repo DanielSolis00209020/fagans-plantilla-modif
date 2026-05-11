@@ -1,0 +1,98 @@
+{{ 'fagans-homepage.css' | asset_url | stylesheet_tag }}
+
+<section class="f-section f-section--featured" aria-labelledby="featured-title-{{ section.id }}">
+  <div class="f-container">
+
+    <div class="f-section-header">
+      {%- if section.settings.eyebrow != blank or section.settings.title != blank -%}
+        <div>
+          {%- if section.settings.eyebrow != blank -%}
+            <p class="f-eyebrow">{{ section.settings.eyebrow }}</p>
+          {%- endif -%}
+          {%- if section.settings.title != blank -%}
+            <h2 class="f-section-title" id="featured-title-{{ section.id }}">{{ section.settings.title }}</h2>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- assign featured_col = collections[section.settings.collection] -%}
+    {%- if featured_col != blank and featured_col.products.size > 0 -%}
+      <div class="f-product-grid">
+        {%- for product in featured_col.products limit: section.settings.products_limit -%}
+          {%- render 'fagans-product-card', product: product, card_index: forloop.index -%}
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <p class="f-featured__empty">Configura una colección en el editor de temas para mostrar productos aquí.</p>
+    {%- endif -%}
+
+    {%- if section.settings.cta_label != blank -%}
+      <div class="f-section-footer">
+        <a href="{{ section.settings.cta_link | default: '/collections/all' }}" class="f-btn f-btn--outline-onix">
+          {{ section.settings.cta_label }}
+        </a>
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Destacados — Fagans",
+  "tag": "section",
+  "class": "fagans-featured-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Texto pequeño superior",
+      "default": "Lo más buscado"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título de sección",
+      "default": "Destacados de temporada"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Colección fuente"
+    },
+    {
+      "type": "range",
+      "id": "products_limit",
+      "label": "Número de productos",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Texto del botón inferior",
+      "default": "Ver catálogo completo"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Enlace del botón inferior"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Destacados — Fagans",
+      "settings": {
+        "eyebrow": "Lo más buscado",
+        "title": "Destacados de temporada",
+        "products_limit": 4,
+        "cta_label": "Ver catálogo completo",
+        "cta_link": "/collections/all"
+      }
+    }
+  ]
+}
+{% endschema %}

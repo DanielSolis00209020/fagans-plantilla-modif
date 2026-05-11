@@ -1,227 +1,344 @@
 /* ═══════════════════════════════════════════════════════════════
-   FAGANS HERO — v3 Premium
-   Viewport completo, fondo onix, dos layouts: centered / split
+   FAGANS HERO — Carousel cinematográfico
+   Fondo onix, 2 columnas (texto izq / imagen der), slides fade.
    ═══════════════════════════════════════════════════════════════ */
 
 /* ── Base ───────────────────────────────────────────────────── */
 
-.fagans-hero {
+.f-hero {
   position: relative;
-  min-height: var(--hero-min-height, 90vh);
+  height: 100svh;
+  min-height: 640px;
   background: var(--f-onix, #0E0F0F);
-  display: flex;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* ── Slides ─────────────────────────────────────────────────── */
+
+.f-hero__slide {
+  position: absolute;
+  inset: 0;
+  box-sizing: border-box;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
+  padding: 110px var(--f-gutter, clamp(20px, 4vw, 64px)) 0;
+  max-width: 1400px;
+  margin-inline: auto;
+  opacity: 0;
+  transition: opacity 0.90s var(--f-ease-snap, cubic-bezier(0.22, 1, 0.36, 1));
+  pointer-events: none;
+}
+
+.f-hero__slide.is-active  { opacity: 1; pointer-events: auto; }
+.f-hero__slide.is-leaving { opacity: 0; }
+
+/* ── Imagen (columna derecha) ───────────────────────────────── */
+
+.f-hero__img-wrap {
+  order: 2;
+  aspect-ratio: 3 / 4;
+  max-height: 72vh;
+  position: relative;
+  border: 1px solid rgba(255,255,255,0.07);
   overflow: hidden;
 }
 
-/* ── Fondo ──────────────────────────────────────────────────── */
-
-.fagans-hero__backdrop {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.fagans-hero__bg-img {
+.f-hero__img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
   display: block;
-  opacity: 0.45; /* imagen queda como textura, texto siempre legible */
 }
 
-.fagans-hero__overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(14,15,15,.85) 0%,
-    rgba(14,15,15,.50) 50%,
-    rgba(14,15,15,.70) 100%
-  );
-}
-
-/* ── Inner ──────────────────────────────────────────────────── */
-
-.fagans-hero__inner {
-  position: relative;
-  z-index: 1;
+.f-hero__img-placeholder {
   width: 100%;
-  padding-top: 80px;
-  padding-bottom: 80px;
+  height: 100%;
+  background: rgba(255,255,255,0.025);
   display: flex;
   align-items: center;
-  gap: clamp(40px, 6vw, 100px);
+  justify-content: center;
 }
 
-/* ── Layout: centered ───────────────────────────────────────── */
-
-.fagans-hero--centered .fagans-hero__inner {
-  flex-direction: column;
+.f-hero__img-label {
+  font-family: var(--f-sans, system-ui, sans-serif);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.14);
   text-align: center;
+  padding: 0 24px;
 }
 
-.fagans-hero--centered .fagans-hero__text {
-  max-width: 720px;
-}
+/* ── Texto (columna izquierda) ──────────────────────────────── */
 
-.fagans-hero--centered .fagans-hero__ctas {
-  justify-content: center;
-}
-
-/* ── Layout: split ──────────────────────────────────────────── */
-
-.fagans-hero--split .fagans-hero__text {
-  flex: 1;
-  max-width: 580px;
-}
-
-.fagans-hero--split .fagans-hero__product-img-wrap {
-  flex: 0 0 auto;
-  width: clamp(260px, 38vw, 480px);
+.f-hero__content {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  gap: 26px;
+  min-width: 0;
+  max-width: 100%;
+  padding-right: clamp(24px, 6vw, 80px);
 }
 
-.fagans-hero__product-img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  /* Imagen de frasco: drop-shadow suave para que "flote" */
-  filter: drop-shadow(0 24px 48px rgba(0,0,0,.45));
-  transition: transform 0.6s var(--f-ease-snap, cubic-bezier(0.22, 1, 0.36, 1));
+.f-hero__eyebrow {
+  font-family: var(--f-sans, system-ui, sans-serif);
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--f-sandalo, #C79FB8);
+  margin: 0;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.50s 0.10s var(--f-ease-snap, cubic-bezier(0.22,1,0.36,1)),
+              transform 0.50s 0.10s var(--f-ease-snap, cubic-bezier(0.22,1,0.36,1));
 }
 
-.fagans-hero--split:hover .fagans-hero__product-img {
-  transform: translateY(-6px);
-}
-
-/* ── Texto ──────────────────────────────────────────────────── */
-
-.fagans-hero__eyebrow {
-  /* usa .f-eyebrow de design-system */
-  margin-bottom: 20px;
-}
-
-.fagans-hero__heading {
+.f-hero__title {
   font-family: var(--f-serif, Georgia, serif);
-  font-size: var(--f-text-hero, clamp(2.5rem, 6vw, 5rem));
+  font-size: clamp(2.5rem, 5.5vw, 5rem);
   font-weight: 400;
-  line-height: 1.05;
+  line-height: 1.02;
   letter-spacing: -0.02em;
   color: var(--f-blanco, #FFFFFF);
-  margin: 0 0 20px;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.70s 0.20s var(--f-ease-snap, cubic-bezier(0.22,1,0.36,1)),
+              transform 0.70s 0.20s var(--f-ease-snap, cubic-bezier(0.22,1,0.36,1));
 }
 
-.fagans-hero__subheading {
+.f-hero__sub {
   font-family: var(--f-sans, system-ui, sans-serif);
-  font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
-  line-height: 1.6;
-  color: var(--f-blanco-60, rgba(255,255,255,.60));
-  margin: 0 0 36px;
-  max-width: 440px;
+  font-size: 0.9375rem;
+  line-height: 1.70;
+  color: rgba(255,255,255,0.60);
+  width: 100%;
+  max-width: min(44ch, 100%);
+  margin: 0;
+  overflow-wrap: break-word;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.50s 0.38s var(--f-ease-snap, cubic-bezier(0.22,1,0.36,1)),
+              transform 0.50s 0.38s var(--f-ease-snap, cubic-bezier(0.22,1,0.36,1));
 }
 
-.fagans-hero--centered .fagans-hero__subheading {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* ── CTAs ───────────────────────────────────────────────────── */
-
-.fagans-hero__ctas {
+.f-hero__ctas {
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
   align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.50s 0.52s var(--f-ease-snap, cubic-bezier(0.22,1,0.36,1)),
+              transform 0.50s 0.52s var(--f-ease-snap, cubic-bezier(0.22,1,0.36,1));
 }
 
-/* El botón outline tiene el borde con color sándalo */
-.fagans-hero__cta--outline {
-  border-color: var(--f-sandalo, #C79FB8);
-  color: var(--f-sandalo, #C79FB8);
+/* Animar texto cuando el slide está activo */
+.f-hero__slide.is-active .f-hero__eyebrow,
+.f-hero__slide.is-active .f-hero__title,
+.f-hero__slide.is-active .f-hero__sub,
+.f-hero__slide.is-active .f-hero__ctas {
+  opacity: 1;
+  transform: translateY(0);
 }
-.fagans-hero__cta--outline:hover {
-  background: var(--f-sandalo, #C79FB8);
+
+/* Número decorativo de slide */
+.f-hero__slide-num {
+  position: absolute;
+  top: 50%;
+  right: -0.05em;
+  transform: translateY(-50%);
+  font-family: var(--f-serif, Georgia, serif);
+  font-size: clamp(10rem, 22vw, 22rem);
+  line-height: 1;
+  color: rgba(255,255,255,0.022);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Botones hero ───────────────────────────────────────────── */
+
+.f-hero .f-btn--primary {
+  background: var(--f-blanco, #FFFFFF);
   color: var(--f-onix, #0E0F0F);
+  border-color: var(--f-blanco, #FFFFFF);
+}
+.f-hero .f-btn--primary:hover {
+  background: var(--f-sandalo, #C79FB8);
   border-color: var(--f-sandalo, #C79FB8);
+  color: var(--f-onix, #0E0F0F);
+}
+
+.f-hero .f-btn--ghost {
+  background: transparent;
+  color: rgba(255,255,255,0.75);
+  border: 1px solid rgba(255,255,255,0.30);
+}
+.f-hero .f-btn--ghost:hover {
+  background: rgba(255,255,255,0.08);
+  color: var(--f-blanco, #FFFFFF);
+  border-color: rgba(255,255,255,0.50);
+}
+
+/* ── Barra de progreso ──────────────────────────────────────── */
+
+.f-hero__progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: rgba(255,255,255,0.07);
+  z-index: 5;
+}
+
+.f-hero__progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--f-sandalo, #C79FB8);
+}
+
+/* ── Dots ───────────────────────────────────────────────────── */
+
+.f-hero__dots {
+  position: absolute;
+  bottom: 40px;
+  left: var(--f-gutter, clamp(20px, 4vw, 64px));
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  z-index: 5;
+}
+
+.f-hero__dots button {
+  width: 28px;
+  height: 1px;
+  background: rgba(255,255,255,0.20);
+  cursor: pointer;
+  border: none;
+  padding: 6px 0;
+  background-clip: content-box;
+  transition: width 0.35s var(--f-ease-snap, cubic-bezier(0.22,1,0.36,1)),
+              background-color 0.35s ease;
+}
+
+.f-hero__dots button.is-active {
+  width: 48px;
+  background-color: var(--f-blanco, #FFFFFF);
+  background-clip: content-box;
+}
+
+/* ── Flechas ────────────────────────────────────────────────── */
+
+.f-hero__arrow {
+  position: absolute;
+  bottom: 30px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.60);
+  cursor: pointer;
+  z-index: 5;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.f-hero__arrow:hover {
+  background: rgba(255,255,255,0.08);
+  color: var(--f-blanco, #FFFFFF);
+}
+
+.f-hero__arrow--prev { right: calc(var(--f-gutter, clamp(20px,4vw,64px)) + 44px); }
+.f-hero__arrow--next { right: var(--f-gutter, clamp(20px, 4vw, 64px)); }
+
+.f-hero__arrow svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
 }
 
 /* ── Scroll hint ────────────────────────────────────────────── */
 
-.fagans-hero__scroll-hint {
+.f-hero__scroll-hint {
   position: absolute;
-  bottom: 32px;
+  bottom: 36px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  z-index: 2;
+  gap: 10px;
+  z-index: 5;
 }
 
-.fagans-hero__scroll-label {
+.f-hero__scroll-hint span {
   font-family: var(--f-sans, system-ui, sans-serif);
-  font-size: 0.625rem;
-  letter-spacing: 0.18em;
+  font-size: 9px;
+  letter-spacing: 0.20em;
   text-transform: uppercase;
-  color: var(--f-blanco-60, rgba(255,255,255,.60));
+  color: rgba(255,255,255,0.22);
+  writing-mode: vertical-rl;
 }
 
-.fagans-hero__scroll-line {
+.f-hero__scroll-line {
   width: 1px;
-  height: 40px;
-  background: linear-gradient(to bottom, var(--f-blanco-60, rgba(255,255,255,.60)), transparent);
-  animation: f-scroll-pulse 2s ease-in-out infinite;
+  height: 52px;
+  background: rgba(255,255,255,0.10);
+  position: relative;
+  overflow: hidden;
 }
 
-@keyframes f-scroll-pulse {
-  0%, 100% { opacity: 1;   transform: scaleY(1); }
-  50%       { opacity: 0.4; transform: scaleY(0.6); }
+.f-hero__scroll-line::after {
+  content: '';
+  position: absolute;
+  top: -60%;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.40));
+  animation: f-drop 1.8s var(--f-ease-snap, cubic-bezier(0.22,1,0.36,1)) infinite;
+}
+
+@keyframes f-drop {
+  from { top: -60%; }
+  to   { top: 160%; }
 }
 
 /* ── Responsive ─────────────────────────────────────────────── */
 
+@media (max-width: 1023px) {
+  .f-hero__slide {
+    grid-template-columns: 1fr;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  .f-hero__img-wrap    { display: none; }
+  .f-hero__content     { padding-right: 0; padding-bottom: 80px; max-width: 560px; }
+  .f-hero__slide-num   { display: none; }
+  .f-hero__scroll-hint { display: none; }
+  .f-hero__arrow       { display: none; }
+}
+
 @media (max-width: 767px) {
-  .fagans-hero__inner {
-    padding-top: 60px;
-    padding-bottom: 60px;
-    flex-direction: column-reverse;
-    text-align: center;
-  }
-
-  .fagans-hero--split .fagans-hero__text {
-    max-width: 100%;
-  }
-
-  .fagans-hero--split .fagans-hero__product-img-wrap {
-    width: 55vw;
-    max-width: 280px;
-  }
-
-  .fagans-hero__ctas {
-    justify-content: center;
-  }
-
-  .fagans-hero__subheading {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .fagans-hero__scroll-hint {
-    display: none;
-  }
+  .f-hero { height: 100dvh; }
+  .f-hero__content { padding-bottom: 100px; }
 }
 
 /* ── prefers-reduced-motion ──────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
-  .fagans-hero__product-img,
-  .fagans-hero__scroll-line {
-    animation: none !important;
-    transition: none !important;
-  }
+  .f-hero__slide       { transition: none; }
+  .f-hero__eyebrow,
+  .f-hero__title,
+  .f-hero__sub,
+  .f-hero__ctas        { transition: none; opacity: 1; transform: none; }
+  .f-hero__scroll-line::after { animation: none; }
 }

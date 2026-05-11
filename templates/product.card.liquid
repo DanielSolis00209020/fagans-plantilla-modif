@@ -1,3 +1,4 @@
 {%- layout none -%}
 
-{%- render 'product-card', product: product -%}
+{{ 'fagans-card.css' | asset_url | stylesheet_tag }}
+{%- render 'fagans-product-card', product: product -%}

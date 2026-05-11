@@ -57,6 +57,9 @@
       <a class="fagans-pill{% if active_handle == 'disenador' %} active{% endif %}"
          href="/collections/disenador">Diseñador</a>
 
+      <a class="fagans-pill{% if active_handle == 'decants' %} active{% endif %}"
+         href="/collections/decants">Decants</a>
+
     </nav>
 
     <div class="fagans-catalog__bar-right">
@@ -117,9 +120,35 @@
   {%- comment -%}══ PAGINATION ══{%- endcomment -%}
   {%- if paginate.pages > 1 -%}
     <div class="fagans-catalog__pagination">
-      {{ paginate | default_pagination }}
+      <nav class="fagans-pagination" aria-label="Paginacion">
+        {%- assign current_page_title = paginate.current_page | append: '' -%}
+        {%- if paginate.previous -%}
+          <a class="fagans-pagination__link fagans-pagination__link--wide" href="{{ paginate.previous.url }}">Anterior</a>
+        {%- endif -%}
+
+        {%- for part in paginate.parts -%}
+          {%- if part.is_link -%}
+            <a class="fagans-pagination__link" href="{{ part.url }}">{{ part.title }}</a>
+          {%- else -%}
+            <span class="fagans-pagination__link{% if part.title == current_page_title %} is-current{% endif %}{% if part.title contains 'hellip' or part.title contains '…' %} is-ellipsis{% endif %}">
+              {{ part.title }}
+            </span>
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- if paginate.next -%}
+          <a class="fagans-pagination__link fagans-pagination__link--wide" href="{{ paginate.next.url }}">Siguiente</a>
+        {%- endif -%}
+      </nav>
     </div>
   {%- endif -%}
+
+  <section class="fagans-catalog__advisor" aria-labelledby="fagans-catalog-advisor-{{ section.id }}">
+    <p class="fagans-catalog__advisor-eyebrow">¿Demasiadas opciones?</p>
+    <h2 class="fagans-catalog__advisor-title" id="fagans-catalog-advisor-{{ section.id }}">Te ayudamos a elegir.</h2>
+    <p class="fagans-catalog__advisor-text">Cuéntanos tu gusto y te recomendamos en menos de una hora.</p>
+    <a class="fagans-catalog__advisor-link" href="/pages/contact">Hablar con un asesor</a>
+  </section>
 
 </div>
 

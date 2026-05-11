@@ -120,6 +120,24 @@
   flex-shrink: 0;
 }
 
+@media (min-width: 1024px) {
+  .fagans-catalog__filter-bar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  }
+
+  .fagans-catalog__pills {
+    grid-column: 2;
+    justify-content: center;
+    flex: 0 1 auto;
+  }
+
+  .fagans-catalog__bar-right {
+    grid-column: 3;
+    justify-self: end;
+  }
+}
+
 .fagans-sort-select {
   font-family: var(--f-sans, system-ui, sans-serif);
   font-size: 0.75rem;
@@ -228,43 +246,116 @@
 /* ── Paginación ─────────────────────────────────────────────── */
 
 .fagans-catalog__pagination {
-  padding: 48px var(--f-gutter, 48px);
+  padding: 48px var(--f-gutter, 48px) 28px;
   display: flex;
   justify-content: center;
   background: var(--f-blanco, #FFFFFF);
   border-top: 1px solid var(--f-onix-10, rgba(14,15,15,.10));
 }
-.fagans-catalog__pagination .pagination {
+
+.fagans-pagination {
   display: flex;
-  gap: 4px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
   align-items: center;
-  list-style: none;
   margin: 0;
   padding: 0;
 }
-.fagans-catalog__pagination .pagination a,
-.fagans-catalog__pagination .pagination span {
+
+.fagans-pagination__link {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 36px;
-  height: 36px;
-  padding: 0 8px;
+  min-width: 42px;
+  height: 42px;
+  padding: 0 14px;
   font-family: var(--f-sans, system-ui, sans-serif);
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--f-onix-60, #464747);
   text-decoration: none;
   border: 1px solid var(--f-onix-10, rgba(14,15,15,.10));
-  transition: background 150ms ease, color 150ms ease;
+  background: var(--f-blanco, #FFFFFF);
+  transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
 }
-.fagans-catalog__pagination .pagination a:hover {
-  background: var(--f-platino, #F1F1F1);
-  color: var(--f-onix, #0E0F0F);
+
+.fagans-pagination__link--wide {
+  min-width: 118px;
 }
-.fagans-catalog__pagination .pagination .current span {
+
+.fagans-pagination__link:hover,
+.fagans-pagination__link:focus-visible,
+.fagans-pagination__link.is-current {
   background: var(--f-onix, #0E0F0F);
   color: var(--f-blanco, #FFFFFF);
   border-color: var(--f-onix, #0E0F0F);
+}
+
+.fagans-pagination__link.is-ellipsis {
+  border-color: transparent;
+  background: transparent;
+  min-width: 24px;
+}
+
+.fagans-catalog__advisor {
+  min-height: clamp(420px, 54vh, 640px);
+  padding: clamp(72px, 10vw, 130px) var(--f-gutter, 48px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 20px;
+  background: var(--f-onix, #0E0F0F);
+  color: var(--f-blanco, #FFFFFF);
+}
+
+.fagans-catalog__advisor-eyebrow {
+  margin: 0;
+  font-family: var(--f-sans, system-ui, sans-serif);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.74);
+}
+
+.fagans-catalog__advisor-title {
+  margin: 0;
+  max-width: 760px;
+  font-family: var(--f-serif, Georgia, serif);
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 400;
+  line-height: 0.98;
+  color: var(--f-blanco, #FFFFFF);
+}
+
+.fagans-catalog__advisor-text {
+  margin: 0;
+  max-width: 54ch;
+  font-family: var(--f-sans, system-ui, sans-serif);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.48);
+}
+
+.fagans-catalog__advisor-link {
+  margin-top: 18px;
+  font-family: var(--f-sans, system-ui, sans-serif);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--f-blanco, #FFFFFF);
+  text-decoration: none;
+}
+
+.fagans-catalog__advisor-link:hover,
+.fagans-catalog__advisor-link:focus-visible {
+  color: var(--f-sandalo, #C79FB8);
 }
 
 /* ── Responsive adjustments ─────────────────────────────────── */
@@ -281,7 +372,13 @@
     gap: 10px;
   }
   .fagans-grid-toggle { display: none; }
-  .fagans-catalog__pagination { padding: 32px 20px; }
+  .fagans-catalog__pagination { padding: 32px 20px 24px; }
+  .fagans-pagination__link { min-width: 38px; height: 38px; padding-inline: 12px; }
+  .fagans-pagination__link--wide { min-width: 104px; }
+  .fagans-catalog__advisor {
+    min-height: 430px;
+    padding: 72px 24px;
+  }
 }
 
 /* ── Loading spinner (en botón add to cart) ──────────────────── */

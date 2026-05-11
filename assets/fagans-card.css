@@ -1,23 +1,30 @@
 /* ═══════════════════════════════════════════════════════════════
    FAGANS PRODUCT CARD — v3 Premium
-   Hover completo: inversión total fondo+texto, imagen scale,
-   overlay de acordes, CTA deslizante.
+   Hover: lift 3D + gradient vignette sobre imagen.
+   Sin inversión de fondo (incompatible con PNG transparente).
    ═══════════════════════════════════════════════════════════════ */
 
 /* ── Wrapper ────────────────────────────────────────────────── */
 
 .fagans-pcard {
   position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
-  background: var(--f-platino);
+  background: var(--f-blanco, #FFFFFF);
+  /* Sin overflow:hidden — lo necesita el box-shadow en hover */
   transition:
-    background var(--f-dur-base) var(--f-ease-out-quart);
-  overflow: hidden;
+    transform  280ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 280ms cubic-bezier(0.25, 0.10, 0.25, 1.0),
+    z-index    0ms   step-end;
 }
 
 .fagans-pcard:hover {
-  background: var(--f-onix);
+  transform: translateY(-6px) scale(1.022);
+  box-shadow:
+    0 20px 56px rgba(14, 15, 15, 0.18),
+    0  6px 18px rgba(14, 15, 15, 0.10);
+  z-index: 3;
 }
 
 /* Featured: ocupa 2 cols en el grid */
@@ -50,7 +57,7 @@
 .fagans-pcard__img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   display: block;
   transition: transform var(--f-dur-slow) var(--f-ease-in-out);
@@ -110,7 +117,7 @@
   font-size: 9px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--f-sandalo);
+  color: color-mix(in srgb, var(--f-nogal) 82%, transparent);
   margin-bottom: 2px;
 }
 
@@ -154,11 +161,6 @@
   text-transform: uppercase;
   color: var(--f-onix-40);
   margin: 0;
-  transition: color var(--f-dur-fast) var(--f-ease-out-quart);
-}
-
-.fagans-pcard:hover .fagans-pcard__vendor {
-  color: var(--f-blanco-60);
 }
 
 /* Nombre */
@@ -171,11 +173,6 @@
   text-decoration: none;
   display: block;
   margin: 0;
-  transition: color var(--f-dur-fast) var(--f-ease-out-quart);
-}
-
-.fagans-pcard:hover .fagans-pcard__name {
-  color: var(--f-blanco);
 }
 
 .fagans-pcard__name:hover {
@@ -197,11 +194,10 @@
   font-weight: 500;
   letter-spacing: 0.04em;
   color: var(--f-onix);
-  transition: color var(--f-dur-fast) var(--f-ease-out-quart);
 }
 
-.fagans-pcard:hover .fagans-pcard__price-now {
-  color: var(--f-blanco);
+.fagans-pcard--has-sale .fagans-pcard__price-now {
+  color: var(--f-rojo, #C0392B);
 }
 
 .fagans-pcard__price-was {
@@ -209,11 +205,6 @@
   font-size: var(--f-text-xs);
   color: var(--f-onix-40);
   text-decoration: line-through;
-  transition: color var(--f-dur-fast) var(--f-ease-out-quart);
-}
-
-.fagans-pcard:hover .fagans-pcard__price-was {
-  color: var(--f-onix-40); /* queda gris incluso sobre onix */
 }
 
 /* ── Tallas / ml ────────────────────────────────────────────── */
@@ -234,9 +225,6 @@
   border: 1px solid var(--f-onix-20, rgba(14,15,15,.2));
   padding: 2px 6px;
   white-space: nowrap;
-  transition:
-    color var(--f-dur-fast) var(--f-ease-out-quart),
-    border-color var(--f-dur-fast) var(--f-ease-out-quart);
 }
 
 .fagans-size-chip--active {
@@ -244,63 +232,63 @@
   border-color: var(--f-onix-60, rgba(14,15,15,.6));
 }
 
-.fagans-pcard:hover .fagans-size-chip {
-  color: var(--f-blanco-60, rgba(255,255,255,.6));
-  border-color: rgba(255,255,255,.2);
-}
-
-.fagans-pcard:hover .fagans-size-chip--active {
-  color: var(--f-blanco);
-  border-color: rgba(255,255,255,.5);
-}
-
 .fagans-size-chip--more {
   border-style: dashed;
+}
+
+/* ── Sale sticker — prominente, esquina sup-der sobre imagen ── */
+
+.fagans-pcard__sale-sticker {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 4;
+  background: var(--f-rojo, #C0392B);
+  color: #FFFFFF;
+  font-family: var(--f-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  padding: 7px 10px 6px;
+  pointer-events: none;
+  /* Forma de banderín: recorte en esquina inferior derecha */
+  clip-path: polygon(0 0, 100% 0, 100% 72%, 82% 100%, 0 100%);
 }
 
 /* ── CTA ────────────────────────────────────────────────────── */
 
 .fagans-pcard__cta {
   margin-top: auto;
-  padding-top: var(--f-space-2);
-  opacity: 0;
-  transform: translateY(5px);
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--f-onix, #0E0F0F);
+  border-color: var(--f-onix, #0E0F0F);
+  color: var(--f-blanco, #FFFFFF);
   transition:
-    opacity var(--f-dur-base) var(--f-ease-out-quart),
-    transform var(--f-dur-base) var(--f-ease-out-quart),
     background var(--f-dur-fast) var(--f-ease-out-quart),
-    color var(--f-dur-fast) var(--f-ease-out-quart),
+    color      var(--f-dur-fast) var(--f-ease-out-quart),
     border-color var(--f-dur-fast) var(--f-ease-out-quart);
 }
 
-.fagans-pcard:hover .fagans-pcard__cta {
-  opacity: 1;
-  transform: translateY(0);
+.fagans-pcard__cta svg {
+  flex: 0 0 auto;
+  display: block;
 }
 
-/* Cuando el card está en hover, el botón primario cambia a ghost */
-.fagans-pcard:hover .fagans-pcard__cta:not(.fagans-pcard__cta--solicitar) {
-  background: transparent;
-  color: var(--f-blanco);
-  border-color: rgba(255,255,255,.4);
+.fagans-pcard__cta:hover {
+  background: var(--f-nogal);
+  border-color: var(--f-nogal);
+  color: var(--f-blanco, #FFFFFF);
 }
 
-.fagans-pcard:hover .fagans-pcard__cta:not(.fagans-pcard__cta--solicitar):hover {
-  background: var(--f-blanco);
-  color: var(--f-onix);
-  border-color: var(--f-blanco);
-}
-
-/* Solicitar en hover del card */
-.fagans-pcard:hover .fagans-pcard__cta--solicitar {
-  color: var(--f-blanco);
-  border-color: rgba(255,255,255,.4);
-}
-
-.fagans-pcard:hover .fagans-pcard__cta--solicitar:hover {
-  background: var(--f-sandalo);
-  color: var(--f-onix);
-  border-color: var(--f-sandalo);
+.fagans-pcard__cta--solicitar:hover {
+  background: var(--f-nogal);
+  border-color: var(--f-nogal);
+  color: var(--f-blanco, #FFFFFF);
 }
 
 /* ── Card agotado ───────────────────────────────────────────── */

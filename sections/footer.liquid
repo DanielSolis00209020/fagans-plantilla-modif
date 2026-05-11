@@ -296,6 +296,10 @@
 
 <footer class="footer container color-{{ color_scheme }} need-animate js-animate" style="{{ section_styles }}">
 	<div class="footer__main-content js-accordion-container">
+		<div class="footer__brand" style="transition-delay: 0.1s">
+			<a href="{{ routes.root_url }}" class="footer__brand-name">Fagans</a>
+			<p>Perfumería boutique.<br>El Salvador.</p>
+		</div>
 		{% assign col_delay_step = 0 %}
 
 		{%- for block in section.blocks -%}

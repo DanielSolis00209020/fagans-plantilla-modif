@@ -1,0 +1,78 @@
+{{ 'fagans-strip.css' | asset_url | stylesheet_tag }}
+
+<div class="f-strip">
+  <div class="f-strip__inner">
+
+    {%- for block in section.blocks -%}
+      {%- unless forloop.first -%}
+        <div class="f-strip__divider" aria-hidden="true"></div>
+      {%- endunless -%}
+      <div class="f-strip__item" {{ block.shopify_attributes }}>
+        {%- case block.settings.icon -%}
+          {%- when 'check' -%}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          {%- when 'truck' -%}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          {%- when 'heart' -%}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          {%- when 'clock' -%}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          {%- when 'star' -%}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          {%- when 'shield' -%}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        {%- endcase -%}
+        <span>{{ block.settings.text }}</span>
+      </div>
+    {%- endfor -%}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Strip de autenticidad",
+  "tag": "section",
+  "class": "fagans-strip-section",
+  "max_blocks": 6,
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Ítem",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Ícono",
+          "options": [
+            { "value": "check",  "label": "Palomita (verificado)" },
+            { "value": "truck",  "label": "Camión (envíos)" },
+            { "value": "heart",  "label": "Corazón (asesoría)" },
+            { "value": "clock",  "label": "Reloj (tiempo)" },
+            { "value": "star",   "label": "Estrella" },
+            { "value": "shield", "label": "Escudo (garantía)" }
+          ],
+          "default": "check"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "default": "Beneficio destacado"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Strip de autenticidad",
+      "blocks": [
+        { "type": "item", "settings": { "icon": "check", "text": "100% fragancias originales" } },
+        { "type": "item", "settings": { "icon": "truck", "text": "Envíos a todo El Salvador" } },
+        { "type": "item", "settings": { "icon": "heart", "text": "Asesoría personalizada" } },
+        { "type": "item", "settings": { "icon": "clock", "text": "Respuesta en menos de 1 hora" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

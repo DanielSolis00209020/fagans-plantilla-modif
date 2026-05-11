@@ -1,236 +1,317 @@
 {%- comment -%}
-  Fagans Hero — v3 Premium
-  Hero de viewport completo, fondo onix + imagen editable desde admin.
-  Dos layouts: centered (texto centrado) / split (imagen derecha, texto izquierda).
+  Fagans Hero — Carousel cinematográfico
+  Cada bloque es un slide con imagen de producto, textos y botones.
+  Imagen configurable desde el editor de temas.
 {%- endcomment -%}
-
-{%- assign layout      = section.settings.layout -%}
-{%- assign eyebrow     = section.settings.eyebrow -%}
-{%- assign heading     = section.settings.heading -%}
-{%- assign subheading  = section.settings.subheading -%}
-{%- assign cta_1_label = section.settings.cta_1_label -%}
-{%- assign cta_1_url   = section.settings.cta_1_url | default: '/collections/all' -%}
-{%- assign cta_2_label = section.settings.cta_2_label -%}
-{%- assign cta_2_url   = section.settings.cta_2_url -%}
-{%- assign bg_image    = section.settings.background_image -%}
-{%- assign product_img = section.settings.product_image -%}
-{%- assign min_height  = section.settings.min_height | default: 90 -%}
 
 {{ 'fagans-hero.css' | asset_url | stylesheet_tag }}
 
-{%- style -%}
-  #shopify-section-{{ section.id }} {
-    padding: 0;
-    margin: 0;
-  }
-  #fagans-hero-{{ section.id }} {
-    --hero-min-height: {{ min_height }}vh;
-    {%- if bg_image != blank -%}
-    --hero-bg-image: url('{{ bg_image | image_url: width: 1600 }}');
-    {%- endif -%}
-  }
-{%- endstyle -%}
-
 <section
-  class="fagans-hero fagans-hero--{{ layout }}"
-  id="fagans-hero-{{ section.id }}"
-  aria-label="{{ heading | escape }}"
+  class="f-hero"
+  id="f-hero-{{ section.id }}"
+  aria-label="Hero — Fagans"
+  data-duration="{{ section.settings.autoplay_speed | times: 1000 }}"
 >
 
-  {%- comment -%}── Fondo: color onix + imagen si existe ────────────────────{%- endcomment -%}
-  <div class="fagans-hero__backdrop" aria-hidden="true">
-    {%- if bg_image != blank -%}
-      <img
-        src="{{ bg_image | image_url: width: 1600 }}"
-        srcset="
-          {{ bg_image | image_url: width: 800  }} 800w,
-          {{ bg_image | image_url: width: 1200 }} 1200w,
-          {{ bg_image | image_url: width: 1600 }} 1600w
-        "
-        sizes="100vw"
-        alt=""
-        width="1600"
-        height="900"
-        loading="eager"
-        fetchpriority="high"
-        class="fagans-hero__bg-img"
-      >
-    {%- endif -%}
-    <div class="fagans-hero__overlay"></div>
-  </div>
+  {%- for block in section.blocks -%}
+    {%- assign idx0 = forloop.index0 -%}
+    {%- capture slide_num -%}0{{ forloop.index }}{%- endcapture -%}
+    {%- assign slide_num = slide_num | slice: -2, 2 -%}
 
-  {%- comment -%}── Contenido ──────────────────────────────────────────────{%- endcomment -%}
-  <div class="fagans-hero__inner f-container">
-
-    {%- comment -%}── Columna de texto ──────────────────────────────────────{%- endcomment -%}
-    <div class="fagans-hero__text">
-      {%- if eyebrow != blank -%}
-        <p class="fagans-hero__eyebrow f-eyebrow f-eyebrow--light" data-f-reveal>
-          {{ eyebrow }}
-        </p>
-      {%- endif -%}
-
-      {%- if heading != blank -%}
-        <h1 class="fagans-hero__heading" data-f-reveal data-f-delay="1">
-          {{ heading }}
-        </h1>
-      {%- endif -%}
-
-      {%- if subheading != blank -%}
-        <p class="fagans-hero__subheading" data-f-reveal data-f-delay="2">
-          {{ subheading }}
-        </p>
-      {%- endif -%}
-
-      <div class="fagans-hero__ctas" data-f-reveal data-f-delay="3">
-        {%- if cta_1_label != blank -%}
-          <a href="{{ cta_1_url }}" class="f-btn f-btn--ghost">{{ cta_1_label }}</a>
-        {%- endif -%}
-        {%- if cta_2_label != blank -%}
-          <a href="{{ cta_2_url }}" class="f-btn f-btn--ghost fagans-hero__cta--outline">{{ cta_2_label }}</a>
+    <div
+      class="f-hero__slide{% if forloop.first %} is-active{% endif %}"
+      data-slide="{{ idx0 }}"
+      {{ block.shopify_attributes }}
+    >
+      {%- comment -%}── Imagen de producto (columna derecha) ─────────────────{%- endcomment -%}
+      <div class="f-hero__img-wrap">
+        {%- if block.settings.image != blank -%}
+          <img
+            src="{{ block.settings.image | image_url: width: 800 }}"
+            srcset="
+              {{ block.settings.image | image_url: width: 500 }} 500w,
+              {{ block.settings.image | image_url: width: 800 }} 800w,
+              {{ block.settings.image | image_url: width: 1100 }} 1100w
+            "
+            sizes="(max-width: 767px) 0px, 40vw"
+            alt="{{ block.settings.eyebrow | escape }}"
+            width="800"
+            height="1067"
+            loading="{{ forloop.first | ternary: 'eager', 'lazy' }}"
+            fetchpriority="{{ forloop.first | ternary: 'high', 'auto' }}"
+            class="f-hero__img"
+          >
+        {%- else -%}
+          <div class="f-hero__img-placeholder">
+            <span class="f-hero__img-label">{{ block.settings.eyebrow | default: 'Imagen de colección' }}</span>
+          </div>
         {%- endif -%}
       </div>
-    </div>
 
-    {%- comment -%}── Imagen de producto (solo en layout split) ─────────────{%- endcomment -%}
-    {%- if layout == 'split' and product_img != blank -%}
-      <div class="fagans-hero__product-img-wrap" data-f-reveal data-f-delay="2">
-        <img
-          src="{{ product_img | image_url: width: 600 }}"
-          srcset="
-            {{ product_img | image_url: width: 400 }} 400w,
-            {{ product_img | image_url: width: 600 }} 600w,
-            {{ product_img | image_url: width: 900 }} 900w
-          "
-          sizes="(max-width: 767px) 70vw, 40vw"
-          alt="{{ product_img.alt | default: heading | escape }}"
-          width="600"
-          height="750"
-          loading="eager"
-          class="fagans-hero__product-img"
-        >
+      {%- comment -%}── Texto (columna izquierda) ──────────────────────────────{%- endcomment -%}
+      <div class="f-hero__content">
+        {%- if block.settings.eyebrow != blank -%}
+          <p class="f-hero__eyebrow">{{ block.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if block.settings.title != blank -%}
+          <h2 class="f-hero__title">{{ block.settings.title | newline_to_br }}</h2>
+        {%- endif -%}
+        {%- if block.settings.subtitle != blank -%}
+          <p class="f-hero__sub">{{ block.settings.subtitle }}</p>
+        {%- endif -%}
+        <div class="f-hero__ctas">
+          {%- if block.settings.btn1_label != blank -%}
+            <a href="{{ block.settings.btn1_link | default: '/collections/all' }}" class="f-btn f-btn--primary">
+              {{ block.settings.btn1_label }}
+            </a>
+          {%- endif -%}
+          {%- if block.settings.btn2_label != blank -%}
+            <a href="{{ block.settings.btn2_link | default: '/collections/all' }}" class="f-btn f-btn--ghost">
+              {{ block.settings.btn2_label }}
+            </a>
+          {%- endif -%}
+        </div>
       </div>
-    {%- endif -%}
 
+      <div class="f-hero__slide-num" aria-hidden="true">{{ slide_num }}</div>
+    </div>
+  {%- else -%}
+    {%- comment -%}Fallback si no hay bloques configurados{%- endcomment -%}
+    <div class="f-hero__slide is-active" data-slide="0">
+      <div class="f-hero__img-wrap">
+        <div class="f-hero__img-placeholder">
+          <span class="f-hero__img-label">Agrega slides desde el editor de temas</span>
+        </div>
+      </div>
+      <div class="f-hero__content">
+        <p class="f-hero__eyebrow">Fagans Perfumería</p>
+        <h2 class="f-hero__title">Fragancias 100%<br>originales.</h2>
+        <div class="f-hero__ctas">
+          <a href="/collections/all" class="f-btn f-btn--primary">Ver catálogo</a>
+        </div>
+      </div>
+    </div>
+  {%- endfor -%}
+
+  {%- comment -%}── Barra de progreso ──────────────────────────────────────{%- endcomment -%}
+  <div class="f-hero__progress" aria-hidden="true">
+    <div class="f-hero__progress-fill"></div>
   </div>
 
-  {%- comment -%}── Scroll indicator ────────────────────────────────────────{%- endcomment -%}
-  {%- if section.settings.show_scroll_hint -%}
-    <div class="fagans-hero__scroll-hint" aria-hidden="true">
-      <span class="fagans-hero__scroll-label">Explorar</span>
-      <div class="fagans-hero__scroll-line"></div>
-    </div>
+  {%- comment -%}── Dots ───────────────────────────────────────────────────{%- endcomment -%}
+  <div class="f-hero__dots" role="tablist" aria-label="Slides del hero"></div>
+
+  {%- comment -%}── Flechas ────────────────────────────────────────────────{%- endcomment -%}
+  {%- if section.blocks.size > 1 -%}
+    <button class="f-hero__arrow f-hero__arrow--prev" data-prev aria-label="Slide anterior">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="f-hero__arrow f-hero__arrow--next" data-next aria-label="Slide siguiente">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
   {%- endif -%}
+
+  {%- comment -%}── Scroll hint ────────────────────────────────────────────{%- endcomment -%}
+  <div class="f-hero__scroll-hint" aria-hidden="true">
+    <span>Descubre</span>
+    <div class="f-hero__scroll-line"></div>
+  </div>
 
 </section>
 
+<script>
+(function () {
+  var hero    = document.getElementById('f-hero-{{ section.id }}');
+  if (!hero) return;
+  var slides   = Array.from(hero.querySelectorAll('.f-hero__slide'));
+  var dotsEl   = hero.querySelector('.f-hero__dots');
+  var fillEl   = hero.querySelector('.f-hero__progress-fill');
+  var prevBtn  = hero.querySelector('[data-prev]');
+  var nextBtn  = hero.querySelector('[data-next]');
+  var duration = parseInt(hero.dataset.duration, 10) || 5000;
+  var current  = 0;
+  var timer    = null;
+  var busy     = false;
+
+  if (slides.length < 2) return;
+
+  /* ── Dots ── */
+  slides.forEach(function (_, i) {
+    var btn = document.createElement('button');
+    btn.setAttribute('role', 'tab');
+    btn.setAttribute('aria-label', 'Slide ' + (i + 1));
+    btn.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+    btn.classList.toggle('is-active', i === 0);
+    btn.dataset.dot = i;
+    btn.addEventListener('click', function () { goTo(parseInt(this.dataset.dot)); });
+    dotsEl.appendChild(btn);
+  });
+
+  function syncDots() {
+    dotsEl.querySelectorAll('[data-dot]').forEach(function (b, i) {
+      b.classList.toggle('is-active', i === current);
+      b.setAttribute('aria-selected', i === current ? 'true' : 'false');
+    });
+  }
+
+  /* ── Progress bar ── */
+  function startProgress() {
+    if (!fillEl) return;
+    fillEl.style.transition = 'none';
+    fillEl.style.width = '0%';
+    void fillEl.offsetWidth;
+    fillEl.style.transition = 'width ' + duration + 'ms linear';
+    fillEl.style.width = '100%';
+  }
+
+  /* ── Ir a slide ── */
+  function goTo(n) {
+    if (busy || n === current) return;
+    busy = true;
+    clearInterval(timer);
+
+    slides[current].classList.remove('is-active');
+    slides[current].classList.add('is-leaving');
+    current = ((n % slides.length) + slides.length) % slides.length;
+    slides[current].classList.add('is-active');
+
+    setTimeout(function () {
+      slides.forEach(function (s) { s.classList.remove('is-leaving'); });
+      busy = false;
+    }, 900);
+
+    syncDots();
+    startProgress();
+    timer = setInterval(function () { goTo(current + 1); }, duration);
+  }
+
+  if (prevBtn) prevBtn.addEventListener('click', function () { goTo(current - 1); });
+  if (nextBtn) nextBtn.addEventListener('click', function () { goTo(current + 1); });
+
+  /* ── Swipe ── */
+  var ox = 0;
+  hero.addEventListener('pointerdown', function (e) { ox = e.clientX; });
+  hero.addEventListener('pointerup',   function (e) {
+    var dx = e.clientX - ox;
+    if (Math.abs(dx) > 50) goTo(dx < 0 ? current + 1 : current - 1);
+  });
+
+  startProgress();
+  timer = setInterval(function () { goTo(current + 1); }, duration);
+})();
+</script>
+
 {% schema %}
 {
-  "name": "Hero — Fagans",
+  "name": "Hero Carousel — Fagans",
   "tag": "section",
   "class": "fagans-hero-section",
+  "max_blocks": 5,
   "settings": [
     {
-      "type": "select",
-      "id": "layout",
-      "label": "Layout",
-      "options": [
-        { "value": "centered", "label": "Centrado" },
-        { "value": "split",    "label": "Dividido (texto izq + imagen der)" }
-      ],
-      "default": "split"
-    },
-    {
       "type": "range",
-      "id": "min_height",
-      "label": "Altura mínima (vh)",
-      "min": 50,
-      "max": 100,
-      "step": 5,
-      "default": 90,
-      "unit": "vh"
-    },
+      "id": "autoplay_speed",
+      "label": "Duración por slide (segundos)",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "default": 5
+    }
+  ],
+  "blocks": [
     {
-      "type": "header",
-      "content": "Contenido"
-    },
-    {
-      "type": "text",
-      "id": "eyebrow",
-      "label": "Eyebrow (línea pequeña)",
-      "default": "Fagans Perfumería · Colección 2025"
-    },
-    {
-      "type": "textarea",
-      "id": "heading",
-      "label": "Titular principal",
-      "default": "La fragancia perfecta empieza con una decisión"
-    },
-    {
-      "type": "textarea",
-      "id": "subheading",
-      "label": "Subtítulo",
-      "default": "Originales e importados. Diseñador, nicho y árabe."
-    },
-    {
-      "type": "text",
-      "id": "cta_1_label",
-      "label": "Botón 1 — texto",
-      "default": "Ver catálogo"
-    },
-    {
-      "type": "url",
-      "id": "cta_1_url",
-      "label": "Botón 1 — enlace"
-    },
-    {
-      "type": "text",
-      "id": "cta_2_label",
-      "label": "Botón 2 — texto (opcional)"
-    },
-    {
-      "type": "url",
-      "id": "cta_2_url",
-      "label": "Botón 2 — enlace"
-    },
-    {
-      "type": "header",
-      "content": "Imágenes"
-    },
-    {
-      "type": "image_picker",
-      "id": "background_image",
-      "label": "Imagen de fondo (opcional)",
-      "info": "Si no se elige imagen, el fondo es onix sólido"
-    },
-    {
-      "type": "image_picker",
-      "id": "product_image",
-      "label": "Imagen de producto (solo en layout Dividido)"
-    },
-    {
-      "type": "header",
-      "content": "Extras"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_scroll_hint",
-      "label": "Mostrar indicador de scroll",
-      "default": true
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagen (columna derecha)",
+          "info": "Recomendado: 3:4 vertical, mínimo 800px de ancho"
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Texto pequeño superior",
+          "default": "Colección Nicho"
+        },
+        {
+          "type": "textarea",
+          "id": "title",
+          "label": "Título (usa Enter para saltos de línea)",
+          "default": "El perfume\nque nadie más\nlleva."
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtítulo"
+        },
+        {
+          "type": "text",
+          "id": "btn1_label",
+          "label": "Botón primario — texto",
+          "default": "Explorar colección"
+        },
+        {
+          "type": "url",
+          "id": "btn1_link",
+          "label": "Botón primario — enlace"
+        },
+        {
+          "type": "text",
+          "id": "btn2_label",
+          "label": "Botón secundario — texto",
+          "default": "Ver todo el catálogo"
+        },
+        {
+          "type": "url",
+          "id": "btn2_link",
+          "label": "Botón secundario — enlace"
+        }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "Hero — Fagans",
-      "settings": {
-        "layout": "split",
-        "min_height": 90,
-        "eyebrow": "Fagans Perfumería · Originales",
-        "heading": "La fragancia perfecta empieza con una decisión",
-        "subheading": "Originales e importados. Diseñador, nicho y árabe.",
-        "cta_1_label": "Ver catálogo",
-        "show_scroll_hint": true
-      }
+      "name": "Hero Carousel — Fagans",
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "Colección Nicho",
+            "title": "El perfume\nque nadie más\nlleva.",
+            "subtitle": "Fragancias nicho de casas independientes. Formulaciones que no llegan a los centros comerciales.",
+            "btn1_label": "Explorar Nicho",
+            "btn1_link": "/collections/nicho",
+            "btn2_label": "Ver todo el catálogo",
+            "btn2_link": "/collections/all"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "Colección Árabe",
+            "title": "Oud, Musk,\nSándalo.\nIntensidad real.",
+            "subtitle": "Tradición de Oriente Medio con concentraciones que duran más de 24 horas en piel.",
+            "btn1_label": "Explorar Árabe",
+            "btn1_link": "/collections/arabes",
+            "btn2_label": "Ver todo el catálogo",
+            "btn2_link": "/collections/all"
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "Colección Diseñador",
+            "title": "Tom Ford.\nCreed. Amouage.\n100% original.",
+            "subtitle": "Las firmas más deseadas del mundo, verificadas y garantizadas. Sin copias, sin riesgo.",
+            "btn1_label": "Explorar Diseñador",
+            "btn1_link": "/collections/disenador",
+            "btn2_label": "Ver todo el catálogo",
+            "btn2_link": "/collections/all"
+          }
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,49 @@
+/* ═══════════════════════════════════════════════════════════════
+   FAGANS STRIP — Banda de autenticidad (4 ítems)
+   ═══════════════════════════════════════════════════════════════ */
+
+.f-strip {
+  background: var(--f-onix, #0E0F0F);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 18px var(--f-gutter, clamp(20px, 4vw, 64px));
+}
+
+.f-strip__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  max-width: 1400px;
+  margin-inline: auto;
+}
+
+.f-strip__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--f-sans, system-ui, sans-serif);
+  font-size: 0.6875rem;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+}
+
+.f-strip__item svg {
+  flex-shrink: 0;
+  stroke: var(--f-sandalo, #C79FB8);
+  fill: none;
+}
+
+.f-strip__divider {
+  width: 1px;
+  height: 20px;
+  background: rgba(255,255,255,0.10);
+  flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  .f-strip__divider { display: none; }
+  .f-strip__inner { gap: 20px; }
+}

@@ -23,6 +23,7 @@
   --f-sandalo-20: #F0E8ED;
   --f-blanco-90:  rgba(255,255,255,.90);
   --f-blanco-60:  rgba(255,255,255,.60);
+  --f-rojo:       #B83232;
 
   /* Tipografía */
   --f-serif:   Georgia, 'Times New Roman', serif;
@@ -308,3 +309,409 @@
 
 /* ── 8. JavaScript hook ──────────────────────────────────────── */
 /* El script de reveal se inicializa desde fagans-reveal.js      */
+
+/* Fagans shell overrides */
+
+#header-localization-form,
+#header-top-localization-form,
+#header-mobile-localization-form,
+#header-mobile-county-form,
+#FooterLocalizationForm,
+#FooterCountryForm,
+.header__localization,
+.header-mobile__localization-wrapper,
+.footer__selectors {
+  display: none !important;
+}
+
+.header {
+  background: var(--f-onix) !important;
+  color: var(--f-blanco) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+}
+
+.header .header__container {
+  min-height: 82px;
+  background: var(--f-onix) !important;
+}
+
+.header .header__top-container,
+.header .header__main,
+.header .header__mobile-menu-wrapper,
+.header .header__utils,
+.header .header__logo {
+  background: var(--f-onix) !important;
+}
+
+.header .header__heading-logo {
+  filter: brightness(0) invert(1);
+}
+
+.header .header__heading-link,
+.header .header__menu-item,
+.header .header__icon,
+.header .header__burger-mobile-menu-button,
+.header .button-link {
+  color: var(--f-blanco) !important;
+}
+
+.header .header__menu-item {
+  font-family: var(--f-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.header .header__cart-count {
+  background: var(--f-blanco) !important;
+  color: var(--f-onix) !important;
+}
+
+.newsletter {
+  background: var(--f-onix) !important;
+  color: var(--f-blanco) !important;
+  padding-block: clamp(64px, 9vw, 116px) !important;
+}
+
+.newsletter .container {
+  max-width: 1120px;
+}
+
+.newsletter .newsletter__wrapper,
+.newsletter .newsletter__content {
+  background: transparent !important;
+}
+
+.newsletter .newsletter__content {
+  max-width: 760px;
+  margin-inline: auto;
+  text-align: center;
+  padding: 0 var(--f-gutter) !important;
+}
+
+.newsletter .newsletter__heading {
+  font-family: var(--f-serif);
+  font-size: clamp(2rem, 5vw, 3.75rem);
+  font-weight: 400;
+  line-height: 1.05;
+  color: var(--f-blanco) !important;
+  margin-bottom: 18px;
+}
+
+.newsletter .newsletter__text,
+.newsletter .newsletter__text p {
+  color: rgba(255,255,255,0.62) !important;
+  font-family: var(--f-sans);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  max-width: 58ch;
+  margin-inline: auto;
+}
+
+.newsletter-form {
+  max-width: 560px;
+  margin: 36px auto 0;
+}
+
+.newsletter-form .newsletter-form__field {
+  border: 1px solid rgba(255,255,255,0.22) !important;
+  background: rgba(255,255,255,0.03) !important;
+}
+
+.newsletter-form .newsletter-form__input {
+  color: var(--f-blanco) !important;
+}
+
+.newsletter-form .input-label {
+  color: rgba(255,255,255,0.58) !important;
+}
+
+.newsletter-form .newsletter-form__button {
+  background: var(--f-blanco) !important;
+  color: var(--f-onix) !important;
+  border-color: var(--f-blanco) !important;
+  font-family: var(--f-sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.newsletter-form .newsletter-form__button:hover,
+.newsletter-form .newsletter-form__button:focus-visible {
+  background: var(--f-sandalo) !important;
+  border-color: var(--f-sandalo) !important;
+}
+
+.footer {
+  max-width: none !important;
+  width: 100%;
+  margin: 0 !important;
+  padding: clamp(48px, 7vw, 88px) var(--f-gutter) 32px !important;
+  background: var(--f-onix) !important;
+  color: var(--f-blanco) !important;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer a,
+.footer .button-link {
+  color: rgba(255,255,255,0.72) !important;
+}
+
+.footer a:hover,
+.footer .button-link:hover {
+  color: var(--f-blanco) !important;
+}
+
+.footer .footer__heading,
+.footer .footer__navigation-heading,
+.footer .accordion__control,
+.footer summary,
+.footer h2,
+.footer h3 {
+  color: var(--f-blanco) !important;
+  font-family: var(--f-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.footer .footer__block,
+.footer .footer__text,
+.footer p,
+.footer li {
+  color: rgba(255,255,255,0.68) !important;
+}
+
+.footer .footer__socials a,
+.footer .social-links__link {
+  background: rgba(255,255,255,0.08) !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  color: var(--f-blanco) !important;
+}
+
+.footer .footer__socials a:hover,
+.footer .social-links__link:hover {
+  background: var(--f-sandalo) !important;
+  color: var(--f-onix) !important;
+}
+
+.template-product .product,
+.template-product .product.color-fagans-blanco {
+  background: var(--f-blanco) !important;
+  color: var(--f-onix) !important;
+}
+
+.template-product .product__container {
+  max-width: 1440px;
+  padding-inline: var(--f-gutter) !important;
+}
+
+.template-product .product__media,
+.template-product .product-media,
+.template-product .product__media-container,
+.template-product .product__info-container {
+  background: var(--f-blanco) !important;
+}
+
+.template-product .breadcrumb,
+.template-product .breadcrumbs,
+.template-product .product__vendor {
+  font-family: var(--f-sans);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.template-product .product__title,
+.template-product h1 {
+  font-family: var(--f-serif);
+  font-weight: 400;
+  color: var(--f-onix) !important;
+}
+
+.template-product .product-form__submit,
+.template-product .shopify-payment-button__button,
+.template-product .button {
+  border-radius: 0 !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.template-product .product-form__submit,
+.template-product .add-to-cart {
+  background: var(--f-onix) !important;
+  border-color: var(--f-onix) !important;
+  color: var(--f-blanco) !important;
+}
+
+.template-product .product-form__submit:hover,
+.template-product .product-form__submit:focus-visible,
+.template-product .add-to-cart:hover,
+.template-product .add-to-cart:focus-visible {
+  background: var(--f-nogal) !important;
+  border-color: var(--f-nogal) !important;
+}
+
+.template-product .product-recommendations,
+.template-product .recently-viewed {
+  background: var(--f-blanco) !important;
+  color: var(--f-onix) !important;
+  padding-block: clamp(52px, 7vw, 92px) !important;
+}
+
+.template-product .product-recommendations .container,
+.template-product .recently-viewed .container {
+  max-width: 1440px;
+  padding-inline: var(--f-gutter) !important;
+}
+
+.template-product .product-recommendations__header,
+.template-product .recently-viewed__header {
+  margin-bottom: 34px;
+}
+
+.template-product .product-recommendations h2,
+.template-product .recently-viewed h2 {
+  font-family: var(--f-serif);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 400;
+  line-height: 1.06;
+  color: var(--f-onix) !important;
+}
+
+.template-product .product-recommendations__row,
+.template-product .recently-viewed__row {
+  align-items: stretch;
+}
+
+.template-product .product-recommendations__col,
+.template-product .recently-viewed__col {
+  height: auto;
+}
+
+.template-product .product-recommendations .fagans-pcard,
+.template-product .recently-viewed .fagans-pcard {
+  height: 100%;
+}
+
+.template-product .swiper-button-prev-new,
+.template-product .swiper-button-next-new {
+  background: var(--f-onix) !important;
+  color: var(--f-blanco) !important;
+  border: 1px solid var(--f-onix) !important;
+}
+
+.template-product .jdgm-rev-widg {
+  max-width: 860px !important;
+  margin-inline: auto !important;
+  padding: clamp(48px, 7vw, 76px) var(--f-gutter) !important;
+  border: 0 !important;
+  background: var(--f-blanco) !important;
+  text-align: center;
+}
+
+.template-product .jdgm-rev-widg__title,
+.template-product .jdgm-rev-widg h2 {
+  font-family: var(--f-serif) !important;
+  font-size: clamp(2rem, 4vw, 3rem) !important;
+  font-weight: 400 !important;
+  color: var(--f-onix) !important;
+}
+
+.template-product .jdgm-write-rev-link,
+.template-product .jdgm-btn {
+  border-radius: 0 !important;
+  background: var(--f-onix) !important;
+  border-color: var(--f-onix) !important;
+  color: var(--f-blanco) !important;
+  font-family: var(--f-sans) !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.footer {
+  background: var(--f-onix) !important;
+}
+
+.footer .footer__main-content {
+  display: grid !important;
+  grid-template-columns: minmax(220px, 1fr) minmax(160px, 0.75fr) minmax(240px, 1fr);
+  gap: clamp(48px, 8vw, 120px);
+  max-width: 1680px;
+  margin-inline: auto;
+  padding-block: clamp(64px, 8vw, 96px);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+
+.footer .footer__brand-name {
+  display: inline-block;
+  margin-bottom: 24px;
+  font-family: var(--f-serif);
+  font-size: 1.45rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--f-blanco) !important;
+  text-decoration: none;
+}
+
+.footer .footer__brand p {
+  max-width: 18ch;
+  margin: 0;
+  color: rgba(255,255,255,0.48) !important;
+  line-height: 1.65;
+}
+
+.footer .footer__navigation-item--mobile {
+  display: none !important;
+}
+
+.footer .footer__navigation-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 28px !important;
+}
+
+.footer .footer__bottom-content-wrapper {
+  max-width: 1680px;
+  margin-inline: auto;
+  padding-top: 36px;
+}
+
+.footer .footer__bottom-content {
+  justify-content: space-between;
+  color: rgba(255,255,255,0.22) !important;
+}
+
+.footer .footer__bottom-divider,
+.footer a[href*="shopify"] {
+  display: none !important;
+}
+
+.footer .footer__navigation-item--contact .footer__navigation-heading {
+  display: block !important;
+}
+
+@media (max-width: 767px) {
+  .template-product .product__container {
+    padding-inline: 20px !important;
+  }
+
+  .footer .footer__main-content {
+    grid-template-columns: 1fr;
+    gap: 34px;
+    padding-block: 48px;
+  }
+
+  .footer .footer__navigation-item--mobile {
+    display: block !important;
+  }
+
+  .footer .footer__navigation-item--desktop {
+    display: none !important;
+  }
+
+  .footer .footer__bottom-content {
+    justify-content: flex-start;
+  }
+}

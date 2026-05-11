@@ -427,3 +427,9 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+# Local assistant/tooling files
+.agents/
+.claude/
+skills-lock.json
+/shopify

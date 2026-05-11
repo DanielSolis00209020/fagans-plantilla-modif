@@ -1,0 +1,113 @@
+{{ 'fagans-homepage.css' | asset_url | stylesheet_tag }}
+
+<section class="f-values" aria-labelledby="values-title-{{ section.id }}">
+  <div class="f-container">
+    <h2 class="f-sr-only" id="values-title-{{ section.id }}">{{ section.settings.title | default: 'Por qué Fagans' }}</h2>
+    <div class="f-values__grid">
+      {%- for block in section.blocks -%}
+        <div class="f-value-card" {{ block.shopify_attributes }}>
+          <div class="f-value-card__icon" aria-hidden="true">
+            {%- case block.settings.icon -%}
+              {%- when 'shield' -%}
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              {%- when 'radio' -%}
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+              {%- when 'truck' -%}
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              {%- when 'heart' -%}
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              {%- when 'star' -%}
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              {%- when 'check' -%}
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            {%- endcase -%}
+          </div>
+          <h3 class="f-value-card__title">{{ block.settings.title }}</h3>
+          <p class="f-value-card__body">{{ block.settings.body }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Valores — Fagans",
+  "tag": "section",
+  "class": "fagans-values-section",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título (para lectores de pantalla)",
+      "default": "Por qué Fagans"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "value",
+      "name": "Tarjeta de valor",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Ícono",
+          "options": [
+            { "value": "shield", "label": "Escudo (garantía)" },
+            { "value": "radio",  "label": "Señal (asesoría)" },
+            { "value": "truck",  "label": "Camión (envíos)" },
+            { "value": "heart",  "label": "Corazón (cuidado)" },
+            { "value": "star",   "label": "Estrella" },
+            { "value": "check",  "label": "Palomita (verificado)" }
+          ],
+          "default": "shield"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título",
+          "default": "Autenticidad garantizada"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Descripción",
+          "default": "Verificamos la procedencia de cada frasco. Si no es original, no entra al catálogo."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Valores — Fagans",
+      "blocks": [
+        {
+          "type": "value",
+          "settings": {
+            "icon": "shield",
+            "title": "Autenticidad garantizada",
+            "body": "Verificamos la procedencia de cada frasco. Si no es original, no entra al catálogo."
+          }
+        },
+        {
+          "type": "value",
+          "settings": {
+            "icon": "radio",
+            "title": "Asesoría real",
+            "body": "No te mandamos una lista genérica. Te escuchamos, entendemos tu gusto y te recomendamos lo que te va a funcionar."
+          }
+        },
+        {
+          "type": "value",
+          "settings": {
+            "icon": "truck",
+            "title": "Envío a todo el país",
+            "body": "Entregamos a cualquier departamento de El Salvador. Embalaje seguro, discreto y a tiempo."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -56,7 +56,7 @@
   {%- endunless -%}
 
   {%- comment -%}══ ACORDES PRINCIPALES ══{%- endcomment -%}
-  {%- if aroma_mf != blank -%}
+  {%- if aroma_mf != blank or custom_aroma != blank -%}
     {%- capture acordes_html -%}
       {%- for acorde in aroma_mf.references limit: 8 -%}
         {%- capture acorde_label -%}{{ acorde.label }}{%- endcapture -%}
@@ -73,7 +73,7 @@
       {%- capture acordes_html -%}
         {%- assign _ca_idx = 0 -%}
         {%- for raw in custom_aroma.value limit: 1 -%}
-          {%- assign _ca_parts = raw | split: '; ' -%}
+          {%- assign _ca_parts = raw | replace: ', ', ';' | replace: ',', ';' | replace: ' | ', ';' | replace: '|', ';' | split: ';' -%}
           {%- for _cp in _ca_parts limit: 8 -%}
             {%- assign _cp = _cp | strip -%}
             {%- if _cp != blank -%}
@@ -98,7 +98,7 @@
 
   {%- comment -%}══ FICHA DE METADATA ══{%- endcomment -%}
   {%- assign has_any_meta = false -%}
-  {%- if gender_mf != blank or occasion_mf != blank or season_mf != blank -%}
+  {%- if gender_mf != blank or occasion_mf != blank or season_mf != blank or custom_gender != blank or custom_occasion != blank or custom_season != blank -%}
     {%- assign has_any_meta = true -%}
   {%- endif -%}
   {%- comment -%}Fallback desde tags{%- endcomment -%}
@@ -160,7 +160,7 @@
         {%- if season_badges == blank and custom_season != blank -%}
           {%- capture season_badges -%}
             {%- for raw in custom_season.value limit: 1 -%}
-              {%- assign _s_parts = raw | split: '; ' -%}
+              {%- assign _s_parts = raw | replace: ', ', ';' | replace: ',', ';' | replace: ' | ', ';' | replace: '|', ';' | split: ';' -%}
               {%- for _sp in _s_parts -%}
                 {%- assign _sp = _sp | strip -%}
                 {%- if _sp != blank -%}<span class="f-badge f-badge--season">{%- render 'fagans-translate-meta', value: _sp -%}</span>{%- endif -%}
@@ -198,7 +198,7 @@
         {%- if occasion_badges == blank and custom_occasion != blank -%}
           {%- capture occasion_badges -%}
             {%- for raw in custom_occasion.value limit: 1 -%}
-              {%- assign _o_parts = raw | split: '; ' -%}
+              {%- assign _o_parts = raw | replace: ', ', ';' | replace: ',', ';' | replace: ' | ', ';' | replace: '|', ';' | split: ';' -%}
               {%- for _op in _o_parts -%}
                 {%- assign _op = _op | strip -%}
                 {%- if _op != blank -%}<span class="f-badge f-badge--occasion">{%- render 'fagans-translate-meta', value: _op -%}</span>{%- endif -%}

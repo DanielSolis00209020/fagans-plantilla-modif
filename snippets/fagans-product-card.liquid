@@ -16,6 +16,7 @@
   assign aroma_mf  = product.metafields[aroma_ns][aroma_key]
 
   assign gender_mf  = product.metafields['shopify']['target-gender']
+  assign custom_gender = product.metafields.custom.gender
   assign season_mf  = product.metafields.shopify.season
 
   assign is_available = product.available
@@ -52,6 +53,17 @@
     endfor
   endif
   if gender_val == blank
+    if custom_gender != blank
+      assign gender_val = custom_gender.value | strip
+      assign gender_raw_str = gender_val | downcase
+      if gender_raw_str contains 'masc' or gender_raw_str contains 'hombre' or gender_raw_str contains 'male' or gender_raw_str contains 'man'
+        assign gender_class = 'f-badge--masc'
+      else
+        assign gender_class = 'f-badge--fem'
+      endif
+    endif
+  endif
+  if gender_val == blank
     if product.tags contains 'masculino'
       assign gender_val = 'Para él'
       assign gender_class = 'f-badge--masc'
@@ -62,6 +74,15 @@
       assign gender_val = 'Unisex'
       assign gender_class = 'f-badge--fem'
     endif
+  endif
+
+  comment — Descuento
+  endcomment
+  assign has_sale = false
+  assign discount_pct = 0
+  if product.compare_at_price > product.price
+    assign has_sale = true
+    assign discount_pct = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price
   endif
 
   comment — Reveal delay staggered (1-4)
@@ -79,7 +100,7 @@
   {%- assign _aroma_count = 0 -%}
   {%- if _custom_aroma != blank -%}
     {%- for raw in _custom_aroma.value limit: 1 -%}
-      {%- assign _parts = raw | split: '; ' -%}
+      {%- assign _parts = raw | replace: ', ', ';' | replace: ',', ';' | replace: ' | ', ';' | replace: '|', ';' | split: ';' -%}
       {%- for _p_raw in _parts limit: 8 -%}
         {%- assign _p = _p_raw | strip -%}
         {%- if _p != blank -%}
@@ -105,7 +126,7 @@
 {%- assign target_variant = product.first_available_variant | default: product.variants.first -%}
 
 <article
-  class="fagans-pcard{% if featured %} fagans-pcard--featured{% endif %}{% unless is_available %} fagans-pcard--sold-out{% endunless %}"
+  class="fagans-pcard js-product-card{% if featured %} fagans-pcard--featured{% endif %}{% unless is_available %} fagans-pcard--sold-out{% endunless %}{% if has_sale %} fagans-pcard--has-sale{% endif %}"
   data-tags="{{ tag_str }}"
   data-f-reveal
   data-f-delay="{{ reveal_delay }}"
@@ -145,6 +166,11 @@
         </p>
       </div>
     {%- endif -%}
+
+    {%- comment -%}── Sale sticker prominente ───────────────────────────────{%- endcomment -%}
+    {%- if has_sale -%}
+      <div class="fagans-pcard__sale-sticker" aria-hidden="true">-{{ discount_pct }}%</div>
+    {%- endif -%}
   </a>
 
   {%- comment -%}── Badge tipo fragancia (arriba-izq) ───────────────────────{%- endcomment -%}
@@ -166,18 +192,14 @@
   {%- comment -%}── Info bajo imagen ────────────────────────────────────────{%- endcomment -%}
   <div class="fagans-pcard__info">
 
-    {%- comment -%}Fila de badges: género / agotado / descuento{%- endcomment -%}
+    {%- comment -%}Fila de badges: género / agotado{%- endcomment -%}
     <div class="fagans-pcard__meta-row">
       {%- if gender_val != blank -%}
-        <span class="f-badge {{ gender_class }}">{{ gender_val }}</span>
+        <span class="f-badge {{ gender_class }}">{%- render 'fagans-translate-meta', value: gender_val -%}</span>
       {%- endif -%}
       {%- unless is_available -%}
         <span class="f-badge f-badge--agotado">Agotado</span>
       {%- endunless -%}
-      {%- if product.compare_at_price > product.price -%}
-        {%- assign discount_pct = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price -%}
-        <span class="f-badge f-badge--sale">-{{ discount_pct }}%</span>
-      {%- endif -%}
     </div>
 
     <p class="fagans-pcard__vendor">{{ product.vendor }}</p>

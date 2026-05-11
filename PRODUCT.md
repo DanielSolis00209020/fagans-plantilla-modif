@@ -1,4 +1,8 @@
-# Product
+# Fagans — Perfumería Boutique
+
+## Product Purpose
+
+Fagans es la primera boutique de perfumería de lujo en El Salvador. Vende fragancias 100% originales: nicho, árabe y de diseñador. El sitio web es la vitrina principal de la marca; comunica autenticidad, sofisticación y exclusividad antes de que el cliente llegue a la tienda física o complete una compra online.
 
 ## Register
 
@@ -6,36 +10,38 @@ brand
 
 ## Users
 
-18–35 años, género indiferente, nivel socioeconómico medio-alto en El Salvador. Compran para uso propio o como regalo. Conocen y valoran marcas de lujo y nicho internacionales. Consumen contenido de marcas tech (Apple, Samsung) y entienden lo que significa una experiencia digital de calidad. Viven en un mercado saturado de clones baratos — buscan explícitamente autenticidad y están dispuestos a pagar por originales. No quieren "explorar el sitio"; quieren comprar. Rápido.
+Salvadoreños de clase media-alta y alta, entre 22 y 45 años, que buscan fragancias originales de marcas reconocidas (Afnan, Amouage, Tom Ford, Creed, etc.). Conocen de perfumería o quieren descubrirla. Buscan diferenciarse con un aroma que no todos tienen. Desconfían de las copias; valoran la autenticidad certificada.
 
-## Product Purpose
+## Brand Voice
 
-Fagans es la perfumería premium de El Salvador: 100% originales, cero clones. El sitio tiene un trabajo: convertir rápido mientras legitima la marca. Éxito = un cliente llega al home, encuentra un producto en segundos y compra sin fricción. Éxito secundario: productos fuera de stock se pueden reservar (Solicitar), y pedidos especiales (Encargos) se gestionan desde el mismo flujo.
+Sofisticada sin ser fría. Sensorial. Confiada. Salvadoreña de corazón, con referentes internacionales. No habla como lujo europeo distante, sino como el amigo que sabe de perfumes y te guía con criterio.
 
-Diferenciador clave: Fagans expone metadata de fragancia — notas, acordes, ocasión, temporada, género — vía metaobjetos de Shopify. Esto convierte las páginas de producto en algo cercano a Fragrantica pero integrado en el flujo de compra. Ningún competidor local hace esto. Las colecciones también filtran por intención (femenino/masculino/unisex, calor/frío) en lugar de solo por nombre de categoría.
+## Colors (Paleta Oficial)
 
-## Brand Personality
+- Onix #0E0F0F — Primario. Base oscura, autoridad.
+- Blanco #FFFFFF — Primario. Limpieza, contraste.
+- Platino #F1F1F1 — Secundario. Superficie neutra cálida.
+- Sandalo Gris #C7BFB8 — Secundario. Tono piedra cálida, sensorial.
+- Nogal Braun #582D0C — Acento. Calidez terrosa, lujo discreto.
 
-Auténtico. Veloz. Sofisticado.
+## Typography
 
-Voz confiada sin ser fría. Premium sin ser excluyente. Fagans es el experto que conoce lo bueno y quiere que tú también lo tengas. Energía de marca tech (claridad y drama Apple/Samsung) filtrada a través de cultura perfumera. Moderno, pero con calidez de boutique.
+- Display: Gambarino Regular (serif exclusivo de marca)
+- Body/UI: Inter (brand-established)
 
-## Anti-references
+## Anti-References
 
-- **Siman** (sv.siman.com): Saturación de offers, ruido promocional, grid genérico de retail, cero personalidad de marca.
-- **Perfumeria Magie SV** (sv.perfumeriamagie.com): UI deficiente, navegación confusa, sin metadata, visualmente desactualizado.
-- **Tiendas Shopify genéricas**: Templates cookie-cutter, storytelling de hero → características → productos enterrados, sin densidad de producto.
-- **Storytelling excesivo en el home**: Páginas que gastan tres scrolls en "nuestra historia" antes de mostrar un solo producto.
-- **Sephora / tiendas departamentales de lujo genérico**: Catálogo inmenso sin curación, sin personalidad de nicho.
+- Shopify genérico con platino neutro sin criterio
+- SaaS-cream minimalismo sin personalidad
+- Editorial magazine con drop caps y serif italic (trampa de segunda capa)
+- Perfumería árabe tipo marketplace multicolor
+- Gradientes de texto
+- Cards idénticas sin ritmo
 
-## Design Principles
+## Strategic Principles
 
-1. **Productos primero, siempre.** Toda página que pueda mostrar productos, los muestra. Sin scroll para llegar al catálogo.
-2. **La metadata es la ventaja.** Notas, acordes, ocasiones, temporadas, género — se muestran en todas partes. Esto es lo que ningún competidor local ofrece.
-3. **Un clic a la compra.** Cada interacción reduce fricción. CTA pegajoso en mobile, feedback inmediato del carrito, checkout en el menor número de pasos posible.
-4. **Drama tech, alma perfumera.** Efectos en scroll, imágenes cinematográficas, tipografía segura — pero con la calidez de la cultura olfativa debajo.
-5. **Autenticidad como diferenciador.** Si una decisión de diseño podría aparecer en un sitio de $5, no pertenece aquí.
-
-## Accessibility & Inclusion
-
-WCAG AA mínimo. Sin necesidades de usuario conocidas específicas. Los efectos de movimiento deben respetar `prefers-reduced-motion`. Alto contraste texto/fondo es crítico dado el uso de onix (`#0E0F0F`) como color dominante. Garantizar que la metadata de fragancia (notas, acordes) sea accesible por lector de pantalla.
+1. La fotografía de producto manda. Sin imagen fuerte no hay hero.
+2. El texto nunca explica lo que la imagen ya dice.
+3. Cada página tiene una sola acción principal. El scroll cuenta la historia.
+4. La autenticidad es el diferenciador. 100% original es promesa, no adorno.
+5. Mobile primero, pero el desktop debe ser cinematic.

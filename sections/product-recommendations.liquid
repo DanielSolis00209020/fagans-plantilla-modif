@@ -68,6 +68,7 @@
 {%- endcapture -%}
 
 {%- render 'adastra' with '/src/styles/product-recommendations.scss' -%}
+{{ 'fagans-card.css' | asset_url | stylesheet_tag }}
 
 <section
 	class="product-recommendations color-{{ color_scheme }} is-loading js-product-recommendations js-animate {% if request.visual_preview_mode or section.index == 1 %}animated{% endif %}"
@@ -104,21 +105,11 @@
 			<div class="{{- product_recommendations_row_wrapper_classes | strip_newlines }} is-active">
 				<div class="{{- product_recommendations_row_classes | strip_newlines -}}">
 					{%- capture slides -%}
-						{%- assign image_size        = 480 -%}
-						{%- assign image_size_tablet = 630 -%}
-						{%- assign image_size_mobile = 383 -%}
-
 						{%- if enable_shopify_recommendations -%}
 							{%- if recommendations.products_count > 0 -%}
 								{%- for product in recommendations.products limit: limit -%}
 									<div class="product-recommendations__col swiper-slide js-product-recommendations-col">
-										{%- render
-											'product-card',
-											product: product,
-											size: image_size,
-											tablet_size: image_size_tablet,
-											mobile_size: image_size_mobile
-										-%}
+										{%- render 'fagans-product-card', product: product, card_index: forloop.index0 -%}
 
 										<div class="product-recommendations__preloader-wrapper" aria-hidden="true">
 											<div class="product-recommendations__preloader"></div>
@@ -129,13 +120,7 @@
 						{%- elsif product_list != blank and product_list.count > 0 -%}
 							{%- for product in product_list limit: limit -%}
 								<div class="product-recommendations__col swiper-slide">
-									{%- render
-										'product-card',
-										product: product,
-										size: image_size,
-										tablet_size: image_size_tablet,
-										mobile_size: image_size_mobile
-									-%}
+									{%- render 'fagans-product-card', product: product, card_index: forloop.index0 -%}
 								</div>
 							{%- endfor -%}
 						{%- endif -%}

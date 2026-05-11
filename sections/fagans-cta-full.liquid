@@ -1,0 +1,76 @@
+{{ 'fagans-homepage.css' | asset_url | stylesheet_tag }}
+
+<section class="f-cta-full" aria-label="{{ section.settings.aria_label | default: 'Llamada a la acción' }}">
+  <div class="f-cta-full__inner">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="f-eyebrow" style="color:var(--f-sandalo, #C79FB8)">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+    {%- if section.settings.title != blank -%}
+      <h2 class="f-cta-full__title">{{ section.settings.title | newline_to_br }}</h2>
+    {%- endif -%}
+    {%- if section.settings.subtitle != blank -%}
+      <p class="f-cta-full__sub">{{ section.settings.subtitle }}</p>
+    {%- endif -%}
+    {%- if section.settings.btn_label != blank -%}
+      <a href="{{ section.settings.btn_link | default: '/pages/contacto' }}" class="f-btn f-btn--primary">
+        {{ section.settings.btn_label }}
+      </a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "CTA completo — Fagans",
+  "tag": "section",
+  "class": "fagans-cta-full-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Texto pequeño superior",
+      "default": "¿No sabes por dónde empezar?"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Título (Enter para salto de línea)",
+      "default": "Te ayudamos a encontrar\ntu fragancia."
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtítulo",
+      "default": "Cuéntanos tu estilo, tu ocasión, lo que has usado antes. En menos de una hora tienes nuestra recomendación."
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Texto del botón",
+      "default": "Hablar con un asesor"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Enlace del botón"
+    },
+    {
+      "type": "text",
+      "id": "aria_label",
+      "label": "Etiqueta ARIA (accesibilidad)",
+      "default": "Llamada a la acción"
+    }
+  ],
+  "presets": [
+    {
+      "name": "CTA completo — Fagans",
+      "settings": {
+        "eyebrow": "¿No sabes por dónde empezar?",
+        "title": "Te ayudamos a encontrar\ntu fragancia.",
+        "subtitle": "Cuéntanos tu estilo, tu ocasión, lo que has usado antes. En menos de una hora tienes nuestra recomendación.",
+        "btn_label": "Hablar con un asesor"
+      }
+    }
+  ]
+}
+{% endschema %}
