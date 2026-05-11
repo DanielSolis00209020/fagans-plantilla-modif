@@ -66,28 +66,26 @@
   z-index: 12;
   background: var(--f-blanco, #FFFFFF);
   border-bottom: 1px solid var(--f-onix-10, rgba(14,15,15,.10));
-  padding: 10px var(--f-gutter, 48px);
+  padding: 0 var(--f-gutter, 48px);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 14px;
+  justify-content: flex-start;
+  gap: 0;
+  flex-wrap: wrap;
   transition: top 0.4s ease;
 }
 
 .fagans-catalog__search {
-  display: grid;
-  grid-template-columns: 16px minmax(0, 1fr);
+  display: flex;
   align-items: center;
-  gap: 10px;
-  min-width: 0;
-  width: 100%;
-  max-width: 180px;
-  flex: 0 0 180px;
-  min-height: 42px;
-  padding: 0 12px;
-  border: 1px solid var(--f-onix-10, rgba(14,15,15,.10));
-  background: var(--f-blanco, #FFFFFF);
-  transition: border-color 160ms ease, box-shadow 160ms ease;
+  gap: 8px;
+  flex: 0 0 auto;
+  min-height: 64px;
+  padding: 16px 20px 16px 0;
+  margin-right: 16px;
+  border-right: 1px solid var(--f-onix-10, rgba(14,15,15,.10));
+  background: transparent;
+  transition: border-color 160ms ease;
 }
 
 .fagans-catalog__search-icon {
@@ -98,12 +96,11 @@
 }
 
 .fagans-catalog__search:focus-within {
-  border-color: var(--f-sandalo, #C79FB8);
-  box-shadow: inset 0 -1px 0 var(--f-sandalo, #C79FB8);
+  border-right-color: var(--f-sandalo, #C79FB8);
 }
 
 .fagans-catalog__search-input {
-  width: 100%;
+  width: 180px;
   min-width: 0;
   min-height: 0;
   padding: 0;
@@ -112,8 +109,8 @@
   background: transparent;
   color: var(--f-onix, #0E0F0F);
   font-family: var(--f-sans, system-ui, sans-serif);
-  font-size: 0.875rem;
-  letter-spacing: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
   outline: none;
   appearance: none;
   -webkit-appearance: none;
@@ -126,11 +123,13 @@
 .fagans-catalog__pills {
   display: flex;
   align-items: center;
-  gap: 6px;
-  overflow-x: auto;
+  gap: 4px;
+  flex-wrap: wrap;
+  overflow: visible;
   scrollbar-width: none;
-  flex: 1;
-  padding-bottom: 2px;
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 12px 0;
 }
 .fagans-catalog__pills::-webkit-scrollbar { display: none; }
 
@@ -140,19 +139,21 @@
   align-items: center;
   text-decoration: none;
   background: transparent;
-  border: 1px solid var(--f-onix-10, rgba(14,15,15,.10));
+  border: 1px solid transparent;
   border-radius: 0;
-  padding: 6px 14px;
+  padding: 6px 12px;
   font-family: var(--f-sans, system-ui, sans-serif);
   font-size: 0.75rem;
   font-weight: 400;
-  letter-spacing: 0.06em;
-  color: var(--f-onix-60, #464747);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--f-onix-40, #6E6F6F);
   transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
   white-space: nowrap;
 }
 .fagans-pill:hover {
-  border-color: var(--f-onix, #0E0F0F);
+  background: color-mix(in srgb, var(--f-sandalo, #C79FB8) 24%, var(--f-platino, #F1F1F1));
+  border-color: transparent;
   color: var(--f-onix, #0E0F0F);
 }
 .fagans-pill.active {
@@ -166,48 +167,20 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  flex-shrink: 0;
-}
-
-@media (min-width: 1024px) {
-  .fagans-catalog__filter-bar {
-    display: grid;
-    grid-template-columns: 180px minmax(0, 1fr) auto;
-  }
-
-  .fagans-catalog__search {
-    grid-column: 1;
-    justify-self: start;
-  }
-
-  .fagans-catalog__pills {
-    grid-column: 2;
-    justify-content: flex-start;
-    flex: 1 1 auto;
-    min-width: 0;
-  }
-
-  .fagans-catalog__bar-right {
-    grid-column: 3;
-    justify-self: end;
-  }
+  flex: 0 0 auto;
+  padding: 12px 0 12px 16px;
+  border-left: 1px solid var(--f-onix-10, rgba(14,15,15,.10));
 }
 
 @media (min-width: 1024px) and (max-width: 1320px) {
-  .fagans-catalog__filter-bar {
-    grid-template-columns: 150px minmax(0, 1fr) auto;
-    gap: 8px;
-  }
-
-  .fagans-catalog__search {
-    max-width: 150px;
-    flex-basis: 150px;
-  }
+  .fagans-catalog__search-input { width: 150px; }
 
   .fagans-pill {
-    padding-inline: 11px;
+    padding-inline: 10px;
     letter-spacing: 0.04em;
   }
+
+  .fagans-catalog__bar-right { gap: 8px; padding-left: 12px; }
 }
 
 .fagans-sort-select {
@@ -218,7 +191,8 @@
   background: transparent;
   border: 1px solid var(--f-onix-10, rgba(14,15,15,.10));
   border-radius: 0;
-  padding: 6px 28px 6px 10px;
+  min-width: 132px;
+  padding: 7px 30px 7px 12px;
   appearance: none;
   -webkit-appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23464747' stroke-width='1.2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
@@ -267,6 +241,76 @@
   background: var(--f-onix-10, rgba(14,15,15,.10));
 }
 
+.fagans-catalog__remote-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: var(--f-onix-10, rgba(14,15,15,.10));
+}
+
+.fagans-catalog__remote-grid[hidden] {
+  display: none;
+}
+
+.fagans-catalog.is-searching .fagans-catalog__grid {
+  display: none;
+}
+
+.fagans-catalog.is-searching .fagans-catalog__pagination {
+  display: none;
+}
+
+.fagans-catalog__search-results {
+  background: var(--f-blanco, #FFFFFF);
+  border-top: 1px solid var(--f-onix-10, rgba(14,15,15,.10));
+}
+
+.fagans-catalog__search-results[hidden],
+.fagans-catalog__search-group[hidden] {
+  display: none;
+}
+
+.fagans-catalog__search-group + .fagans-catalog__search-group {
+  border-top: 1px solid var(--f-onix-10, rgba(14,15,15,.10));
+}
+
+.fagans-catalog__search-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 30px var(--f-gutter, 48px) 18px;
+}
+
+.fagans-catalog__search-heading p,
+.fagans-catalog__search-heading h2 {
+  margin: 0;
+}
+
+.fagans-catalog__search-heading p {
+  font-family: var(--f-sans, system-ui, sans-serif);
+  font-size: 0.72rem;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--f-sandalo, #C79FB8);
+}
+
+.fagans-catalog__search-heading h2 {
+  font-family: var(--f-serif, serif);
+  font-size: clamp(1.7rem, 3vw, 2.6rem);
+  line-height: 0.95;
+  color: var(--f-onix, #0E0F0F);
+  text-align: right;
+}
+
+.fagans-catalog__search-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: var(--f-onix-10, rgba(14,15,15,.10));
+}
+
 .fagans-catalog__grid[data-cols="4"] {
   grid-template-columns: repeat(4, 1fr);
 }
@@ -276,14 +320,18 @@
 }
 
 @media (max-width: 1199px) {
-  .fagans-catalog__grid {
+  .fagans-catalog__grid,
+  .fagans-catalog__remote-grid,
+  .fagans-catalog__search-grid {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
 @media (max-width: 900px) {
   .fagans-catalog__grid,
-  .fagans-catalog__grid[data-cols="4"] {
+  .fagans-catalog__grid[data-cols="4"],
+  .fagans-catalog__remote-grid,
+  .fagans-catalog__search-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
@@ -291,8 +339,21 @@
 @media (max-width: 767px) {
   .fagans-catalog__grid,
   .fagans-catalog__grid[data-cols="4"],
-  .fagans-catalog__grid[data-cols="3"] {
+  .fagans-catalog__grid[data-cols="3"],
+  .fagans-catalog__remote-grid,
+  .fagans-catalog__search-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .fagans-catalog__search-heading {
+    display: block;
+    padding: 24px 20px 14px;
+  }
+
+  .fagans-catalog__search-heading h2 {
+    margin-top: 8px;
+    text-align: left;
+    font-size: 1.85rem;
   }
 }
 
@@ -380,6 +441,10 @@
   border-color: var(--f-onix, #0E0F0F);
 }
 
+.fagans-pagination__link.is-current {
+  box-shadow: inset 0 0 0 2px var(--f-platino, #F1F1F1);
+}
+
 .fagans-pagination__link.is-ellipsis {
   border-color: transparent;
   background: transparent;
@@ -465,28 +530,53 @@
     gap: 8px;
   }
   .fagans-catalog__filter-bar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(132px, 38vw);
     padding: 8px 20px;
-    gap: 10px;
-    flex-wrap: wrap;
-    align-items: stretch;
+    gap: 8px 12px;
+    align-items: center;
   }
   .fagans-catalog__search {
     order: 1;
     width: 100%;
     max-width: none;
-    flex-basis: 100%;
+    flex-basis: auto;
+    min-height: 44px;
+    padding: 0 12px 0 0;
+    margin-right: 0;
+    border-right: 1px solid var(--f-onix-10, rgba(14,15,15,.10));
+    border-bottom: 0;
   }
   .fagans-catalog__search-input {
     border: 0;
+    width: 100%;
+    flex: 1;
   }
   .fagans-catalog__pills {
-    order: 2;
-    flex-basis: 100%;
+    order: 3;
+    grid-column: 1 / -1;
+    flex-basis: auto;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 0 0 2px;
+    gap: 6px;
+  }
+  .fagans-pill {
+    min-height: 38px;
+    padding-inline: 14px;
+    border-color: var(--f-onix-10, rgba(14,15,15,.10));
   }
   .fagans-catalog__bar-right {
-    order: 3;
+    order: 2;
     width: 100%;
-    justify-content: space-between;
+    justify-content: flex-end;
+    padding: 0;
+    border-left: 0;
+  }
+  .fagans-sort-select {
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
   }
   .fagans-grid-toggle { display: none; }
   .fagans-catalog__pagination { padding: 32px 20px 24px; }

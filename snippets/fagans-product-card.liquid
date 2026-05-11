@@ -131,6 +131,12 @@
 <article
   class="fagans-pcard js-product-card{% if featured %} fagans-pcard--featured{% endif %}{% unless is_available %} fagans-pcard--sold-out{% endunless %}{% if has_sale %} fagans-pcard--has-sale{% endif %}"
   data-tags="{{ tag_str }}"
+  data-handle="{{ product.handle | escape }}"
+  data-product-id="{{ product.id }}"
+  data-name="{{ product.title | escape }}"
+  data-vendor="{{ product.vendor | escape }}"
+  data-price="{{ product.price | divided_by: 100.0 }}"
+  data-order="{{ card_index | default: 0 }}"
   data-search="{{ search_index | strip | escape }}"
   data-f-reveal
   data-f-delay="{{ reveal_delay }}"

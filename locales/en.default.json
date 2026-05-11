@@ -68,24 +68,24 @@
 			"share_success": "Link copied!"
 		},
 		"search": {
-			"no_results": "No results found for {{ query }}. Check the spelling or rephrase your query.",
-			"heading": "Search results",
-			"breadcrumbs_name": "Search",
-			"search_submit_button": "Search",
-			"search_submit_button_aria_label": "Submit search query",
-			"search_input_placeholder": "What are you looking for?"
+			"no_results": "No encontramos resultados para {{ query }}. Revisa la escritura o intenta con otra palabra.",
+			"heading": "Resultados de búsqueda",
+			"breadcrumbs_name": "Buscar",
+			"search_submit_button": "Buscar",
+			"search_submit_button_aria_label": "Enviar búsqueda",
+			"search_input_placeholder": "¿Qué busca?"
 		},
 		"predictive_search": {
-			"title": "Search",
-			"placeholder": "What are you looking for?",
-			"products": "Products",
-			"articles": "Articles",
-			"pages": "Pages",
-			"no_results": "No results found",
-			"submit": "See all results",
-			"placeholder_aria_label": "Search",
-			"close_aria_label": "Close search",
-			"submit_query": "Search",
+			"title": "Buscar",
+			"placeholder": "¿Qué busca?",
+			"products": "Productos",
+			"articles": "Artículos",
+			"pages": "Páginas",
+			"no_results": "No encontramos resultados",
+			"submit": "Ver todos los resultados",
+			"placeholder_aria_label": "Buscar",
+			"close_aria_label": "Cerrar búsqueda",
+			"submit_query": "Buscar",
 			"submit_query_aria_label": "Submit search query",
 			"reset_aria_label": "Reset search",
 			"trending_search_terms": "Trending Search Terms",
@@ -147,9 +147,9 @@
 			"open_popup": "Product details: {{ title }}"
 		},
 		"search_template": {
-			"products": "Products ({{ count }})",
-			"articles": "Articles ({{ count }})",
-			"pages": "Pages ({{ count }})"
+			"products": "Productos ({{ count }})",
+			"articles": "Artículos ({{ count }})",
+			"pages": "Páginas ({{ count }})"
 		},
 		"contact_form": {
 			"error": "Error:",
@@ -191,10 +191,10 @@
 			"note": "Agregar una nota a tu pedido",
 			"edit_note": "Editar nota del pedido",
 			"discount": "Aplicar código de descuento",
-			"discount_accordion_button": "Discount",
-			"discount_placeholder": "Discount code",
-			"remove_discount": "Remove discount {{ code }}",
-			"apply_discount": "Apply",
+			"discount_accordion_button": "Descuento",
+			"discount_placeholder": "Código de descuento",
+			"remove_discount": "Eliminar descuento {{ code }}",
+			"apply_discount": "Aplicar",
 			"shipping_discount_error": "Los descuentos de envío se muestran al finalizar la compra después de agregar una dirección",
 			"discount_code_error": "El código de descuento no se puede aplicar a tu carrito",
 			"discount_applied": "Código de descuento aplicado: {{ code }}",
@@ -208,24 +208,24 @@
 			"taxes_included_and_shipping_policy_html": "Impuestos incluidos. <a href=\"{{ link }}\">Envío<\/a> calculado al finalizar la compra.",
 			"checkout": "Finalizar compra",
 			"empty": "Tu carrito está vacío.",
-			"view_quantity_rules": "View quantity rules",
-			"volume_pricing_available": "Volume pricing available"
+			"view_quantity_rules": "Ver reglas de cantidad",
+			"volume_pricing_available": "Precios por volumen disponibles"
 		},
 		"label": {
-			"product": "Product",
-			"price": "Price",
-			"quantity": "Quantity",
+			"product": "Producto",
+			"price": "Precio",
+			"quantity": "Cantidad",
 			"total": "Total"
 		},
 		"shipping_bar": {
-			"progress": "Free shipping progress {{ value }}%"
+			"progress": "Progreso del envío gratuito {{ value }}%"
 		},
 		"errors": {
 			"quantity": "Solo puedes agregar {{ count }} de {{ title }} al carrito."
 		},
 		"notifications": {
-			"view_cart": "View cart",
-			"added_heading": "Added",
+			"view_cart": "Ver carrito",
+			"added_heading": "Agregado",
 			"error": "Cart Error"
 		},
 		"reminder": {

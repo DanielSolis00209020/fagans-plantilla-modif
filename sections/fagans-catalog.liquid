@@ -13,7 +13,13 @@
 
 {%- paginate collection.products by section.settings.products_per_page -%}
 
-<div class="fagans-catalog" id="fagans-catalog-{{ section.id }}">
+<div
+  class="fagans-catalog"
+  id="fagans-catalog-{{ section.id }}"
+  data-collection-url="{{ collection.url }}"
+  data-current-page="{{ paginate.current_page }}"
+  data-total-pages="{{ paginate.pages }}"
+>
 
   {%- comment -%}══ HEADER ══{%- endcomment -%}
   <div class="fagans-catalog__header">
@@ -133,6 +139,26 @@
     {%- endfor -%}
   </div>
 
+  <div class="fagans-catalog__search-results" id="fagans-catalog-search-results-{{ section.id }}" hidden>
+    <section class="fagans-catalog__search-group fagans-catalog__search-group--primary" hidden>
+      <div class="fagans-catalog__search-heading">
+        <p>Coincidencias principales</p>
+        <h2>Nombre y marca</h2>
+      </div>
+      <div class="fagans-catalog__search-grid" id="fagans-catalog-search-primary-{{ section.id }}"></div>
+    </section>
+
+    <section class="fagans-catalog__search-group fagans-catalog__search-group--tags" hidden>
+      <div class="fagans-catalog__search-heading">
+        <p>Coincidencias relacionadas</p>
+        <h2>Tags y acordes</h2>
+      </div>
+      <div class="fagans-catalog__search-grid" id="fagans-catalog-search-tags-{{ section.id }}"></div>
+    </section>
+  </div>
+
+  <div class="fagans-catalog__remote-grid" id="fagans-catalog-remote-grid-{{ section.id }}" hidden></div>
+
   <div class="fagans-catalog__no-results" id="fagans-catalog-no-results-{{ section.id }}" hidden>
     <p>No encontramos productos con ese texto.</p>
   </div>
@@ -150,7 +176,7 @@
           {%- if part.is_link -%}
             <a class="fagans-pagination__link" href="{{ part.url }}">{{ part.title }}</a>
           {%- else -%}
-            <span class="fagans-pagination__link{% if part.title == current_page_title %} is-current{% endif %}{% if part.title contains 'hellip' or part.title contains '…' %} is-ellipsis{% endif %}">
+            <span class="fagans-pagination__link{% unless part.title contains 'hellip' or part.title contains '…' %} is-current{% endunless %}{% if part.title contains 'hellip' or part.title contains '…' %} is-ellipsis{% endif %}">
               {{ part.title }}
             </span>
           {%- endif -%}
@@ -208,6 +234,19 @@
     });
   });
 
+  var catalogEl = document.getElementById('fagans-catalog-' + sectionId);
+  var searchEl = document.getElementById('fagans-catalog-search-' + sectionId);
+  var gridEl = document.getElementById('fagans-product-grid-' + sectionId);
+  var remoteGridEl = document.getElementById('fagans-catalog-remote-grid-' + sectionId);
+  var noResultsEl = document.getElementById('fagans-catalog-no-results-' + sectionId);
+  var searchResultsEl = document.getElementById('fagans-catalog-search-results-' + sectionId);
+  var primarySectionEl = searchResultsEl ? searchResultsEl.querySelector('.fagans-catalog__search-group--primary') : null;
+  var tagsSectionEl = searchResultsEl ? searchResultsEl.querySelector('.fagans-catalog__search-group--tags') : null;
+  var primaryGridEl = document.getElementById('fagans-catalog-search-primary-' + sectionId);
+  var tagsGridEl = document.getElementById('fagans-catalog-search-tags-' + sectionId);
+  var currentRequestId = 0;
+  var debounceTimer = null;
+
   function normalizeText(value) {
     return String(value || '')
       .toLowerCase()
@@ -216,34 +255,234 @@
       .trim();
   }
 
-  function filterCatalogCards(input) {
-    if (!input) return;
+  function getLocalCards() {
+    if (!gridEl) return [];
+    return Array.from(gridEl.querySelectorAll('.js-product-card'));
+  }
 
-    var catalog = input.closest('.fagans-catalog');
-    if (!catalog) return;
+  var collectionPageCache = {};
+  var collectionCardsPromise = null;
 
-    var gridEl = catalog.querySelector('.fagans-catalog__grid');
-    var noResultsEl = catalog.querySelector('.fagans-catalog__no-results');
-    if (!gridEl) return;
-
-    var query = normalizeText(input.value);
-    var cards = Array.from(gridEl.querySelectorAll('.js-product-card'));
-    var visibleCount = 0;
-
-    cards.forEach(function (card) {
-      var haystack = normalizeText(card.getAttribute('data-search') || card.textContent);
-      var isMatch = !query || haystack.indexOf(query) !== -1;
-
-      card.hidden = !isMatch;
-      card.style.display = isMatch ? '' : 'none';
-      card.setAttribute('aria-hidden', isMatch ? 'false' : 'true');
-      card.classList.toggle('is-search-hidden', !isMatch);
-      if (isMatch) visibleCount += 1;
+  function cacheCurrentPageCards() {
+    if (!catalogEl) return;
+    var currentPage = parseInt(catalogEl.getAttribute('data-current-page'), 10) || 1;
+    collectionPageCache[currentPage] = getLocalCards().map(function (card) {
+      return card.cloneNode(true);
     });
+  }
+
+  function getCollectionPageUrl(page) {
+    var baseUrl = catalogEl ? catalogEl.getAttribute('data-collection-url') : window.location.pathname;
+    var url = new URL(baseUrl || window.location.pathname, window.location.origin);
+    var currentUrl = new URL(window.location.href);
+    var sortBy = currentUrl.searchParams.get('sort_by');
+
+    if (sortBy) url.searchParams.set('sort_by', sortBy);
+    if (page > 1) url.searchParams.set('page', page);
+    return url.toString();
+  }
+
+  function parseCardsFromHtml(html) {
+    var doc = new DOMParser().parseFromString(html, 'text/html');
+    var fetchedGrid = doc.getElementById('fagans-product-grid-' + sectionId) || doc.querySelector('.fagans-catalog__grid');
+    return fetchedGrid ? Array.from(fetchedGrid.querySelectorAll('.js-product-card')) : [];
+  }
+
+  function prepareSearchCard(card) {
+    var clone = card.cloneNode(true);
+    clone.hidden = false;
+    clone.style.display = '';
+    clone.setAttribute('aria-hidden', 'false');
+    clone.classList.remove('is-search-hidden');
+    clone.classList.add('is-visible');
+    clone.setAttribute('data-search-result-card', '');
+    clone.removeAttribute('data-f-reveal');
+    clone.removeAttribute('data-f-delay');
+    return clone;
+  }
+
+  function loadCollectionCards() {
+    if (collectionCardsPromise) return collectionCardsPromise;
+    if (!catalogEl) return Promise.resolve(collectionPageCache);
+
+    var totalPages = parseInt(catalogEl.getAttribute('data-total-pages'), 10) || 1;
+    var currentPage = parseInt(catalogEl.getAttribute('data-current-page'), 10) || 1;
+    var requests = [];
+
+    cacheCurrentPageCards();
+
+    for (var page = 1; page <= totalPages; page += 1) {
+      if (page === currentPage) continue;
+
+      requests.push(
+        fetch(getCollectionPageUrl(page))
+          .then(function (response) {
+            if (!response.ok) throw new Error('Collection page request failed');
+            return response.text();
+          })
+          .then(function (html) {
+            var doc = new DOMParser().parseFromString(html, 'text/html');
+            var remoteCatalog = doc.querySelector('.fagans-catalog');
+            var pageNumber = remoteCatalog ? parseInt(remoteCatalog.getAttribute('data-current-page'), 10) : 0;
+            if (pageNumber) {
+              collectionPageCache[pageNumber] = parseCardsFromHtml(html);
+            }
+          })
+      );
+    }
+
+    collectionCardsPromise = Promise.all(requests)
+      .then(function () {
+        return collectionPageCache;
+      })
+      .catch(function () {
+        return collectionPageCache;
+      });
+
+    return collectionCardsPromise;
+  }
+
+  function getCardIdentity(card) {
+    return normalizeText(
+      card.getAttribute('data-handle') ||
+      card.getAttribute('data-product-id') ||
+      ((card.getAttribute('data-vendor') || '') + ' ' + (card.getAttribute('data-name') || ''))
+    );
+  }
+
+  function getCardMatchGroup(card, query) {
+    var nameVendorText = normalizeText(
+      (card.getAttribute('data-name') || '') + ' ' + (card.getAttribute('data-vendor') || '')
+    );
+    var tagText = normalizeText(
+      (card.getAttribute('data-tags') || '') + ' ' + (card.getAttribute('data-search') || '') + ' ' + card.textContent
+    );
+
+    if (nameVendorText.indexOf(query) !== -1) return 'primary';
+    if (tagText.indexOf(query) !== -1) return 'tags';
+    return '';
+  }
+
+  function clearGroupedResults() {
+    if (primaryGridEl) primaryGridEl.innerHTML = '';
+    if (tagsGridEl) tagsGridEl.innerHTML = '';
+    if (primarySectionEl) primarySectionEl.hidden = true;
+    if (tagsSectionEl) tagsSectionEl.hidden = true;
+    if (searchResultsEl) searchResultsEl.hidden = true;
+    if (remoteGridEl) {
+      remoteGridEl.innerHTML = '';
+      remoteGridEl.hidden = true;
+    }
+  }
+
+  function setGroupVisibility(sectionEl, count) {
+    if (sectionEl) sectionEl.hidden = count === 0;
+  }
+
+  function renderGroupedResults(query) {
+    var counts = { primary: 0, tags: 0, total: 0 };
+    var seen = {};
+
+    if (!query || !primaryGridEl || !tagsGridEl) {
+      clearGroupedResults();
+      return counts;
+    }
+
+    primaryGridEl.innerHTML = '';
+    tagsGridEl.innerHTML = '';
+
+    Object.keys(collectionPageCache)
+      .sort(function (a, b) { return parseInt(a, 10) - parseInt(b, 10); })
+      .forEach(function (pageKey) {
+        (collectionPageCache[pageKey] || []).forEach(function (card) {
+          var identity = getCardIdentity(card);
+          var group = getCardMatchGroup(card, query);
+
+          if (!identity || !group || seen[identity]) return;
+          seen[identity] = true;
+
+          if (group === 'primary') {
+            primaryGridEl.appendChild(prepareSearchCard(card));
+            counts.primary += 1;
+          } else {
+            tagsGridEl.appendChild(prepareSearchCard(card));
+            counts.tags += 1;
+          }
+        });
+      });
+
+    counts.total = counts.primary + counts.tags;
+    setGroupVisibility(primarySectionEl, counts.primary);
+    setGroupVisibility(tagsSectionEl, counts.tags);
+    if (searchResultsEl) searchResultsEl.hidden = counts.total === 0;
+    return counts;
+  }
+
+  function setSearchUiState(query, resultCount, loading) {
+    if (catalogEl) {
+      catalogEl.classList.toggle('is-searching', Boolean(query));
+      catalogEl.classList.toggle('is-search-loading', Boolean(loading));
+    }
 
     if (noResultsEl) {
-      noResultsEl.hidden = !query || visibleCount > 0;
+      noResultsEl.hidden = !query || loading || resultCount > 0;
     }
+  }
+
+  function fetchGroupedResults(query) {
+    var requestId = currentRequestId + 1;
+    currentRequestId = requestId;
+    setSearchUiState(query, searchResultsEl && !searchResultsEl.hidden ? searchResultsEl.querySelectorAll('.js-product-card').length : 0, true);
+
+    loadCollectionCards()
+      .then(function () {
+        if (requestId !== currentRequestId) return;
+        var counts = renderGroupedResults(query);
+        setSearchUiState(query, counts.total, false);
+      })
+      .catch(function () {
+        if (requestId !== currentRequestId) return;
+        clearGroupedResults();
+        setSearchUiState(query, 0, false);
+      });
+  }
+
+  function filterCatalogCards(input) {
+    if (!input || !gridEl) return;
+
+    var query = normalizeText(input.value);
+    var cards = getLocalCards();
+
+    cards.forEach(function (card) {
+      card.hidden = false;
+      card.style.display = '';
+      card.setAttribute('aria-hidden', 'false');
+      card.classList.remove('is-search-hidden');
+    });
+
+    if (!query) {
+      currentRequestId += 1;
+      clearTimeout(debounceTimer);
+      clearGroupedResults();
+      setSearchUiState('', cards.length, false);
+      var cleanUrl = new URL(window.location.href);
+      cleanUrl.searchParams.delete('q');
+      window.history.replaceState({}, '', cleanUrl.toString());
+      return;
+    }
+
+    var url = new URL(window.location.href);
+    url.searchParams.set('q', input.value.trim());
+    window.history.replaceState({}, '', url.toString());
+
+    cacheCurrentPageCards();
+    var immediateCounts = renderGroupedResults(query);
+
+    setSearchUiState(query, immediateCounts.total, true);
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(function () {
+      fetchGroupedResults(query);
+    }, 220);
   }
 
   document.addEventListener('input', function (event) {
@@ -256,7 +495,13 @@
     filterCatalogCards(event.target);
   });
 
-  var searchEl = document.getElementById('fagans-catalog-search-' + sectionId);
+  if (searchEl) {
+    var initialQuery = new URL(window.location.href).searchParams.get('q');
+    if (initialQuery && !searchEl.value) {
+      searchEl.value = initialQuery;
+    }
+  }
+
   if (searchEl && searchEl.value) {
     filterCatalogCards(searchEl);
   }

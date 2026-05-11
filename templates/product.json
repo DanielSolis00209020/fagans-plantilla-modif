@@ -186,7 +186,11 @@
       "settings": {
         "enable_color_scheme_inheritance": true,
         "color_scheme": "",
+        "enable_video_play_on_autoplay": false,
         "is_zoom_enabled": true,
+        "media_layout": "stacked_2_col",
+        "thumbnails_position": "bottom",
+        "show_thumbnails_mobile": false,
         "media_height": "square",
         "image_object_fit": "contain",
         "show_taxes_included": true,
@@ -206,6 +210,14 @@
         "inner_offset_bottom": 0,
         "inner_offset_top_mobile": 32,
         "inner_offset_bottom_mobile": 24
+      }
+    },
+    "fagans-product-meta": {
+      "type": "fagans-product-meta",
+      "settings": {
+        "preorder_message": "Disponible bajo pedido — tiempo estimado aproximado: 2 semanas.",
+        "show_authenticity_note": true,
+        "authenticity_text": "100% original e importado. Cada producto viene con garantía de autenticidad."
       }
     },
     "specifications": {
@@ -288,7 +300,14 @@
       "settings": {
         "enable_color_scheme_inheritance": false,
         "color_scheme": "scheme-1",
+        "heading": "Text heading",
+        "subheading": "Text subheading",
         "text": "MAON",
+        "button_label": "Button label",
+        "button_aria_label": "",
+        "button_url": "",
+        "button_style": "primary",
+        "text_alignment": "center",
         "container_width": "inherit",
         "offset_top_desktop": 0,
         "offset_bottom_desktop": 0,
@@ -324,24 +343,16 @@
         "offset_bottom_mobile": 25
       }
     },
-    "fagans-product-meta": {
-      "type": "fagans-product-meta",
-      "settings": {
-        "preorder_message": "Disponible bajo pedido — tiempo estimado aproximado: 2 semanas.",
-        "show_authenticity_note": true,
-        "authenticity_text": "100% original e importado. Cada producto viene con garantía de autenticidad."
-      }
-    },
     "product-recommendations": {
       "type": "product-recommendations",
       "settings": {
         "enable_color_scheme_inheritance": true,
-        "color_scheme": "",
+        "color_scheme": "fagans-blanco",
         "heading": "Recomendaciones",
         "products_to_show": 4,
         "enable_shopify_recommendations": true,
         "collection": "",
-        "container_width": "inherit",
+        "container_width": "100%",
         "offset_top_desktop": 50,
         "offset_bottom_desktop": 50,
         "offset_top_mobile": 25,
@@ -360,8 +371,8 @@
         "layout": "4",
         "show_arrows": true,
         "enable_color_scheme_inheritance": true,
-        "color_scheme": "",
-        "container_width": "inherit",
+        "color_scheme": "fagans-blanco",
+        "container_width": "100%",
         "offset_top_desktop": 25,
         "offset_bottom_desktop": 25,
         "offset_top_mobile": 25,

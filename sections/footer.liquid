@@ -226,6 +226,73 @@
 	{%- endif -%}
 {%- endcapture -%}
 
+{%- capture policies -%}
+	{%- assign has_footer_policies = false -%}
+	{%- if refund_policy or privacy_policy or terms_of_service or shipping_policy or legal_notice -%}
+		{%- assign has_footer_policies = true -%}
+	{%- endif -%}
+
+	{%- if has_footer_policies -%}
+		<div class="footer__navigation-item footer__navigation-item--policies">
+			<h2 class="footer__navigation-heading text">
+				Políticas
+			</h2>
+
+			<ul class="footer__navigation-list">
+				{%- if terms_of_service != blank -%}
+					<li class="footer__navigation-list-item">
+						<a href="{{ terms_of_service.url }}" class="footer__navigation-list-link button-link">
+							<span data-text="{{ terms_of_service.title }}">
+								<span>{{ terms_of_service.title }}</span>
+							</span>
+						</a>
+					</li>
+				{%- endif -%}
+
+				{%- if privacy_policy != blank -%}
+					<li class="footer__navigation-list-item">
+						<a href="{{ privacy_policy.url }}" class="footer__navigation-list-link button-link">
+							<span data-text="{{ privacy_policy.title }}">
+								<span>{{ privacy_policy.title }}</span>
+							</span>
+						</a>
+					</li>
+				{%- endif -%}
+
+				{%- if refund_policy != blank -%}
+					<li class="footer__navigation-list-item">
+						<a href="{{ refund_policy.url }}" class="footer__navigation-list-link button-link">
+							<span data-text="{{ refund_policy.title }}">
+								<span>{{ refund_policy.title }}</span>
+							</span>
+						</a>
+					</li>
+				{%- endif -%}
+
+				{%- if shipping_policy != blank -%}
+					<li class="footer__navigation-list-item">
+						<a href="{{ shipping_policy.url }}" class="footer__navigation-list-link button-link">
+							<span data-text="{{ shipping_policy.title }}">
+								<span>{{ shipping_policy.title }}</span>
+							</span>
+						</a>
+					</li>
+				{%- endif -%}
+
+				{%- if legal_notice != blank -%}
+					<li class="footer__navigation-list-item">
+						<a href="{{ legal_notice.url }}" class="footer__navigation-list-link button-link">
+							<span data-text="{{ legal_notice.title }}">
+								<span>{{ legal_notice.title }}</span>
+							</span>
+						</a>
+					</li>
+				{%- endif -%}
+			</ul>
+		</div>
+	{%- endif -%}
+{%- endcapture -%}
+
 {%- capture middle_content -%}
 	{%- if is_show_country_selector == true and localization.available_countries.size > 1 -%}
 		{%- assign country_selector = true -%}
@@ -316,6 +383,7 @@
 			</a>
 			<p>Perfumería boutique.<br>El Salvador.</p>
 		</div>
+		{{- policies -}}
 		{% assign col_delay_step = 0 %}
 
 		{%- for block in section.blocks -%}

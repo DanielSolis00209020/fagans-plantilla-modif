@@ -5,6 +5,8 @@
 {%- endcomment -%}
 
 {%- render 'adastra' with '/src/styles/search.scss' -%}
+{{ 'fagans-card.css' | asset_url | stylesheet_tag }}
+{{ 'fagans-search.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
 	#shopify-section-{{- section.id -}} {
@@ -268,19 +270,9 @@
 							<div class="search__item">
 								{%- case item.object_type -%}
 									{%- when 'product' %}
-										{%- assign product_img_size = 552 -%}
-										{%- assign product_img_size_tablet = 362 -%}
-										{%- assign product_img_size_mobile = 188 -%}
-
-										{%- if enable_sidebar -%}
-											{%- assign product_img_size = 439 -%}
-										{%- endif -%}
-
-										{%- render 'product-card',
+										{%- render 'fagans-product-card',
 											product: item,
-											size: product_img_size,
-											tablet_size: product_img_size_tablet,
-											mobile_size: product_img_size_mobile -%}
+											card_index: forloop.index0 -%}
 									{%- when 'article' -%}
 										{%- assign size_width_1500 	= 325 -%}
 										{%- assign size_height_1500 = 282 -%}

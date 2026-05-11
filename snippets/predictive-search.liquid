@@ -1,4 +1,5 @@
 {%- render 'adastra' with '/src/scripts/component-predictive-search.js' -%}
+{{ 'fagans-search.css' | asset_url | stylesheet_tag }}
 
 {%- assign heading           = "general.predictive_search.title" | t -%}
 {%- assign default_no_result = "general.predictive_search.no_results" | t -%}
