@@ -255,6 +255,14 @@
 [data-f-reveal][data-f-delay="3"] { transition-delay: 240ms; }
 [data-f-reveal][data-f-delay="4"] { transition-delay: 320ms; }
 
+/* Cards inside sliders (product-recommendations, recently-viewed) no usan reveal */
+.product-recommendations [data-f-reveal],
+.recently-viewed [data-f-reveal] {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   [data-f-reveal] {
     opacity: 1 !important;
