@@ -55,7 +55,7 @@
 {%- render 'adastra' with '/src/styles/product-card.scss' -%}
 
 <section
-	class="recently-viewed recently-viewed--layout-{{- layout }} color-{{ color_scheme.id }}{% if request.visual_preview_mode or section.index == 1 %} animated{% endif %} js-animate is-loading js-recently-viewed"
+	class="recently-viewed recently-viewed--layout-{{- layout }} color-{{ color_scheme.id }} animated js-animate is-loading js-recently-viewed"
 	id="{{- section.id -}}"
 	style="{{- section_styles -}}"
 	data-limit="{{- limit -}}"

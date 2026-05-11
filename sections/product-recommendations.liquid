@@ -71,7 +71,7 @@
 {{ 'fagans-card.css' | asset_url | stylesheet_tag }}
 
 <section
-	class="product-recommendations color-{{ color_scheme }} is-loading js-product-recommendations js-animate {% if request.visual_preview_mode or section.index == 1 %}animated{% endif %}"
+	class="product-recommendations color-{{ color_scheme }} is-loading js-product-recommendations js-animate animated"
 	id="{{- section.id -}}"
 	style="{{- styles -}}"
 	data-product-id="{{- product.id -}}"
