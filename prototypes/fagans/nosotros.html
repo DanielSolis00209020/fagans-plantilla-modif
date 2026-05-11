@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nosotros — Fagans Perfumería</title>
+  <link rel="stylesheet" href="fagans-proto.css">
+</head>
+<body>
+
+<!-- ═══════════════════ NAV ═══════════════════ -->
+<header class="f-nav" role="banner">
+  <div class="f-nav__inner">
+    <a href="index.html" class="f-nav__logo" aria-label="Fagans — Inicio">
+      <svg width="108" height="28" viewBox="0 0 108 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <text x="0" y="22" font-family="Georgia, serif" font-size="22" font-weight="400" letter-spacing="4" fill="currentColor">FAGANS</text>
+      </svg>
+    </a>
+    <nav class="f-nav__links" aria-label="Principal">
+      <a href="index.html"    class="f-nav__link">Inicio</a>
+      <a href="catalogo.html" class="f-nav__link">Catálogo</a>
+      <a href="nosotros.html" class="f-nav__link">Nosotros</a>
+      <a href="contacto.html" class="f-nav__link">Contacto</a>
+      <a href="faq.html"      class="f-nav__link">FAQ</a>
+    </nav>
+    <div class="f-nav__actions">
+      <button class="f-nav__search-btn" id="nav-search-toggle" aria-label="Buscar">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <a href="catalogo.html" class="f-btn f-btn--sm f-btn--outline" style="border-color:currentColor">Ver catálogo</a>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════ SEARCH OVERLAY ═══════════════════ -->
+<div class="f-search-overlay" id="search-overlay" hidden role="dialog" aria-label="Búsqueda">
+  <button class="f-search-close" id="search-close" aria-label="Cerrar búsqueda">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <div class="f-search-overlay__box">
+    <form class="f-search-form" role="search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="search" class="f-search-input-field" id="search-field" placeholder="Buscar perfume, marca, acorde…" autocomplete="off" spellcheck="false">
+    </form>
+    <p class="f-search-hint">Prueba: <span>Tom Ford</span> · <span>Oud</span> · <span>Para él</span> · <span>Frío</span> · <span>Sets</span></p>
+  </div>
+</div>
+
+<!-- ═══════════════════ HERO NOSOTROS ═══════════════════ -->
+<section class="f-about-hero" aria-labelledby="about-hero-title">
+  <div class="f-about-hero__img-placeholder" aria-hidden="true">
+    <span>Fotografía de ambiente — equipo o espacio Fagans</span>
+  </div>
+  <div class="f-about-hero__overlay">
+    <div class="f-container">
+      <p class="f-eyebrow" data-reveal style="color:var(--f-sandalo)">Nuestra historia</p>
+      <h1 class="f-about-hero__title" id="about-hero-title" data-reveal>
+        Empezamos buscando<br>lo que nadie traía.
+      </h1>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ INTRO ═══════════════════ -->
+<section class="f-about-intro f-section" aria-labelledby="intro-title">
+  <div class="f-container f-container--narrow">
+    <p class="f-eyebrow" data-reveal>El origen</p>
+    <h2 class="f-section-title" id="intro-title" data-reveal>
+      La primera boutique de perfumería de lujo en El Salvador
+    </h2>
+    <p class="f-body f-body--lead" data-reveal>
+      Fagans nació de una frustración simple: en El Salvador no había un lugar donde comprar fragancias originales de calidad sin viajar. Todo lo que existía eran copias, versiones sin respaldo, o precios inflados sin garantía.
+    </p>
+    <p class="f-body" data-reveal>
+      Decidimos cambiar eso. Construimos relaciones directas con distribuidores certificados en Europa, Estados Unidos y Medio Oriente. Aprendimos a verificar autenticidad. Y abrimos Fagans para ofrecer lo que el mercado local nunca había tenido: fragancias 100% originales, con asesoría real, a precio justo.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════ STORY SPLIT 1 — Onix ═══════════════════ -->
+<section class="f-about-split f-about-split--dark" aria-labelledby="story1-title">
+  <div class="f-about-split__img" data-reveal>
+    <div class="f-about-split__img-placeholder">
+      <span>Fotografía — selección de frascos en mesa de madera</span>
+    </div>
+  </div>
+  <div class="f-about-split__text" data-reveal>
+    <p class="f-eyebrow" style="color:var(--f-sandalo)">Lo que nos mueve</p>
+    <h2 class="f-section-title" id="story1-title">El aroma como identidad</h2>
+    <p class="f-body">Una fragancia no es un accesorio. Es memoria, presencia, carácter. La gente que viene a Fagans no busca oler bien genéricamente. Busca algo que sea suyo.</p>
+    <p class="f-body">Por eso no vendemos por catálogo vacío. Conversamos. Preguntamos qué usas, qué recuerdos tienes, para qué ocasión. Y desde ahí recomendamos.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════ STATS ═══════════════════ -->
+<section class="f-stats" aria-label="Datos de Fagans">
+  <div class="f-container">
+    <div class="f-stats__grid">
+      <div class="f-stat" data-reveal data-delay="1">
+        <span class="f-stat__num">+300</span>
+        <span class="f-stat__label">Fragancias en catálogo</span>
+      </div>
+      <div class="f-stat" data-reveal data-delay="2">
+        <span class="f-stat__num">100%</span>
+        <span class="f-stat__label">Autenticidad garantizada</span>
+      </div>
+      <div class="f-stat" data-reveal data-delay="3">
+        <span class="f-stat__num">&lt;1h</span>
+        <span class="f-stat__label">Tiempo de respuesta</span>
+      </div>
+      <div class="f-stat" data-reveal data-delay="4">
+        <span class="f-stat__num">14</span>
+        <span class="f-stat__label">Departamentos cubiertos</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ STORY SPLIT 2 — Platino ═══════════════════ -->
+<section class="f-about-split f-about-split--light" aria-labelledby="story2-title">
+  <div class="f-about-split__text" data-reveal>
+    <p class="f-eyebrow">Autenticidad</p>
+    <h2 class="f-section-title" id="story2-title">Sin copias. Sin intermediarios dudosos. Sin riesgo.</h2>
+    <p class="f-body">Cada producto que llega a Fagans pasa por un proceso de verificación. Revisamos lotes, sellos, códigos de producción. Si hay algo que no cuadra, no entra al catálogo.</p>
+    <p class="f-body">No es burocracia. Es respeto por el cliente que confía en nosotros con su dinero y con su nombre.</p>
+    <a href="faq.html" class="f-btn f-btn--outline-onix">Ver preguntas frecuentes</a>
+  </div>
+  <div class="f-about-split__img" data-reveal>
+    <div class="f-about-split__img-placeholder">
+      <span>Fotografía — detalle de frasco con sello de autenticidad</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ STORY SPLIT 3 — Sándalo ═══════════════════ -->
+<section class="f-about-split f-about-split--sandalo" aria-labelledby="story3-title">
+  <div class="f-about-split__img" data-reveal>
+    <div class="f-about-split__img-placeholder">
+      <span>Fotografía — asesoría personalizada</span>
+    </div>
+  </div>
+  <div class="f-about-split__text" data-reveal>
+    <p class="f-eyebrow">Servicio</p>
+    <h2 class="f-section-title" id="story3-title">El amigo que sabe de perfumes</h2>
+    <p class="f-body">Así es como queremos ser percibidos. No como una tienda de lujo lejana y fría. Sino como alguien de confianza que conoce el tema y te orienta sin venderte algo que no necesitas.</p>
+    <p class="f-body">Eso implica decirte cuando algo no te va. Recomendarte opciones dentro de tu presupuesto. Ser honestos sobre tiempos de disponibilidad.</p>
+    <a href="contacto.html" class="f-btn f-btn--primary">Hablar con nosotros</a>
+  </div>
+</section>
+
+<!-- ═══════════════════ VALORES FINALES ═══════════════════ -->
+<section class="f-values f-values--light" aria-labelledby="valores-title">
+  <div class="f-container">
+    <div class="f-section-header" data-reveal>
+      <p class="f-eyebrow">Lo que nos define</p>
+      <h2 class="f-section-title" id="valores-title">Nuestros principios</h2>
+    </div>
+    <div class="f-values__grid">
+      <div class="f-value-card f-value-card--light" data-reveal data-delay="1">
+        <div class="f-value-card__icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="f-value-card__title">Integridad</h3>
+        <p class="f-value-card__body">Lo que decimos, lo cumplimos. Si algo está agotado, lo decimos. Si algo no es para ti, lo decimos.</p>
+      </div>
+      <div class="f-value-card f-value-card--light" data-reveal data-delay="2">
+        <div class="f-value-card__icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3 class="f-value-card__title">Comunidad</h3>
+        <p class="f-value-card__body">Somos salvadoreños vendiendo a salvadoreños. Ese contexto importa en cómo atendemos y en lo que elegimos tener.</p>
+      </div>
+      <div class="f-value-card f-value-card--light" data-reveal data-delay="3">
+        <div class="f-value-card__icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+        </div>
+        <h3 class="f-value-card__title">Criterio</h3>
+        <p class="f-value-card__body">No tenemos todo. Tenemos lo que conocemos y podemos respaldar. La curaduría es parte del valor.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CTA ═══════════════════ -->
+<section class="f-cta-full" data-reveal aria-label="Ir al catálogo">
+  <div class="f-cta-full__inner">
+    <p class="f-eyebrow" style="color:var(--f-sandalo)">¿Listo para encontrar la tuya?</p>
+    <h2 class="f-cta-full__title">Explora el catálogo.</h2>
+    <p class="f-cta-full__sub">Más de 300 fragancias originales. Nicho, árabe y diseñador.</p>
+    <a href="catalogo.html" class="f-btn f-btn--primary">Ver catálogo completo</a>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer class="f-footer" role="contentinfo">
+  <div class="f-footer__inner">
+    <div class="f-footer__brand">
+      <a href="index.html" class="f-nav__logo f-footer__logo" aria-label="Fagans — Inicio">
+        <svg width="108" height="28" viewBox="0 0 108 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <text x="0" y="22" font-family="Georgia, serif" font-size="22" font-weight="400" letter-spacing="4" fill="currentColor">FAGANS</text>
+        </svg>
+      </a>
+      <p class="f-footer__tagline">Perfumería boutique.<br>El Salvador.</p>
+    </div>
+    <nav class="f-footer__nav" aria-label="Páginas">
+      <p class="f-footer__nav-title">Páginas</p>
+      <a href="index.html"    class="f-footer__link">Inicio</a>
+      <a href="catalogo.html" class="f-footer__link">Catálogo</a>
+      <a href="nosotros.html" class="f-footer__link">Nosotros</a>
+      <a href="contacto.html" class="f-footer__link">Contacto</a>
+      <a href="faq.html"      class="f-footer__link">FAQ</a>
+    </nav>
+    <div class="f-footer__contact">
+      <p class="f-footer__nav-title">Contáctanos</p>
+      <p class="f-footer__link">WhatsApp: +503 7XXX-XXXX</p>
+      <p class="f-footer__link">Instagram: @fagans.sv</p>
+      <p class="f-footer__link">San Salvador, El Salvador</p>
+    </div>
+  </div>
+  <div class="f-footer__bottom">
+    <p>© 2025 Fagans. Todos los derechos reservados.</p>
+    <p>Fragancias 100% originales certificadas.</p>
+  </div>
+</footer>
+
+<script src="fagans-proto.js"></script>
+</body>
+</html>

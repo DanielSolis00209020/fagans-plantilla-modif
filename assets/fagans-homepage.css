@@ -175,6 +175,41 @@
   transition: background 0.25s cubic-bezier(0.25, 0.1, 0.25, 1.0);
 }
 
+.f-value-card[data-f-reveal],
+.f-coll-card[data-f-reveal] {
+  opacity: 0;
+  transform: translateY(34px);
+  filter: blur(7px);
+  transition:
+    opacity 900ms var(--f-ease-snap, cubic-bezier(0.22, 1, 0.36, 1)),
+    transform 900ms var(--f-ease-snap, cubic-bezier(0.22, 1, 0.36, 1)),
+    filter 900ms var(--f-ease-snap, cubic-bezier(0.22, 1, 0.36, 1)),
+    background 250ms cubic-bezier(0.25, 0.1, 0.25, 1.0);
+  will-change: opacity, transform, filter;
+}
+
+.f-value-card[data-f-reveal].is-visible,
+.f-coll-card[data-f-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.f-value-card[data-f-reveal][data-f-delay="1"],
+.f-coll-card[data-f-reveal][data-f-delay="1"] { transition-delay: 120ms; }
+.f-value-card[data-f-reveal][data-f-delay="2"],
+.f-coll-card[data-f-reveal][data-f-delay="2"] { transition-delay: 260ms; }
+.f-value-card[data-f-reveal][data-f-delay="3"],
+.f-coll-card[data-f-reveal][data-f-delay="3"] { transition-delay: 400ms; }
+.f-value-card[data-f-reveal][data-f-delay="4"],
+.f-coll-card[data-f-reveal][data-f-delay="4"] { transition-delay: 540ms; }
+
+.f-value-card[data-f-reveal].is-visible:hover,
+.f-coll-card[data-f-reveal].is-visible:hover,
+.f-coll-card[data-f-reveal].is-visible:focus-visible {
+  transition-delay: 0ms;
+}
+
 .f-value-card:hover {
   background: oklch(11% 0.003 220);
 }

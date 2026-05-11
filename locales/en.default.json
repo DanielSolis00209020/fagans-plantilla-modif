@@ -187,27 +187,27 @@
 	},
 	"cart": {
 		"general": {
-			"title": "Shopping cart",
-			"note": "Add a note to your order",
-			"edit_note": "Edit a note to your order",
-			"discount": "Apply a discount code",
+			"title": "Carrito",
+			"note": "Agregar una nota a tu pedido",
+			"edit_note": "Editar nota del pedido",
+			"discount": "Aplicar código de descuento",
 			"discount_accordion_button": "Discount",
 			"discount_placeholder": "Discount code",
 			"remove_discount": "Remove discount {{ code }}",
 			"apply_discount": "Apply",
-			"shipping_discount_error": "Shipping discounts are shown at checkout after adding an address",
-			"discount_code_error": "Discount code cannot be applied to your cart",
-			"discount_applied": "Applied discount code: {{ code }}",
-			"note_placeholder": "Enter your comment",
-			"upsell": "Upsell products",
-			"remove": "Remove",
+			"shipping_discount_error": "Los descuentos de envío se muestran al finalizar la compra después de agregar una dirección",
+			"discount_code_error": "El código de descuento no se puede aplicar a tu carrito",
+			"discount_applied": "Código de descuento aplicado: {{ code }}",
+			"note_placeholder": "Escribe tu comentario",
+			"upsell": "Productos recomendados",
+			"remove": "Eliminar",
 			"subtotal": "Subtotal",
-			"taxes_and_shipping_at_checkout": "Taxes and shipping calculated at checkout",
-			"taxes_and_shipping_policy_at_checkout_html": "Taxes and <a href=\"{{ link }}\">shipping<\/a> calculated at checkout",
-			"taxes_included_but_shipping_at_checkout": "Tax included and shipping calculated at checkout",
-			"taxes_included_and_shipping_policy_html": "Tax included. <a href=\"{{ link }}\">Shipping<\/a> calculated at checkout.",
-			"checkout": "Checkout",
-			"empty": "Your cart is currently empty.",
+			"taxes_and_shipping_at_checkout": "Impuestos y envío calculados al finalizar la compra",
+			"taxes_and_shipping_policy_at_checkout_html": "Impuestos y <a href=\"{{ link }}\">envío<\/a> calculados al finalizar la compra",
+			"taxes_included_but_shipping_at_checkout": "Impuestos incluidos. Envío calculado al finalizar la compra.",
+			"taxes_included_and_shipping_policy_html": "Impuestos incluidos. <a href=\"{{ link }}\">Envío<\/a> calculado al finalizar la compra.",
+			"checkout": "Finalizar compra",
+			"empty": "Tu carrito está vacío.",
 			"view_quantity_rules": "View quantity rules",
 			"volume_pricing_available": "Volume pricing available"
 		},
@@ -221,7 +221,7 @@
 			"progress": "Free shipping progress {{ value }}%"
 		},
 		"errors": {
-			"quantity": "You can only add {{ count }} of {{ title }} to your cart."
+			"quantity": "Solo puedes agregar {{ count }} de {{ title }} al carrito."
 		},
 		"notifications": {
 			"view_cart": "View cart",
@@ -424,16 +424,16 @@
 	"products": {
 		"product": {
 			"sold_out": "Sold out",
-			"sale_percentage_label": "{{number}}% Sale",
-			"unavailable": "Unavailable",
-			"quantity": "Quantity",
-			"quantity_in_cart": "(In cart: {{quantity}})",
-			"increments_of": "Increments of {{number}}",
-			"minimum_of": "Minimum of {{number}}",
-			"maximum_of": "Maximum of {{number}}",
-			"add_to_cart": "Add to cart",
-			"pre_order": "Pre-order",
-			"choose_an_option": "Choose an option",
+			"sale_percentage_label": "{{number}}% de descuento",
+			"unavailable": "No disponible",
+			"quantity": "Cantidad",
+			"quantity_in_cart": "(En carrito: {{quantity}})",
+			"increments_of": "Incrementos de {{number}}",
+			"minimum_of": "Mínimo de {{number}}",
+			"maximum_of": "Máximo de {{number}}",
+			"add_to_cart": "Agregar al carrito",
+			"pre_order": "Prepedido",
+			"choose_an_option": "Elige una opción",
 			"pickup_availability": {
 				"view_store_info": "View store information",
 				"check_other_stores": "Check availability at other stores",
@@ -456,13 +456,13 @@
 			"price": {
 				"from_price_html": "From {{ price }}",
 				"regular_price": "Regular price",
-				"sale_price": "Sale price",
+				"sale_price": "Precio de oferta",
 				"unit_price": "Unit price",
-				"taxes_included": "Tax included.",
-				"shipping_policy_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout."
+				"taxes_included": "Impuesto incluido.",
+				"shipping_policy_html": "<a href=\"{{ link }}\">Envío</a> calculado al finalizar la compra."
 			},
-			"product_labels": "Product labels",
-			"product_label": "Product label",
+			"product_labels": "Etiquetas de producto",
+			"product_label": "Etiqueta de producto",
 			"share_label": "Share:",
 			"product_variants": "Product variants",
 			"ar_button": "View AR model",
@@ -482,16 +482,16 @@
 				}
 			},
 			"product_stock_count": {
-				"one": "{{ count }} product in stock",
-				"other": "{{ count }} products in stock"
+				"one": "{{ count }} producto disponible",
+				"other": "{{ count }} productos disponibles"
 			}
 		},
 		"product_card": {
 			"product_title": "Product title",
 			"swatch_color": "Color option: {{ swatch }}",
 			"open_quick_view": "Quick view",
-			"add_to_cart": "Add to cart",
-			"product_vendor": "Vendor: ",
+			"add_to_cart": "Agregar al carrito",
+			"product_vendor": "Marca: ",
 			"product_vendor_placeholder": "Product vendor",
 			"product_swatches_overlimit_label": {
 				"one": "The product has {{ count }} additional color",

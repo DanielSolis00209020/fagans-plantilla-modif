@@ -297,7 +297,23 @@
 <footer class="footer container color-{{ color_scheme }} need-animate js-animate" style="{{ section_styles }}">
 	<div class="footer__main-content js-accordion-container">
 		<div class="footer__brand" style="transition-delay: 0.1s">
-			<a href="{{ routes.root_url }}" class="footer__brand-name">Fagans</a>
+			<a href="{{ routes.root_url }}" class="footer__brand-name" aria-label="Fagans">
+				{%- assign brand_logo = logo_image | default: images['Fagans_Logo__isolated_blanco.svg'] -%}
+				{%- if brand_logo != blank -%}
+					{%- assign brand_logo_height = logo_image_width | divided_by: brand_logo.aspect_ratio | round: 0 -%}
+					{%- assign brand_logo_width_x2 = logo_image_width | times: 2 -%}
+					<img
+						class="footer__brand-logo"
+						src="{{ brand_logo | image_url: width: logo_image_width }}"
+						srcset="{{ brand_logo | image_url: width: logo_image_width }} 1x, {{ brand_logo | image_url: width: brand_logo_width_x2 }} 2x"
+						alt="{{ brand_logo.alt | default: 'Fagans' | escape }}"
+						width="{{ logo_image_width }}"
+						height="{{ brand_logo_height }}"
+						loading="lazy"
+						decoding="async"
+					>
+				{%- endif -%}
+			</a>
 			<p>Perfumería boutique.<br>El Salvador.</p>
 		</div>
 		{% assign col_delay_step = 0 %}

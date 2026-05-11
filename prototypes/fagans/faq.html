@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preguntas frecuentes — Fagans Perfumería</title>
+  <link rel="stylesheet" href="fagans-proto.css">
+</head>
+<body>
+
+<!-- ═══════════════════ NAV ═══════════════════ -->
+<header class="f-nav" role="banner">
+  <div class="f-nav__inner">
+    <a href="index.html" class="f-nav__logo" aria-label="Fagans — Inicio">
+      <svg width="108" height="28" viewBox="0 0 108 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <text x="0" y="22" font-family="Georgia, serif" font-size="22" font-weight="400" letter-spacing="4" fill="currentColor">FAGANS</text>
+      </svg>
+    </a>
+    <nav class="f-nav__links" aria-label="Principal">
+      <a href="index.html"    class="f-nav__link">Inicio</a>
+      <a href="catalogo.html" class="f-nav__link">Catálogo</a>
+      <a href="nosotros.html" class="f-nav__link">Nosotros</a>
+      <a href="contacto.html" class="f-nav__link">Contacto</a>
+      <a href="faq.html"      class="f-nav__link">FAQ</a>
+    </nav>
+    <div class="f-nav__actions">
+      <button class="f-nav__search-btn" id="nav-search-toggle" aria-label="Buscar">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <a href="catalogo.html" class="f-btn f-btn--sm f-btn--outline" style="border-color:currentColor">Ver catálogo</a>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════ SEARCH OVERLAY ═══════════════════ -->
+<div class="f-search-overlay" id="search-overlay" hidden role="dialog" aria-label="Búsqueda">
+  <button class="f-search-close" id="search-close" aria-label="Cerrar búsqueda">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <div class="f-search-overlay__box">
+    <form class="f-search-form" role="search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="search" class="f-search-input-field" id="search-field" placeholder="Buscar perfume, marca, acorde…" autocomplete="off" spellcheck="false">
+    </form>
+    <p class="f-search-hint">Prueba: <span>Tom Ford</span> · <span>Oud</span> · <span>Para él</span> · <span>Frío</span> · <span>Sets</span></p>
+  </div>
+</div>
+
+<!-- ═══════════════════ PAGE HEADER ═══════════════════ -->
+<div class="f-page-header">
+  <div class="f-container">
+    <p class="f-eyebrow" data-reveal>Resolvemos tus dudas</p>
+    <h1 class="f-page-header__title" data-reveal>Preguntas frecuentes</h1>
+    <p class="f-page-header__sub" data-reveal>Si no encuentras lo que buscas, escríbenos por WhatsApp.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════ FAQ ═══════════════════ -->
+<main class="f-faq-section" id="main-content">
+  <div class="f-container f-container--narrow">
+
+    <!-- Grupo: Autenticidad -->
+    <div class="f-faq-group" data-reveal>
+      <h2 class="f-faq-group__title">Autenticidad</h2>
+
+      <div class="f-accordion">
+
+        <div class="f-accordion__item">
+          <button class="f-accordion__trigger" type="button">
+            <span>¿Cómo sé que las fragancias son 100% originales?</span>
+            <span class="f-accordion__icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </button>
+          <div class="f-accordion__body">
+            <div class="f-accordion__content">
+              <p>Trabajamos exclusivamente con distribuidores certificados en Europa, Estados Unidos y Medio Oriente. Cada producto pasa por una verificación de lote, sello y código de producción antes de entrar al catálogo. Si algo no cuadra, no lo vendemos.</p>
+              <p>Adicionalmente, ofrecemos garantía de devolución si alguna vez recibes un producto que no cumpla con los estándares de autenticidad que prometemos.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="f-accordion__item">
+          <button class="f-accordion__trigger" type="button">
+            <span>¿Puedo verificar el lote de mi fragancia?</span>
+            <span class="f-accordion__icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </button>
+          <div class="f-accordion__body">
+            <div class="f-accordion__content">
+              <p>Sí. Para fragancias con código de lote verificable en plataformas como Checkfresh o el sitio oficial de la marca, te compartimos el número de lote con tu pedido para que puedas comprobarlo tú mismo.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="f-accordion__item">
+          <button class="f-accordion__trigger" type="button">
+            <span>¿Venden decants o solo frascos completos?</span>
+            <span class="f-accordion__icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </button>
+          <div class="f-accordion__body">
+            <div class="f-accordion__content">
+              <p>Vendemos únicamente frascos originales sellados de fábrica. No hacemos decants porque no podemos garantizar la integridad del producto una vez abierto. Para pruebas, te orientamos a través de asesoría personalizada.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Grupo: Envíos -->
+    <div class="f-faq-group" data-reveal>
+      <h2 class="f-faq-group__title">Envíos y entregas</h2>
+
+      <div class="f-accordion">
+
+        <div class="f-accordion__item">
+          <button class="f-accordion__trigger" type="button">
+            <span>¿A qué departamentos hacen envíos?</span>
+            <span class="f-accordion__icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </button>
+          <div class="f-accordion__body">
+            <div class="f-accordion__content">
+              <p>Hacemos envíos a los 14 departamentos de El Salvador. El costo y tiempo de entrega varía según la zona. San Salvador tiene entrega en 24–48 horas; el resto del país entre 2 y 4 días hábiles.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="f-accordion__item">
+          <button class="f-accordion__trigger" type="button">
+            <span>¿Cuánto cuesta el envío?</span>
+            <span class="f-accordion__icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </button>
+          <div class="f-accordion__body">
+            <div class="f-accordion__content">
+              <p>El costo de envío depende del departamento de destino. Para San Salvador es de $3.00. Para el interior del país varía entre $5.00 y $8.00. En pedidos mayores a $150, el envío a San Salvador es gratis.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="f-accordion__item">
+          <button class="f-accordion__trigger" type="button">
+            <span>¿Cómo viene empacado el pedido?</span>
+            <span class="f-accordion__icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </button>
+          <div class="f-accordion__body">
+            <div class="f-accordion__content">
+              <p>Embalamos cada pedido con protección de burbuja y caja reforzada. Para pedidos de regalo usamos caja especial con papel de seda. El exterior es discreto, sin indicación del contenido.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Grupo: Pedidos -->
+    <div class="f-faq-group" data-reveal>
+      <h2 class="f-faq-group__title">Pedidos y pagos</h2>
+
+      <div class="f-accordion">
+
+        <div class="f-accordion__item">
+          <button class="f-accordion__trigger" type="button">
+            <span>¿Qué métodos de pago aceptan?</span>
+            <span class="f-accordion__icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </button>
+          <div class="f-accordion__body">
+            <div class="f-accordion__content">
+              <p>Aceptamos tarjetas de crédito y débito (Visa, Mastercard), transferencia bancaria, pago por WhatsApp con billeteras digitales (Mercado Pago, Nequi), y pago contra entrega en San Salvador para pedidos menores a $100.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="f-accordion__item">
+          <button class="f-accordion__trigger" type="button">
+            <span>¿Puedo solicitar una fragancia que no está en el catálogo?</span>
+            <span class="f-accordion__icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </button>
+          <div class="f-accordion__body">
+            <div class="f-accordion__content">
+              <p>Sí, manejamos pedidos especiales. Escríbenos por WhatsApp o llena el formulario de contacto indicando la fragancia que buscas. Si podemos conseguirla de una fuente certificada, te cotizamos en 24–48 horas. El tiempo de llegada es de 2 a 4 semanas.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="f-accordion__item">
+          <button class="f-accordion__trigger" type="button">
+            <span>¿Puedo cancelar o cambiar un pedido?</span>
+            <span class="f-accordion__icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </button>
+          <div class="f-accordion__body">
+            <div class="f-accordion__content">
+              <p>Puedes cancelar o modificar un pedido dentro de las primeras 2 horas después de confirmado, siempre que no haya salido a entrega. Escríbenos inmediatamente por WhatsApp si necesitas hacer algún cambio.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="f-accordion__item">
+          <button class="f-accordion__trigger" type="button">
+            <span>¿Hacen cambios o devoluciones?</span>
+            <span class="f-accordion__icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </button>
+          <div class="f-accordion__body">
+            <div class="f-accordion__content">
+              <p>Aceptamos devoluciones si el producto llega dañado o si comprobamos que no es original. No hacemos cambios por preferencia de aroma una vez el frasco ha sido abierto, por lo que recomendamos asesorarte antes de comprar.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Grupo: Asesoría -->
+    <div class="f-faq-group" data-reveal>
+      <h2 class="f-faq-group__title">Asesoría</h2>
+
+      <div class="f-accordion">
+
+        <div class="f-accordion__item">
+          <button class="f-accordion__trigger" type="button">
+            <span>¿Cómo funciona la asesoría personalizada?</span>
+            <span class="f-accordion__icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </button>
+          <div class="f-accordion__body">
+            <div class="f-accordion__content">
+              <p>Es simple: nos escribes por WhatsApp o llenas el formulario de contacto. Nos cuentas qué fragancias has usado antes, qué te gusta, para qué ocasión buscas algo, y tu presupuesto. En base a eso te damos de 2 a 4 opciones concretas con explicación de por qué te pueden funcionar.</p>
+              <p>No hay costo adicional. Es parte de lo que ofrecemos.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="f-accordion__item">
+          <button class="f-accordion__trigger" type="button">
+            <span>¿En cuánto tiempo responden?</span>
+            <span class="f-accordion__icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </button>
+          <div class="f-accordion__body">
+            <div class="f-accordion__content">
+              <p>En horario de atención (lunes a sábado, 9am – 7pm) respondemos en menos de 1 hora. Los domingos respondemos por WhatsApp pero fuera de este horario puede tomar hasta el día siguiente.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- ═══════════════════ CTA ═══════════════════ -->
+<section class="f-cta-full" data-reveal aria-label="¿Más preguntas?">
+  <div class="f-cta-full__inner">
+    <p class="f-eyebrow" style="color:var(--f-sandalo)">¿No encontraste tu respuesta?</p>
+    <h2 class="f-cta-full__title">Escríbenos directamente.</h2>
+    <p class="f-cta-full__sub">Respondemos en menos de una hora en horario de atención.</p>
+    <a href="contacto.html" class="f-btn f-btn--primary">Ir a contacto</a>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer class="f-footer" role="contentinfo">
+  <div class="f-footer__inner">
+    <div class="f-footer__brand">
+      <a href="index.html" class="f-nav__logo f-footer__logo" aria-label="Fagans — Inicio">
+        <svg width="108" height="28" viewBox="0 0 108 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <text x="0" y="22" font-family="Georgia, serif" font-size="22" font-weight="400" letter-spacing="4" fill="currentColor">FAGANS</text>
+        </svg>
+      </a>
+      <p class="f-footer__tagline">Perfumería boutique.<br>El Salvador.</p>
+    </div>
+    <nav class="f-footer__nav" aria-label="Páginas">
+      <p class="f-footer__nav-title">Páginas</p>
+      <a href="index.html"    class="f-footer__link">Inicio</a>
+      <a href="catalogo.html" class="f-footer__link">Catálogo</a>
+      <a href="nosotros.html" class="f-footer__link">Nosotros</a>
+      <a href="contacto.html" class="f-footer__link">Contacto</a>
+      <a href="faq.html"      class="f-footer__link">FAQ</a>
+    </nav>
+    <div class="f-footer__contact">
+      <p class="f-footer__nav-title">Contáctanos</p>
+      <p class="f-footer__link">WhatsApp: +503 7XXX-XXXX</p>
+      <p class="f-footer__link">Instagram: @fagans.sv</p>
+      <p class="f-footer__link">San Salvador, El Salvador</p>
+    </div>
+  </div>
+  <div class="f-footer__bottom">
+    <p>© 2025 Fagans. Todos los derechos reservados.</p>
+    <p>Fragancias 100% originales certificadas.</p>
+  </div>
+</footer>
+
+<script src="fagans-proto.js"></script>
+</body>
+</html>

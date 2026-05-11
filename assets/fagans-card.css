@@ -90,7 +90,7 @@
 .fagans-pcard__aroma-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(14,15,15,.80) 0%, rgba(14,15,15,.0) 55%);
+  background: linear-gradient(to top, rgba(14,15,15,.88) 0%, rgba(14,15,15,.18) 58%, rgba(14,15,15,0) 100%);
   display: flex;
   align-items: flex-end;
   padding: var(--f-space-4);
@@ -107,18 +107,24 @@
   font-family: var(--f-sans);
   font-size: var(--f-text-xs);
   letter-spacing: 0.06em;
-  color: var(--f-blanco-90);
+  color: rgba(255,255,255,0.88);
   line-height: 1.5;
   margin: 0;
+  text-shadow: 0 1px 12px rgba(0,0,0,0.34);
 }
 
 .fagans-pcard__aroma-label {
-  display: block;
+  display: inline-flex;
+  width: fit-content;
   font-size: 9px;
+  font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--f-nogal) 82%, transparent);
-  margin-bottom: 2px;
+  color: var(--f-blanco, #FFFFFF);
+  background: color-mix(in srgb, var(--f-sandalo-deep, #9B5F76) 86%, var(--f-onix, #0E0F0F));
+  border-left: 2px solid var(--f-sandalo, #C79FB8);
+  padding: 2px 6px 2px 7px;
+  margin-bottom: 6px;
 }
 
 /* ── Badge tipo fragancia (posición absoluta arriba-izq) ──── */

@@ -187,7 +187,7 @@
 	},
 	"cart": {
 		"general": {
-			"title": "Cesta de la compra",
+			"title": "Carrito",
 			"note": "Añada una nota a su pedido",
 			"edit_note": "Edite una nota en su pedido",
 			"discount": "Aplicar un código de descuento",
@@ -199,15 +199,15 @@
 			"discount_code_error": "El código de descuento no se puede aplicar a tu carrito",
 			"discount_applied": "Código de descuento aplicado: {{ code }}",
 			"note_placeholder": "Deje una nota para el vendedor",
-			"upsell": "Vender productos más caros",
+			"upsell": "Productos recomendados",
 			"remove": "Eliminar",
 			"subtotal": "Subtotal",
-			"taxes_and_shipping_at_checkout": "Impuestos y gastos de envío calculados al pagar",
-			"taxes_and_shipping_policy_at_checkout_html": "Impuestos y <a href=\"{{ link }}\">gastos de envío<\/a> calculated at checkout",
-			"taxes_included_but_shipping_at_checkout": "Impuestos incluidos y gastos de envío calculados en el momento de la compra",
-			"taxes_included_and_shipping_policy_html": "Impuestos incluidos. <a href=\"{{ link }}\">Gastos de envío<\/a> calculados al finalizar la compra.",
-			"checkout": "Pedido",
-			"empty": "Su cesta está vacía.",
+			"taxes_and_shipping_at_checkout": "Impuestos y envío calculados al finalizar la compra",
+			"taxes_and_shipping_policy_at_checkout_html": "Impuestos y <a href=\"{{ link }}\">envío<\/a> calculados al finalizar la compra",
+			"taxes_included_but_shipping_at_checkout": "Impuestos incluidos. Envío calculado al finalizar la compra.",
+			"taxes_included_and_shipping_policy_html": "Impuestos incluidos. <a href=\"{{ link }}\">Envío<\/a> calculado al finalizar la compra.",
+			"checkout": "Finalizar compra",
+			"empty": "Tu carrito está vacío.",
 			"view_quantity_rules": "Ver normas de cantidad",
 			"volume_pricing_available": "Precios por volumen"
 		},
@@ -423,14 +423,14 @@
 	"products": {
 		"product": {
 			"sold_out": "Agotado",
-			"sale_percentage_label": "{{number}}% Rebajas",
+			"sale_percentage_label": "{{number}}% de descuento",
 			"unavailable": "No disponible",
 			"quantity": "Cantidad",
 			"increments_of": "Incrementos de {{number}}",
 			"minimum_of": "Mínimo de {{number}}",
 			"maximum_of": "Máximo de {{number}}",
-			"quantity_in_cart": "(En carro: {{quantity}})",
-			"add_to_cart": "Añadir a la cesta",
+			"quantity_in_cart": "(En carrito: {{quantity}})",
+			"add_to_cart": "Agregar al carrito",
 			"pre_order": "Pre-pedido",
 			"choose_an_option": "Elija una opción",
 			"pickup_availability": {
@@ -481,16 +481,16 @@
 				}
 			},
 			"product_stock_count": {
-				"one": "{{ count }} producto en stock",
-				"other": "{{ count }} productos en stock"
+				"one": "{{ count }} producto disponible",
+				"other": "{{ count }} productos disponibles"
 			}
 		},
 		"product_card": {
 			"product_title": "Título del producto",
 			"swatch_color": "Opción de color: {{ swatch }}",
 			"open_quick_view": "Vista rápida",
-			"add_to_cart": "Añadir a la cesta",
-			"product_vendor": "Vendedor: ",
+			"add_to_cart": "Agregar al carrito",
+			"product_vendor": "Marca: ",
 			"product_vendor_placeholder": "Proveedor de productos",
 			"product_swatches_overlimit_label": {
 				"one": "El producto tiene {{ count }} color adicional",

@@ -70,8 +70,57 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 14px;
   transition: top 0.4s ease;
+}
+
+.fagans-catalog__search {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  width: 100%;
+  max-width: 180px;
+  flex: 0 0 180px;
+  min-height: 42px;
+  padding: 0 12px;
+  border: 1px solid var(--f-onix-10, rgba(14,15,15,.10));
+  background: var(--f-blanco, #FFFFFF);
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.fagans-catalog__search-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--f-onix-40, #6E6F6F);
+  pointer-events: none;
+}
+
+.fagans-catalog__search:focus-within {
+  border-color: var(--f-sandalo, #C79FB8);
+  box-shadow: inset 0 -1px 0 var(--f-sandalo, #C79FB8);
+}
+
+.fagans-catalog__search-input {
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--f-onix, #0E0F0F);
+  font-family: var(--f-sans, system-ui, sans-serif);
+  font-size: 0.875rem;
+  letter-spacing: 0;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.fagans-catalog__search-input::placeholder {
+  color: var(--f-onix-40, #6E6F6F);
 }
 
 .fagans-catalog__pills {
@@ -123,18 +172,41 @@
 @media (min-width: 1024px) {
   .fagans-catalog__filter-bar {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    grid-template-columns: 180px minmax(0, 1fr) auto;
+  }
+
+  .fagans-catalog__search {
+    grid-column: 1;
+    justify-self: start;
   }
 
   .fagans-catalog__pills {
     grid-column: 2;
-    justify-content: center;
-    flex: 0 1 auto;
+    justify-content: flex-start;
+    flex: 1 1 auto;
+    min-width: 0;
   }
 
   .fagans-catalog__bar-right {
     grid-column: 3;
     justify-self: end;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1320px) {
+  .fagans-catalog__filter-bar {
+    grid-template-columns: 150px minmax(0, 1fr) auto;
+    gap: 8px;
+  }
+
+  .fagans-catalog__search {
+    max-width: 150px;
+    flex-basis: 150px;
+  }
+
+  .fagans-pill {
+    padding-inline: 11px;
+    letter-spacing: 0.04em;
   }
 }
 
@@ -243,6 +315,20 @@
   margin: 0;
 }
 
+.fagans-catalog__no-results {
+  padding: 64px var(--f-gutter, 48px);
+  text-align: center;
+  background: var(--f-blanco, #FFFFFF);
+  border-top: 1px solid var(--f-onix-10, rgba(14,15,15,.10));
+}
+
+.fagans-catalog__no-results p {
+  margin: 0;
+  font-family: var(--f-sans, system-ui, sans-serif);
+  font-size: 0.95rem;
+  color: var(--f-onix-60, #464747);
+}
+
 /* ── Paginación ─────────────────────────────────────────────── */
 
 .fagans-catalog__pagination {
@@ -344,18 +430,29 @@
 
 .fagans-catalog__advisor-link {
   margin-top: 18px;
+  min-height: 52px;
+  padding: 0 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-family: var(--f-sans, system-ui, sans-serif);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--f-blanco, #FFFFFF);
+  background: var(--f-blanco, #FFFFFF);
+  border: 1px solid var(--f-blanco, #FFFFFF);
+  color: var(--f-onix, #0E0F0F);
   text-decoration: none;
+  transition: background 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
 .fagans-catalog__advisor-link:hover,
 .fagans-catalog__advisor-link:focus-visible {
-  color: var(--f-sandalo, #C79FB8);
+  background: var(--f-nogal, #582D0C);
+  border-color: var(--f-nogal, #582D0C);
+  color: var(--f-blanco, #FFFFFF);
+  transform: translateY(-1px);
 }
 
 /* ── Responsive adjustments ─────────────────────────────────── */
@@ -370,6 +467,26 @@
   .fagans-catalog__filter-bar {
     padding: 8px 20px;
     gap: 10px;
+    flex-wrap: wrap;
+    align-items: stretch;
+  }
+  .fagans-catalog__search {
+    order: 1;
+    width: 100%;
+    max-width: none;
+    flex-basis: 100%;
+  }
+  .fagans-catalog__search-input {
+    border: 0;
+  }
+  .fagans-catalog__pills {
+    order: 2;
+    flex-basis: 100%;
+  }
+  .fagans-catalog__bar-right {
+    order: 3;
+    width: 100%;
+    justify-content: space-between;
   }
   .fagans-grid-toggle { display: none; }
   .fagans-catalog__pagination { padding: 32px 20px 24px; }

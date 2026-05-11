@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo — Fagans Perfumería</title>
+  <link rel="stylesheet" href="fagans-proto.css">
+</head>
+<body>
+
+<!-- ═══════════════════ NAV ═══════════════════ -->
+<header class="f-nav" role="banner">
+  <div class="f-nav__inner">
+    <a href="index.html" class="f-nav__logo" aria-label="Fagans — Inicio">
+      <svg width="108" height="28" viewBox="0 0 108 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <text x="0" y="22" font-family="Georgia, serif" font-size="22" font-weight="400" letter-spacing="4" fill="currentColor">FAGANS</text>
+      </svg>
+    </a>
+    <nav class="f-nav__links" aria-label="Principal">
+      <a href="index.html"    class="f-nav__link">Inicio</a>
+      <a href="catalogo.html" class="f-nav__link">Catálogo</a>
+      <a href="nosotros.html" class="f-nav__link">Nosotros</a>
+      <a href="contacto.html" class="f-nav__link">Contacto</a>
+      <a href="faq.html"      class="f-nav__link">FAQ</a>
+    </nav>
+    <div class="f-nav__actions">
+      <button class="f-nav__search-btn" id="nav-search-toggle" aria-label="Buscar">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <a href="contacto.html" class="f-btn f-btn--sm f-btn--outline" style="border-color:currentColor">Asesoría</a>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════ SEARCH OVERLAY ═══════════════════ -->
+<div class="f-search-overlay" id="search-overlay" hidden role="dialog" aria-label="Búsqueda">
+  <button class="f-search-close" id="search-close" aria-label="Cerrar búsqueda">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <div class="f-search-overlay__box">
+    <form class="f-search-form" role="search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="search" class="f-search-input-field" id="search-field" placeholder="Buscar perfume, marca, acorde…" autocomplete="off" spellcheck="false">
+    </form>
+    <p class="f-search-hint">Prueba: <span>Tom Ford</span> · <span>Oud</span> · <span>Para él</span> · <span>Frío</span> · <span>Sets</span></p>
+  </div>
+</div>
+
+<!-- ═══════════════════ PAGE HEADER ═══════════════════ -->
+<div class="f-page-header">
+  <div class="f-container">
+    <p class="f-eyebrow" data-reveal>Colección completa</p>
+    <h1 class="f-page-header__title" data-reveal>Catálogo</h1>
+    <p class="f-page-header__sub" data-reveal>Fragancias 100% originales. Nicho, árabe y diseñador.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════ FILTROS ═══════════════════ -->
+<div class="f-filters">
+  <div class="f-filters__bar">
+
+    <!-- Búsqueda inline -->
+    <div class="f-filter-search" aria-label="Buscar en catálogo">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="search" class="f-filter-search-input" placeholder="Buscar…" autocomplete="off" aria-label="Buscar producto">
+    </div>
+
+    <!-- Pills -->
+    <div class="f-filter-pills" role="group" aria-label="Filtrar catálogo">
+      <button class="f-filter-pill is-active" data-filter="all">Todos</button>
+      <button class="f-filter-pill" data-filter="femenino">Para ella</button>
+      <button class="f-filter-pill" data-filter="masculino">Para él</button>
+      <button class="f-filter-pill" data-filter="calor">Calor</button>
+      <button class="f-filter-pill" data-filter="frio">Frío</button>
+      <button class="f-filter-pill" data-filter="nicho">Nicho</button>
+      <button class="f-filter-pill" data-filter="arabe">Árabe</button>
+      <button class="f-filter-pill" data-filter="disenador">Diseñador</button>
+      <button class="f-filter-pill" data-filter="decant">Decants</button>
+    </div>
+
+    <!-- Ordenar + densidad de grid -->
+    <div class="f-filter-controls">
+      <select class="f-sort-select" aria-label="Ordenar por">
+        <option value="default">Destacados</option>
+        <option value="price-asc">Precio ↑</option>
+        <option value="price-desc">Precio ↓</option>
+        <option value="name-az">Nombre A–Z</option>
+        <option value="newest">Más nuevos</option>
+      </select>
+
+      <div class="f-grid-density" role="group" aria-label="Densidad de vista">
+        <!-- 5 cols (default — más elementos) -->
+        <button class="f-grid-density__btn is-active" data-density="5" aria-label="5 columnas" title="Más compacto">
+          <svg viewBox="0 0 14 14" aria-hidden="true"><rect x="0" y="0" width="2" height="14"/><rect x="3" y="0" width="2" height="14"/><rect x="6" y="0" width="2" height="14"/><rect x="9" y="0" width="2" height="14"/><rect x="12" y="0" width="2" height="14"/></svg>
+        </button>
+        <!-- 4 cols -->
+        <button class="f-grid-density__btn" data-density="4" aria-label="4 columnas" title="Estándar">
+          <svg viewBox="0 0 14 14" aria-hidden="true"><rect x="0" y="0" width="2.5" height="14"/><rect x="3.8" y="0" width="2.5" height="14"/><rect x="7.5" y="0" width="2.5" height="14"/><rect x="11.2" y="0" width="2.5" height="14"/></svg>
+        </button>
+        <!-- 3 cols -->
+        <button class="f-grid-density__btn" data-density="3" aria-label="3 columnas" title="Más espacioso">
+          <svg viewBox="0 0 14 14" aria-hidden="true"><rect x="0" y="0" width="3.5" height="14"/><rect x="5" y="0" width="3.5" height="14"/><rect x="10.5" y="0" width="3.5" height="14"/></svg>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════ CATALOG GRID ═══════════════════ -->
+<main class="f-catalog" id="main-content">
+  <div class="f-container">
+    <div class="f-catalog__grid" data-cols="5">
+
+      <!-- Estado vacío (oculto por defecto) -->
+      <div class="f-catalog__empty" aria-live="polite">
+        <p>Sin resultados. Prueba con otro término o filtro.</p>
+      </div>
+
+      <!-- 1 -->
+      <article class="f-pcard" data-tags="nicho,unisex,calor" data-name="Baccarat Rouge 540" data-vendor="Maison Francis Kurkdjian" data-price="285" data-order="8" data-reveal data-delay="1">
+        <a href="#" class="f-pcard__media" tabindex="-1">
+          <div class="f-pcard__img-wrap"><div class="f-pcard__img-placeholder"><span>MFK</span></div></div>
+          <div class="f-pcard__aroma-overlay" aria-hidden="true">
+            <p class="f-pcard__aroma-hint"><span class="f-pcard__aroma-label">Acordes</span>Amaderado · Ámbar · Floral · Musgo</p>
+          </div>
+        </a>
+        <div class="f-pcard__badge-sup">
+          <span class="f-badge f-badge--nicho">Nicho</span>
+          <span class="f-badge f-badge--new">Nuevo</span>
+        </div>
+        <div class="f-pcard__info">
+          <div class="f-pcard__meta-row"><span class="f-badge f-badge--fem">Unisex</span></div>
+          <p class="f-pcard__vendor">Maison Francis Kurkdjian</p>
+          <a href="#" class="f-pcard__name">Baccarat Rouge 540</a>
+          <div class="f-pcard__sizes">
+            <span class="f-size-chip">70ml</span>
+            <span class="f-size-chip f-size-chip--active">200ml</span>
+          </div>
+          <div class="f-pcard__price"><span class="f-pcard__price-now">$285.00</span></div>
+          <button class="f-pcard__cta f-btn f-btn--sm f-btn--full" type="button">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            Agregar
+          </button>
+        </div>
+      </article>
+
+      <!-- 2 -->
+      <article class="f-pcard f-pcard--has-sale" data-tags="arabe,masculino,calor" data-name="Asad" data-vendor="Lattafa" data-price="48" data-order="7" data-reveal data-delay="2">
+        <a href="#" class="f-pcard__media" tabindex="-1">
+          <div class="f-pcard__img-wrap"><div class="f-pcard__img-placeholder"><span>LAT</span></div></div>
+          <div class="f-pcard__aroma-overlay" aria-hidden="true">
+            <p class="f-pcard__aroma-hint"><span class="f-pcard__aroma-label">Acordes</span>Oud · Cuero · Ámbar · Especiado</p>
+          </div>
+          <div class="f-pcard__sale-sticker" aria-hidden="true">-20%</div>
+        </a>
+        <div class="f-pcard__badge-sup"><span class="f-badge f-badge--arabe">Árabe</span></div>
+        <div class="f-pcard__info">
+          <div class="f-pcard__meta-row"><span class="f-badge f-badge--masc">Para él</span></div>
+          <p class="f-pcard__vendor">Lattafa</p>
+          <a href="#" class="f-pcard__name">Asad</a>
+          <div class="f-pcard__sizes"><span class="f-size-chip f-size-chip--active">100ml</span></div>
+          <div class="f-pcard__price">
+            <span class="f-pcard__price-now">$48.00</span>
+            <s class="f-pcard__price-was">$60.00</s>
+          </div>
+          <button class="f-pcard__cta f-btn f-btn--sm f-btn--full" type="button">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            Agregar
+          </button>
+        </div>
+      </article>
+
+      <!-- 3 -->
+      <article class="f-pcard" data-tags="disenador,unisex,frio" data-name="Oud Wood" data-vendor="Tom Ford" data-price="320" data-order="6" data-reveal data-delay="3">
+        <a href="#" class="f-pcard__media" tabindex="-1">
+          <div class="f-pcard__img-wrap"><div class="f-pcard__img-placeholder"><span>TF</span></div></div>
+          <div class="f-pcard__aroma-overlay" aria-hidden="true">
+            <p class="f-pcard__aroma-hint"><span class="f-pcard__aroma-label">Acordes</span>Oud · Amaderado · Vetiver · Vainilla</p>
+          </div>
+        </a>
+        <div class="f-pcard__badge-sup"><span class="f-badge f-badge--dis">Diseñador</span></div>
+        <div class="f-pcard__info">
+          <div class="f-pcard__meta-row"><span class="f-badge f-badge--fem">Unisex</span></div>
+          <p class="f-pcard__vendor">Tom Ford</p>
+          <a href="#" class="f-pcard__name">Oud Wood</a>
+          <div class="f-pcard__sizes">
+            <span class="f-size-chip">50ml</span>
+            <span class="f-size-chip f-size-chip--active">100ml</span>
+            <span class="f-size-chip">250ml</span>
+          </div>
+          <div class="f-pcard__price"><span class="f-pcard__price-now">$320.00</span></div>
+          <button class="f-pcard__cta f-btn f-btn--sm f-btn--full" type="button">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            Agregar
+          </button>
+        </div>
+      </article>
+
+      <!-- 4 -->
+      <article class="f-pcard" data-tags="nicho,masculino,frio" data-name="Interlude Man" data-vendor="Amouage" data-price="380" data-order="5" data-reveal data-delay="4">
+        <a href="#" class="f-pcard__media" tabindex="-1">
+          <div class="f-pcard__img-wrap"><div class="f-pcard__img-placeholder"><span>AMO</span></div></div>
+          <div class="f-pcard__aroma-overlay" aria-hidden="true">
+            <p class="f-pcard__aroma-hint"><span class="f-pcard__aroma-label">Acordes</span>Incienso · Oud · Especiado · Amaderado</p>
+          </div>
+        </a>
+        <div class="f-pcard__badge-sup"><span class="f-badge f-badge--nicho">Nicho</span></div>
+        <div class="f-pcard__info">
+          <div class="f-pcard__meta-row"><span class="f-badge f-badge--masc">Para él</span></div>
+          <p class="f-pcard__vendor">Amouage</p>
+          <a href="#" class="f-pcard__name">Interlude Man</a>
+          <div class="f-pcard__sizes"><span class="f-size-chip f-size-chip--active">100ml</span></div>
+          <div class="f-pcard__price"><span class="f-pcard__price-now">$380.00</span></div>
+          <button class="f-pcard__cta f-btn f-btn--sm f-btn--full" type="button">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            Agregar
+          </button>
+        </div>
+      </article>
+
+      <!-- 5 -->
+      <article class="f-pcard" data-tags="arabe,unisex,calor" data-name="9PM" data-vendor="Afnan" data-price="38" data-order="4" data-reveal data-delay="1">
+        <a href="#" class="f-pcard__media" tabindex="-1">
+          <div class="f-pcard__img-wrap"><div class="f-pcard__img-placeholder"><span>AFN</span></div></div>
+          <div class="f-pcard__aroma-overlay" aria-hidden="true">
+            <p class="f-pcard__aroma-hint"><span class="f-pcard__aroma-label">Acordes</span>Floral · Ámbar · Musk · Vainilla</p>
+          </div>
+        </a>
+        <div class="f-pcard__badge-sup">
+          <span class="f-badge f-badge--arabe">Árabe</span>
+          <span class="f-badge f-badge--new">Nuevo</span>
+        </div>
+        <div class="f-pcard__info">
+          <div class="f-pcard__meta-row"><span class="f-badge f-badge--fem">Unisex</span></div>
+          <p class="f-pcard__vendor">Afnan</p>
+          <a href="#" class="f-pcard__name">9PM</a>
+          <div class="f-pcard__sizes">
+            <span class="f-size-chip f-size-chip--active">100ml</span>
+          </div>
+          <div class="f-pcard__price"><span class="f-pcard__price-now">$38.00</span></div>
+          <button class="f-pcard__cta f-btn f-btn--sm f-btn--full" type="button">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            Agregar
+          </button>
+        </div>
+      </article>
+
+      <!-- 6 -->
+      <article class="f-pcard" data-tags="disenador,femenino,calor" data-name="Fleurissimo" data-vendor="Creed" data-price="490" data-order="3" data-reveal data-delay="2">
+        <a href="#" class="f-pcard__media" tabindex="-1">
+          <div class="f-pcard__img-wrap"><div class="f-pcard__img-placeholder"><span>CRD</span></div></div>
+          <div class="f-pcard__aroma-overlay" aria-hidden="true">
+            <p class="f-pcard__aroma-hint"><span class="f-pcard__aroma-label">Acordes</span>Floral · Iris · Musk · Cedro</p>
+          </div>
+        </a>
+        <div class="f-pcard__badge-sup"><span class="f-badge f-badge--dis">Diseñador</span></div>
+        <div class="f-pcard__info">
+          <div class="f-pcard__meta-row"><span class="f-badge f-badge--fem">Para ella</span></div>
+          <p class="f-pcard__vendor">Creed</p>
+          <a href="#" class="f-pcard__name">Fleurissimo</a>
+          <div class="f-pcard__sizes">
+            <span class="f-size-chip">75ml</span>
+            <span class="f-size-chip f-size-chip--active">250ml</span>
+          </div>
+          <div class="f-pcard__price"><span class="f-pcard__price-now">$490.00</span></div>
+          <button class="f-pcard__cta f-btn f-btn--sm f-btn--full" type="button">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            Agregar
+          </button>
+        </div>
+      </article>
+
+      <!-- 7 — Agotado -->
+      <article class="f-pcard f-pcard--sold-out" data-tags="nicho,femenino,calor" data-name="Rose Poivrée" data-vendor="The Different Company" data-price="195" data-order="2" data-reveal data-delay="3">
+        <a href="#" class="f-pcard__media" tabindex="-1">
+          <div class="f-pcard__img-wrap"><div class="f-pcard__img-placeholder"><span>TDC</span></div></div>
+        </a>
+        <div class="f-pcard__badge-sup"><span class="f-badge f-badge--nicho">Nicho</span></div>
+        <div class="f-pcard__info">
+          <div class="f-pcard__meta-row">
+            <span class="f-badge f-badge--fem">Para ella</span>
+            <span class="f-badge f-badge--agotado">Agotado</span>
+          </div>
+          <p class="f-pcard__vendor">The Different Company</p>
+          <a href="#" class="f-pcard__name">Rose Poivrée</a>
+          <div class="f-pcard__sizes"><span class="f-size-chip f-size-chip--active">100ml</span></div>
+          <div class="f-pcard__price"><span class="f-pcard__price-now">$195.00</span></div>
+          <a href="contacto.html" class="f-pcard__cta f-pcard__cta--solicitar f-btn f-btn--sm f-btn--full">Solicitar</a>
+        </div>
+      </article>
+
+      <!-- 8 -->
+      <article class="f-pcard" data-tags="arabe,masculino,frio" data-name="Black Oud" data-vendor="Khlood" data-price="55" data-order="1" data-reveal data-delay="4">
+        <a href="#" class="f-pcard__media" tabindex="-1">
+          <div class="f-pcard__img-wrap"><div class="f-pcard__img-placeholder"><span>KHL</span></div></div>
+          <div class="f-pcard__aroma-overlay" aria-hidden="true">
+            <p class="f-pcard__aroma-hint"><span class="f-pcard__aroma-label">Acordes</span>Oud · Incienso · Especiado · Madera</p>
+          </div>
+        </a>
+        <div class="f-pcard__badge-sup"><span class="f-badge f-badge--arabe">Árabe</span></div>
+        <div class="f-pcard__info">
+          <div class="f-pcard__meta-row"><span class="f-badge f-badge--masc">Para él</span></div>
+          <p class="f-pcard__vendor">Khlood</p>
+          <a href="#" class="f-pcard__name">Black Oud</a>
+          <div class="f-pcard__sizes"><span class="f-size-chip f-size-chip--active">100ml</span></div>
+          <div class="f-pcard__price"><span class="f-pcard__price-now">$55.00</span></div>
+          <button class="f-pcard__cta f-btn f-btn--sm f-btn--full" type="button">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            Agregar
+          </button>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</main>
+
+<!-- ═══════════════════ ASESORÍA CTA ═══════════════════ -->
+<section class="f-cta-full" data-reveal aria-label="Asesoría personalizada">
+  <div class="f-cta-full__inner">
+    <p class="f-eyebrow" style="color:var(--f-sandalo)">¿Demasiadas opciones?</p>
+    <h2 class="f-cta-full__title">Te ayudamos a elegir.</h2>
+    <p class="f-cta-full__sub">Cuéntanos tu gusto y te recomendamos en menos de una hora.</p>
+    <a href="contacto.html" class="f-btn f-btn--primary">Hablar con un asesor</a>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer class="f-footer" role="contentinfo">
+  <div class="f-footer__inner">
+    <div class="f-footer__brand">
+      <a href="index.html" class="f-nav__logo f-footer__logo" aria-label="Fagans — Inicio">
+        <svg width="108" height="28" viewBox="0 0 108 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <text x="0" y="22" font-family="Georgia, serif" font-size="22" font-weight="400" letter-spacing="4" fill="currentColor">FAGANS</text>
+        </svg>
+      </a>
+      <p class="f-footer__tagline">Perfumería boutique.<br>El Salvador.</p>
+    </div>
+    <nav class="f-footer__nav" aria-label="Páginas">
+      <p class="f-footer__nav-title">Páginas</p>
+      <a href="index.html"    class="f-footer__link">Inicio</a>
+      <a href="catalogo.html" class="f-footer__link">Catálogo</a>
+      <a href="nosotros.html" class="f-footer__link">Nosotros</a>
+      <a href="contacto.html" class="f-footer__link">Contacto</a>
+      <a href="faq.html"      class="f-footer__link">FAQ</a>
+    </nav>
+    <div class="f-footer__contact">
+      <p class="f-footer__nav-title">Contáctanos</p>
+      <p class="f-footer__link">WhatsApp: +503 7XXX-XXXX</p>
+      <p class="f-footer__link">Instagram: @fagans.sv</p>
+      <p class="f-footer__link">San Salvador, El Salvador</p>
+    </div>
+  </div>
+  <div class="f-footer__bottom">
+    <p>© 2025 Fagans. Todos los derechos reservados.</p>
+    <p>Fragancias 100% originales certificadas.</p>
+  </div>
+</footer>
+
+<script src="fagans-proto.js"></script>
+</body>
+</html>

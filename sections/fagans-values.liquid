@@ -5,7 +5,12 @@
     <h2 class="f-sr-only" id="values-title-{{ section.id }}">{{ section.settings.title | default: 'Por qué Fagans' }}</h2>
     <div class="f-values__grid">
       {%- for block in section.blocks -%}
-        <div class="f-value-card" {{ block.shopify_attributes }}>
+        <div
+          class="f-value-card"
+          data-f-reveal
+          data-f-delay="{{ forloop.index0 | modulo: 4 | plus: 1 }}"
+          {{ block.shopify_attributes }}
+        >
           <div class="f-value-card__icon" aria-hidden="true">
             {%- case block.settings.icon -%}
               {%- when 'shield' -%}

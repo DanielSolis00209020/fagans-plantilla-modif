@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fagans — Perfumería Boutique</title>
+  <link rel="stylesheet" href="fagans-proto.css">
+</head>
+<body>
+
+<!-- ═══════════════════ NAV ═══════════════════ -->
+<header class="f-nav" role="banner">
+  <div class="f-nav__inner">
+    <a href="index.html" class="f-nav__logo" aria-label="Fagans — Inicio">
+      <svg width="108" height="28" viewBox="0 0 108 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <text x="0" y="22" font-family="Georgia, serif" font-size="22" font-weight="400" letter-spacing="4" fill="currentColor">FAGANS</text>
+      </svg>
+    </a>
+
+    <nav class="f-nav__links" aria-label="Principal">
+      <a href="index.html"    class="f-nav__link">Inicio</a>
+      <a href="catalogo.html" class="f-nav__link">Catálogo</a>
+      <a href="nosotros.html" class="f-nav__link">Nosotros</a>
+      <a href="contacto.html" class="f-nav__link">Contacto</a>
+      <a href="faq.html"      class="f-nav__link">FAQ</a>
+    </nav>
+
+    <div class="f-nav__actions">
+      <button class="f-nav__search-btn" id="nav-search-toggle" aria-label="Buscar">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <a href="catalogo.html" class="f-btn f-btn--sm f-btn--outline" style="border-color:currentColor">Ver catálogo</a>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════ SEARCH OVERLAY ═══════════════════ -->
+<div class="f-search-overlay" id="search-overlay" hidden role="dialog" aria-label="Búsqueda">
+  <button class="f-search-close" id="search-close" aria-label="Cerrar búsqueda">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <div class="f-search-overlay__box">
+    <form class="f-search-form" role="search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="search" class="f-search-input-field" id="search-field" placeholder="Buscar perfume, marca, acorde…" autocomplete="off" spellcheck="false">
+    </form>
+    <p class="f-search-hint">Prueba: <span>Tom Ford</span> · <span>Oud</span> · <span>Para él</span> · <span>Frío</span> · <span>Sets</span></p>
+  </div>
+</div>
+
+<!-- ═══════════════════ HERO CAROUSEL ═══════════════════ -->
+<section class="f-hero" aria-label="Presentación principal">
+
+  <!-- Slide 1 — Nicho -->
+  <div class="f-hero__slide" data-slide="0">
+    <div class="f-hero__img-wrap">
+      <div class="f-hero__img-placeholder">
+        <span class="f-hero__img-label">Fotografía de producto — Fragancia Nicho</span>
+      </div>
+    </div>
+    <div class="f-hero__content">
+      <p class="f-hero__eyebrow">Colección Nicho</p>
+      <h1 class="f-hero__title">El perfume<br>que nadie más<br>lleva.</h1>
+      <p class="f-hero__sub">Fragancias nicho de casas independientes. Formulaciones que no llegan a los centros comerciales.</p>
+      <div class="f-hero__ctas">
+        <a href="catalogo.html?tipo=nicho" class="f-btn f-btn--primary">Explorar Nicho</a>
+        <a href="catalogo.html" class="f-btn f-btn--ghost">Ver todo el catálogo</a>
+      </div>
+    </div>
+    <div class="f-hero__slide-num" aria-hidden="true">01</div>
+  </div>
+
+  <!-- Slide 2 — Árabe -->
+  <div class="f-hero__slide" data-slide="1">
+    <div class="f-hero__img-wrap">
+      <div class="f-hero__img-placeholder">
+        <span class="f-hero__img-label">Fotografía de producto — Fragancia Árabe</span>
+      </div>
+    </div>
+    <div class="f-hero__content">
+      <p class="f-hero__eyebrow">Colección Árabe</p>
+      <h1 class="f-hero__title">Oud, Musk,<br>Sándalo.<br>Intensidad real.</h1>
+      <p class="f-hero__sub">Tradición de Oriente Medio con concentraciones que duran más de 24 horas en piel.</p>
+      <div class="f-hero__ctas">
+        <a href="catalogo.html?tipo=arabe" class="f-btn f-btn--primary">Explorar Árabe</a>
+        <a href="catalogo.html" class="f-btn f-btn--ghost">Ver todo el catálogo</a>
+      </div>
+    </div>
+    <div class="f-hero__slide-num" aria-hidden="true">02</div>
+  </div>
+
+  <!-- Slide 3 — Diseñador -->
+  <div class="f-hero__slide" data-slide="2">
+    <div class="f-hero__img-wrap">
+      <div class="f-hero__img-placeholder">
+        <span class="f-hero__img-label">Fotografía de producto — Fragancia Diseñador</span>
+      </div>
+    </div>
+    <div class="f-hero__content">
+      <p class="f-hero__eyebrow">Colección Diseñador</p>
+      <h1 class="f-hero__title">Tom Ford.<br>Creed. Amouage.<br>100% original.</h1>
+      <p class="f-hero__sub">Las firmas más deseadas del mundo, verificadas y garantizadas. Sin copias, sin riesgo.</p>
+      <div class="f-hero__ctas">
+        <a href="catalogo.html?tipo=disenador" class="f-btn f-btn--primary">Explorar Diseñador</a>
+        <a href="catalogo.html" class="f-btn f-btn--ghost">Ver todo el catálogo</a>
+      </div>
+    </div>
+    <div class="f-hero__slide-num" aria-hidden="true">03</div>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="f-hero__progress" aria-hidden="true">
+    <div class="f-hero__progress-fill"></div>
+  </div>
+
+  <!-- Dots -->
+  <div class="f-hero__dots" aria-label="Diapositivas"></div>
+
+  <!-- Arrows -->
+  <button class="f-hero__arrow f-hero__arrow--prev" data-prev aria-label="Anterior">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <button class="f-hero__arrow f-hero__arrow--next" data-next aria-label="Siguiente">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
+
+  <!-- Scroll indicator -->
+  <div class="f-hero__scroll-hint" aria-hidden="true">
+    <span>Descubre</span>
+    <div class="f-hero__scroll-line"></div>
+  </div>
+
+</section>
+
+<!-- ═══════════════════ AUTENTICIDAD STRIP ═══════════════════ -->
+<div class="f-strip" data-reveal>
+  <div class="f-strip__inner">
+    <div class="f-strip__item">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+      <span>100% fragancias originales</span>
+    </div>
+    <div class="f-strip__divider" aria-hidden="true"></div>
+    <div class="f-strip__item">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      <span>Envíos a todo El Salvador</span>
+    </div>
+    <div class="f-strip__divider" aria-hidden="true"></div>
+    <div class="f-strip__item">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <span>Asesoría personalizada</span>
+    </div>
+    <div class="f-strip__divider" aria-hidden="true"></div>
+    <div class="f-strip__item">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <span>Respuesta en menos de 1 hora</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ FEATURED PRODUCTS ═══════════════════ -->
+<section class="f-section f-section--featured" aria-labelledby="featured-title">
+  <div class="f-container">
+    <div class="f-section-header" data-reveal>
+      <p class="f-eyebrow">Lo más buscado</p>
+      <h2 class="f-section-title" id="featured-title">Destacados de temporada</h2>
+    </div>
+
+    <div class="f-product-grid">
+
+      <!-- Card 1 -->
+      <article class="f-pcard" data-tags="nicho" data-reveal data-delay="1">
+        <a href="catalogo.html" class="f-pcard__media" aria-label="Baccarat Rouge 540 — Maison Francis Kurkdjian" tabindex="-1">
+          <div class="f-pcard__img-wrap">
+            <div class="f-pcard__img-placeholder">
+              <span>MFK</span>
+            </div>
+          </div>
+          <div class="f-pcard__aroma-overlay" aria-hidden="true">
+            <p class="f-pcard__aroma-hint">
+              <span class="f-pcard__aroma-label">Acordes</span>
+              Amaderado · Ámbar · Floral · Musgo
+            </p>
+          </div>
+        </a>
+        <div class="f-pcard__badge-sup">
+          <span class="f-badge f-badge--nicho">Nicho</span>
+          <span class="f-badge f-badge--new">Nuevo</span>
+        </div>
+        <div class="f-pcard__info">
+          <div class="f-pcard__meta-row">
+            <span class="f-badge f-badge--fem">Unisex</span>
+          </div>
+          <p class="f-pcard__vendor">Maison Francis Kurkdjian</p>
+          <a href="catalogo.html" class="f-pcard__name">Baccarat Rouge 540</a>
+          <div class="f-pcard__sizes">
+            <span class="f-size-chip">70ml</span>
+            <span class="f-size-chip f-size-chip--active">200ml</span>
+          </div>
+          <div class="f-pcard__price">
+            <span class="f-pcard__price-now">$285.00</span>
+          </div>
+          <button class="f-pcard__cta f-btn f-btn--sm f-btn--full" type="button">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            Agregar
+          </button>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="f-pcard f-pcard--has-sale" data-tags="arabe" data-reveal data-delay="2">
+        <a href="catalogo.html" class="f-pcard__media" aria-label="Asad — Lattafa" tabindex="-1">
+          <div class="f-pcard__img-wrap">
+            <div class="f-pcard__img-placeholder">
+              <span>LAT</span>
+            </div>
+          </div>
+          <div class="f-pcard__aroma-overlay" aria-hidden="true">
+            <p class="f-pcard__aroma-hint">
+              <span class="f-pcard__aroma-label">Acordes</span>
+              Oud · Cuero · Ámbar · Especiado
+            </p>
+          </div>
+          <div class="f-pcard__sale-sticker" aria-hidden="true">-20%</div>
+        </a>
+        <div class="f-pcard__badge-sup">
+          <span class="f-badge f-badge--arabe">Árabe</span>
+        </div>
+        <div class="f-pcard__info">
+          <div class="f-pcard__meta-row">
+            <span class="f-badge f-badge--masc">Para él</span>
+          </div>
+          <p class="f-pcard__vendor">Lattafa</p>
+          <a href="catalogo.html" class="f-pcard__name">Asad</a>
+          <div class="f-pcard__sizes">
+            <span class="f-size-chip f-size-chip--active">100ml</span>
+          </div>
+          <div class="f-pcard__price">
+            <span class="f-pcard__price-now">$48.00</span>
+            <s class="f-pcard__price-was">$60.00</s>
+          </div>
+          <button class="f-pcard__cta f-btn f-btn--sm f-btn--full" type="button">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            Agregar
+          </button>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="f-pcard" data-tags="disenador" data-reveal data-delay="3">
+        <a href="catalogo.html" class="f-pcard__media" aria-label="Oud Wood — Tom Ford" tabindex="-1">
+          <div class="f-pcard__img-wrap">
+            <div class="f-pcard__img-placeholder">
+              <span>TF</span>
+            </div>
+          </div>
+          <div class="f-pcard__aroma-overlay" aria-hidden="true">
+            <p class="f-pcard__aroma-hint">
+              <span class="f-pcard__aroma-label">Acordes</span>
+              Oud · Amaderado · Vetiver · Vainilla
+            </p>
+          </div>
+        </a>
+        <div class="f-pcard__badge-sup">
+          <span class="f-badge f-badge--dis">Diseñador</span>
+        </div>
+        <div class="f-pcard__info">
+          <div class="f-pcard__meta-row">
+            <span class="f-badge f-badge--fem">Unisex</span>
+          </div>
+          <p class="f-pcard__vendor">Tom Ford</p>
+          <a href="catalogo.html" class="f-pcard__name">Oud Wood</a>
+          <div class="f-pcard__sizes">
+            <span class="f-size-chip">50ml</span>
+            <span class="f-size-chip f-size-chip--active">100ml</span>
+            <span class="f-size-chip">250ml</span>
+          </div>
+          <div class="f-pcard__price">
+            <span class="f-pcard__price-now">$320.00</span>
+          </div>
+          <button class="f-pcard__cta f-btn f-btn--sm f-btn--full" type="button">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            Agregar
+          </button>
+        </div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="f-pcard" data-tags="nicho" data-reveal data-delay="4">
+        <a href="catalogo.html" class="f-pcard__media" aria-label="Interlude Man — Amouage" tabindex="-1">
+          <div class="f-pcard__img-wrap">
+            <div class="f-pcard__img-placeholder">
+              <span>AMO</span>
+            </div>
+          </div>
+          <div class="f-pcard__aroma-overlay" aria-hidden="true">
+            <p class="f-pcard__aroma-hint">
+              <span class="f-pcard__aroma-label">Acordes</span>
+              Incienso · Oud · Especiado · Amaderado
+            </p>
+          </div>
+        </a>
+        <div class="f-pcard__badge-sup">
+          <span class="f-badge f-badge--nicho">Nicho</span>
+        </div>
+        <div class="f-pcard__info">
+          <div class="f-pcard__meta-row">
+            <span class="f-badge f-badge--masc">Para él</span>
+          </div>
+          <p class="f-pcard__vendor">Amouage</p>
+          <a href="catalogo.html" class="f-pcard__name">Interlude Man</a>
+          <div class="f-pcard__sizes">
+            <span class="f-size-chip f-size-chip--active">100ml</span>
+          </div>
+          <div class="f-pcard__price">
+            <span class="f-pcard__price-now">$380.00</span>
+          </div>
+          <button class="f-pcard__cta f-btn f-btn--sm f-btn--full" type="button">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            Agregar
+          </button>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="f-section-footer" data-reveal>
+      <a href="catalogo.html" class="f-btn f-btn--outline-onix">Ver catálogo completo</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ STORY SPLIT ═══════════════════ -->
+<section class="f-story" aria-labelledby="story-title">
+  <div class="f-story__visual" data-reveal>
+    <div class="f-story__img-placeholder">
+      <span>Fotografía de ambiente — interior boutique</span>
+    </div>
+  </div>
+  <div class="f-story__text" data-reveal>
+    <p class="f-eyebrow">Quiénes somos</p>
+    <h2 class="f-section-title" id="story-title">La primera boutique de perfumería de lujo en El Salvador</h2>
+    <p class="f-body">Llevamos años buscando lo que nadie más traía. Fragancias que no se copian porque no vale la pena copiarlas: son demasiado particulares, demasiado reales.</p>
+    <p class="f-body">Cada frasco que llega a Fagans pasa por nuestra verificación. Sin intermediarios dudosos, sin segundas fuentes.</p>
+    <a href="nosotros.html" class="f-btn f-btn--outline-onix">Conocer nuestra historia</a>
+  </div>
+</section>
+
+<!-- ═══════════════════ VALUE PROPS ═══════════════════ -->
+<section class="f-values" aria-labelledby="values-title">
+  <div class="f-container">
+    <h2 class="f-sr-only" id="values-title">Por qué Fagans</h2>
+    <div class="f-values__grid">
+
+      <div class="f-value-card" data-reveal data-delay="1">
+        <div class="f-value-card__icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="f-value-card__title">Autenticidad garantizada</h3>
+        <p class="f-value-card__body">Verificamos la procedencia de cada frasco. Si no es original, no entra al catálogo.</p>
+      </div>
+
+      <div class="f-value-card" data-reveal data-delay="2">
+        <div class="f-value-card__icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+        </div>
+        <h3 class="f-value-card__title">Asesoría real</h3>
+        <p class="f-value-card__body">No te mandamos una lista genérica. Te escuchamos, entendemos tu gusto y te recomendamos lo que te va a funcionar.</p>
+      </div>
+
+      <div class="f-value-card" data-reveal data-delay="3">
+        <div class="f-value-card__icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <h3 class="f-value-card__title">Envío a todo el país</h3>
+        <p class="f-value-card__body">Entregamos a cualquier departamento de El Salvador. Embalaje seguro, discreto y a tiempo.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ COLECCIONES STRIP ═══════════════════ -->
+<section class="f-collections" aria-labelledby="coll-title">
+  <div class="f-container">
+    <div class="f-section-header" data-reveal>
+      <p class="f-eyebrow">Explora por tipo</p>
+      <h2 class="f-section-title" id="coll-title">Tres mundos de fragancia</h2>
+    </div>
+    <div class="f-collections__grid">
+
+      <a href="catalogo.html?tipo=nicho" class="f-coll-card" data-reveal data-delay="1">
+        <div class="f-coll-card__img-placeholder">
+          <span>Nicho</span>
+        </div>
+        <div class="f-coll-card__overlay">
+          <p class="f-eyebrow" style="color:var(--f-sandalo)">Colección</p>
+          <h3 class="f-coll-card__name">Nicho</h3>
+          <p class="f-coll-card__desc">Casas independientes. Composiciones únicas.</p>
+          <span class="f-btn f-btn--ghost f-btn--sm">Explorar</span>
+        </div>
+      </a>
+
+      <a href="catalogo.html?tipo=arabe" class="f-coll-card" data-reveal data-delay="2">
+        <div class="f-coll-card__img-placeholder">
+          <span>Árabe</span>
+        </div>
+        <div class="f-coll-card__overlay">
+          <p class="f-eyebrow" style="color:var(--f-sandalo)">Colección</p>
+          <h3 class="f-coll-card__name">Árabe</h3>
+          <p class="f-coll-card__desc">Oud, musk y ámbar. Profundidad oriental.</p>
+          <span class="f-btn f-btn--ghost f-btn--sm">Explorar</span>
+        </div>
+      </a>
+
+      <a href="catalogo.html?tipo=disenador" class="f-coll-card" data-reveal data-delay="3">
+        <div class="f-coll-card__img-placeholder">
+          <span>Diseñador</span>
+        </div>
+        <div class="f-coll-card__overlay">
+          <p class="f-eyebrow" style="color:var(--f-sandalo)">Colección</p>
+          <h3 class="f-coll-card__name">Diseñador</h3>
+          <p class="f-coll-card__desc">Las firmas más icónicas, verificadas al 100%.</p>
+          <span class="f-btn f-btn--ghost f-btn--sm">Explorar</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CTA FINAL ═══════════════════ -->
+<section class="f-cta-full" data-reveal aria-label="Llamada a la acción">
+  <div class="f-cta-full__inner">
+    <p class="f-eyebrow" style="color:var(--f-sandalo)">¿No sabes por dónde empezar?</p>
+    <h2 class="f-cta-full__title">Te ayudamos a encontrar<br>tu fragancia.</h2>
+    <p class="f-cta-full__sub">Cuéntanos tu estilo, tu ocasión, lo que has usado antes. En menos de una hora tienes nuestra recomendación.</p>
+    <a href="contacto.html" class="f-btn f-btn--primary">Hablar con un asesor</a>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer class="f-footer" role="contentinfo">
+  <div class="f-footer__inner">
+    <div class="f-footer__brand">
+      <a href="index.html" class="f-nav__logo f-footer__logo" aria-label="Fagans — Inicio">
+        <svg width="108" height="28" viewBox="0 0 108 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <text x="0" y="22" font-family="Georgia, serif" font-size="22" font-weight="400" letter-spacing="4" fill="currentColor">FAGANS</text>
+        </svg>
+      </a>
+      <p class="f-footer__tagline">Perfumería boutique.<br>El Salvador.</p>
+    </div>
+
+    <nav class="f-footer__nav" aria-label="Páginas">
+      <p class="f-footer__nav-title">Páginas</p>
+      <a href="index.html"    class="f-footer__link">Inicio</a>
+      <a href="catalogo.html" class="f-footer__link">Catálogo</a>
+      <a href="nosotros.html" class="f-footer__link">Nosotros</a>
+      <a href="contacto.html" class="f-footer__link">Contacto</a>
+      <a href="faq.html"      class="f-footer__link">FAQ</a>
+    </nav>
+
+    <div class="f-footer__contact">
+      <p class="f-footer__nav-title">Contáctanos</p>
+      <p class="f-footer__link">WhatsApp: +503 7XXX-XXXX</p>
+      <p class="f-footer__link">Instagram: @fagans.sv</p>
+      <p class="f-footer__link">San Salvador, El Salvador</p>
+    </div>
+  </div>
+  <div class="f-footer__bottom">
+    <p>© 2025 Fagans. Todos los derechos reservados.</p>
+    <p>Fragancias 100% originales certificadas.</p>
+  </div>
+</footer>
+
+<script src="fagans-proto.js"></script>
+</body>
+</html>

@@ -124,10 +124,14 @@
 {%- endcapture -%}
 
 {%- assign target_variant = product.first_available_variant | default: product.variants.first -%}
+{%- capture search_index -%}
+  {{ product.title }} {{ product.vendor }} {{ product.type }} {{ product.tags | join: ' ' }} {{ aroma_html | strip_html }}
+{%- endcapture -%}
 
 <article
   class="fagans-pcard js-product-card{% if featured %} fagans-pcard--featured{% endif %}{% unless is_available %} fagans-pcard--sold-out{% endunless %}{% if has_sale %} fagans-pcard--has-sale{% endif %}"
   data-tags="{{ tag_str }}"
+  data-search="{{ search_index | strip | escape }}"
   data-f-reveal
   data-f-delay="{{ reveal_delay }}"
 >

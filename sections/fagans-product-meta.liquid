@@ -38,7 +38,7 @@
   assign target_variant = p.first_available_variant | default: p.variants.first
 -%}
 
-<div class="fagans-pmeta" id="fagans-pmeta-{{ section.id }}">
+<div class="fagans-pmeta" id="fagans-pmeta-{{ section.id }}" data-fagans-product-meta="{{ section.id }}">
 
   {%- comment -%}══ SOLD-OUT BANNER ══{%- endcomment -%}
   {%- unless is_available -%}
@@ -240,6 +240,69 @@
   {%- endif -%}
 
 </div>
+
+<script id="fagans-pmeta-script-{{ section.id }}">
+(function () {
+  'use strict';
+
+  var sectionId = '{{ section.id }}';
+  var mediaQuery = window.matchMedia('(min-width: 1200px)');
+  var ticking = false;
+
+  function placeMeta() {
+    var meta = document.querySelector('[data-fagans-product-meta="' + sectionId + '"]');
+    var script = document.getElementById('fagans-pmeta-script-' + sectionId);
+    var section = script && script.closest('.fagans-pmeta-section');
+    var media = document.querySelector('.template-product .product-media');
+
+    if (!meta || !script || !section) return;
+
+    if (mediaQuery.matches && media) {
+      var slot = media.querySelector('[data-fagans-pmeta-slot]');
+      if (!slot) {
+        slot = document.createElement('div');
+        slot.className = 'fagans-pmeta-desktop-slot';
+        slot.setAttribute('data-fagans-pmeta-slot', '');
+        media.appendChild(slot);
+      }
+
+      if (meta.parentElement !== slot) {
+        slot.appendChild(meta);
+      }
+      section.classList.add('is-moved-desktop');
+    } else {
+      if (meta.parentElement !== section) {
+        section.insertBefore(meta, script);
+      }
+      section.classList.remove('is-moved-desktop');
+    }
+  }
+
+  function schedulePlaceMeta() {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(function () {
+      ticking = false;
+      placeMeta();
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', placeMeta);
+  } else {
+    placeMeta();
+  }
+
+  if (mediaQuery.addEventListener) {
+    mediaQuery.addEventListener('change', placeMeta);
+  } else if (mediaQuery.addListener) {
+    mediaQuery.addListener(placeMeta);
+  }
+
+  window.addEventListener('resize', schedulePlaceMeta);
+  document.addEventListener('shopify:section:load', schedulePlaceMeta);
+})();
+</script>
 
 {% schema %}
 {

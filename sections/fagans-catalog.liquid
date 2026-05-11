@@ -29,6 +29,22 @@
 
   {%- comment -%}══ FILTER BAR ══{%- endcomment -%}
   <div class="fagans-catalog__filter-bar" id="fagans-filter-bar">
+    <div class="fagans-catalog__search">
+      <svg class="fagans-catalog__search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="7"></circle>
+        <path d="m20 20-3.8-3.8"></path>
+      </svg>
+      <label class="fagans-sr-only" for="fagans-catalog-search-{{ section.id }}">Buscar producto</label>
+      <input
+        id="fagans-catalog-search-{{ section.id }}"
+        class="fagans-catalog__search-input"
+        type="search"
+        placeholder="Buscar..."
+        autocomplete="off"
+        spellcheck="false"
+      >
+    </div>
+
     <nav class="fagans-catalog__pills" aria-label="Filtrar por categoría">
 
       {%- assign filter_links = section.settings.filter_links -%}
@@ -117,6 +133,10 @@
     {%- endfor -%}
   </div>
 
+  <div class="fagans-catalog__no-results" id="fagans-catalog-no-results-{{ section.id }}" hidden>
+    <p>No encontramos productos con ese texto.</p>
+  </div>
+
   {%- comment -%}══ PAGINATION ══{%- endcomment -%}
   {%- if paginate.pages > 1 -%}
     <div class="fagans-catalog__pagination">
@@ -187,6 +207,59 @@
       }
     });
   });
+
+  function normalizeText(value) {
+    return String(value || '')
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .trim();
+  }
+
+  function filterCatalogCards(input) {
+    if (!input) return;
+
+    var catalog = input.closest('.fagans-catalog');
+    if (!catalog) return;
+
+    var gridEl = catalog.querySelector('.fagans-catalog__grid');
+    var noResultsEl = catalog.querySelector('.fagans-catalog__no-results');
+    if (!gridEl) return;
+
+    var query = normalizeText(input.value);
+    var cards = Array.from(gridEl.querySelectorAll('.js-product-card'));
+    var visibleCount = 0;
+
+    cards.forEach(function (card) {
+      var haystack = normalizeText(card.getAttribute('data-search') || card.textContent);
+      var isMatch = !query || haystack.indexOf(query) !== -1;
+
+      card.hidden = !isMatch;
+      card.style.display = isMatch ? '' : 'none';
+      card.setAttribute('aria-hidden', isMatch ? 'false' : 'true');
+      card.classList.toggle('is-search-hidden', !isMatch);
+      if (isMatch) visibleCount += 1;
+    });
+
+    if (noResultsEl) {
+      noResultsEl.hidden = !query || visibleCount > 0;
+    }
+  }
+
+  document.addEventListener('input', function (event) {
+    if (!event.target.matches('.fagans-catalog__search-input')) return;
+    filterCatalogCards(event.target);
+  });
+
+  document.addEventListener('search', function (event) {
+    if (!event.target.matches('.fagans-catalog__search-input')) return;
+    filterCatalogCards(event.target);
+  });
+
+  var searchEl = document.getElementById('fagans-catalog-search-' + sectionId);
+  if (searchEl && searchEl.value) {
+    filterCatalogCards(searchEl);
+  }
 
   /* ── Add to cart desde card ── */
   document.addEventListener('click', function (e) {

@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fagans — Prototipo Completo</title>
+<style>
+/* ════════════════════════════════════════
+   VARIABLES & RESET
+════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --onix:    #0E0F0F;
+  --blanco:  #FFFFFF;
+  --platino: #F1F1F1;
+  --sandalo: #C79FB8;
+  --nogal:   #582D0C;
+  --gray:    #888;
+  --border:  #E5E5E5;
+  --font-d:  'Georgia','Times New Roman',serif;
+  --font-b:  system-ui,-apple-system,sans-serif;
+  --ease:    cubic-bezier(.4,0,.2,1);
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-b); background: var(--blanco); color: var(--onix); overflow-x: hidden; }
+img, svg { display: block; max-width: 100%; }
+button { cursor: pointer; font-family: var(--font-b); }
+a { color: inherit; text-decoration: none; }
+
+/* ════════════════════════════════════════
+   PAGE TRANSITIONS
+════════════════════════════════════════ */
+.page { display: none; opacity: 0; transform: translateY(12px); transition: opacity .35s var(--ease), transform .35s var(--ease); }
+.page.active { display: block; opacity: 1; transform: translateY(0); }
+
+/* ════════════════════════════════════════
+   TOPBAR
+════════════════════════════════════════ */
+.topbar {
+  background: var(--onix); color: var(--blanco);
+  font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+  text-align: center; padding: 10px 16px;
+  white-space: nowrap; overflow: hidden;
+}
+
+/* ════════════════════════════════════════
+   NAV
+════════════════════════════════════════ */
+.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px; height: 64px;
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; background: var(--blanco); z-index: 200;
+}
+.nav-logo-link { display:flex; align-items:center; flex-shrink:0; }
+.nav-logo-svg { height:44px; width:auto; }
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a { font-size: 13px; letter-spacing: .05em; opacity: .6; transition: opacity .2s; padding: 4px 0; border-bottom: 1.5px solid transparent; transition: all .2s; }
+.nav-links a:hover { opacity: 1; }
+.nav-links a.active { opacity: 1; border-bottom-color: var(--onix); }
+.nav-icons { display: flex; gap: 18px; }
+.nav-icon { background: none; border: none; padding: 4px; opacity: .65; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:opacity .2s; }
+.nav-icon:hover { opacity: 1; }
+.nav-icon svg { display:block; }
+
+/* ════════════════════════════════════════
+   INNER PAGE HEADER
+════════════════════════════════════════ */
+.page-header {
+  padding: 72px 48px 48px;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.page-header__eyebrow {
+  font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--gray); margin-bottom: 20px;
+}
+.page-header__title {
+  font-family: var(--font-d); font-size: clamp(40px, 6vw, 68px);
+  font-weight: 400; line-height: 1.05; margin-bottom: 16px;
+}
+.page-header__subtitle {
+  font-size: 15px; color: var(--gray); font-style: italic;
+  max-width: 480px; line-height: 1.7;
+}
+.page-header__accent {
+  width: 40px; height: 1.5px; background: var(--sandalo); margin: 24px auto 0;
+}
+
+/* ════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════ */
+.footer {
+  background: var(--onix); color: var(--blanco);
+  padding: 64px 48px 32px;
+}
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+.footer-brand .footer-logo { font-family: var(--font-d); font-size: 22px; letter-spacing: .12em; margin-bottom: 16px; }
+.footer-brand p { font-size: 13px; opacity: .5; line-height: 1.7; max-width: 220px; }
+.footer-col h4 { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; opacity: .4; margin-bottom: 16px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col ul a { font-size: 13px; opacity: .6; transition: opacity .2s; }
+.footer-col ul a:hover { opacity: 1; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; }
+.footer-bottom p { font-size: 11px; opacity: .35; letter-spacing: .05em; }
+.footer-social { display: flex; gap: 16px; }
+.footer-social a { font-size: 16px; opacity: .4; transition: opacity .2s; }
+.footer-social a:hover { opacity: 1; }
+
+/* ════════════════════════════════════════
+   PRODUCT CARD (shared)
+════════════════════════════════════════ */
+.product-card { background: var(--blanco); cursor: pointer; overflow: hidden; position: relative; transition: all .3s var(--ease); }
+.product-card.featured { grid-column: span 2; }
+.mood-stripe { height: 3px; }
+.mood-nicho  { background: linear-gradient(90deg,#8E7BAD,#B8A4D4); }
+.mood-arabe  { background: linear-gradient(90deg,var(--nogal),#8B6040); }
+.mood-dis    { background: linear-gradient(90deg,#555,#999); }
+.mood-frio   { background: linear-gradient(90deg,#7EB8D4,#A8D4E8); }
+.mood-calor  { background: linear-gradient(90deg,#D4874A,#E8B87C); }
+.mood-ellas  { background: linear-gradient(90deg,var(--sandalo),#D4AEC8); }
+
+.card-image { position: relative; overflow: hidden; aspect-ratio: 3/4; }
+.product-card.featured .card-image { aspect-ratio: 16/9; }
+.card-image__bg { width:100%; height:100%; display:flex; align-items:center; justify-content:center; transition: transform .6s var(--ease); }
+.product-card:hover .card-image__bg { transform: scale(1.04); }
+.grad-1{background:linear-gradient(145deg,#1a0a3d,#3d1a5e,#6b2d7a,#9d4e8c)}
+.grad-2{background:linear-gradient(145deg,#0d3320,#1a5c38,#2d7a50,#4a9e6e)}
+.grad-3{background:linear-gradient(145deg,#0a1a2e,#1a3a5c,#2d5c8a,#4a84b8)}
+.grad-4{background:linear-gradient(145deg,#1a0015,#3d002e,#5c1a47,#8c3a6b)}
+.grad-5{background:linear-gradient(145deg,#0a0a0a,#1a0d1a,#2d0d2d,#4a1a3a)}
+.grad-6{background:linear-gradient(145deg,#2d1500,#5c2e00,#8a4a0a,#b87840)}
+.grad-7{background:linear-gradient(145deg,#1a0a15,#3d1a30,#6b2d50,#c79fb8)}
+.grad-8{background:linear-gradient(145deg,#1a150a,#3d300a,#6b551a,#c8a84a)}
+.grad-9{background:linear-gradient(145deg,#0f1a2e,#1e3050,#2e4870,#4a6890)}
+.grad-10{background:linear-gradient(145deg,#200a0a,#4a1010,#7a1a1a,#a83a3a)}
+
+.bottle-letter { font-family:var(--font-d); font-size:72px; color:rgba(255,255,255,.12); line-height:1; }
+.product-card.featured .bottle-letter { font-size:120px; }
+.bottle-house { font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.35); display:block; margin-top:8px; text-align:center; }
+
+.card-badges { position:absolute; top:12px; left:12px; display:flex; flex-direction:column; gap:5px; z-index:10; }
+.badge { display:inline-block; font-size:9px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; padding:4px 8px; border-radius:4px; }
+.badge--nicho  { background:rgba(142,123,173,.9); color:#fff; }
+.badge--arabe  { background:rgba(88,45,12,.9); color:#fff; }
+.badge--dis    { background:rgba(14,15,15,.75); color:#fff; }
+.badge--sale   { background:rgba(255,255,255,.92); color:var(--onix); }
+.badge--new    { background:rgba(199,159,184,.9); color:#fff; }
+.badge--enc    { background:rgba(255,255,255,.7); color:var(--onix); border:1px solid rgba(255,255,255,.4); }
+
+.card-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(14,15,15,.88) 0%,rgba(14,15,15,.3) 50%,transparent 100%); display:flex; flex-direction:column; justify-content:flex-end; padding:18px; opacity:0; transition:opacity .35s var(--ease); z-index:5; }
+.product-card:hover .card-overlay { opacity:1; }
+.overlay-notes { font-size:10px; letter-spacing:.06em; color:rgba(255,255,255,.65); text-transform:uppercase; margin-bottom:8px; }
+.overlay-notes span { color:rgba(255,255,255,.4); margin-right:6px; font-size:8px; }
+.btn-add { background:var(--blanco); color:var(--onix); border:none; border-radius:6px; padding:10px 18px; font-size:11px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; transform:translateY(8px); opacity:0; transition:all .3s var(--ease) .05s; }
+.product-card:hover .btn-add { transform:translateY(0); opacity:1; }
+.btn-add:hover { background:var(--onix); color:var(--blanco); }
+.btn-wishlist { position:absolute; top:12px; right:12px; background:rgba(255,255,255,.9); border:none; border-radius:50%; width:32px; height:32px; display:flex; align-items:center; justify-content:center; font-size:14px; opacity:0; transform:scale(.8); transition:all .25s var(--ease); z-index:10; }
+.product-card:hover .btn-wishlist { opacity:1; transform:scale(1); }
+
+.card-info { padding:14px 18px 18px; border-top:1px solid var(--border); }
+.card-featured-tag { font-size:9px; letter-spacing:.14em; text-transform:uppercase; color:var(--sandalo); font-weight:700; margin-bottom:4px; }
+.card-brand { font-size:9px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; color:var(--gray); margin-bottom:3px; }
+.card-name { font-family:var(--font-d); font-size:17px; font-weight:400; margin-bottom:9px; }
+.product-card.featured .card-name { font-size:22px; }
+.card-sizes { display:flex; gap:5px; flex-wrap:wrap; margin-bottom:10px; }
+.size-chip { font-size:9px; border:1px solid var(--border); border-radius:3px; padding:3px 7px; color:var(--gray); cursor:pointer; transition:all .15s; }
+.size-chip.sel,.size-chip:hover { background:var(--onix); color:var(--blanco); border-color:var(--onix); }
+.card-price { display:flex; align-items:center; gap:8px; }
+.price-now { font-size:15px; font-weight:700; }
+.price-was { font-size:12px; color:var(--gray); text-decoration:line-through; }
+.price-off { font-size:10px; font-weight:700; color:#c0392b; background:#fde8e8; border-radius:3px; padding:2px 6px; }
+
+/* ════════════════════════════════════════
+   ① HOME PAGE
+════════════════════════════════════════ */
+/* Hero */
+.home-hero { position:relative; height:92vh; min-height:560px; display:flex; align-items:flex-end; overflow:hidden; background:linear-gradient(140deg,#0a0512,#150d20,#1e1028,#0E0F0F); }
+.hero-bg-accent { position:absolute; inset:0; background:radial-gradient(ellipse at 70% 40%,rgba(199,159,184,.12),transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(88,45,12,.1),transparent 50%); }
+.hero-content { position:relative; z-index:2; padding:0 48px 80px; max-width:680px; }
+.hero-eyebrow { font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.45); margin-bottom:24px; }
+.hero-title { font-family:var(--font-d); font-size:clamp(44px,7vw,80px); font-weight:400; color:var(--blanco); line-height:1.04; margin-bottom:20px; }
+.hero-title em { color:var(--sandalo); font-style:normal; }
+.hero-desc { font-size:15px; color:rgba(255,255,255,.55); line-height:1.7; margin-bottom:36px; max-width:440px; }
+.hero-ctas { display:flex; gap:14px; flex-wrap:wrap; }
+.btn { display:inline-flex; align-items:center; padding:13px 28px; border-radius:6px; font-size:12px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; border:none; transition:all .25s var(--ease); cursor:pointer; }
+.btn-primary { background:var(--blanco); color:var(--onix); }
+.btn-primary:hover { background:var(--platino); }
+.btn-outline { background:transparent; color:var(--blanco); border:1px solid rgba(255,255,255,.3); }
+.btn-outline:hover { background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.6); }
+.hero-scroll { position:absolute; bottom:32px; right:48px; z-index:2; display:flex; align-items:center; gap:8px; color:rgba(255,255,255,.35); font-size:10px; letter-spacing:.12em; text-transform:uppercase; }
+.hero-scroll-line { width:48px; height:1px; background:rgba(255,255,255,.2); }
+.hero-badge { position:absolute; top:48px; right:48px; z-index:2; display:flex; flex-direction:column; align-items:center; background:rgba(255,255,255,.06); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,.1); border-radius:12px; padding:20px 24px; gap:4px; }
+.hero-badge-num { font-family:var(--font-d); font-size:32px; color:var(--blanco); line-height:1; }
+.hero-badge-lbl { font-size:9px; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.45); }
+
+/* Categorías */
+.home-section { padding:64px 48px; }
+.section-header { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:32px; }
+.section-title { font-family:var(--font-d); font-size:28px; font-weight:400; }
+.section-link { font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--gray); border-bottom:1px solid var(--border); padding-bottom:2px; cursor:pointer; transition:all .2s; }
+.section-link:hover { color:var(--onix); border-color:var(--onix); }
+
+.categories-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.category-card { position:relative; overflow:hidden; border-radius:8px; cursor:pointer; aspect-ratio:3/4; display:flex; align-items:flex-end; transition:transform .3s var(--ease); }
+.category-card:hover { transform:translateY(-4px); }
+.cat-bg { position:absolute; inset:0; transition:transform .5s var(--ease); }
+.category-card:hover .cat-bg { transform:scale(1.04); }
+.cat-bg-ellas  { background:linear-gradient(160deg,#2d1a28,#5a2a4a,#8c4a70,#c79fb8); }
+.cat-bg-ellos  { background:linear-gradient(160deg,#0a1520,#1a3040,#2a4a60,#4a7090); }
+.cat-bg-calor  { background:linear-gradient(160deg,#2d1500,#5a2a00,#8a4a10,#c87840); }
+.cat-bg-frio   { background:linear-gradient(160deg,#0a1520,#102030,#1a4060,#3a7090); }
+.cat-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 60%); }
+.cat-content { position:relative; z-index:2; padding:20px; width:100%; }
+.cat-icon { font-size:24px; margin-bottom:8px; }
+.cat-name { font-family:var(--font-d); font-size:20px; font-weight:400; color:var(--blanco); line-height:1.2; margin-bottom:4px; }
+.cat-count { font-size:10px; letter-spacing:.1em; color:rgba(255,255,255,.5); text-transform:uppercase; }
+
+/* Novedades grid */
+.home-products-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:1px solid var(--border); }
+
+/* Editorial */
+.editorial { display:grid; grid-template-columns:1fr 1fr; min-height:540px; }
+.editorial.reverse { direction:rtl; }
+.editorial.reverse > * { direction:ltr; }
+.editorial-text { display:flex; flex-direction:column; justify-content:center; padding:80px 64px; background:var(--platino); }
+.editorial-eyebrow { font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:var(--gray); margin-bottom:16px; }
+.editorial-title { font-family:var(--font-d); font-size:clamp(28px,4vw,44px); font-weight:400; line-height:1.15; margin-bottom:20px; }
+.editorial-title em { font-style:normal; color:var(--nogal); }
+.editorial-desc { font-size:14px; color:#555; line-height:1.8; margin-bottom:32px; max-width:380px; }
+.editorial-meta { display:flex; gap:24px; margin-bottom:32px; }
+.editorial-meta-item { display:flex; flex-direction:column; gap:4px; }
+.editorial-meta-item span:first-child { font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:var(--gray); }
+.editorial-meta-item span:last-child { font-family:var(--font-d); font-size:18px; }
+.editorial-visual { position:relative; overflow:hidden; }
+.editorial-img { width:100%; height:100%; }
+.editorial-img-bg { width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
+
+/* ════════════════════════════════════════
+   ② CATALOG PAGE
+════════════════════════════════════════ */
+.catalog-header { padding:64px 48px 32px; display:flex; align-items:flex-end; justify-content:space-between; gap:24px; }
+.catalog-header__title { font-family:var(--font-d); font-size:clamp(36px,5vw,56px); font-weight:400; line-height:1.05; margin-bottom:8px; }
+.catalog-header__eyebrow { font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--gray); margin-bottom:12px; }
+.catalog-header__desc { font-size:14px; color:var(--gray); max-width:400px; line-height:1.6; }
+.catalog-count { font-size:13px; color:var(--gray); flex-shrink:0; }
+
+.filter-bar { padding:14px 48px; display:flex; align-items:center; justify-content:space-between; gap:16px; border-top:1px solid var(--border); border-bottom:1px solid var(--border); position:sticky; top:64px; background:var(--blanco); z-index:90; }
+.filter-pills { display:flex; gap:8px; overflow-x:auto; scrollbar-width:none; flex:1; }
+.filter-pills::-webkit-scrollbar { display:none; }
+.filter-pill { flex-shrink:0; background:none; border:1px solid var(--border); border-radius:100px; padding:6px 15px; font-size:12px; cursor:pointer; color:var(--onix); transition:all .2s; white-space:nowrap; }
+.filter-pill:hover { border-color:var(--onix); }
+.filter-pill.active { background:var(--onix); border-color:var(--onix); color:var(--blanco); }
+.sort-controls { display:flex; align-items:center; gap:10px; flex-shrink:0; }
+.sort-select { font-size:12px; border:1px solid var(--border); border-radius:7px; padding:7px 28px 7px 12px; color:var(--onix); background:var(--blanco) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23888'/%3E%3C/svg%3E") no-repeat right 10px center; appearance:none; cursor:pointer; font-family:var(--font-b); }
+.grid-toggle { display:flex; gap:4px; }
+.grid-btn { background:none; border:1px solid var(--border); border-radius:5px; padding:6px 8px; font-size:13px; cursor:pointer; color:var(--gray); transition:all .2s; }
+.grid-btn.active { background:var(--onix); border-color:var(--onix); color:var(--blanco); }
+.product-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); padding:0 48px 80px; }
+.product-grid.cols-2 { grid-template-columns:repeat(2,1fr); }
+.product-card[data-hidden] { display:none; }
+
+/* ════════════════════════════════════════
+   ③ NOSOTROS PAGE
+════════════════════════════════════════ */
+.nosotros-intro { max-width:720px; margin:0 auto; padding:64px 48px; }
+.nosotros-intro p { font-size:15px; line-height:1.9; color:#444; margin-bottom:20px; }
+.nosotros-intro p strong { color:var(--onix); font-weight:700; }
+
+.pillars-section { background:var(--platino); padding:64px 48px; }
+.pillars-header { text-align:center; margin-bottom:48px; }
+.pillars-header h2 { font-family:var(--font-d); font-size:36px; font-weight:400; }
+.pillars-grid { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.pillar-card { background:var(--blanco); padding:32px 28px; border-radius:8px; border:1px solid transparent; transition:all .3s var(--ease); display:flex; flex-direction:column; gap:12px; }
+.pillar-card:hover { border-color:var(--onix); box-shadow:0 8px 24px rgba(0,0,0,.08); transform:translateY(-2px); }
+.pillar-num { font-family:var(--font-d); font-size:36px; color:var(--nogal); opacity:.3; line-height:1; }
+.pillar-name { font-family:var(--font-d); font-size:18px; font-weight:400; }
+.pillar-text { font-size:13px; color:#666; line-height:1.75; }
+
+/* ════════════════════════════════════════
+   ④ CONTACTO PAGE
+════════════════════════════════════════ */
+.contact-layout { display:grid; grid-template-columns:1fr 1fr; gap:0; max-width:100%; }
+.contact-form-side { padding:64px 64px; }
+.contact-form-side h2 { font-family:var(--font-d); font-size:28px; font-weight:400; margin-bottom:8px; }
+.contact-form-side p { font-size:14px; color:var(--gray); line-height:1.6; margin-bottom:36px; }
+.form-group { display:flex; flex-direction:column; gap:6px; margin-bottom:18px; }
+.form-group label { font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--gray); font-weight:600; }
+.form-input { padding:12px 16px; border:1px solid var(--border); border-radius:7px; font-size:14px; font-family:var(--font-b); color:var(--onix); background:var(--blanco); transition:border-color .2s; outline:none; }
+.form-input:focus { border-color:var(--onix); }
+.form-input::placeholder { color:#bbb; }
+textarea.form-input { resize:none; height:120px; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.btn-submit { background:var(--onix); color:var(--blanco); border:none; border-radius:7px; padding:14px 32px; font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; cursor:pointer; transition:all .25s; margin-top:8px; }
+.btn-submit:hover { background:#333; }
+.contact-info-side { background:var(--platino); padding:64px 64px; display:flex; flex-direction:column; justify-content:center; gap:32px; }
+.contact-info-side h2 { font-family:var(--font-d); font-size:28px; font-weight:400; margin-bottom:4px; }
+.contact-info-side p { font-size:13px; color:var(--gray); font-style:italic; margin-bottom:24px; }
+.contact-cards { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.contact-card { background:var(--blanco); border-radius:8px; padding:20px; display:flex; flex-direction:column; align-items:flex-start; gap:8px; transition:all .25s; }
+.contact-card:hover { box-shadow:0 6px 20px rgba(0,0,0,.08); transform:translateY(-2px); }
+.contact-icon { font-size:22px; }
+.contact-label { font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:var(--gray); font-weight:700; }
+.contact-value { font-family:var(--font-d); font-size:16px; line-height:1.3; color:var(--onix); }
+.contact-value a { color:inherit; transition:color .2s; }
+.contact-value a:hover { color:var(--nogal); }
+.contact-note { font-size:11px; color:#aaa; }
+
+/* ════════════════════════════════════════
+   ⑤ FAQ PAGE
+════════════════════════════════════════ */
+.faq-body { max-width:760px; margin:0 auto; padding:64px 48px 80px; }
+.faq-category { margin-bottom:48px; }
+.faq-category-title { font-family:var(--font-d); font-size:22px; font-weight:400; margin-bottom:20px; padding-bottom:16px; border-bottom:1px solid var(--border); color:var(--onix); }
+.faq-item { border-bottom:1px solid var(--border); }
+.faq-question { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px 0; cursor:pointer; font-size:15px; font-weight:500; line-height:1.4; background:none; border:none; width:100%; text-align:left; color:var(--onix); transition:color .2s; }
+.faq-question:hover { color:var(--nogal); }
+.faq-arrow { flex-shrink:0; font-size:18px; transition:transform .3s var(--ease); color:var(--gray); }
+.faq-item.open .faq-arrow { transform:rotate(45deg); color:var(--onix); }
+.faq-answer { max-height:0; overflow:hidden; transition:max-height .4s var(--ease); }
+.faq-answer-inner { padding-bottom:20px; font-size:14px; line-height:1.8; color:#555; }
+.faq-answer-inner strong { color:var(--onix); }
+.faq-item.open .faq-answer { max-height:300px; }
+
+/* ════════════════════════════════════════
+   CART DRAWER
+════════════════════════════════════════ */
+.cart-overlay { position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:490; opacity:0; pointer-events:none; transition:opacity .3s var(--ease); }
+.cart-overlay.open { opacity:1; pointer-events:all; }
+.cart-drawer { position:fixed; top:0; right:0; width:400px; max-width:100vw; height:100vh; background:var(--blanco); z-index:500; transform:translateX(100%); transition:transform .35s var(--ease); display:flex; flex-direction:column; box-shadow:-4px 0 32px rgba(0,0,0,.12); }
+.cart-drawer.open { transform:translateX(0); }
+.cart-head { display:flex; align-items:center; justify-content:space-between; padding:20px 24px; border-bottom:1px solid var(--border); flex-shrink:0; }
+.cart-head-left .cart-title { font-family:var(--font-d); font-size:20px; font-weight:400; }
+.cart-head-left .cart-count-lbl { font-size:11px; color:var(--gray); margin-top:2px; }
+.cart-close { background:none; border:none; font-size:22px; color:var(--gray); cursor:pointer; line-height:1; padding:4px; }
+.cart-close:hover { color:var(--onix); }
+.cart-body { flex:1; overflow-y:auto; padding:16px 24px; display:flex; flex-direction:column; gap:0; }
+.cart-empty-state { display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; gap:16px; color:var(--gray); text-align:center; }
+.cart-empty-icon { font-size:48px; opacity:.3; }
+.cart-empty-state p { font-size:14px; line-height:1.7; max-width:220px; }
+.cart-empty-cta { font-size:12px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--onix); border-bottom:1px solid var(--onix); cursor:pointer; background:none; border-top:none; border-left:none; border-right:none; padding:0; }
+.cart-item { display:flex; gap:14px; padding:16px 0; border-bottom:1px solid var(--border); }
+.cart-item:last-child { border-bottom:none; }
+.cart-item-img { width:64px; height:80px; border-radius:6px; flex-shrink:0; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.cart-item-info { flex:1; display:flex; flex-direction:column; gap:3px; min-width:0; }
+.cart-item-brand { font-size:9px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--gray); }
+.cart-item-name { font-family:var(--font-d); font-size:15px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.cart-item-size { font-size:11px; color:var(--gray); }
+.cart-item-price { font-size:14px; font-weight:700; margin-top:auto; }
+.cart-item-side { display:flex; flex-direction:column; align-items:flex-end; justify-content:space-between; flex-shrink:0; gap:8px; }
+.qty-control { display:flex; align-items:center; border:1px solid var(--border); border-radius:6px; overflow:hidden; }
+.qty-btn { background:none; border:none; width:28px; height:28px; font-size:16px; cursor:pointer; color:var(--onix); display:flex; align-items:center; justify-content:center; transition:background .15s; }
+.qty-btn:hover { background:var(--platino); }
+.qty-val { width:28px; text-align:center; font-size:13px; font-weight:600; }
+.cart-remove { font-size:11px; color:#bbb; cursor:pointer; border:none; background:none; padding:0; transition:color .2s; }
+.cart-remove:hover { color:#c0392b; }
+.cart-foot { padding:20px 24px; border-top:1px solid var(--border); flex-shrink:0; }
+.cart-subtotal-row { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:6px; }
+.cart-subtotal-lbl { font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--gray); }
+.cart-subtotal-val { font-family:var(--font-d); font-size:24px; }
+.cart-ship-note { font-size:11px; color:#bbb; margin-bottom:18px; }
+.btn-checkout { width:100%; background:var(--onix); color:var(--blanco); border:none; border-radius:7px; padding:15px; font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; cursor:pointer; transition:background .25s; }
+.btn-checkout:hover { background:#333; }
+.btn-keep { width:100%; background:none; border:1px solid var(--border); border-radius:7px; padding:11px; font-size:12px; color:var(--gray); cursor:pointer; margin-top:10px; transition:all .2s; }
+.btn-keep:hover { border-color:var(--onix); color:var(--onix); }
+.nav-cart-wrap { position:relative; }
+.cart-badge { position:absolute; top:-5px; right:-5px; background:var(--sandalo); color:#fff; font-size:9px; font-weight:700; width:16px; height:16px; border-radius:50%; display:flex; align-items:center; justify-content:center; opacity:0; transform:scale(0); transition:all .2s var(--ease); pointer-events:none; }
+.cart-badge.on { opacity:1; transform:scale(1); }
+
+/* ════════════════════════════════════════
+   MOBILE NAV
+════════════════════════════════════════ */
+.nav-hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px; }
+.nav-hamburger span { display:block; width:22px; height:1.5px; background:var(--onix); transition:all .3s var(--ease); transform-origin:center; }
+.nav-hamburger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+.nav-hamburger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+.mobile-menu { position:fixed; inset:0; background:var(--blanco); z-index:250; transform:translateX(-100%); transition:transform .35s var(--ease); display:flex; flex-direction:column; padding:80px 32px 40px; overflow-y:auto; }
+.mobile-menu.open { transform:translateX(0); }
+.mobile-menu-links { list-style:none; display:flex; flex-direction:column; }
+.mobile-menu-links li { border-bottom:1px solid var(--border); }
+.mobile-menu-links li a { display:block; padding:20px 0; font-family:var(--font-d); font-size:32px; font-weight:400; color:var(--onix); transition:color .2s; }
+.mobile-menu-links li a.active { color:var(--sandalo); }
+.mobile-menu-foot { margin-top:auto; padding-top:32px; font-size:12px; color:var(--gray); line-height:1.8; }
+
+/* ════════════════════════════════════════
+   RESPONSIVE — TABLET (≤900px)
+════════════════════════════════════════ */
+@media (max-width:900px) {
+  .nav { padding:0 20px; }
+  .nav-links { display:none; }
+  .nav-hamburger { display:flex; }
+
+  .topbar { font-size:10px; padding:8px 12px; }
+
+  .home-hero { min-height:100svh; }
+  .hero-content { padding:0 20px 80px; }
+  .hero-badge { top:24px; right:20px; padding:14px 18px; }
+  .hero-badge-num { font-size:24px; }
+  .hero-scroll { display:none; }
+
+  .home-section { padding:48px 20px; }
+  .categories-grid { grid-template-columns:repeat(2,1fr); gap:10px; }
+  .home-products-grid { grid-template-columns:repeat(2,1fr); }
+
+  .editorial { grid-template-columns:1fr; }
+  .editorial.reverse { direction:ltr; }
+  .editorial-text { padding:48px 24px; }
+  .editorial-img-bg { min-height:260px !important; }
+
+  .footer { padding:48px 20px 24px; }
+  .footer-grid { grid-template-columns:1fr 1fr; gap:32px; }
+  .footer-brand { grid-column:span 2; }
+
+  .page-header { padding:48px 20px 32px; }
+
+  .catalog-header { padding:40px 20px 20px; flex-direction:column; align-items:flex-start; gap:8px; }
+  .filter-bar { padding:10px 20px; }
+  .product-grid { padding:0 20px 60px; grid-template-columns:repeat(2,1fr); }
+  .product-card.featured { grid-column:span 2; }
+
+  .nosotros-intro { padding:48px 20px; }
+  .pillars-section { padding:48px 20px; }
+  .pillars-grid { grid-template-columns:repeat(2,1fr); gap:12px; }
+
+  .contact-layout { grid-template-columns:1fr; }
+  .contact-form-side { padding:48px 20px; }
+  .contact-info-side { padding:48px 20px; }
+  .contact-cards { grid-template-columns:repeat(2,1fr); }
+
+  .faq-body { padding:48px 20px 60px; }
+}
+
+/* ════════════════════════════════════════
+   RESPONSIVE — MOBILE (≤480px)
+════════════════════════════════════════ */
+@media (max-width:480px) {
+  .hero-badge { display:none; }
+  .categories-grid { gap:8px; }
+  .home-products-grid { grid-template-columns:1fr; }
+  .footer-grid { grid-template-columns:1fr; }
+  .footer-brand { grid-column:auto; }
+  .pillars-grid { grid-template-columns:1fr; }
+  .contact-cards { grid-template-columns:1fr; }
+  .form-row { grid-template-columns:1fr; }
+  .product-grid { grid-template-columns:1fr; }
+  .product-card.featured { grid-column:auto; }
+  .cart-drawer { width:100vw; }
+  .editorial-meta { flex-wrap:wrap; gap:12px; }
+}
+
+/* ════════════════════════════════════════
+   PROTO BADGE
+════════════════════════════════════════ */
+.proto-badge { position:fixed; bottom:20px; right:20px; background:var(--sandalo); color:#fff; font-size:10px; letter-spacing:.08em; text-transform:uppercase; font-weight:700; padding:7px 14px; border-radius:100px; box-shadow:0 4px 16px rgba(0,0,0,.2); z-index:999; }
+</style>
+</head>
+<body>
+
+<!-- ════ TOPBAR ════ -->
+<div class="topbar">✦ Envíos a todo El Salvador &nbsp;·&nbsp; Perfumes 100% originales &nbsp;·&nbsp; Pedidos por encargo disponibles ✦</div>
+
+<!-- ════ MOBILE MENU ════ -->
+<div class="mobile-menu" id="mobile-menu">
+  <ul class="mobile-menu-links">
+    <li><a href="#" data-page="home" class="active">Inicio</a></li>
+    <li><a href="#" data-page="catalog">Catálogo</a></li>
+    <li><a href="#" data-page="nosotros">Nosotros</a></li>
+    <li><a href="#" data-page="contacto">Contacto</a></li>
+    <li><a href="#" data-page="faq">Preguntas Frecuentes</a></li>
+  </ul>
+  <div class="mobile-menu-foot">Fagans Perfumería · El Salvador<br>+503 7196 3343</div>
+</div>
+
+<!-- ════ NAV ════ -->
+<nav class="nav">
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+
+  <!-- Logo horizontal Fagans (onix) -->
+  <a href="#" data-page="home" class="nav-logo-link">
+    <svg class="nav-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 216">
+      <g>
+        <path fill="#0e0f0f" d="M223.16,114.49c-.8,0-1.63-.08-2.5-.24-1.07-.2-2.11-.49-3.11-.77-1.19-.33-2.32-.56-3.43-.8-2.88-.61-4.27-.8-5.25.2l-.83-1.33c1.45-3.06,3.2-3.77,6.57-3.32,1.37.18,2.67.55,3.93.9.92.26,1.86.45,2.79.7,1.01.27,1.91.55,2.89.75s2.06.24,2.99-.18c.15.24.3.48.45.73.05.08.49.67.49.77-1,2.3-2.83,2.58-4.98,2.58Z"/>
+        <path fill="#0e0f0f" d="M102.2,121.62l3.71-2.01c.19-2.76.3-6.02.3-9.46s-.11-6.55-.3-9.42l-3.71-2v-2.12h27.39v9.31h-2.12l-2.57-5.3h-11.35c-.15,2.5-.27,5.3-.3,8.13l11.16-.61v4.58l-11.16-.64c.04,2.61.15,5.15.3,7.45l4.5,2.08v2.12h-15.85v-2.12Z"/>
+        <path fill="#0e0f0f" d="M176.7,123.74h-15.55v-2.12l3.52-1.85c-.34-1.25-.76-2.61-1.25-4.05h-11.05c-.53,1.55-.98,2.99-1.36,4.24l3.29,1.66v2.12h-12.18v-2.12l3.22-1.74c1.44-2.91,3.1-6.58,4.39-9.65,1.4-3.33,3.78-9.46,5.18-13.62h8.25c.49,1.51,2.61,7.04,4.88,12.3,1.78,4.2,3.71,8.21,5.18,10.82l3.48,1.89v2.12ZM157.97,102.06c-1.29,2.76-2.54,5.6-3.52,8.1l-.68,1.7h8.32c-.23-.53-.45-1.06-.64-1.63-1.06-2.69-2.31-5.56-3.48-8.17Z"/>
+        <path fill="#0e0f0f" d="M217.61,112.12l.05.03c.11,2.2.19,4.16.24,6.74-2.1.85-4.4,1.41-6.9,1.41-7.03,0-9.76-4.59-9.76-10.37,0-5.3,3.05-10.19,9.71-10.19,4.06,0,8.06,1.94,10.56,5.46h2.2v-8.96h-2.2l-1.54,2.49c-2.15-1.35-5.65-2.81-10.9-2.81-10.74,0-16.18,6.26-16.18,14.19s5.89,14.32,16.02,14.32c4.93,0,9.18-1.57,12.04-3.37l1.86,3.02h2.12v-3.37c0-2.18.08-5.38.27-8.59h-7.59Z"/>
+        <path fill="#0e0f0f" d="M277.97,123.74h-15.55v-2.12l3.52-1.85c-.34-1.25-.76-2.61-1.25-4.05h-11.05c-.53,1.55-.98,2.99-1.36,4.24l3.29,1.66v2.12h-12.18v-2.12l3.22-1.74c1.44-2.91,3.1-6.58,4.39-9.65,1.4-3.33,3.78-9.46,5.18-13.62h8.25c.49,1.51,2.61,7.04,4.88,12.3,1.78,4.2,3.71,8.21,5.18,10.82l3.48,1.89v2.12ZM259.24,102.06c-1.29,2.76-2.54,5.6-3.52,8.1l-.68,1.7h8.32c-.23-.53-.45-1.06-.64-1.63-1.06-2.69-2.31-5.56-3.48-8.17Z"/>
+        <path fill="#0e0f0f" d="M315.01,123.74c-1.78-3.44-4.65-8.48-6.32-11.2-2.01-3.33-4.31-7.08-5.94-9.61-.11,2.38-.15,4.88-.15,7.26,0,3.1.11,6.36.3,9.35l3.75,2.08v2.12h-12.41v-2.12l3.67-2.04c.19-3.03.34-6.32.34-9.42s-.15-6.39-.34-9.38l-3.67-2.04v-2.12h13.77c1.82,3.44,4.65,8.44,6.32,11.16,1.97,3.25,4.16,6.77,5.75,9.27.08-2.19.11-4.5.11-6.89,0-3.25-.11-6.51-.3-9.38l-3.71-2.04v-2.12h12.41v2.12l-3.71,2.04c-.19,2.95-.3,6.21-.3,9.42,0,4.84.27,9.8.61,13.54h-10.18Z"/>
+        <path fill="#0e0f0f" d="M348.14,114.09c2.12,3.56,6.55,6.36,11.84,6.36,3.75,0,5.83-1.32,5.83-3.37,0-5.83-19.94-1.7-19.94-12.52,0-5.6,4.92-8.59,12.3-8.59,3.78,0,7.08.95,9.5,2.46l1.63-2.19h2.04v8.44h-2.04c-1.85-2.72-5.6-4.92-10.44-4.92-2.91,0-5.41,1.21-5.41,3.33,0,5.83,19.94,1.1,19.94,12.71,0,6.96-6.81,8.59-12.11,8.59-4.35,0-8.4-1.29-11.2-3.22l-1.97,2.91h-2.08v-9.99h2.12Z"/>
+      </g>
+      <path fill="#0e0f0f" d="M37.91,135.92h24.08s.09,0,.13.02h6.56v-27.14c0-.31-.26-.56-.56-.56h-24.13c-.97,0-1.77-.79-1.77-1.77v-9.45c0-.46.18-.93.52-1.25l5.09-5.1c.34-.32.78-.5,1.25-.5h7.76c.48,0,.91.17,1.24.5l6.36,6.22c.22.21.58.21.8-.01l2.64-2.7c.12-.11.17-.25.17-.4s-.05-.29-.17-.39l-8.3-8.12h-8.67c-.64,0-1.15-.52-1.15-1.16v-3.57c0-.63.51-1.15,1.15-1.15h9.57c.31,0,.56-.26.56-.56v-15.28c0-.31-.26-.56-.56-.56H18.7c-.31,0-.56.25-.56.56v15.28c0,.31.25.56.56.56h9c.98,0,1.77.79,1.77,1.77v2.47c0,.97-.8,1.77-1.77,1.77h-3.55s-.04,0-.06,0h-4.39l-3.09,3.02-5.37,5.37-.45.46c-.11.1-.17.25-.17.4v52.07c0,.31.25.56.56.56h56.95c.31,0,.56-.25.56-.56v-3.76c0-.34-.28-.61-.62-.61h-5.95s-.09.01-.13.01H17.3c-.97,0-1.76-.79-1.76-1.76v-25.65c0-.98.78-1.77,1.76-1.77h18.24c.97,0,1.77.8,1.77,1.77v20.4c0,.33.27.6.61.6ZM43.99,113.15h18c.98,0,1.77.8,1.77,1.77v14.69c0,.77-.62,1.39-1.39,1.39h-18.38c-.97,0-1.77-.79-1.77-1.77v-14.31c0-.97.8-1.77,1.77-1.77ZM35.54,108.23h-18.24c-.97,0-1.76-.79-1.76-1.77v-9.32c0-.46.18-.93.52-1.25l3.64-3.65,1.45-1.46c.13-.12.27-.22.42-.3l.04-.02c.24-.12.51-.18.79-.18h2.99s8.43,0,8.43,0c.31,0,.56-.25.56-.58v-14.7c0-.31-.25-.56-.56-.56h-8.99c-.98,0-1.77-.8-1.77-1.77v-3.03c0-.97.78-1.76,1.77-1.76h29.51c.98,0,1.77.79,1.77,1.76v3.03c0,.97-.79,1.77-1.77,1.77h-8.95c-.31,0-.56.25-.56.56v11.72l-7.35,7.35c-.11.1-.17.25-.17.4v11.98c0,.97-.8,1.77-1.77,1.77Z"/>
+    </svg>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#" data-page="home" class="active">Inicio</a></li>
+    <li><a href="#" data-page="catalog">Catálogo</a></li>
+    <li><a href="#" data-page="nosotros">Nosotros</a></li>
+    <li><a href="#" data-page="contacto">Contacto</a></li>
+    <li><a href="#" data-page="faq">Preguntas Frecuentes</a></li>
+  </ul>
+
+  <div class="nav-icons">
+    <!-- Ícono Buscar -->
+    <button class="nav-icon" aria-label="Buscar">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="26" height="26">
+        <path fill="#0e0f0f" d="M647.64,682.68c-97.06,79.11-238.22,73.48-328.62-14.08-44.49-43.09-72.03-101.53-75.21-164.34l-.29-14.09c-.1-4.82.08-9.91.36-14.7,7.29-125.51,109.05-226.27,234.58-232.42,4.39-.22,9.16-.38,13.52-.26l14.12.37c59.74,3.23,115.37,28.58,157.62,69.49,92.92,89.99,100.74,235.83,18.98,335.08l153.8,154.42-35.04,35.1-153.83-154.57ZM479.17,292.57c-110,6.78-192.79,101.96-185.86,210.35,6.96,108.95,101.01,192.14,209.94,185.52,109.25-6.64,192.82-101.15,185.9-210.57-6.82-107.93-100.32-192.07-209.97-185.3Z"/>
+      </svg>
+    </button>
+    <!-- Ícono Usuario -->
+    <button class="nav-icon" aria-label="Mi cuenta">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="26" height="26">
+        <path fill="#0e0f0f" d="M810.08,837.81l-49.61-.11.09-126.72c.03-38.5-32.15-71.43-70.93-71.52l-298.62-.68c-38.16-.09-70.93,31.99-71.11,70.03l-.6,127.89-49.61-.11.31-137.13c8.06-61.96,58.13-110.53,122.55-110.36l297.04.74c66.96.17,120.83,55.98,120.71,122.57l-.22,125.41Z"/>
+        <path fill="#0e0f0f" d="M528.48,242.73c82.51-6.98,153.86,54.73,160.64,135.72,6.85,81.87-54,153.84-135.8,160.71-81.29,6.82-153.21-53.59-160.56-134.88-7.37-81.39,52.72-154.53,135.72-161.54ZM527.14,292.8c-55.36,7.69-92.35,59.09-84.29,112.79,8.06,53.72,58.03,91.03,111.81,83.52,54.03-7.55,91.97-57.67,84.42-111.77-7.47-53.57-56.76-92.21-111.94-84.54Z"/>
+      </svg>
+    </button>
+    <!-- Ícono Bolsa / Carrito -->
+    <div class="nav-cart-wrap">
+      <button class="nav-icon" id="cart-open-btn" aria-label="Carrito">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="26" height="26">
+          <path fill="#0e0f0f" d="M771.84,837.78l-464.86-1.05c-34.21-5.98-59.27-30.92-64.93-65.23l.86-381.18,148.79.35c.14-82.86,67.84-148.91,149.61-148.45,81.32.45,148,66.69,147.82,149.14l148.81.26-.91,380.88c-5.43,30.11-31.26,65.36-65.2,65.28ZM639.65,391.1c-.69-57.9-47.05-99.94-100.69-99.25-53.43.69-97.65,44.35-97.67,98.92l198.35.33ZM688.72,569.76l-49.49-.21.15-128.72-198.13-.45-.44,128.74-49.53-.06.24-128.8-99.12-.18-.74,320.82c-.04,16.44,11.31,26.28,27.33,26.32l443.43.94c14.1.03,25.01-10.83,25.04-24.9l.76-322.05-99.11-.25-.4,128.83Z"/>
+        </svg>
+      </button>
+      <span class="cart-badge" id="cart-badge">0</span>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════
+     ① INICIO
+══════════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <!-- Hero -->
+  <section class="home-hero">
+    <div class="hero-bg-accent"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Fagans Perfumería · Colección 2025</div>
+      <h1 class="hero-title">La fragancia<br>perfecta empieza<br>con <em>una decisión</em></h1>
+      <p class="hero-desc">Perfumes originales e importados — diseñador, nicho y árabe. Cada fragancia curada para acompañarte con autenticidad.</p>
+      <div class="hero-ctas">
+        <button class="btn btn-primary" data-page="catalog">Ver catálogo</button>
+        <button class="btn btn-outline" data-page="nosotros">Conocer Fagans</button>
+      </div>
+    </div>
+    <div class="hero-badge">
+      <span class="hero-badge-num">152</span>
+      <span class="hero-badge-lbl">Fragancias</span>
+    </div>
+    <div class="hero-scroll"><span>Explorar</span><div class="hero-scroll-line"></div></div>
+  </section>
+
+  <!-- Categorías -->
+  <section class="home-section">
+    <div class="section-header">
+      <h2 class="section-title">Explorar por categoría</h2>
+      <span class="section-link" data-page="catalog">Ver todo →</span>
+    </div>
+    <div class="categories-grid">
+      <div class="category-card" data-page="catalog">
+        <div class="cat-bg cat-bg-ellas"></div>
+        <div class="cat-overlay"></div>
+        <div class="cat-content">
+          <div class="cat-icon">✦</div>
+          <div class="cat-name">Para Ellas</div>
+          <div class="cat-count">58 fragancias</div>
+        </div>
+      </div>
+      <div class="category-card" data-page="catalog">
+        <div class="cat-bg cat-bg-ellos"></div>
+        <div class="cat-overlay"></div>
+        <div class="cat-content">
+          <div class="cat-icon">◈</div>
+          <div class="cat-name">Para Ellos</div>
+          <div class="cat-count">94 fragancias</div>
+        </div>
+      </div>
+      <div class="category-card" data-page="catalog">
+        <div class="cat-bg cat-bg-calor"></div>
+        <div class="cat-overlay"></div>
+        <div class="cat-content">
+          <div class="cat-icon">◎</div>
+          <div class="cat-name">Para el Calor</div>
+          <div class="cat-count">78 fragancias</div>
+        </div>
+      </div>
+      <div class="category-card" data-page="catalog">
+        <div class="cat-bg cat-bg-frio"></div>
+        <div class="cat-overlay"></div>
+        <div class="cat-content">
+          <div class="cat-icon">❋</div>
+          <div class="cat-name">Para el Frío</div>
+          <div class="cat-count">88 fragancias</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Novedades -->
+  <section class="home-section" style="padding-top:0">
+    <div class="section-header">
+      <h2 class="section-title">Novedades</h2>
+      <span class="section-link" data-page="catalog">Ver todo →</span>
+    </div>
+    <div class="home-products-grid">
+      <article class="product-card" data-cats="nicho ellos frio">
+        <div class="mood-stripe mood-nicho"></div>
+        <div class="card-image">
+          <div class="card-image__bg grad-1"><div style="text-align:center"><span class="bottle-letter">A</span><span class="bottle-house">Parfums de Marly</span></div></div>
+          <div class="card-badges"><span class="badge badge--nicho">Nicho</span><span class="badge badge--sale">−15%</span></div>
+          <button class="btn-wishlist">♡</button>
+          <div class="card-overlay"><div class="overlay-notes"><span>Notas:</span>Lavanda · Iris · Cedro</div><button class="btn-add">Agregar</button></div>
+        </div>
+        <div class="card-info">
+          <div class="card-brand">Parfums de Marly</div><div class="card-name">Althaïr</div>
+          <div class="card-sizes"><span class="size-chip sel">75ml</span><span class="size-chip">125ml</span></div>
+          <div class="card-price"><span class="price-now">$200</span><span class="price-was">$235</span><span class="price-off">−15%</span></div>
+        </div>
+      </article>
+      <article class="product-card" data-cats="arabe ellos calor">
+        <div class="mood-stripe mood-calor"></div>
+        <div class="card-image">
+          <div class="card-image__bg grad-2"><div style="text-align:center"><span class="bottle-letter">H</span><span class="bottle-house">Rasasi</span></div></div>
+          <div class="card-badges"><span class="badge badge--arabe">Árabe</span></div>
+          <button class="btn-wishlist">♡</button>
+          <div class="card-overlay"><div class="overlay-notes"><span>Notas:</span>Menta · Madera · Almizcle</div><button class="btn-add">Agregar</button></div>
+        </div>
+        <div class="card-info">
+          <div class="card-brand">Rasasi</div><div class="card-name">Hawas Verde</div>
+          <div class="card-sizes"><span class="size-chip sel">100ml</span></div>
+          <div class="card-price"><span class="price-now">$70</span><span class="price-was">$85</span><span class="price-off">−18%</span></div>
+        </div>
+      </article>
+      <article class="product-card" data-cats="disenador ellos frio">
+        <div class="mood-stripe mood-frio"></div>
+        <div class="card-image">
+          <div class="card-image__bg grad-3"><div style="text-align:center"><span class="bottle-letter">S</span><span class="bottle-house">Dior</span></div></div>
+          <div class="card-badges"><span class="badge badge--dis">Diseñador</span></div>
+          <button class="btn-wishlist">♡</button>
+          <div class="card-overlay"><div class="overlay-notes"><span>Notas:</span>Bergamota · Pimienta · Vetiver</div><button class="btn-add">Agregar</button></div>
+        </div>
+        <div class="card-info">
+          <div class="card-brand">Dior</div><div class="card-name">Sauvage EDP</div>
+          <div class="card-sizes"><span class="size-chip sel">60ml</span><span class="size-chip">100ml</span></div>
+          <div class="card-price"><span class="price-now">$105</span></div>
+        </div>
+      </article>
+      <article class="product-card" data-cats="disenador ellas calor">
+        <div class="mood-stripe mood-ellas"></div>
+        <div class="card-image">
+          <div class="card-image__bg grad-4"><div style="text-align:center"><span class="bottle-letter">B</span><span class="bottle-house">Yves Saint Laurent</span></div></div>
+          <div class="card-badges"><span class="badge badge--dis">Diseñador</span><span class="badge badge--new">Nuevo</span></div>
+          <button class="btn-wishlist">♡</button>
+          <div class="card-overlay"><div class="overlay-notes"><span>Notas:</span>Café · Vainilla · Jazmín</div><button class="btn-add">Agregar</button></div>
+        </div>
+        <div class="card-info">
+          <div class="card-brand">YSL</div><div class="card-name">Black Opium</div>
+          <div class="card-sizes"><span class="size-chip sel">50ml</span><span class="size-chip">90ml</span></div>
+          <div class="card-price"><span class="price-now">$95</span><span class="price-was">$115</span><span class="price-off">−17%</span></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Editorial 1 -->
+  <section class="editorial">
+    <div class="editorial-text">
+      <div class="editorial-eyebrow">✦ Nicho recomendado · Temporada actual</div>
+      <h2 class="editorial-title">Althaïr — una fragancia<br>que <em>define presencia</em></h2>
+      <p class="editorial-desc">Una composición lavándica-amadeirada que equilibra frescura y profundidad. Ideal para quienes buscan una fragancia distinta, memorable y con proyección.</p>
+      <div class="editorial-meta">
+        <div class="editorial-meta-item"><span>Casa</span><span>Parfums de Marly</span></div>
+        <div class="editorial-meta-item"><span>Familia</span><span>Amaderado floral</span></div>
+        <div class="editorial-meta-item"><span>Precio</span><span>$200 · 75ml</span></div>
+      </div>
+      <button class="btn btn-primary" data-page="catalog">Ver en catálogo</button>
+    </div>
+    <div class="editorial-visual">
+      <div class="editorial-img">
+        <div class="editorial-img-bg grad-1" style="min-height:500px;align-items:center;display:flex;justify-content:center">
+          <span style="font-family:var(--font-d);font-size:160px;color:rgba(255,255,255,.07);line-height:1">A</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Editorial 2 -->
+  <section class="editorial reverse">
+    <div class="editorial-text">
+      <div class="editorial-eyebrow">◈ Árabe en hype · Tendencia actual</div>
+      <h2 class="editorial-title">Hawas Verde —<br>frescura de <em>impacto árabe</em></h2>
+      <p class="editorial-desc">El favorito de la temporada para climas cálidos. Una fragancia fresca y duradera con un toque árabe que lo distingue de las opciones convencionales.</p>
+      <div class="editorial-meta">
+        <div class="editorial-meta-item"><span>Casa</span><span>Rasasi</span></div>
+        <div class="editorial-meta-item"><span>Familia</span><span>Amaderado acuático</span></div>
+        <div class="editorial-meta-item"><span>Precio</span><span>$70 · 100ml</span></div>
+      </div>
+      <button class="btn btn-primary" data-page="catalog">Ver en catálogo</button>
+    </div>
+    <div class="editorial-visual">
+      <div class="editorial-img">
+        <div class="editorial-img-bg grad-2" style="min-height:500px;align-items:center;display:flex;justify-content:center">
+          <span style="font-family:var(--font-d);font-size:160px;color:rgba(255,255,255,.07);line-height:1">H</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand"><div class="footer-logo">FAGANS</div><p>Perfumería original en El Salvador. Diseñador, nicho y árabe — con asesoría personalizada y entrega a domicilio.</p></div>
+      <div class="footer-col"><h4>Tienda</h4><ul><li><a href="#" data-page="catalog">Catálogo</a></li><li><a href="#">Novedades</a></li><li><a href="#">Decants</a></li><li><a href="#">Pedidos por encargo</a></li></ul></div>
+      <div class="footer-col"><h4>Información</h4><ul><li><a href="#" data-page="nosotros">Nosotros</a></li><li><a href="#" data-page="faq">Preguntas Frecuentes</a></li><li><a href="#">Política de envíos</a></li><li><a href="#">Privacidad</a></li></ul></div>
+      <div class="footer-col"><h4>Contacto</h4><ul><li><a href="#">+503 7196 3343</a></li><li><a href="#">fagans.perfumes@gmail.com</a></li><li><a href="#">Lun–Sáb: 8:00–17:00</a></li><li><a href="#" data-page="contacto">Escribir mensaje</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Fagans Perfumería · El Salvador</p>
+      <div class="footer-social"><a href="#">f</a><a href="#">ig</a><a href="#">tt</a></div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════
+     ② CATÁLOGO
+══════════════════════════════════════ -->
+<div id="page-catalog" class="page">
+  <div class="catalog-header">
+    <div>
+      <div class="catalog-header__eyebrow">Fagans · Perfumería original</div>
+      <h1 class="catalog-header__title">Catálogo</h1>
+      <p class="catalog-header__desc">Diseñador, nicho y árabe — curados para cada estilo y presupuesto.</p>
+    </div>
+    <div class="catalog-count" id="cat-count">152 productos</div>
+  </div>
+  <div class="filter-bar">
+    <div class="filter-pills" id="cat-pills">
+      <button class="filter-pill active" data-filter="all">Todos</button>
+      <button class="filter-pill" data-filter="disenador">Diseñador</button>
+      <button class="filter-pill" data-filter="nicho">Nicho</button>
+      <button class="filter-pill" data-filter="arabe">Árabe</button>
+      <button class="filter-pill" data-filter="ellas">Para Ellas</button>
+      <button class="filter-pill" data-filter="ellos">Para Ellos</button>
+      <button class="filter-pill" data-filter="calor">Para el Calor</button>
+      <button class="filter-pill" data-filter="frio">Para el Frío</button>
+    </div>
+    <div class="sort-controls">
+      <select class="sort-select"><option>Relevancia</option><option>Menor precio</option><option>Mayor precio</option></select>
+      <div class="grid-toggle">
+        <button class="grid-btn active" data-cols="4">⊞</button>
+        <button class="grid-btn" data-cols="2">▤</button>
+      </div>
+    </div>
+  </div>
+  <div class="product-grid" id="cat-grid">
+    <article class="product-card featured" data-cats="nicho ellos frio">
+      <div class="mood-stripe mood-nicho"></div>
+      <div class="card-image">
+        <div class="card-image__bg grad-1"><div style="text-align:center"><span class="bottle-letter">A</span><span class="bottle-house">Parfums de Marly</span></div></div>
+        <div class="card-badges"><span class="badge badge--nicho">Nicho</span><span class="badge badge--sale">−15%</span></div>
+        <button class="btn-wishlist">♡</button>
+        <div class="card-overlay"><div class="overlay-notes"><span>Notas:</span>Lavanda · Iris · Cedro · Ámbar</div><button class="btn-add">Agregar al carrito</button></div>
+      </div>
+      <div class="card-info"><div class="card-featured-tag">✦ Destacado de temporada</div><div class="card-brand">Parfums de Marly</div><div class="card-name">Althaïr</div><div class="card-sizes"><span class="size-chip sel">75ml</span><span class="size-chip">125ml</span></div><div class="card-price"><span class="price-now">$200</span><span class="price-was">$235</span><span class="price-off">−15%</span></div></div>
+    </article>
+    <article class="product-card" data-cats="arabe ellos calor">
+      <div class="mood-stripe mood-calor"></div>
+      <div class="card-image"><div class="card-image__bg grad-2"><div style="text-align:center"><span class="bottle-letter">H</span><span class="bottle-house">Rasasi</span></div></div><div class="card-badges"><span class="badge badge--arabe">Árabe</span></div><button class="btn-wishlist">♡</button><div class="card-overlay"><div class="overlay-notes"><span>Notas:</span>Menta · Madera · Almizcle</div><button class="btn-add">Agregar al carrito</button></div></div>
+      <div class="card-info"><div class="card-brand">Rasasi</div><div class="card-name">Hawas Verde</div><div class="card-sizes"><span class="size-chip sel">100ml</span></div><div class="card-price"><span class="price-now">$70</span><span class="price-was">$85</span><span class="price-off">−18%</span></div></div>
+    </article>
+    <article class="product-card" data-cats="disenador ellos frio">
+      <div class="mood-stripe mood-frio"></div>
+      <div class="card-image"><div class="card-image__bg grad-3"><div style="text-align:center"><span class="bottle-letter">S</span><span class="bottle-house">Dior</span></div></div><div class="card-badges"><span class="badge badge--dis">Diseñador</span></div><button class="btn-wishlist">♡</button><div class="card-overlay"><div class="overlay-notes"><span>Notas:</span>Bergamota · Pimienta · Vetiver</div><button class="btn-add">Agregar al carrito</button></div></div>
+      <div class="card-info"><div class="card-brand">Dior</div><div class="card-name">Sauvage EDP</div><div class="card-sizes"><span class="size-chip sel">60ml</span><span class="size-chip">100ml</span></div><div class="card-price"><span class="price-now">$105</span></div></div>
+    </article>
+    <article class="product-card" data-cats="disenador ellas calor">
+      <div class="mood-stripe mood-ellas"></div>
+      <div class="card-image"><div class="card-image__bg grad-4"><div style="text-align:center"><span class="bottle-letter">B</span><span class="bottle-house">YSL</span></div></div><div class="card-badges"><span class="badge badge--dis">Diseñador</span><span class="badge badge--new">Nuevo</span></div><button class="btn-wishlist">♡</button><div class="card-overlay"><div class="overlay-notes"><span>Notas:</span>Café · Vainilla · Jazmín blanco</div><button class="btn-add">Agregar al carrito</button></div></div>
+      <div class="card-info"><div class="card-brand">Yves Saint Laurent</div><div class="card-name">Black Opium</div><div class="card-sizes"><span class="size-chip sel">50ml</span><span class="size-chip">90ml</span></div><div class="card-price"><span class="price-now">$95</span><span class="price-was">$115</span><span class="price-off">−17%</span></div></div>
+    </article>
+    <article class="product-card" data-cats="nicho ellas ellos">
+      <div class="mood-stripe mood-nicho"></div>
+      <div class="card-image"><div class="card-image__bg grad-5"><div style="text-align:center"><span class="bottle-letter">B</span><span class="bottle-house">Tom Ford</span></div></div><div class="card-badges"><span class="badge badge--nicho">Nicho</span></div><button class="btn-wishlist">♡</button><div class="card-overlay"><div class="overlay-notes"><span>Notas:</span>Orquídea negra · Patchouli · Trufa</div><button class="btn-add">Agregar al carrito</button></div></div>
+      <div class="card-info"><div class="card-brand">Tom Ford</div><div class="card-name">Black Orchid</div><div class="card-sizes"><span class="size-chip sel">50ml</span><span class="size-chip">100ml</span></div><div class="card-price"><span class="price-now">$145</span></div></div>
+    </article>
+    <article class="product-card" data-cats="arabe ellos ellas calor">
+      <div class="mood-stripe mood-arabe"></div>
+      <div class="card-image"><div class="card-image__bg grad-6"><div style="text-align:center"><span class="bottle-letter">O</span><span class="bottle-house">Lattafa</span></div></div><div class="card-badges"><span class="badge badge--arabe">Árabe</span></div><button class="btn-wishlist">♡</button><div class="card-overlay"><div class="overlay-notes"><span>Notas:</span>Oud · Rosa · Ámbar · Sándalo</div><button class="btn-add">Agregar al carrito</button></div></div>
+      <div class="card-info"><div class="card-brand">Lattafa</div><div class="card-name">Oud Mood Elixir</div><div class="card-sizes"><span class="size-chip sel">100ml</span></div><div class="card-price"><span class="price-now">$55</span></div></div>
+    </article>
+    <article class="product-card" data-cats="disenador ellas">
+      <div class="mood-stripe mood-ellas"></div>
+      <div class="card-image"><div class="card-image__bg grad-7"><div style="text-align:center"><span class="bottle-letter">L</span><span class="bottle-house">Lancôme</span></div></div><div class="card-badges"><span class="badge badge--dis">Diseñador</span><span class="badge badge--enc">Por encargo</span></div><button class="btn-wishlist">♡</button><div class="card-overlay"><div class="overlay-notes"><span>Notas:</span>Iris · Praline · Pachulí</div><button class="btn-add">Solicitar encargo</button></div></div>
+      <div class="card-info"><div class="card-brand">Lancôme</div><div class="card-name">La Vie Est Belle</div><div class="card-sizes"><span class="size-chip sel">75ml</span></div><div class="card-price"><span class="price-now">$88</span></div></div>
+    </article>
+    <article class="product-card" data-cats="nicho ellas ellos frio">
+      <div class="mood-stripe mood-nicho"></div>
+      <div class="card-image"><div class="card-image__bg grad-8"><div style="text-align:center"><span class="bottle-letter">B</span><span class="bottle-house">MFK</span></div></div><div class="card-badges"><span class="badge badge--nicho">Nicho</span></div><button class="btn-wishlist">♡</button><div class="card-overlay"><div class="overlay-notes"><span>Notas:</span>Jazmín · Cedro · Ámbar gris</div><button class="btn-add">Agregar al carrito</button></div></div>
+      <div class="card-info"><div class="card-brand">Maison Francis Kurkdjian</div><div class="card-name">Baccarat Rouge 540</div><div class="card-sizes"><span class="size-chip sel">70ml</span><span class="size-chip">200ml</span></div><div class="card-price"><span class="price-now">$220</span></div></div>
+    </article>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     ③ NOSOTROS
+══════════════════════════════════════ -->
+<div id="page-nosotros" class="page">
+  <div class="page-header">
+    <div class="page-header__eyebrow">Fagans · Perfumería original</div>
+    <h1 class="page-header__title">Nosotros</h1>
+    <p class="page-header__subtitle">Perfumería original. Asesoría real. Acceso confiable.</p>
+    <div class="page-header__accent"></div>
+  </div>
+  <div class="nosotros-intro">
+    <p><strong>FAGANS</strong> nace para acercarte a la perfumería original de una forma más simple, confiable y personalizada.</p>
+    <p>Somos una tienda especializada en perfumes originales, enfocada en ayudarte a encontrar fragancias que realmente conecten con tu estilo, tu ocasión y tu presupuesto. En nuestro catálogo reunimos perfumes de distintas casas, estilos y categorías: desde fragancias de diseñador y árabes, hasta propuestas nicho y perfumes más exclusivos bajo solicitud.</p>
+    <p>Nuestra idea no es limitarte a un solo tipo de perfume. Si una fragancia es original, confiable y vale la pena conocerla, nos interesa poder ofrecértela o ayudarte a conseguirla. También ofrecemos decants: presentaciones más pequeñas que permiten probar, comparar y descubrir fragancias antes de invertir en una botella completa.</p>
+    <p>En FAGANS no fabricamos perfumes ni vendemos fórmulas propias. Trabajamos con perfumes originales, importados y obtenidos a través de proveedores confiables. Cada pedido se gestiona con atención al detalle, desde la búsqueda del producto hasta su entrega.</p>
+  </div>
+  <div class="pillars-section">
+    <div class="pillars-header"><h2>Lo que nos define</h2></div>
+    <div class="pillars-grid">
+      <div class="pillar-card"><div class="pillar-num">01</div><div class="pillar-name">Perfumes originales</div><div class="pillar-text">Todos nuestros productos son originales e importados a través de proveedores confiables. Cuidamos autenticidad, procedencia y calidad en cada fragancia.</div></div>
+      <div class="pillar-card"><div class="pillar-num">02</div><div class="pillar-name">Catálogo y pedidos por encargo</div><div class="pillar-text">Además de los perfumes en nuestra tienda, podemos ayudarte a conseguir fragancias específicas bajo solicitud. Solo indícanos el nombre o envíanos una imagen.</div></div>
+      <div class="pillar-card"><div class="pillar-num">03</div><div class="pillar-name">Decants y descubrimiento olfativo</div><div class="pillar-text">Ofrecemos decants para probar perfumes antes de comprar una botella completa. Ideal para comparar fragancias y tomar una decisión más segura.</div></div>
+      <div class="pillar-card"><div class="pillar-num">04</div><div class="pillar-name">Variedad sin limitarte</div><div class="pillar-text">No nos enfocamos en una sola categoría. Trabajamos con perfumes de diseñador, árabes, nicho y otras propuestas originales de valor para nuestros clientes.</div></div>
+      <div class="pillar-card"><div class="pillar-num">05</div><div class="pillar-name">Atención personalizada</div><div class="pillar-text">Cada solicitud se revisa de forma individual. Te ayudamos a cotizar, resolver dudas y encontrar la opción que mejor se adapte a lo que buscas.</div></div>
+      <div class="pillar-card"><div class="pillar-num">06</div><div class="pillar-name">Compra segura y protegida</div><div class="pillar-text">Cada pedido se prepara con cuidado en el empaque y el proceso de entrega. Sabemos que un perfume es delicado y buscamos que llegue en perfectas condiciones.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     ④ CONTACTO
+══════════════════════════════════════ -->
+<div id="page-contacto" class="page">
+  <div class="page-header">
+    <div class="page-header__eyebrow">Fagans · Estamos aquí para ayudarte</div>
+    <h1 class="page-header__title">Contacto</h1>
+    <p class="page-header__subtitle">Resolvemos tus dudas sobre pedidos, envíos, productos y más.</p>
+    <div class="page-header__accent"></div>
+  </div>
+  <div class="contact-layout">
+    <div class="contact-form-side">
+      <h2>Envíanos un mensaje</h2>
+      <p>Revisamos cada consulta a la brevedad y respondemos en horario hábil. Para respuestas inmediatas, escríbenos por WhatsApp.</p>
+      <div class="form-row">
+        <div class="form-group"><label>Nombre</label><input class="form-input" type="text" placeholder="Tu nombre completo"></div>
+        <div class="form-group"><label>Email</label><input class="form-input" type="email" placeholder="correo@ejemplo.com"></div>
+      </div>
+      <div class="form-group"><label>Teléfono (opcional)</label><input class="form-input" type="tel" placeholder="+503 0000 0000"></div>
+      <div class="form-group"><label>Mensaje</label><textarea class="form-input" placeholder="¿En qué podemos ayudarte?"></textarea></div>
+      <button class="btn-submit">Enviar mensaje</button>
+    </div>
+    <div class="contact-info-side">
+      <div>
+        <h2>¿Necesitas Ayuda?</h2>
+        <p>Estamos disponibles para acompañarte en cada paso.</p>
+      </div>
+      <div class="contact-cards">
+        <div class="contact-card">
+          <div class="contact-icon">💬</div>
+          <div class="contact-label">WhatsApp</div>
+          <div class="contact-value"><a href="#">Escríbenos</a></div>
+          <div class="contact-note">Respuesta en ~1 hora</div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon">📞</div>
+          <div class="contact-label">Teléfono</div>
+          <div class="contact-value"><a href="#">+503 7196 3343</a></div>
+          <div class="contact-note">&nbsp;</div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value"><a href="#">fagans.perfumes<br>@gmail.com</a></div>
+          <div class="contact-note">&nbsp;</div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon">🕐</div>
+          <div class="contact-label">Atención al Cliente</div>
+          <div class="contact-value">8:00 – 17:00</div>
+          <div class="contact-note">Lunes a sábado</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     ⑤ PREGUNTAS FRECUENTES
+══════════════════════════════════════ -->
+<div id="page-faq" class="page">
+  <div class="page-header">
+    <div class="page-header__eyebrow">Fagans · Soporte</div>
+    <h1 class="page-header__title">Preguntas Frecuentes</h1>
+    <p class="page-header__subtitle">Resolvemos tus dudas sobre pedidos, envíos, productos y más.</p>
+    <div class="page-header__accent"></div>
+  </div>
+  <div class="faq-body">
+
+    <div class="faq-category">
+      <div class="faq-category-title">Pedidos y encargos</div>
+      <div class="faq-item">
+        <button class="faq-question">¿Puedo solicitar un perfume que no está en el catálogo? <span class="faq-arrow">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Sí. Puedes contactarnos por cualquiera de nuestros medios oficiales e indicarnos el perfume que buscas. Nos ayuda mucho que nos compartas el nombre, la marca, una imagen y el tamaño. Luego realizamos la cotización y te confirmamos disponibilidad, precio estimado y tiempo de entrega.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">¿Cuánto tarda un perfume por encargo? <span class="faq-arrow">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Los pedidos por encargo suelen tardar entre <strong>1 y 2 semanas</strong> en promedio, ya que se trata de productos importados. El tiempo puede variar según disponibilidad, proveedor y proceso de importación.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">¿Cómo funcionan los pedidos por encargo? <span class="faq-arrow">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Si eres cliente nuevo, se solicita un <strong>adelanto del 50%</strong> o el pago completo por adelantado, según prefieras. Para clientes ya registrados, podemos manejar condiciones más flexibles según el historial de compra.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">¿Cuándo se entrega una compra realizada en la tienda? <span class="faq-arrow">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Si el producto está disponible en catálogo, la entrega normalmente se gestiona para el <strong>siguiente día hábil</strong> después de realizar la orden, exceptuando sábados, domingos o situaciones especiales de logística.</div></div>
+      </div>
+    </div>
+
+    <div class="faq-category">
+      <div class="faq-category-title">Envíos y pagos</div>
+      <div class="faq-item">
+        <button class="faq-question">¿Hacen envíos a todo El Salvador? <span class="faq-arrow">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Sí. Realizamos envíos a nivel nacional. Trabajamos con repartidores de terceros de alta confiabilidad y cuidamos especialmente el empaque, ya que los perfumes son productos delicados y frágiles.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">¿Qué métodos de pago aceptan? <span class="faq-arrow">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Actualmente aceptamos pagos con <strong>tarjeta, PayPal y Wompi</strong>. También podemos manejar transferencias bancarias en casos específicos, coordinadas directamente por WhatsApp para validar y confirmar antes de procesar el envío.</div></div>
+      </div>
+    </div>
+
+    <div class="faq-category">
+      <div class="faq-category-title">Productos y stock</div>
+      <div class="faq-item">
+        <button class="faq-question">¿Los perfumes son originales? <span class="faq-arrow">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Sí. Todos nuestros perfumes son <strong>originales e importados</strong> de proveedores confiables. Incluso en solicitudes especiales, buscamos opciones oficiales, legales, fiables y seguras para conseguir el producto.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">¿Cada cuánto actualizan el stock? <span class="faq-arrow">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Por lo general, agregamos perfumes nuevos <strong>cada mes</strong>. Los restocks y pedidos especiales pueden gestionarse en cualquier momento, dependiendo de disponibilidad y tiempos de importación.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">¿Tienen ventas por mayoreo? <span class="faq-arrow">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Sí, podemos evaluar casos especiales por mayoreo de forma privada a través de nuestros medios oficiales. Se revisa qué productos aplican, tiempos, condiciones y posibles beneficios según la cotización.</div></div>
+      </div>
+    </div>
+
+    <div class="faq-category">
+      <div class="faq-category-title">Devoluciones</div>
+      <div class="faq-item">
+        <button class="faq-question">¿Aceptan devoluciones? <span class="faq-arrow">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">No manejamos reembolsos en efectivo. Únicamente se pueden evaluar cambios cuando el producto presenta un <strong>daño funcional comprobable</strong> de fábrica o transporte (atomizadores dañados, fugas, botellas rotas). Se requiere evidencia y validación previa de nuestro equipo.</div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════ CART OVERLAY + DRAWER ════ -->
+<div class="cart-overlay" id="cart-overlay"></div>
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-head">
+    <div class="cart-head-left">
+      <div class="cart-title">Tu carrito</div>
+      <div class="cart-count-lbl" id="cart-count-lbl">0 artículos</div>
+    </div>
+    <button class="cart-close" id="cart-close">✕</button>
+  </div>
+  <div class="cart-body" id="cart-body">
+    <div class="cart-empty-state" id="cart-empty-state">
+      <div class="cart-empty-icon">🛍</div>
+      <p>Tu carrito está vacío.<br>Agrega una fragancia para comenzar.</p>
+      <button class="cart-empty-cta" id="cart-go-catalog">Ver catálogo →</button>
+    </div>
+  </div>
+  <div class="cart-foot" id="cart-foot" style="display:none">
+    <div class="cart-subtotal-row">
+      <span class="cart-subtotal-lbl">Subtotal</span>
+      <span class="cart-subtotal-val" id="cart-total-val">$0</span>
+    </div>
+    <div class="cart-ship-note">Envío calculado al finalizar la compra</div>
+    <button class="btn-checkout">Finalizar compra</button>
+    <button class="btn-keep" id="btn-keep">Seguir comprando</button>
+  </div>
+</div>
+
+<!-- Proto badge -->
+<div class="proto-badge">✦ Prototipo · Fagans 2025</div>
+
+<script>
+// ══════════════════════════════════════
+//  ROUTER
+// ══════════════════════════════════════
+function navigate(pageId) {
+  document.querySelectorAll('.page').forEach(p => {
+    p.classList.remove('active');
+    p.style.display = 'none';
+  });
+  const target = document.getElementById('page-' + pageId);
+  if (!target) return;
+  target.style.display = 'block';
+  requestAnimationFrame(() => {
+    target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  });
+  // Nav active links
+  document.querySelectorAll('.nav-links [data-page], .mobile-menu-links [data-page]').forEach(el => {
+    el.classList.toggle('active', el.dataset.page === pageId);
+  });
+  closeMobileMenu();
+}
+
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-page]');
+  if (!el) return;
+  e.preventDefault();
+  navigate(el.dataset.page);
+});
+
+navigate('home');
+
+// ══════════════════════════════════════
+//  MOBILE MENU
+// ══════════════════════════════════════
+const hamburger  = document.getElementById('nav-hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+
+function closeMobileMenu() {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+hamburger.addEventListener('click', () => {
+  const opening = !mobileMenu.classList.contains('open');
+  hamburger.classList.toggle('open', opening);
+  mobileMenu.classList.toggle('open', opening);
+  document.body.style.overflow = opening ? 'hidden' : '';
+});
+
+// ══════════════════════════════════════
+//  CART STATE
+// ══════════════════════════════════════
+let cart = []; // { id, brand, name, size, price, grad }
+
+function cartTotal() {
+  return cart.reduce((s, i) => s + i.price * i.qty, 0);
+}
+
+function cartItemCount() {
+  return cart.reduce((s, i) => s + i.qty, 0);
+}
+
+function updateCartBadge() {
+  const n = cartItemCount();
+  const badge = document.getElementById('cart-badge');
+  badge.textContent = n;
+  badge.classList.toggle('on', n > 0);
+}
+
+function renderCart() {
+  const body     = document.getElementById('cart-body');
+  const empty    = document.getElementById('cart-empty-state');
+  const foot     = document.getElementById('cart-foot');
+  const totalEl  = document.getElementById('cart-total-val');
+  const countLbl = document.getElementById('cart-count-lbl');
+  const n = cartItemCount();
+
+  countLbl.textContent = n === 0 ? '0 artículos' : `${n} artículo${n > 1 ? 's' : ''}`;
+  totalEl.textContent  = `$${cartTotal()}`;
+  foot.style.display   = cart.length ? '' : 'none';
+
+  // Remove existing item rows (keep empty state node)
+  body.querySelectorAll('.cart-item').forEach(el => el.remove());
+
+  if (cart.length === 0) {
+    empty.style.display = '';
+    return;
+  }
+  empty.style.display = 'none';
+
+  cart.forEach(item => {
+    const row = document.createElement('div');
+    row.className = 'cart-item';
+    row.dataset.id = item.id;
+    row.innerHTML = `
+      <div class="cart-item-img ${item.grad}">
+        <span style="font-family:var(--font-d);font-size:28px;color:rgba(255,255,255,.25)">${item.name[0]}</span>
+      </div>
+      <div class="cart-item-info">
+        <div class="cart-item-brand">${item.brand}</div>
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-size">${item.size}</div>
+        <div class="cart-item-price">$${item.price * item.qty}</div>
+      </div>
+      <div class="cart-item-side">
+        <div class="qty-control">
+          <button class="qty-btn" data-action="dec" data-id="${item.id}">−</button>
+          <span class="qty-val">${item.qty}</span>
+          <button class="qty-btn" data-action="inc" data-id="${item.id}">+</button>
+        </div>
+        <button class="cart-remove" data-id="${item.id}">Eliminar</button>
+      </div>`;
+    body.appendChild(row);
+  });
+}
+
+function addToCart(brand, name, size, price, grad) {
+  const id = brand + '|' + name + '|' + size;
+  const existing = cart.find(i => i.id === id);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ id, brand, name, size, price: parseInt(price), qty: 1, grad });
+  }
+  updateCartBadge();
+  renderCart();
+  openCart();
+}
+
+// Qty / remove controls (delegated)
+document.getElementById('cart-body').addEventListener('click', e => {
+  const btn = e.target.closest('[data-action]');
+  const rem = e.target.closest('.cart-remove');
+  if (btn) {
+    const id   = btn.dataset.id;
+    const item = cart.find(i => i.id === id);
+    if (!item) return;
+    if (btn.dataset.action === 'inc') item.qty++;
+    else if (btn.dataset.action === 'dec') { item.qty--; if (item.qty <= 0) cart = cart.filter(i => i.id !== id); }
+    updateCartBadge();
+    renderCart();
+  }
+  if (rem) {
+    cart = cart.filter(i => i.id !== rem.dataset.id);
+    updateCartBadge();
+    renderCart();
+  }
+});
+
+// ══════════════════════════════════════
+//  CART OPEN / CLOSE
+// ══════════════════════════════════════
+function openCart() {
+  document.getElementById('cart-drawer').classList.add('open');
+  document.getElementById('cart-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCart() {
+  document.getElementById('cart-drawer').classList.remove('open');
+  document.getElementById('cart-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('cart-open-btn').addEventListener('click', openCart);
+document.getElementById('cart-close').addEventListener('click', closeCart);
+document.getElementById('cart-overlay').addEventListener('click', closeCart);
+document.getElementById('btn-keep').addEventListener('click', closeCart);
+document.getElementById('cart-go-catalog').addEventListener('click', () => { closeCart(); navigate('catalog'); });
+
+// ══════════════════════════════════════
+//  ADD TO CART — wire up "Agregar" btns
+// ══════════════════════════════════════
+document.querySelectorAll('.btn-add').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    const card  = btn.closest('.product-card');
+    const brand = card.querySelector('.card-brand')?.textContent.trim() || '';
+    const name  = card.querySelector('.card-name')?.textContent.trim()  || '';
+    const selChip = card.querySelector('.size-chip.sel');
+    const size  = selChip ? selChip.textContent.trim() : '';
+    const priceEl = card.querySelector('.price-now');
+    const price = priceEl ? priceEl.textContent.replace('$','').trim() : '0';
+    // detect gradient class
+    const imgBg = card.querySelector('.card-image__bg');
+    const grad  = imgBg ? [...imgBg.classList].find(c => c.startsWith('grad-')) || '' : '';
+    addToCart(brand, name, size, price, grad);
+  });
+});
+
+// ══════════════════════════════════════
+//  CATALOG FILTERS
+// ══════════════════════════════════════
+const catPills = document.querySelectorAll('#cat-pills .filter-pill');
+const catCards = document.querySelectorAll('#cat-grid .product-card');
+const catCount = document.getElementById('cat-count');
+
+catPills.forEach(pill => {
+  pill.addEventListener('click', () => {
+    catPills.forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+    const filter = pill.dataset.filter;
+    let visible = 0;
+    catCards.forEach(card => {
+      const show = filter === 'all' || card.dataset.cats.includes(filter);
+      card.toggleAttribute('data-hidden', !show);
+      if (show) visible++;
+    });
+    catCount.textContent = `${visible} productos`;
+  });
+});
+
+// Grid cols
+document.querySelectorAll('.grid-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.grid-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const g = document.getElementById('cat-grid');
+    g.classList.toggle('cols-2', btn.dataset.cols === '2');
+  });
+});
+
+// ══════════════════════════════════════
+//  SIZE CHIPS
+// ══════════════════════════════════════
+document.querySelectorAll('.card-sizes').forEach(group => {
+  group.querySelectorAll('.size-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      group.querySelectorAll('.size-chip').forEach(c => c.classList.remove('sel'));
+      chip.classList.add('sel');
+    });
+  });
+});
+
+// ══════════════════════════════════════
+//  WISHLIST
+// ══════════════════════════════════════
+document.querySelectorAll('.btn-wishlist').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    const liked = btn.textContent === '♥';
+    btn.textContent = liked ? '♡' : '♥';
+    btn.style.color = liked ? '' : '#c0392b';
+  });
+});
+
+// ══════════════════════════════════════
+//  FAQ ACCORDION
+// ══════════════════════════════════════
+document.querySelectorAll('.faq-question').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>

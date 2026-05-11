@@ -15,6 +15,7 @@
         "slide-2": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/arabian.png",
             "eyebrow": "Colección Árabe",
             "title": "Aromas intensos.\nMarcas auténticas.\nMejor valor.",
             "subtitle": "Fragancias árabes originales que reinterpretan estilos populares de la perfumería moderna, ofreciendo intensidad, duración y gran valor.",
@@ -40,6 +41,7 @@
         "slide-1": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/Niche.png",
             "eyebrow": "Colección Nicho",
             "title": "El perfume\nque nadie más\nlleva.",
             "subtitle": "Fragancias nicho de firmas especializadas. Formulaciones que no llegan a los centros comerciales.",
@@ -104,7 +106,7 @@
       "settings": {
         "eyebrow": "Lo más buscado",
         "title": "Destacados de temporada",
-        "collection": "",
+        "collection": "perfumes-para-el-frio",
         "products_limit": 4,
         "cta_label": "Ver catálogo completo",
         "cta_link": "/collections/all"
@@ -113,6 +115,7 @@
     "fagans-story": {
       "type": "fagans-story",
       "settings": {
+        "image": "shopify://shop_images/pink.png",
         "image_alt": "",
         "image_placeholder": "Fotografía de ambiente — interior boutique",
         "eyebrow": "Quiénes somos",
@@ -166,24 +169,27 @@
         "coll-1": {
           "type": "collection_card",
           "settings": {
+            "image": "shopify://shop_images/Niche.png",
             "name": "Nicho",
-            "description": "Casas independientes. Composiciones únicas.",
+            "description": "El perfume que nadie más lleva.",
             "link": "/collections/nicho"
           }
         },
         "coll-2": {
           "type": "collection_card",
           "settings": {
+            "image": "shopify://shop_images/arabian.png",
             "name": "Árabe",
-            "description": "Oud, musk y ámbar. Profundidad oriental.",
+            "description": "Aromas intensos. Marcas auténticas. Mejor valor.",
             "link": "/collections/arabes"
           }
         },
         "coll-3": {
           "type": "collection_card",
           "settings": {
+            "image": "shopify://shop_images/designer_54d6f65b-446a-4645-8fc1-26ad70172db2.png",
             "name": "Diseñador",
-            "description": "Las firmas más icónicas, verificadas al 100%.",
+            "description": "Las marcas que ya conoces,también en perfumería.",
             "link": "/collections/disenador"
           }
         }
@@ -205,7 +211,7 @@
         "title": "Te ayudamos a encontrar\ntu fragancia.",
         "subtitle": "Cuéntanos tu estilo, tu ocasión, lo que has usado antes. En menos de una hora tienes nuestra recomendación.",
         "btn_label": "Hablar con un asesor",
-        "btn_link": "",
+        "btn_link": "https://fagans-perfumes.com/pages/contact",
         "aria_label": "Llamada a la acción"
       }
     },

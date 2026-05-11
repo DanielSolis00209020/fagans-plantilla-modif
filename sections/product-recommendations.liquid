@@ -126,7 +126,8 @@
 						{%- endif -%}
 					{%- endcapture -%}
 
-					{%- if slides != "" -%}
+					{%- assign slides_check = slides | strip -%}
+					{%- if slides_check != "" -%}
 						{{- slides -}}
 					{%- else -%}
 						{%- for i in (1..limit) -%}

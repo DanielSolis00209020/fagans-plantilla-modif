@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fagans — Catálogo (Prototipo)</title>
+  <style>
+    /* ── RESET + VARIABLES ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --onix:       #0E0F0F;
+      --blanco:     #FFFFFF;
+      --platino:    #F1F1F1;
+      --sandalo:    #C79FB8;
+      --nogal:      #582D0C;
+      --nogal-light:#8B4A1A;
+      --mid-gray:   #888;
+      --border:     #E5E5E5;
+
+      --font-display: 'Georgia', 'Times New Roman', serif;
+      --font-body:    system-ui, -apple-system, sans-serif;
+
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--blanco);
+      color: var(--onix);
+      min-height: 100vh;
+    }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      background: var(--onix);
+      color: var(--blanco);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 10px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 48px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: var(--blanco);
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 22px;
+      letter-spacing: 0.12em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+    }
+    .nav-links a {
+      color: var(--onix);
+      text-decoration: none;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { opacity: 1; }
+    .nav-links a.active { font-weight: 600; opacity: 1; }
+    .nav-icons { display: flex; gap: 20px; align-items: center; }
+    .nav-icon-btn {
+      background: none; border: none; cursor: pointer;
+      color: var(--onix); font-size: 18px; padding: 4px;
+    }
+
+    /* ── COLLECTION HEADER ── */
+    .collection-header {
+      padding: 64px 48px 32px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .collection-header__left { max-width: 600px; }
+    .collection-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mid-gray);
+      margin-bottom: 12px;
+    }
+    .collection-title {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 400;
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+    .collection-desc {
+      font-size: 14px;
+      color: var(--mid-gray);
+      line-height: 1.6;
+      max-width: 420px;
+    }
+    .collection-header__right {
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .product-count {
+      font-size: 13px;
+      color: var(--mid-gray);
+    }
+
+    /* ── FILTER BAR ── */
+    .filter-bar {
+      padding: 16px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 61px;
+      background: var(--blanco);
+      z-index: 90;
+    }
+    .filter-pills {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding-bottom: 2px;
+      flex: 1;
+    }
+    .filter-pills::-webkit-scrollbar { display: none; }
+    .filter-pill {
+      flex-shrink: 0;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 7px 16px;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      color: var(--onix);
+      transition: all 0.2s var(--ease);
+      white-space: nowrap;
+    }
+    .filter-pill:hover {
+      border-color: var(--onix);
+    }
+    .filter-pill.active {
+      background: var(--onix);
+      border-color: var(--onix);
+      color: var(--blanco);
+    }
+    .sort-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .sort-select {
+      font-family: var(--font-body);
+      font-size: 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 7px 28px 7px 12px;
+      color: var(--onix);
+      background: var(--blanco) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23888'/%3E%3C/svg%3E") no-repeat right 10px center;
+      appearance: none;
+      cursor: pointer;
+    }
+    .grid-toggle { display: flex; gap: 4px; }
+    .grid-btn {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 9px;
+      font-size: 14px;
+      cursor: pointer;
+      color: var(--mid-gray);
+      transition: all 0.2s;
+    }
+    .grid-btn.active {
+      background: var(--onix);
+      border-color: var(--onix);
+      color: var(--blanco);
+    }
+
+    /* ── PRODUCT GRID ── */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      padding: 0 48px 80px;
+      background: var(--border);
+    }
+    .product-grid.cols-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* ── PRODUCT CARD ── */
+    .product-card {
+      background: var(--blanco);
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+      transition: all 0.3s var(--ease);
+    }
+    .product-card.featured {
+      grid-column: span 2;
+    }
+    .product-card[data-hidden="true"] {
+      display: none;
+    }
+
+    /* Mood stripe */
+    .mood-stripe {
+      height: 3px;
+      width: 100%;
+    }
+    .mood-frio  { background: linear-gradient(90deg, #7EB8D4, #A8D4E8); }
+    .mood-calor { background: linear-gradient(90deg, #D4874A, #E8B87C); }
+    .mood-ellas { background: linear-gradient(90deg, var(--sandalo), #D4AEC8); }
+    .mood-nicho { background: linear-gradient(90deg, #8E7BAD, #B8A4D4); }
+    .mood-arabe { background: linear-gradient(90deg, var(--nogal), #8B6040); }
+    .mood-neutral { background: linear-gradient(90deg, #C8C8C8, #E0E0E0); }
+
+    /* Image area */
+    .card-image {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+    }
+    .product-card.featured .card-image {
+      aspect-ratio: 16/9;
+    }
+    .card-image__bg {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.6s var(--ease);
+      position: relative;
+    }
+    .product-card:hover .card-image__bg {
+      transform: scale(1.04);
+    }
+
+    /* Gradient palettes per product */
+    .grad-1 { background: linear-gradient(145deg, #1a0a3d 0%, #3d1a5e 40%, #6b2d7a 70%, #9d4e8c 100%); }
+    .grad-2 { background: linear-gradient(145deg, #0d3320 0%, #1a5c38 40%, #2d7a50 70%, #4a9e6e 100%); }
+    .grad-3 { background: linear-gradient(145deg, #0a1a2e 0%, #1a3a5c 40%, #2d5c8a 70%, #4a84b8 100%); }
+    .grad-4 { background: linear-gradient(145deg, #1a0015 0%, #3d002e 40%, #5c1a47 70%, #8c3a6b 100%); }
+    .grad-5 { background: linear-gradient(145deg, #0a0a0a 0%, #1a0d1a 40%, #2d0d2d 70%, #4a1a3a 100%); }
+    .grad-6 { background: linear-gradient(145deg, #2d1500 0%, #5c2e00 40%, #8a4a0a 70%, #b87840 100%); }
+    .grad-7 { background: linear-gradient(145deg, #1a0a15 0%, #3d1a30 40%, #6b2d50 70%, #c79fb8 100%); }
+    .grad-8 { background: linear-gradient(145deg, #1a150a 0%, #3d300a 40%, #6b551a 70%, #c8a84a 100%); }
+
+    /* Bottle silhouette */
+    .bottle-icon {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+    .bottle-letter {
+      font-family: var(--font-display);
+      font-size: 72px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.12);
+      line-height: 1;
+      display: block;
+    }
+    .product-card.featured .bottle-letter { font-size: 120px; }
+    .bottle-house {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      display: block;
+      margin-top: 8px;
+    }
+
+    /* Badges */
+    .card-badges {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      z-index: 10;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 9px;
+      border-radius: 4px;
+      backdrop-filter: blur(8px);
+    }
+    .badge--nicho   { background: rgba(142,123,173,0.9); color: #fff; }
+    .badge--arabe   { background: rgba(88,45,12,0.9);   color: #fff; }
+    .badge--dis     { background: rgba(14,15,15,0.75);  color: #fff; }
+    .badge--sale    { background: rgba(255,255,255,0.92); color: var(--onix); }
+    .badge--encargo { background: rgba(255,255,255,0.7);  color: var(--onix); border: 1px solid rgba(255,255,255,0.4); }
+    .badge--new     { background: rgba(199,159,184,0.9); color: #fff; }
+
+    /* Hover overlay */
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(14,15,15,0.88) 0%, rgba(14,15,15,0.3) 50%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.35s var(--ease);
+      z-index: 5;
+    }
+    .product-card:hover .card-overlay { opacity: 1; }
+    .overlay-notes {
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.7);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .overlay-notes span { color: rgba(255,255,255,0.5); margin-right: 6px; font-size: 9px; }
+    .btn-add {
+      background: var(--blanco);
+      color: var(--onix);
+      border: none;
+      border-radius: 6px;
+      padding: 12px 20px;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      transform: translateY(8px);
+      opacity: 0;
+      transition: all 0.3s var(--ease) 0.05s;
+    }
+    .product-card:hover .btn-add {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .btn-add:hover {
+      background: var(--onix);
+      color: var(--blanco);
+    }
+
+    /* Wishlist button */
+    .btn-wishlist {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(255,255,255,0.9);
+      border: none;
+      border-radius: 50%;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 15px;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.25s var(--ease);
+      z-index: 10;
+      backdrop-filter: blur(4px);
+    }
+    .product-card:hover .btn-wishlist {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Card info */
+    .card-info {
+      padding: 16px 20px 20px;
+      border-top: 1px solid var(--border);
+    }
+    .card-brand {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mid-gray);
+      margin-bottom: 4px;
+    }
+    .card-name {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .product-card.featured .card-name { font-size: 24px; }
+    .card-sizes {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .size-chip {
+      font-size: 10px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 3px 8px;
+      color: var(--mid-gray);
+      letter-spacing: 0.04em;
+    }
+    .size-chip.available { border-color: #ccc; }
+    .size-chip.selected {
+      background: var(--onix);
+      color: var(--blanco);
+      border-color: var(--onix);
+    }
+    .card-price {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .price-sale {
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .price-original {
+      font-size: 13px;
+      color: var(--mid-gray);
+      text-decoration: line-through;
+    }
+    .price-discount {
+      font-size: 11px;
+      font-weight: 600;
+      color: #c0392b;
+      background: #fde8e8;
+      border-radius: 4px;
+      padding: 2px 7px;
+    }
+
+    /* ── FEATURED CARD SPECIAL INFO ── */
+    .card-featured-tag {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sandalo);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    /* ── "NINGÚN RESULTADO" ── */
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 80px 48px;
+      display: none;
+    }
+    .empty-state.visible { display: block; }
+    .empty-state h3 {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+    .empty-state p { color: var(--mid-gray); font-size: 14px; }
+
+    /* ── PROTOTYPE BADGE ── */
+    .proto-badge {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--sandalo);
+      color: #fff;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 100px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      z-index: 999;
+    }
+
+    /* ── DESIGN TOGGLE ── */
+    .design-notes {
+      background: #fffbf0;
+      border: 1px solid #f0e6c0;
+      border-radius: 8px;
+      margin: 0 48px 0;
+      padding: 16px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .design-notes__icon { font-size: 18px; flex-shrink: 0; }
+    .design-notes__text { font-size: 13px; line-height: 1.6; color: #7a6a30; }
+    .design-notes__text strong { color: #5a4a10; }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #ddd; border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+  <!-- Topbar -->
+  <div class="topbar">✦ Envíos a todo El Salvador &nbsp;·&nbsp; Perfumes 100% originales &nbsp;·&nbsp; Pedidos por encargo disponibles ✦</div>
+
+  <!-- Nav -->
+  <nav>
+    <div class="nav-logo">FAGANS</div>
+    <ul class="nav-links">
+      <li><a href="#">Inicio</a></li>
+      <li><a href="#" class="active">Catálogo</a></li>
+      <li><a href="#">Contacto</a></li>
+      <li><a href="#">Nosotros</a></li>
+      <li><a href="#">Preguntas Frecuentes</a></li>
+    </ul>
+    <div class="nav-icons">
+      <button class="nav-icon-btn" title="Buscar">🔍</button>
+      <button class="nav-icon-btn" title="Cuenta">👤</button>
+      <button class="nav-icon-btn" title="Carrito">🛍</button>
+    </div>
+  </nav>
+
+  <!-- Collection Header -->
+  <div class="collection-header">
+    <div class="collection-header__left">
+      <div class="collection-eyebrow">Fagans — Tienda de perfumería</div>
+      <h1 class="collection-title">Catálogo</h1>
+      <p class="collection-desc">Perfumes originales e importados. Diseñador, nicho y árabe — curados para cada estilo, ocasión y presupuesto.</p>
+    </div>
+    <div class="collection-header__right">
+      <div class="product-count" id="product-count">152 productos</div>
+    </div>
+  </div>
+
+  <!-- Design Notes -->
+  <div class="design-notes">
+    <div class="design-notes__icon">✏️</div>
+    <div class="design-notes__text">
+      <strong>Prototipo interactivo</strong> — Usa los filtros de categoría, el ordenamiento y el toggle de columnas. Pasa el cursor sobre las cards para ver el hover con notas y el botón de agregar. La card doble (Althaïr) es el "featured" de primera posición.
+    </div>
+  </div>
+
+  <!-- Filter Bar -->
+  <div class="filter-bar" style="margin-top: 24px;">
+    <div class="filter-pills" id="filter-pills">
+      <button class="filter-pill active" data-filter="all">Todos</button>
+      <button class="filter-pill" data-filter="disenador">Diseñador</button>
+      <button class="filter-pill" data-filter="nicho">Nicho</button>
+      <button class="filter-pill" data-filter="arabe">Árabe</button>
+      <button class="filter-pill" data-filter="ellas">Para Ellas</button>
+      <button class="filter-pill" data-filter="ellos">Para Ellos</button>
+      <button class="filter-pill" data-filter="calor">Para el Calor</button>
+      <button class="filter-pill" data-filter="frio">Para el Frío</button>
+    </div>
+    <div class="sort-controls">
+      <select class="sort-select">
+        <option>Relevancia</option>
+        <option>Menor precio</option>
+        <option>Mayor precio</option>
+        <option>Más recientes</option>
+      </select>
+      <div class="grid-toggle">
+        <button class="grid-btn active" data-cols="4" title="4 columnas">⊞</button>
+        <button class="grid-btn" data-cols="2" title="2 columnas">▤</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Grid -->
+  <div class="product-grid" id="product-grid">
+
+    <!-- 01 · FEATURED · Althaïr — Parfums de Marly -->
+    <article class="product-card featured" data-cats="nicho ellos frio">
+      <div class="mood-stripe mood-nicho"></div>
+      <div class="card-image">
+        <div class="card-image__bg grad-1">
+          <div class="bottle-icon">
+            <span class="bottle-letter">A</span>
+            <span class="bottle-house">Parfums de Marly</span>
+          </div>
+        </div>
+        <div class="card-badges">
+          <span class="badge badge--nicho">Nicho</span>
+          <span class="badge badge--sale">−15%</span>
+        </div>
+        <button class="btn-wishlist">♡</button>
+        <div class="card-overlay">
+          <div class="overlay-notes"><span>Notas:</span> Lavanda, Iris, Cedro, Ámbar</div>
+          <button class="btn-add">Agregar al carrito</button>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-featured-tag">✦ Destacado de temporada</div>
+        <div class="card-brand">Parfums de Marly</div>
+        <div class="card-name">Althaïr</div>
+        <div class="card-sizes">
+          <span class="size-chip selected">75ml</span>
+          <span class="size-chip">125ml</span>
+        </div>
+        <div class="card-price">
+          <span class="price-sale">$200</span>
+          <span class="price-original">$235</span>
+          <span class="price-discount">−15%</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 02 · Hawas Verde — Rasasi -->
+    <article class="product-card" data-cats="arabe ellos calor">
+      <div class="mood-stripe mood-calor"></div>
+      <div class="card-image">
+        <div class="card-image__bg grad-2">
+          <div class="bottle-icon">
+            <span class="bottle-letter">H</span>
+            <span class="bottle-house">Rasasi</span>
+          </div>
+        </div>
+        <div class="card-badges">
+          <span class="badge badge--arabe">Árabe</span>
+        </div>
+        <button class="btn-wishlist">♡</button>
+        <div class="card-overlay">
+          <div class="overlay-notes"><span>Notas:</span> Menta, Madera, Almizclе</div>
+          <button class="btn-add">Agregar al carrito</button>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-brand">Rasasi</div>
+        <div class="card-name">Hawas Verde</div>
+        <div class="card-sizes">
+          <span class="size-chip selected">100ml</span>
+        </div>
+        <div class="card-price">
+          <span class="price-sale">$70</span>
+          <span class="price-original">$85</span>
+          <span class="price-discount">−18%</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 03 · Sauvage — Dior -->
+    <article class="product-card" data-cats="disenador ellos frio">
+      <div class="mood-stripe mood-frio"></div>
+      <div class="card-image">
+        <div class="card-image__bg grad-3">
+          <div class="bottle-icon">
+            <span class="bottle-letter">S</span>
+            <span class="bottle-house">Dior</span>
+          </div>
+        </div>
+        <div class="card-badges">
+          <span class="badge badge--dis">Diseñador</span>
+        </div>
+        <button class="btn-wishlist">♡</button>
+        <div class="card-overlay">
+          <div class="overlay-notes"><span>Notas:</span> Bergamota, Pimienta, Vetiver</div>
+          <button class="btn-add">Agregar al carrito</button>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-brand">Dior</div>
+        <div class="card-name">Sauvage EDP</div>
+        <div class="card-sizes">
+          <span class="size-chip selected">60ml</span>
+          <span class="size-chip">100ml</span>
+          <span class="size-chip">200ml</span>
+        </div>
+        <div class="card-price">
+          <span class="price-sale">$105</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 04 · Black Opium — YSL -->
+    <article class="product-card" data-cats="disenador ellas calor">
+      <div class="mood-stripe mood-ellas"></div>
+      <div class="card-image">
+        <div class="card-image__bg grad-4">
+          <div class="bottle-icon">
+            <span class="bottle-letter">B</span>
+            <span class="bottle-house">Yves Saint Laurent</span>
+          </div>
+        </div>
+        <div class="card-badges">
+          <span class="badge badge--dis">Diseñador</span>
+          <span class="badge badge--new">Nuevo</span>
+        </div>
+        <button class="btn-wishlist">♡</button>
+        <div class="card-overlay">
+          <div class="overlay-notes"><span>Notas:</span> Café, Vainilla, Jazmín blanco</div>
+          <button class="btn-add">Agregar al carrito</button>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-brand">Yves Saint Laurent</div>
+        <div class="card-name">Black Opium</div>
+        <div class="card-sizes">
+          <span class="size-chip selected">50ml</span>
+          <span class="size-chip">90ml</span>
+        </div>
+        <div class="card-price">
+          <span class="price-sale">$95</span>
+          <span class="price-original">$115</span>
+          <span class="price-discount">−17%</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 05 · Black Orchid — Tom Ford -->
+    <article class="product-card" data-cats="nicho ellas ellos">
+      <div class="mood-stripe mood-nicho"></div>
+      <div class="card-image">
+        <div class="card-image__bg grad-5">
+          <div class="bottle-icon">
+            <span class="bottle-letter">B</span>
+            <span class="bottle-house">Tom Ford</span>
+          </div>
+        </div>
+        <div class="card-badges">
+          <span class="badge badge--nicho">Nicho</span>
+        </div>
+        <button class="btn-wishlist">♡</button>
+        <div class="card-overlay">
+          <div class="overlay-notes"><span>Notas:</span> Orquídea negra, Patchouli, Trufa</div>
+          <button class="btn-add">Agregar al carrito</button>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-brand">Tom Ford</div>
+        <div class="card-name">Black Orchid</div>
+        <div class="card-sizes">
+          <span class="size-chip selected">50ml</span>
+          <span class="size-chip">100ml</span>
+        </div>
+        <div class="card-price">
+          <span class="price-sale">$145</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 06 · Oud Mood — Lattafa -->
+    <article class="product-card" data-cats="arabe ellos ellas calor">
+      <div class="mood-stripe mood-arabe"></div>
+      <div class="card-image">
+        <div class="card-image__bg grad-6">
+          <div class="bottle-icon">
+            <span class="bottle-letter">O</span>
+            <span class="bottle-house">Lattafa</span>
+          </div>
+        </div>
+        <div class="card-badges">
+          <span class="badge badge--arabe">Árabe</span>
+        </div>
+        <button class="btn-wishlist">♡</button>
+        <div class="card-overlay">
+          <div class="overlay-notes"><span>Notas:</span> Oud, Rosa, Ámbar, Madera de sándalo</div>
+          <button class="btn-add">Agregar al carrito</button>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-brand">Lattafa</div>
+        <div class="card-name">Oud Mood Elixir</div>
+        <div class="card-sizes">
+          <span class="size-chip selected">100ml</span>
+        </div>
+        <div class="card-price">
+          <span class="price-sale">$55</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 07 · La Vie Est Belle — Lancôme -->
+    <article class="product-card" data-cats="disenador ellas">
+      <div class="mood-stripe mood-ellas"></div>
+      <div class="card-image">
+        <div class="card-image__bg grad-7">
+          <div class="bottle-icon">
+            <span class="bottle-letter">L</span>
+            <span class="bottle-house">Lancôme</span>
+          </div>
+        </div>
+        <div class="card-badges">
+          <span class="badge badge--dis">Diseñador</span>
+          <span class="badge badge--encargo">Por encargo</span>
+        </div>
+        <button class="btn-wishlist">♡</button>
+        <div class="card-overlay">
+          <div class="overlay-notes"><span>Notas:</span> Iris, Praline, Pachulí</div>
+          <button class="btn-add">Solicitar encargo</button>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-brand">Lancôme</div>
+        <div class="card-name">La Vie Est Belle</div>
+        <div class="card-sizes">
+          <span class="size-chip selected">75ml</span>
+        </div>
+        <div class="card-price">
+          <span class="price-sale">$88</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 08 · Baccarat Rouge 540 — MFK -->
+    <article class="product-card" data-cats="nicho ellas ellos frio">
+      <div class="mood-stripe mood-nicho"></div>
+      <div class="card-image">
+        <div class="card-image__bg grad-8">
+          <div class="bottle-icon">
+            <span class="bottle-letter">B</span>
+            <span class="bottle-house">Maison Francis Kurkdjian</span>
+          </div>
+        </div>
+        <div class="card-badges">
+          <span class="badge badge--nicho">Nicho</span>
+        </div>
+        <button class="btn-wishlist">♡</button>
+        <div class="card-overlay">
+          <div class="overlay-notes"><span>Notas:</span> Jazmín, Cedro, Ámbar gris, Musgo</div>
+          <button class="btn-add">Agregar al carrito</button>
+        </div>
+      </div>
+      <div class="card-info">
+        <div class="card-brand">Maison Francis Kurkdjian</div>
+        <div class="card-name">Baccarat Rouge 540</div>
+        <div class="card-sizes">
+          <span class="size-chip selected">70ml</span>
+          <span class="size-chip">200ml</span>
+        </div>
+        <div class="card-price">
+          <span class="price-sale">$220</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Empty State -->
+    <div class="empty-state" id="empty-state">
+      <h3>Sin resultados</h3>
+      <p>No hay productos en esta categoría aún.</p>
+    </div>
+
+  </div>
+
+  <!-- Proto Badge -->
+  <div class="proto-badge">✦ Prototipo de diseño</div>
+
+  <script>
+    // ── FILTER ──
+    const pills = document.querySelectorAll('.filter-pill');
+    const cards = document.querySelectorAll('.product-card');
+    const emptyState = document.getElementById('empty-state');
+    const productCount = document.getElementById('product-count');
+
+    pills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        pills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+
+        const filter = pill.dataset.filter;
+        let visible = 0;
+
+        cards.forEach(card => {
+          if (filter === 'all' || card.dataset.cats.includes(filter)) {
+            card.removeAttribute('data-hidden');
+            visible++;
+          } else {
+            card.setAttribute('data-hidden', 'true');
+          }
+        });
+
+        emptyState.classList.toggle('visible', visible === 0);
+        productCount.textContent = visible === cards.length
+          ? '152 productos'
+          : `${visible} productos`;
+      });
+    });
+
+    // ── GRID TOGGLE ──
+    const gridBtns = document.querySelectorAll('.grid-btn');
+    const grid = document.getElementById('product-grid');
+
+    gridBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        gridBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const cols = btn.dataset.cols;
+        grid.className = `product-grid${cols === '2' ? ' cols-2' : ''}`;
+      });
+    });
+
+    // ── SIZE CHIP SELECT ──
+    document.querySelectorAll('.card-sizes').forEach(sizeGroup => {
+      sizeGroup.querySelectorAll('.size-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          sizeGroup.querySelectorAll('.size-chip').forEach(c => c.classList.remove('selected'));
+          chip.classList.add('selected');
+        });
+      });
+    });
+
+    // ── WISHLIST TOGGLE ──
+    document.querySelectorAll('.btn-wishlist').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        btn.textContent = btn.textContent === '♡' ? '♥' : '♡';
+        btn.style.color = btn.textContent === '♥' ? '#c0392b' : '';
+      });
+    });
+  </script>
+</body>
+</html>
